@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <Route exact path="/login" component={Login}/>
+      {/* <Route exact path="/login" component={Login}/>
       <Route exact path="/signup" component={Signup}/>
 
       <Navbar />
@@ -16,7 +16,7 @@ function App() {
       <Route exact path="/event" component={Event} />
 
       <PrivateRoute exact path="/ownerdashboard" component={OwnerDashboard}/>
-      <PrivateRoute exact path="/makeseatingchart" component={MakeSeatingChart}/>
+      <PrivateRoute exact path="/makeseatingchart" component={MakeSeatingChart}/> */}
     </div>
   );
 }
