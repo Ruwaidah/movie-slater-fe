@@ -16,9 +16,11 @@ import PrivateRoute from './components/PrivateRoute';
 function App() {
   return (
     <div className="App">
+
       <Navbar />
       
       <Route exact path="/login" component={Login}/>
+
       <Route exact path="/signup" component={Signup}/>
 
 
@@ -29,6 +31,7 @@ function App() {
       <Route exact path="/event" component={Event} /> */}
 
       {/* <PrivateRoute exact path="/ownerdashboard" component={OwnerDashboard}/>
+
       <PrivateRoute exact path="/makeseatingchart" component={MakeSeatingChart}/> */}
     </div>
   );
