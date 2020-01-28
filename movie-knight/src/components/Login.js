@@ -1,4 +1,8 @@
 import React, {useState} from 'react'
+//Oauth//
+import ReactDOM from 'react-dom';
+import GoogleLogin from 'react-google-login';
+//Oauth//
 
 const Login = props =>{
 
@@ -13,6 +17,11 @@ const Login = props =>{
         //   console.log(event.target.name, event.target.value);
         };
 
+        //Oauth
+        const responseGoogle = (response) => {
+          console.log(response);
+        }
+        //Oauth      
     return(
         <div>
           <h1>Log In</h1>
@@ -41,7 +50,17 @@ const Login = props =>{
           <br/>
           <button type='submit'>Log In</button>
         </form>
-        </div>
+
+        {/* Oauth */}
+        <GoogleLogin
+          clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
+        />
+        {/* Oauth */}
+        </div> 
     )
 
 }
