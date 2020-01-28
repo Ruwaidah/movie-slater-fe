@@ -41,6 +41,10 @@ const Login = props =>{
           <br/>
           <button type='submit'>Log In</button>
         </form>
+
+        <h2>Or</h2>
+
+        <h2 className='google'>Sign Up with Google</h2>
         </div>
     )
 

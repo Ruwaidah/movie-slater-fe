@@ -68,6 +68,11 @@ const Signup = props =>{
         <button type='submit'>Sign Up</button>
         
       </form>
+
+        <h2>Or</h2>
+
+        <h2 className='google'>Sign Up with Google</h2>
+
         </div>
     )
 
