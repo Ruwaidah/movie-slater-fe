@@ -1,9 +1,9 @@
 import axiosWithAuth from "../utils/axiosWithAuth";
 
 
-export const USER_LOGING_IN = "USER_LOGING_IN";
-export const USER_LOGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
-export const USER_LOGING_IN_FAILURE = "USER_LOGING_IN_FAILURE";
+export const USER_LOGGING_IN = "USER_LOGING_IN";
+export const USER_LOGGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
+export const USER_LOGGING_IN_FAILURE = "USER_LOGING_IN_FAILURE";
 
 export const login = loginData => dispatch => {
     dispatch({ type: USER_LOGING_IN });
@@ -12,12 +12,12 @@ export const login = loginData => dispatch => {
       .post(/*  LOGIN ENDPOINT */ loginData)
       .then(response =>
         dispatch(
-          { type: USER_LOGING_IN_SUCCESS, payload: response.data.user },
+          { type: USER_LOGGING_IN_SUCCESS, payload: response.data.user },
           localStorage.setItem("token", response.data.token),
         )
       )
       .catch(err =>
-        dispatch({ type: USER_LOGING_IN_FAILURE, payload: err.response })
+        dispatch({ type: USER_LOGGING_IN_FAILURE, payload: err.response })
       );
 };
 
@@ -41,23 +41,23 @@ export const signUp = signUpData => dispatch => {
       );
 };
 
-export const THEATER_USER_LOGING_IN = "THEATER_USER_LOGING_IN";
-export const THEATER_USER_LOGING_IN_SUCCESS = "THEATER_USER_LOGING_IN_SUCCESS";
-export const THEATER_USER_LOGING_IN_FAILURE = "THEATER_USER_LOGING_IN_FAILURE";
+export const THEATER_USER_LOGGING_IN = "THEATER_USER_LOGGING_IN";
+export const THEATER_USER_LOGGING_IN_SUCCESS = "THEATER_USER_LOGGING_IN_SUCCESS";
+export const THEATER_USER_LOGGING_IN_FAILURE = "THEATER_USER_LOGGING_IN_FAILURE";
 
 export const theaterLogin = loginData => dispatch => {
-    dispatch({ type:  THEATER_USER_LOGING_IN });
+    dispatch({ type:  THEATER_USER_LOGGING_IN });
   
     axiosWithAuth()
       .post(/*  LOGIN ENDPOINT */ loginData)
       .then(response =>
         dispatch(
-          { type: THEATER_USER_LOGING_IN_SUCCESS, payload: response.data.user },
+          { type: THEATER_USER_LOGGING_IN_SUCCESS, payload: response.data.user },
           localStorage.setItem("token", response.data.token),
         )
       )
       .catch(err =>
-        dispatch({ type:THEATER_USER_LOGING_IN_FAILURE, payload: err.response })
+        dispatch({ type:THEATER_USER_LOGGING_IN_FAILURE, payload: err.response })
       );
 };
 
