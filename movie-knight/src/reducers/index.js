@@ -1,16 +1,16 @@
 import{
 
-    USER_LOGGING_IN,
-    USER_LOGGING_IN_SUCCESS,
-    USER_LOGGING_IN_FAILURE,
+    USER_LOGING_IN,
+    USER_LOGING_IN_SUCCESS,
+    USER_LOGING_IN_FAILURE,
 
     USER_SIGNING,
     USER_SIGNING_SUCCESS,
     USER_SIGNING_FAILURE,
 
-    THEATER_USER_LOGGING_IN,
-    THEATER_USER_LOGGING_IN_SUCCESS,
-    THEATER_USER_LOGGING_IN_FAILURE,
+    THEATER_USER_LOGING_IN,
+    THEATER_USER_LOGING_IN_SUCCESS,
+    THEATER_USER_LOGING_IN_FAILURE,
 
     THEATER_USER_SIGNING,
     THEATER_USER_SIGNING_SUCCESS,
@@ -30,20 +30,20 @@ const reducer = (state = initialState, action) =>{
 
 
         //*************************USER LOGIN */
-        case USER_LOGGING_IN: 
+        case USER_LOGING_IN: 
             return{
                 ...state,
                 fetchingData: true,
             }
 
-        case USER_LOGGING_IN_SUCCESS:
+        case USER_LOGING_IN_SUCCESS:
             return{
                 ...state,
                 fetchingData: false,
                 userData: action.payload,
             }
 
-        case USER_LOGGING_IN_FAILURE:
+        case USER_LOGING_IN_FAILURE:
             return{
                 ...state,
                 fetchingData: false,
@@ -93,20 +93,20 @@ const reducer = (state = initialState, action) =>{
             }
         
         //*************************THEATER LOGIN */
-        case THEATER_USER_LOGGING_IN: 
+        case THEATER_USER_LOGING_IN: 
             return{
                 ...state,
                 fetchingData: true
             }
 
-        case THEATER_USER_LOGGING_IN_SUCCESS:
+        case THEATER_USER_LOGING_IN_SUCCESS:
             return{
                 ...state,
                 fetchingData: false,
                 userData: action.payload,
             }
 
-        case THEATER_USER_LOGGING_IN_FAILURE:
+        case THEATER_USER_LOGING_IN_FAILURE:
             return{
                 ...state,
                 fetchingData: false,
