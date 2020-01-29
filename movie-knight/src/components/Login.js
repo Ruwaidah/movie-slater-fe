@@ -19,7 +19,7 @@ const Login = props =>{
 
         //Oauth
         const responseGoogle = (response) => {
-          console.log(response);
+          console.log("what we are getting back from google",response);
         }
         //Oauth      
     return(
@@ -51,14 +51,12 @@ const Login = props =>{
           <button type='submit'>Log In</button>
         </form>
 
-
         {/* Oauth */}
         <GoogleLogin
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
         />
         {/* Oauth */}
         </div> 
