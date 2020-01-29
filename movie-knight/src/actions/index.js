@@ -6,7 +6,7 @@ export const USER_LOGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
 export const USER_LOGING_IN_FAILURE = "USER_LOGING_IN_FAILURE";
 
 export const login = loginData => dispatch => {
-    dispatch({ type: USER_LOGGING_IN });
+    dispatch({ type: USER_LOGING_IN });
   
     axiosWithAuth()
       .post(/*  LOGIN ENDPOINT */ loginData)
