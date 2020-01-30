@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Navbar from './components/Nav';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/movieDashboard/Dashboard';
 import MovieDetails from './components/MovieDetails';
 import Availability from './components/Availability';
 import Checkout from './components/Checkout';
