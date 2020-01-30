@@ -1,5 +1,6 @@
 import axiosWithAuth from "../utils/axiosWithAuth";
-
+import { createBrowserHistory } from "history";
+export const history = createBrowserHistory();
 
 export const USER_LOGING_IN = "USER_LOGING_IN";
 export const USER_LOGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
@@ -9,11 +10,11 @@ export const login = loginData => dispatch => {
     dispatch({ type: USER_LOGING_IN });
   
     axiosWithAuth()
-      .post(/*  LOGIN ENDPOINT */ loginData)
+      .post('/api/auth/login', loginData)
       .then(response =>
         dispatch(
-          { type: USER_LOGING_IN_SUCCESS, payload: response.data.user },
-          localStorage.setItem("token", response.data.token),
+          { type: USER_LOGING_IN_SUCCESS, payload: response.data },
+          localStorage.setItem("token", response.data.token)
         )
       )
       .catch(err =>
@@ -29,7 +30,7 @@ export const signUp = signUpData => dispatch => {
     dispatch({ type: USER_SIGNING });
   
     axiosWithAuth()
-      .post(/*  SINGING ENDPOINT  */signUpData)
+      .post('/api/auth/register ', signUpData)
       .then(response =>
         dispatch(
           { type: USER_SIGNING_SUCCESS, payload: response.data.user },

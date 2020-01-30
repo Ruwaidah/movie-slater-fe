@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 import useDarkMode from '../hooks/useDarkMode';
 
 const Nav = props =>{
@@ -11,7 +12,26 @@ const Nav = props =>{
         setUseDarkMode(!DarkMode);
     }
 
+    const logOut = () => {
+        localStorage.removeItem('token')
+        props.history.push('/')
+    }
+
     return (
+
+        localStorage.getItem('token')
+        ?
+        <div>
+            <NavLink  to='/' >Home</NavLink>
+            <button onClick={()=> logOut()}>Log Out</button>
+            {
+                DarkMode === true ?
+                (<button onClick={toggleDarkMode} className={DarkMode ? 'dark-button dark-mode' : 'dark-button' } >Light</button>)
+                :
+                (<button onClick={toggleDarkMode} className={DarkMode ? 'dark-button dark-mode' : 'dark-button' } >Dark</button>)   
+            }
+        </div>
+        :
         <div>
 
             <NavLink  to='/' > Home </NavLink>
@@ -29,4 +49,4 @@ const Nav = props =>{
     )
 }
 
-export default Nav;
+export default withRouter(Nav);

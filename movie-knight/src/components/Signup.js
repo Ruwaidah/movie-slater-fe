@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { connect } from 'react-redux';
+import { signUp } from '../actions/index';
 
 const Signup = props =>{
 
@@ -6,6 +8,8 @@ const Signup = props =>{
 
   const handleSubmit = event => {
     event.preventDefault();
+    props.signUp(signup)
+    props.history.push('/')
     setsignup({ username: "", password: "", email: '' });
   };
 
@@ -78,4 +82,4 @@ const Signup = props =>{
 
 }
 
-export default Signup;
+export default connect(null, { signUp })(Signup)
