@@ -1,4 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
+import { login } from '../actions/index';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 //Oauth//
 import ReactDOM from 'react-dom';
 import GoogleLogin from 'react-google-login';
@@ -7,14 +10,17 @@ import GoogleLogin from 'react-google-login';
 const Login = props =>{
 
         const [loginInfo, setLogininfo] = useState({ email: "", password: "" });
+
         const handleSubmit = event => {
           event.preventDefault();
           props.login(loginInfo)
+          // .then(() => props.history.push('/'))
+          props.history.push('/')
           setLogininfo({ email: "", password: "" });
         };
+
         const handleChange = event => {
           setLogininfo({ ...loginInfo, [event.target.name]: event.target.value });
-        //   console.log(event.target.name, event.target.value);
         };
 
         //Oauth
@@ -64,4 +70,4 @@ const Login = props =>{
 
 }
 
-export default Login;
+export default connect(null, { login })(withRouter(Login))
