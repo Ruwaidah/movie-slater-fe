@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 //Oauth//
 import ReactDOM from 'react-dom';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin, {GoogleLogout} from 'react-google-login';
 //Oauth//
 
 const Login = props =>{
@@ -20,6 +20,12 @@ const Login = props =>{
         //Oauth
         const responseGoogle = (response) => {
           console.log("what we are getting back from google",response);
+          const { tokenId, w3 } = response;
+          localStorage.setItem("token", tokenId);
+          localStorage.setItem("user_email", w3.U3);
+        }
+
+        const logout = (response) => {
         }
         //Oauth      
     return(
@@ -58,6 +64,13 @@ const Login = props =>{
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
         />
+
+        <GoogleLogout
+          clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
+          buttonText="Logout"
+          onLogoutSuccess={logout}
+        >
+        </GoogleLogout>
         {/* Oauth */}
         </div> 
     )
