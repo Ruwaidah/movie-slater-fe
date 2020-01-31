@@ -50,7 +50,7 @@ export const theaterLogin = loginData => dispatch => {
     dispatch({ type:  THEATER_USER_LOGING_IN });
   
     axiosWithAuth()
-      .post(/*  LOGIN ENDPOINT */ loginData)
+      .post('/api/auth/owner/login', loginData)
       .then(response =>
         dispatch(
           { type: THEATER_USER_LOGING_IN_SUCCESS, payload: response.data.user },
@@ -70,7 +70,7 @@ export const TheaterSignUp = signUpData => dispatch => {
     dispatch({ type: THEATER_USER_SIGNING });
   
     axiosWithAuth()
-      .post(/*  SINGING ENDPOINT  */signUpData)
+      .post('/api/auth/owner/register', signUpData)
       .then(response =>
         dispatch(
           { type: THEATER_USER_SIGNING_SUCCESS, payload: response.data.user },
