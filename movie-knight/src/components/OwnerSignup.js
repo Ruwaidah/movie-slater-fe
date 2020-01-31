@@ -1,12 +1,6 @@
-
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { signUp } from '../actions/index';
-//Oauth//
-import ReactDOM from 'react-dom';
-import GoogleLogin, {GoogleLogout} from 'react-google-login';
-//Oauth//
-
+import { TheaterSignUp } from '../actions/index';
 
 const Signup = props =>{
 
@@ -14,7 +8,7 @@ const Signup = props =>{
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.signUp(signup)
+    props.TheaterSignUp(signup)
     props.history.push('/')
     setsignup({ username: "", password: "", email: '' });
   };
@@ -24,21 +18,9 @@ const Signup = props =>{
     
   };
 
-  //Oauth
-  const responseGoogle = (response) => {
-    console.log("what we are getting back from google",response);
-    const { tokenId, w3 } = response;
-    localStorage.setItem("token", tokenId);
-    localStorage.setItem("user_email", w3.U3);
-  }
-
-  const logout = (response) => {
-  }
-  //Oauth 
-
     return(
         <div>
-             <h1>Sign Up</h1>
+             <h1>Theater Sign Up</h1>
 
         <form onSubmit={handleSubmit}>
 
@@ -95,25 +77,9 @@ const Signup = props =>{
 
         <h2 className='google'>Sign Up with Google</h2>
 
-        {/* Oauth */}
-        <GoogleLogin
-          clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-        />
-
-        <GoogleLogout
-          clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
-          buttonText="Logout"
-          onLogoutSuccess={logout}
-        >
-        </GoogleLogout>
-        {/* Oauth */}
-
         </div>
     )
 
 }
 
-export default connect(null, { signUp })(Signup)
+export default connect(null, { TheaterSignUp })(Signup)
