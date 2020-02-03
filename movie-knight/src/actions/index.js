@@ -1,3 +1,4 @@
+import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { createBrowserHistory } from "history";
 export const history = createBrowserHistory();
