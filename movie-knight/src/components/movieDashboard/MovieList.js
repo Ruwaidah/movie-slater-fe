@@ -7,9 +7,13 @@ import './dashboard.css';
 export default function MovieList(){
   const [movies, setMovies] = useState([])
 
-  const [zipCode, setZipCode] = useState(94080)
+  const [zipCode, setZipCode] = useState(90028)
+
+  const [theatreName, setTheaterName] = useState()
 
   console.log(zipCode);
+
+  console.log(theatreName);
 
   const handleChange = e =>{
     e.preventDefault();
@@ -26,11 +30,16 @@ export default function MovieList(){
     .then(response => {
       console.log(response)
       setMovies(response.data)
+      setTheaterName(response.data[0].showtimes[0].theatre.name)
     })
   },[zipCode])
 
+
   return (
     <div className="movie-list">
+
+  <h2>{theatreName}</h2>
+      <br></br>
       <div>
         <form onSubmit={handleSubmit}>
 
@@ -44,7 +53,6 @@ export default function MovieList(){
             <button type='submit'>🔍</button>
         </form>
       </div>
-      
 
         {movies.map(movie => {
           return <MovieCard movie={movie} key={movie.tmsId}/>

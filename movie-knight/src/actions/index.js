@@ -1,5 +1,6 @@
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { createBrowserHistory } from "history";
+import axios from 'axios';
 export const history = createBrowserHistory();
 
 export const USER_LOGING_IN = "USER_LOGING_IN";
