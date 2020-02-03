@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
-import { login } from '../actions/index';
+import { theaterLogin } from '../actions/index';
 import { connect } from 'react-redux';
-// import { withRouter } from "react-router-dom";
-//Oauth//
-// import ReactDOM from 'react-dom';
-import GoogleLogin from 'react-google-login';
-//Oauth//
+import { withRouter } from "react-router-dom";
 
 const Login = props =>{
 
@@ -13,9 +9,8 @@ const Login = props =>{
 
         const handleSubmit = event => {
           event.preventDefault();
-          props.login(loginInfo)
-          // .then(() => props.history.push('/'))
-          props.history.push('/')
+          props.theaterLogin(loginInfo)
+          props.history.push('/ownerdashboard')
           setLogininfo({ email: "", password: "" });
         };
 
@@ -23,14 +18,9 @@ const Login = props =>{
           setLogininfo({ ...loginInfo, [event.target.name]: event.target.value });
         };
 
-        //Oauth
-        const responseGoogle = (response) => {
-          console.log("what we are getting back from google",response);
-        }
-        //Oauth      
     return(
         <div>
-          <h1>Log In</h1>
+          <h1>Theater Log In</h1>
         <form onSubmit={handleSubmit}>
           <label>Email</label>
           <br/>
@@ -57,23 +47,13 @@ const Login = props =>{
           <button type='submit'>Log In</button>
         </form>
 
-        {/* Oauth */}
-        <GoogleLogin
-          clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-        />
-        {/* Oauth */}
+        <h2>Or</h2>
+
+        <h2 className='google'>Sign Up with Google</h2>
+        
         </div> 
     )
 
 }
 
-const mapStateToProps = state => {
-  return {
-      userData: state.userData
-  };
-};
-
-export default connect(mapStateToProps, { login })(Login)
+export default connect(null, { theaterLogin })(withRouter(Login))

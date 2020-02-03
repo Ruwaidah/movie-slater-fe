@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { signUp } from '../actions/index';
+import { TheaterSignUp } from '../actions/index';
 
 const Signup = props =>{
 
@@ -8,8 +8,8 @@ const Signup = props =>{
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.signUp(signup)
-    props.history.push('/')
+    props.TheaterSignUp(signup)
+    props.history.push('/ownerdashboard')
     setsignup({ username: "", password: "", email: '' });
   };
 
@@ -20,7 +20,7 @@ const Signup = props =>{
 
     return(
         <div>
-             <h1>Sign Up</h1>
+             <h1>Theater Sign Up</h1>
 
         <form onSubmit={handleSubmit}>
 
@@ -82,4 +82,4 @@ const Signup = props =>{
 
 }
 
-export default connect(null, { signUp })(Signup)
+export default connect(null, { TheaterSignUp })(Signup)

@@ -1,5 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import useDarkMode from '../hooks/useDarkMode';
 
 const Nav = props =>{
@@ -11,22 +12,50 @@ const Nav = props =>{
         setUseDarkMode(!DarkMode);
     }
 
+    // console.log(props.userData.username)
+
+    const logOut = () => {
+        localStorage.removeItem('token')
+        props.history.push('/')
+    }
+
     return (
-        <div>
 
-            <NavLink  to='/' > Home </NavLink>
-            <NavLink to='signup' > Sign Up</NavLink>
-            <NavLink to='login' > Login</NavLink>
+        localStorage.getItem('token')
+        ?
+            <div>
+                <NavLink  to='/' >Home</NavLink>
+                <p>{props.userData.username}</p>
+                <button onClick={()=> logOut()}>Log Out</button>
+                {
+                    DarkMode === true ?
+                    (<button onClick={toggleDarkMode} className={DarkMode ? 'dark-button dark-mode' : 'dark-button' } >Light</button>)
+                    :
+                    (<button onClick={toggleDarkMode} className={DarkMode ? 'dark-button dark-mode' : 'dark-button' } >Dark</button>)   
+                }
+            </div>
+        :
+            <div>
 
-            {
-                DarkMode === true ?
-                (<button onClick={toggleDarkMode} className={DarkMode ? 'dark-button dark-mode' : 'dark-button' } >Light</button>)
-                :
-                (<button onClick={toggleDarkMode} className={DarkMode ? 'dark-button dark-mode' : 'dark-button' } >Dark</button>)   
-            }
+                <NavLink  to='/' > Home </NavLink>
+                <NavLink to='/signup' > Sign Up</NavLink>
+                <NavLink to='/login' > Login</NavLink>
 
-        </div>
+                {
+                    DarkMode === true ?
+                    (<button onClick={toggleDarkMode} className={DarkMode ? 'dark-button dark-mode' : 'dark-button' } >Light</button>)
+                    :
+                    (<button onClick={toggleDarkMode} className={DarkMode ? 'dark-button dark-mode' : 'dark-button' } >Dark</button>)   
+                }
+
+            </div>
     )
 }
 
-export default Nav;
+const mapStateToProps = state => {
+    return {
+        userData: state.userData
+    };
+  };
+
+export default connect(mapStateToProps)(withRouter(Nav));

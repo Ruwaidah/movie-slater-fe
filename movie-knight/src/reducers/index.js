@@ -25,6 +25,7 @@ import{
 const initialState = {
     userDataWorkout: [],
     movieList: [],
+    userData: {},
     fetchingData: false,
     error: ''
 }
