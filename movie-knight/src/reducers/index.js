@@ -19,7 +19,7 @@ import{
 } from '../actions/index';
 
 const initialState = {
-    userDataWorkout: [],
+    userData: {},
     fetchingData: false,
     error: ''
 }

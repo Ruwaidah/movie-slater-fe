@@ -9,7 +9,7 @@ const Signup = props =>{
   const handleSubmit = event => {
     event.preventDefault();
     props.TheaterSignUp(signup)
-    props.history.push('/')
+    props.history.push('/ownerdashboard')
     setsignup({ username: "", password: "", email: '' });
   };
 

@@ -10,7 +10,7 @@ const Login = props =>{
         const handleSubmit = event => {
           event.preventDefault();
           props.theaterLogin(loginInfo)
-          props.history.push('/')
+          props.history.push('/ownerdashboard')
           setLogininfo({ email: "", password: "" });
         };
 
@@ -47,6 +47,10 @@ const Login = props =>{
           <button type='submit'>Log In</button>
         </form>
 
+        <h2>Or</h2>
+
+        <h2 className='google'>Sign Up with Google</h2>
+        
         </div> 
     )
 
