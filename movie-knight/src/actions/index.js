@@ -1,5 +1,5 @@
 import axiosWithAuth from "../utils/axiosWithAuth";
-
+import axios from "axios";
 
 export const USER_LOGING_IN = "USER_LOGING_IN";
 export const USER_LOGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
@@ -80,3 +80,21 @@ export const TheaterSignUp = signUpData => dispatch => {
         dispatch({ type: THEATER_USER_SIGNING_FAILURE, payload: err.response })
       );
 };
+
+//GET MOVIES WIHTOUT LOGIN//
+export const GET_MOVIES_START = "GET_MOVIES_START";
+export const GET_MOVIES_SUCCESS = "GET_MOVIES_SUCCESS";
+export const GET_MOVIES_FAILURE = "GET_MOVIES_FAILURE";
+
+export const getMovies = () => dispatch => {
+    axios()
+        .get("https://movieknight01.herokuapp.com/api/movies")
+        .then(res => {
+            console.log("get moveis res", res)
+            dispatch({type:GET_MOVIES_SUCCESS, payload:res.data})
+        })
+        .catch(error => {
+            dispatch({type:GET_MOVIES_FAILURE, payload:error})
+        })
+};
+//GET MOVIES WIHTOUT LOGIN//

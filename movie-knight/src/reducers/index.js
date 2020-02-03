@@ -14,12 +14,17 @@ import{
 
     THEATER_USER_SIGNING,
     THEATER_USER_SIGNING_SUCCESS,
-    THEATER_USER_SIGNING_FAILURE
+    THEATER_USER_SIGNING_FAILURE,
+
+    GET_MOVIES_START,
+    GET_MOVIES_SUCCESS,
+    GET_MOVIES_FAILURE,
 
 } from '../actions/index';
 
 const initialState = {
     userDataWorkout: [],
+    movieList: [],
     fetchingData: false,
     error: ''
 }
@@ -112,6 +117,25 @@ const reducer = (state = initialState, action) =>{
                 fetchingData: false,
                 error: action.payload
             }
+
+        //GET MOVIES//   
+        case GET_MOVIES_START:
+            return {
+                ...state,
+                fetchingData: true
+            };
+        case GET_MOVIES_SUCCESS:
+            return {
+                ...state,
+                fetchingData: false,
+                movieList: [...state.movieList, action.payload]
+            };
+        case GET_MOVIES_FAILURE:
+            return {
+                ...state,
+                error: action.payload
+            };
+        //GET MOVIES//     
 
         default:
             return state
