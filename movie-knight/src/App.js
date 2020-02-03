@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import { Route } from 'react-router-dom';
+import { BrowserRouter as Router,  Route } from 'react-router-dom';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import OwnerLogin from './components/OwnerLogin';
 import OwnerSignup from './components/OwnerSignup';
-import Navbar from './components/Nav';
+import Nav from './components/Nav';
 import Dashboard from './components/Dashboard';
 import MovieDetails from './components/MovieDetails';
 import Availability from './components/Availability';
@@ -17,9 +17,11 @@ import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
-    <div className="App">
+      <Router>
 
-      <Route  component={Navbar}/>
+      <div className="App">
+
+      <Nav/>
       
       <Route exact path="/login" component={Login}/>
 
@@ -42,8 +44,10 @@ function App() {
       <PrivateRoute exact path="/ownerdashboard" component={OwnerDashboard}/>
 
       <PrivateRoute exact path="/makeseatingchart" component={MakeSeatingChart}/>
-      
-    </div>
+
+      </div>
+
+    </Router>
   );
 }
 
