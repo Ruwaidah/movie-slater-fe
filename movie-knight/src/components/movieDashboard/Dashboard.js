@@ -1,13 +1,12 @@
 import React from 'react'
+import MovieList from "./MovieList"
 
 const Dashboard = props => {
     return (
         <div>
-            <h1>Home</h1>
+            <h1>See a movie</h1>
             
-            <h1>Now Playing</h1>
-            <h1>Coming Soon</h1>
-            <h1>New Movie</h1>
+            <MovieList />
         </div>
     )
 }

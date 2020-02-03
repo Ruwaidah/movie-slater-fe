@@ -3,10 +3,11 @@ import './App.css';
 import { BrowserRouter as Router,  Route } from 'react-router-dom';
 import Login from './components/Login';
 import Signup from './components/Signup';
+
+import Dashboard from './components/movieDashboard/Dashboard';
 import OwnerLogin from './components/OwnerLogin';
 import OwnerSignup from './components/OwnerSignup';
 import Nav from './components/Nav';
-import Dashboard from './components/Dashboard';
 import MovieDetails from './components/MovieDetails';
 import Availability from './components/Availability';
 import Checkout from './components/Checkout';
