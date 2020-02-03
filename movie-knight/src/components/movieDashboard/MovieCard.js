@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './dashboard.css';
 
 export default function MovieCard(props){
   console.log(props.movie.title)
