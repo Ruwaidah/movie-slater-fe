@@ -2,11 +2,3 @@
   display: flex;
   flex-wrap: wrap;
 }
-
-.img-placeholder{
-  width: 40%;
-  height: 50%;
-
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0.8;
-}
