@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import { login } from '../actions/index';
 import { connect } from 'react-redux';
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 //Oauth//
+
 import ReactDOM from 'react-dom';
 import GoogleLogin, {GoogleLogout} from 'react-google-login';
-//Oauth//
 
 const Login = props =>{
 
@@ -83,4 +83,10 @@ const Login = props =>{
 
 }
 
-export default connect(null, { login })(withRouter(Login))
+const mapStateToProps = state => {
+  return {
+      userData: state.userData
+  };
+};
+
+export default connect(mapStateToProps, { login })(Login)
