@@ -36,16 +36,6 @@ export default function MovieList() {
     setSearchParam(event.target.value);
   };
 
-  const handleSubmitSearch = event => {
-    //event.preventDefault();
-    console.log("movie state", movies)
-    console.log("target", event.target.value)
-    movies.filter(movie => {
-      console.log("movie", movie)
-      return movie.title.includes(event.target.value);
-    })
-  }
-
   return (
     <>
       <h2>{theatreName}</h2>
@@ -63,21 +53,20 @@ export default function MovieList() {
           <button type='submit'>🔍</button>
         </form>
       </div>
-      <form onSubmit={handleSubmitSearch}>
+      <form>
         <input
         className="searchForm"
         placeholder="Search here"
         onChange={handleChangeSearch}
         value={searchParam}
         />
-        <button type="submit">🔍</button>
       </form>
 
       <div className="movie-list">
 
         {
           movies.filter(movie => {
-            return movie.title.toLowerCase().includes(searchParam) || searchParam == null;
+            return movie.title.includes(searchParam) || movie.title.toLowerCase().includes(searchParam) ||  searchParam == null;
           }).map(movie => {
             return <MovieCard movie={movie} key={movie.tmsId} />
           })}
