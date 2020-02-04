@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
+
 //Oauth//
 import ReactDOM from 'react-dom';
 import GoogleLogin, {GoogleLogout} from 'react-google-login';
@@ -26,15 +27,19 @@ const Signup = props =>{
 
   //Oauth
   const responseGoogle = (response) => {
-    console.log("what we are getting back from google",response);
-    const { tokenId, w3 } = response;
-    localStorage.setItem("token", tokenId);
-    localStorage.setItem("user_email", w3.U3);
+    console.log("google response",response);
+    const { tokenId, profileObj } = response;
+    localStorage.setItem("google_token", tokenId);
+    localStorage.setItem("user_email", profileObj.email);
+    localStorage.setItem("user_name", profileObj.name);
   }
 
-  const logout = (response) => {
+  const logoutGoogle = () => {
+    localStorage.removeItem("google_token");
+    localStorage.removeItem("user_email");
+    localStorage.removeItem("user_name");
   }
-  //Oauth 
+  //Oauth
 
     return(
         <div>
@@ -106,7 +111,7 @@ const Signup = props =>{
         <GoogleLogout
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Logout"
-          onLogoutSuccess={logout}
+          onLogoutSuccess={logoutGoogle}
         >
         </GoogleLogout>
         {/* Oauth */}

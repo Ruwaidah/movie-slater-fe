@@ -14,6 +14,7 @@ const store = createStore( reducer, applyMiddleware (thunk, logger ) )
 ReactDOM.render(
   <Provider store={store}>
       <App />
-  </Provider>, document.getElementById('root'));
+  </Provider>
+  ,document.getElementById('root'));
 
 serviceWorker.unregister();

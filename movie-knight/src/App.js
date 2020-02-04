@@ -23,11 +23,15 @@ function App() {
       <div className="App">
 
       <Nav/>
-      
+
+      {/* okta */}
+      {/* <Route exact path="/home" component={Home}/> */}
+      {/* okta */}
+
       <Route exact path="/login" component={Login}/>
 
       <Route exact path="/signup" component={Signup}/>
-
+   
       <Route exact path="/theater-signup" component={OwnerSignup}/>
       
       <Route exact path="/theater-login" component={OwnerLogin}/>
@@ -53,3 +57,80 @@ function App() {
 }
 
 export default App;
+
+
+//okta2//
+// import React, { Component } from 'react';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { Security, ImplicitCallback } from '@okta/okta-react';
+// import Home from './Home';
+
+// const config = {
+//   issuer: 'https://dev-228034.okta.com/oauth2/default',
+//   redirectUri: window.location.origin + '/implicit/callback',
+//   clientId: '0oa19mwctLQwNEoBW4x6',
+//   pkce: true
+// }
+
+// class App extends Component {
+//   render() {
+//     return (
+//       <Router>
+//         <Security {...config}>
+//           <Route path='/' exact={true} component={Home}/>
+//           <Route path='/implicit/callback' component={ImplicitCallback}/>
+//         </Security>
+//       </Router>
+//     );
+//   }
+// }
+
+// export default App;
+// okta2//
+
+// okta//
+// import React, { Component } from 'react';
+// import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import { Security, SecureRoute, ImplicitCallback } from '@okta/okta-react';
+// import Home from './Home';
+// import Login from './Login';
+// import Protected from './Protected';
+
+// function onAuthRequired({history}) {
+//   history.push('/login');
+// }
+
+// class App extends Component {
+//   render() {
+//     return (
+//       <Router>
+//         <Security issuer='https://dev-228034.okta.com/oauth2/default'
+//                   clientId='0oa19mwctLQwNEoBW4x6'
+//                   redirectUri={window.location.origin + '/implicit/callback'}
+//                   onAuthRequired={onAuthRequired}
+//                   pkce={true} >
+//           <Route path='/' exact={true} component={Home} />
+//           <SecureRoute path='/protected' component={Protected} />
+//           <Route path='/login' render={() => <Login baseUrl='https://dev-228034.okta.com' />} />
+//           <Route path='/implicit/callback' component={ImplicitCallback} />
+//         </Security>
+//       </Router>
+//     );
+//   }
+// }
+
+// export default App;
+// okta//
+
+// okta//
+// import { Security, ImplicitCallback } from '@okta/okta-react';
+// okta//
+
+// okta//
+// const config = {
+//   issuer: 'https://dev-228034.okta.com/oauth2/default',
+//   redirectUri: window.location.origin + '/implicit/callback',
+//   clientId: '0oa19mwctLQwNEoBW4x6',
+//   pkce: true
+// }
+// okta//
