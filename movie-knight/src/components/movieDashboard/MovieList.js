@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MovieCard from "./MovieCard"
-import './dashboard.css';
+import './dashboard.scss';
 
 export default function MovieList() {
   const [movies, setMovies] = useState([])
