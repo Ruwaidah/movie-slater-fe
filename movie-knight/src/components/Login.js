@@ -73,7 +73,7 @@ const Login = props =>{
          <div style={{ display: localStorage.token ? "none" : "block" }}>
         <GoogleLogin
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
-          buttonText="Login"
+          buttonText="Login with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
         />
