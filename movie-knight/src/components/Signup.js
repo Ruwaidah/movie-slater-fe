@@ -30,14 +30,14 @@ const Signup = props =>{
   const responseGoogle = (response) => {
     console.log("google response",response);
     const { tokenId, profileObj } = response;
-    localStorage.setItem("google_token", tokenId);
+    localStorage.setItem("token", tokenId);
     localStorage.setItem("user_email", profileObj.email);
     localStorage.setItem("user_name", profileObj.name);
     signUpGoogle(tokenId, profileObj.email, profileObj.name)
   }
 
   const logoutGoogle = () => {
-    localStorage.removeItem("google_token");
+    localStorage.removeItem("token");
     localStorage.removeItem("user_email");
     localStorage.removeItem("user_name");
   }

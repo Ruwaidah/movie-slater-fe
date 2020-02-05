@@ -29,14 +29,14 @@ const Login = props =>{
         const responseGoogle = (response) => {
           console.log("what we are getting back from google",response);
           const { tokenId, profileObj } = response;
-          localStorage.setItem("google_token", tokenId);
+          localStorage.setItem("token", tokenId);
           localStorage.setItem("user_email", profileObj.email);
           localStorage.setItem("user_name", profileObj.name);
           setLogged({logged:true});
         }
 
         const logoutGoogle = () => {
-          localStorage.removeItem("google_token");
+          localStorage.removeItem("token");
           localStorage.removeItem("user_email");
           localStorage.removeItem("user_name");
           setLogged({logged:false});

@@ -31,7 +31,8 @@ const initialState = {
     movieList: [],
     userData: {},
     fetchingData: false,
-    error: ''
+    error: '',
+    googleData: {}
 }
 
 const reducer = (state = initialState, action) =>{
@@ -152,8 +153,9 @@ const reducer = (state = initialState, action) =>{
         case USER_SIGNING_GOOGLE_SUCCESS:
             return{
                 ...state,
-                fetchingData: false
-            }
+                fetchingData: false,
+                googleData: action.payload
+            }    
 
         case USER_SIGNING_GOOGLE_FAILURE:
             return{
