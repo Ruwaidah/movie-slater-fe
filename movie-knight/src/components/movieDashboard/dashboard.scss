@@ -1,6 +1,22 @@
 .movie-list{
+  margin: 10% 5%;
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  background-color: red;
+ 
 }
 
+.movie-title{
+  margin: 0 0 20px 0;
+  padding: 0 0 0 0;
+}
+
+.movie-img{
+  width: 155px;
+}
+
+.searchForm{
+  width: 85%;
+  padding: 6px 2% ;
+  border-radius: 6px;
+}

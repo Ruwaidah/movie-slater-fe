@@ -17,7 +17,7 @@ export default function MovieList() {
       .then(response => {
         console.log(response)
         setMovies(response.data)
-        setTheaterName(response.data[0].showtimes[0].theatre.name)
+        // setTheaterName(response.data[0].showtimes[0].theatre.name)
       })
   }
 
@@ -38,7 +38,7 @@ export default function MovieList() {
 
   return (
     <>
-      <h2>{theatreName}</h2>
+      {/* <h2>{theatreName}</h2> */}
       <br></br>
       <div>
         <form onSubmit={handleSubmit}>
@@ -53,10 +53,11 @@ export default function MovieList() {
           <button type='submit'>🔍</button>
         </form>
       </div>
+
       <form>
         <input
         className="searchForm"
-        placeholder="Search here"
+        placeholder=" 🔍 Search here"
         onChange={handleChangeSearch}
         value={searchParam}
         />
