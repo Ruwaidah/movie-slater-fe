@@ -57,11 +57,11 @@ export const signUpGoogle = signUpData => dispatch => {
     .post('endpoint', signUpData)
     .then(response =>
       dispatch(
-        { type: USER_SIGNING_SUCCESS, payload: response },
+        { type: USER_SIGNING_GOOGLE_SUCCESS, payload: response },
       )
     )
     .catch(err =>
-      dispatch({ type: USER_SIGNING_FAILURE, payload: err.response })
+      dispatch({ type: USER_SIGNING_GOOGLE_FAILURE, payload: err.response })
     );
 };
 
