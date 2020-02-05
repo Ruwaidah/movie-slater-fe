@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
 import { signUpGoogle } from '../actions/index';
 
+
 //Oauth//
 import ReactDOM from 'react-dom';
 import GoogleLogin, {GoogleLogout} from 'react-google-login';
