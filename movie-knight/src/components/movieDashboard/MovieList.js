@@ -21,6 +21,10 @@ export default function MovieList() {
       })
   }
 
+  useEffect(() =>{
+    makeCall()
+  }, [])
+
   const handleChange = e => {
     e.preventDefault();
     setZipCode(e.target.value)
