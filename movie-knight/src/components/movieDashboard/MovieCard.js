@@ -1,14 +1,13 @@
 import React from 'react';
-import './dashboard.css';
+import './dashboard.scss';
 
 export default function MovieCard(props){
-  console.log(props.movie)
+  // console.log(props.movie)
   return(
     <div>
-      <div className ="img-placeholder"/>
-       <img src={props.movie.image}/>
+      <div/>
+       <img src={props.movie.image} alt={props.movie.title}/>
        <h3>{props.movie.title}</h3>
-     
     </div>
     )
 }

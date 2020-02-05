@@ -35,7 +35,7 @@ const Signup = props =>{
     localStorage.setItem("user_email", profileObj.email);
     localStorage.setItem("user_name", profileObj.name);
     signUpGoogle(tokenId, profileObj.email, profileObj.name)
-    window.location.reload()
+    window.location.reload();
   }
 
   const logoutGoogle = () => {
