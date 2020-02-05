@@ -1,5 +1,7 @@
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import axiosWithGoogle from "../utils/axiosWithGoogle";
+
 import { createBrowserHistory } from "history";
 export const history = createBrowserHistory();
 
@@ -41,6 +43,26 @@ export const signUp = signUpData => dispatch => {
       .catch(err =>
         dispatch({ type: USER_SIGNING_FAILURE, payload: err.response })
       );
+};
+
+//GOOGLE_LOGIN
+export const USER_SIGNING_GOOGLE = "USER_SIGNING_GOOGLE";
+export const USER_SIGNING_GOOGLE_SUCCESS = "USER_SIGNING_GOOGLE_SUCCESS";
+export const USER_SIGNING_GOOGLE_FAILURE = "USER_SIGNING_GOOGLE_FAILURE";
+
+export const signUpGoogle = signUpData => dispatch => {
+  dispatch({ type: USER_SIGNING_GOOGLE });
+
+  axiosWithGoogle()
+    .post('endpoint', signUpData)
+    .then(response =>
+      dispatch(
+        { type: USER_SIGNING_SUCCESS, payload: response },
+      )
+    )
+    .catch(err =>
+      dispatch({ type: USER_SIGNING_FAILURE, payload: err.response })
+    );
 };
 
 export const THEATER_USER_LOGING_IN = "THEATER_USER_LOGING_IN";

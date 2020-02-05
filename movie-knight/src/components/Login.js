@@ -11,6 +11,8 @@ const Login = props =>{
 
         const [loginInfo, setLogininfo] = useState({ email: "", password: "" });
 
+        const [logged, setLogged] = useState({ logged: false });
+
         const handleSubmit = event => {
           event.preventDefault();
           props.login(loginInfo)
@@ -30,12 +32,14 @@ const Login = props =>{
           localStorage.setItem("google_token", tokenId);
           localStorage.setItem("user_email", profileObj.email);
           localStorage.setItem("user_name", profileObj.name);
+          setLogged({logged:true});
         }
 
         const logoutGoogle = () => {
           localStorage.removeItem("google_token");
           localStorage.removeItem("user_email");
           localStorage.removeItem("user_name");
+          setLogged({logged:false});
         }
         //Oauth      
     return(

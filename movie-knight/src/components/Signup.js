@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
+import { signUpGoogle } from '../actions/index';
 
 //Oauth//
 import ReactDOM from 'react-dom';
@@ -32,6 +33,7 @@ const Signup = props =>{
     localStorage.setItem("google_token", tokenId);
     localStorage.setItem("user_email", profileObj.email);
     localStorage.setItem("user_name", profileObj.name);
+    signUpGoogle(tokenId, profileObj.email, profileObj.name)
   }
 
   const logoutGoogle = () => {
