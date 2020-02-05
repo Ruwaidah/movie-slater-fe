@@ -34,12 +34,14 @@ const Signup = props =>{
     localStorage.setItem("user_email", profileObj.email);
     localStorage.setItem("user_name", profileObj.name);
     signUpGoogle(tokenId, profileObj.email, profileObj.name)
+    window.location.reload()
   }
 
   const logoutGoogle = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user_email");
     localStorage.removeItem("user_name");
+    window.location.reload()
   }
   //Oauth
 
@@ -103,19 +105,22 @@ const Signup = props =>{
         <h2 className='google'>Sign Up with Google</h2>
 
         {/* Oauth */}
+        <div style={{ display: localStorage.token ? "none" : "block" }}>
         <GoogleLogin
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
         />
-
+        </div>
+        <div style={{ display: localStorage.token ? "block" : "none" }}>
         <GoogleLogout
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Logout"
           onLogoutSuccess={logoutGoogle}
         >
         </GoogleLogout>
+        </div>
         {/* Oauth */}
 
         </div>

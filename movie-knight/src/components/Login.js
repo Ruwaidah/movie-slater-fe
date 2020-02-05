@@ -11,8 +11,6 @@ const Login = props =>{
 
         const [loginInfo, setLogininfo] = useState({ email: "", password: "" });
 
-        const [logged, setLogged] = useState({ logged: false });
-
         const handleSubmit = event => {
           event.preventDefault();
           props.login(loginInfo)
@@ -32,14 +30,14 @@ const Login = props =>{
           localStorage.setItem("token", tokenId);
           localStorage.setItem("user_email", profileObj.email);
           localStorage.setItem("user_name", profileObj.name);
-          setLogged({logged:true});
+          window.location.reload()
         }
 
         const logoutGoogle = () => {
           localStorage.removeItem("token");
           localStorage.removeItem("user_email");
           localStorage.removeItem("user_name");
-          setLogged({logged:false});
+          window.location.reload()
         }
         //Oauth      
     return(
@@ -72,19 +70,22 @@ const Login = props =>{
         </form>
 
         {/* Oauth */}
+         <div style={{ display: localStorage.token ? "none" : "block" }}>
         <GoogleLogin
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
         />
-
+        </div>
+        <div style={{ display: localStorage.token ? "block" : "none" }}>
         <GoogleLogout
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Logout"
           onLogoutSuccess={logoutGoogle}
         >
         </GoogleLogout>
+        </div>
         {/* Oauth */}
         </div> 
     )
