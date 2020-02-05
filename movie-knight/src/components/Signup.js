@@ -101,10 +101,6 @@ const Signup = props =>{
         
       </form>
 
-        <h2>Or</h2>
-
-        <h2 className='google'>Sign Up with Google</h2>
-
         {/* Oauth */}
         <div style={{ display: localStorage.token ? "none" : "block" }}>
         <GoogleLogin
