@@ -6,7 +6,7 @@ import './dashboard.scss';
 export default function MovieList() {
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState()
-  const [zipCode, setZipCode] = useState(90028)
+  const [zipCode, setZipCode] = useState(47712)
   const [theatreName, setTheaterName] = useState()
 
   console.log(zipCode);
