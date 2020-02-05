@@ -91,10 +91,6 @@ const Signup = props =>{
         
       </form>
 
-        <h2>Or</h2>
-
-        <h2 className='google'>Sign Up with Google</h2>
-
         {/* Oauth */}
         <GoogleLogin
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"

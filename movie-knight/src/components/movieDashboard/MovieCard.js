@@ -4,10 +4,10 @@ import './dashboard.scss';
 export default function MovieCard(props){
   // console.log(props.movie)
   return(
-    <div>
+    <div className='movie-card'>
       <div/>
-       <img src={props.movie.image} alt={props.movie.title}/>
-       <h3>{props.movie.title}</h3>
+       <img className='movie-img' src={props.movie.image} alt={props.movie.title}/>
+       <p className='movie-title'>{props.movie.title}</p>
     </div>
     )
 }
