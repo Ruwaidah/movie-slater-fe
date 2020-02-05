@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosWithGoogle = () => {
-    const google_token = localStorage.getItem('google_token');
+    const google_token = localStorage.getItem('token');
 
     return axios.create({
         baseURL: "https://movieknight01.herokuapp.com",
