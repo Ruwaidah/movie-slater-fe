@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { login } from '../actions/index';
 import { connect } from 'react-redux';
+import { signUpGoogle } from '../actions/index';
 // import { withRouter } from "react-router-dom";
 
 //Oauth//
@@ -99,4 +100,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { login })(Login)
+export default connect(mapStateToProps, { login, signUpGoogle })(Login)
