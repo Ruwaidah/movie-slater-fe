@@ -32,8 +32,7 @@ const initialState = {
     userData: {},
     fetchingData: false,
     error: '',
-    googleData: {},
-    backendResponse: ''
+    googleData: {}
 }
 
 const reducer = (state = initialState, action) =>{
@@ -155,7 +154,7 @@ const reducer = (state = initialState, action) =>{
             return{
                 ...state,
                 fetchingData: false,
-                backendResponse: action.payload
+                googleData: action.payload
             }    
 
         case USER_SIGNING_GOOGLE_FAILURE:
