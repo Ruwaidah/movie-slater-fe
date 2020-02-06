@@ -15,6 +15,7 @@ import Event from './components/Event';
 import OwnerDashboard from './components/OwnerDashboard';
 import MakeSeatingChart from './components/MakeSeatingChart';
 import PrivateRoute from './components/PrivateRoute';
+import DataPicker from './components/DatePicker';
 
 function App() {
   return (
@@ -41,6 +42,8 @@ function App() {
       <Route exact path="/checkout" component={Checkout} />
 
       <Route exact path="/event" component={Event} /> 
+
+      <Route exact path="/date" component={DataPicker} />
 
       <PrivateRoute exact path="/ownerdashboard" component={OwnerDashboard}/>
 

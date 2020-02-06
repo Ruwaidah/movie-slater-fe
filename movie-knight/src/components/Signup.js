@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
 //Oauth//
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import GoogleLogin, {GoogleLogout} from 'react-google-login';
 //Oauth//
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 // import { withRouter } from "react-router-dom";
 //Oauth//
 
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import GoogleLogin, {GoogleLogout} from 'react-google-login';
 
 const Login = props =>{
