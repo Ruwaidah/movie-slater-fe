@@ -2,7 +2,6 @@
 
 .App {
   text-align: center;
-  background-color: $pure_black;
 }
 
 body{
@@ -16,7 +15,7 @@ body{
 }
 
 .dark-mode{
-  background-color: #1f1f1f;
+  background-color: $pure_black;
   color: white;
   transition: 01s ease-in-out;
 }

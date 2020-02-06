@@ -7,7 +7,7 @@ const Dashboard = props => {
             <h1>See a movie</h1>
             
             <MovieList />
-            <button>Next</button>
+            <button className='next-button'>Next</button>
         </div>
     )
 }

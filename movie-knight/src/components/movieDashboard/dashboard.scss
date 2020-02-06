@@ -6,6 +6,10 @@
  
 }
 
+.movie-card{
+  text-align: left;
+}
+
 .movie-title{
   margin: 0 0 20px 0;
   padding: 0 0 0 0;
@@ -15,8 +19,19 @@
   width: 155px;
 }
 
+.red-box{
+  border: 1px red solid;
+}
+
 .searchForm{
   width: 85%;
   padding: 6px 2% ;
   border-radius: 6px;
+}
+
+.next-button{
+  background-color: red;
+  position: fixed;
+  bottom: 0px;
+  right: 0px; 
 }
