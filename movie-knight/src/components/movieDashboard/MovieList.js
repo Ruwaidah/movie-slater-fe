@@ -7,10 +7,9 @@ export default function MovieList() {
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState()
   const [zipCode, setZipCode] = useState(47712)
-  const [theatreName, setTheaterName] = useState()
+  // const [theatreName, setTheaterName] = useState()
 
   console.log(zipCode);
-  console.log(theatreName);
 
   function makeCall() {
     axios.get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipCode}`)
