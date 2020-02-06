@@ -13,7 +13,7 @@
 }
 
 .movie-title{
-  margin: 0 0 20px 0;
+  margin: 0 0 32px 0;
   padding: 0 0 0 0;
 }
 
@@ -22,35 +22,12 @@
   height: 235px;
 }
 
-.red-box{
-  border: 1px red solid;
-}
-
 .searchForm{
   width: 85%;
   padding: 6px 2% ;
   border-radius: 6px;
 }
 
-.next-button{
-  background-color: $disabled_action_button;
-  position: fixed;
-  bottom: 15px;
-  right: 0%; 
-  width: 75%;
-  color: $disabled_text;
-  margin: 0 auto;
-  border: none;
-  border-radius: 7px;
-  height: 52%;
-  left: 0%;
-}
-
-.black-box{
-  position: fixed;
-  width: 415px;
-  height: 75px;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(12px);
+.unpiced {
+  opacity: 0.5;
 }
