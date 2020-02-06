@@ -20,6 +20,10 @@ import{
     GET_MOVIES_SUCCESS,
     GET_MOVIES_FAILURE,
 
+    USER_SIGNING_GOOGLE,
+    USER_SIGNING_GOOGLE_SUCCESS,
+    USER_SIGNING_GOOGLE_FAILURE,
+
 } from '../actions/index';
 
 const initialState = {
@@ -27,7 +31,8 @@ const initialState = {
     movieList: [],
     userData: {},
     fetchingData: false,
-    error: ''
+    error: '',
+    googleData: {}
 }
 
 const reducer = (state = initialState, action) =>{
@@ -136,7 +141,28 @@ const reducer = (state = initialState, action) =>{
                 ...state,
                 error: action.payload
             };
-        //GET MOVIES//     
+        //GET MOVIES//   
+        
+        //GOOGLE SIGN UP/    
+        case USER_SIGNING_GOOGLE:
+            return{
+                ...state,
+                fetchingData: true
+            }
+
+        case USER_SIGNING_GOOGLE_SUCCESS:
+            return{
+                ...state,
+                fetchingData: false,
+                googleData: action.payload
+            }    
+
+        case USER_SIGNING_GOOGLE_FAILURE:
+            return{
+                ...state,
+                fetchingData: false,
+                error: action.payload
+            }
 
         default:
             return state

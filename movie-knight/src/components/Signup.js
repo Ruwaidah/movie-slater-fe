@@ -2,6 +2,9 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../actions/index';
+import { signUpGoogle } from '../actions/index';
+
+
 //Oauth//
 // import ReactDOM from 'react-dom';
 import GoogleLogin, {GoogleLogout} from 'react-google-login';
@@ -26,15 +29,25 @@ const Signup = props =>{
 
   //Oauth
   const responseGoogle = (response) => {
-    console.log("what we are getting back from google",response);
-    const { tokenId, w3 } = response;
+    // console.log("google response",response);
+    const { tokenId, profileObj } = response;
     localStorage.setItem("token", tokenId);
-    localStorage.setItem("user_email", w3.U3);
+    // localStorage.setItem("user_email", profileObj.email);
+    // localStorage.setItem("user_name", profileObj.name);
+    props.signUpGoogle();
+    // signUpGoogle(tokenId, profileObj.email, profileObj.name)
+    // window.location.reload();
+    props.history.push('/')
   }
 
-  const logout = (response) => {
+  const logoutGoogle = () => {
+    localStorage.removeItem("token");
+    // localStorage.removeItem("user_email");
+    // localStorage.removeItem("user_name");
+    // window.location.reload()
+    props.history.push('/')
   }
-  //Oauth 
+  //Oauth
 
     return(
         <div>
@@ -92,19 +105,22 @@ const Signup = props =>{
       </form>
 
         {/* Oauth */}
+        <div style={{ display: localStorage.token ? "none" : "block" }}>
         <GoogleLogin
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
-          buttonText="Login"
+          buttonText="Login with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
         />
-
+        </div>
+        <div style={{ display: localStorage.token ? "block" : "none" }}>
         <GoogleLogout
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Logout"
-          onLogoutSuccess={logout}
+          onLogoutSuccess={logoutGoogle}
         >
         </GoogleLogout>
+        </div>
         {/* Oauth */}
 
         </div>
@@ -112,4 +128,4 @@ const Signup = props =>{
 
 }
 
-export default connect(null, { signUp })(Signup)
+export default connect(null, { signUp, signUpGoogle })(Signup)
