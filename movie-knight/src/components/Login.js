@@ -25,21 +25,22 @@ const Login = props =>{
 
         //Oauth
         const responseGoogle = (response) => {
-          console.log("what we are getting back from google",response);
-          const { tokenId, profileObj } = response;
+          
+          const { tokenId } = response;
           localStorage.setItem("token", tokenId);
-          localStorage.setItem("user_email", profileObj.email);
-          localStorage.setItem("user_name", profileObj.name);
-          window.location.reload()
+          props.signUpGoogle();
+          props.history.push('/')
+
         }
 
         const logoutGoogle = () => {
+
           localStorage.removeItem("token");
-          localStorage.removeItem("user_email");
-          localStorage.removeItem("user_name");
-          window.location.reload()
+          props.history.push('/')
+
         }
-        //Oauth      
+        //Oauth 
+
     return(
         <div>
           <h1>Log In</h1>

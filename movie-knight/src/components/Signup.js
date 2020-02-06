@@ -36,14 +36,16 @@ const Signup = props =>{
     // localStorage.setItem("user_name", profileObj.name);
     props.signUpGoogle();
     // signUpGoogle(tokenId, profileObj.email, profileObj.name)
-    window.location.reload();
+    // window.location.reload();
+    props.history.push('/')
   }
 
   const logoutGoogle = () => {
     localStorage.removeItem("token");
     // localStorage.removeItem("user_email");
     // localStorage.removeItem("user_name");
-    window.location.reload()
+    // window.location.reload()
+    props.history.push('/')
   }
   //Oauth
 
