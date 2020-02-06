@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './dashboard.scss';
+// import { useHistory } from 'react-router-dom';
 
 export default function MovieCard(props){
 
@@ -9,6 +10,12 @@ export default function MovieCard(props){
     const currentState = active;
     setActive(!currentState)
   }
+
+  // function routeChange(){
+  //   let path = "/details";
+  //   let history = useHistory();
+  //   history.push(path);
+  // }
 
   return(
     <div className='movie-card'>

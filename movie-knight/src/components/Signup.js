@@ -29,20 +29,21 @@ const Signup = props =>{
 
   //Oauth
   const responseGoogle = (response) => {
-    console.log("google response",response);
+    // console.log("google response",response);
+    props.signUpGoogle(response);
     const { tokenId, profileObj } = response;
     localStorage.setItem("token", tokenId);
     localStorage.setItem("user_email", profileObj.email);
     localStorage.setItem("user_name", profileObj.name);
-    signUpGoogle(tokenId, profileObj.email, profileObj.name)
-    window.location.reload();
+    // signUpGoogle(tokenId, profileObj.email, profileObj.name)
+    // window.location.reload();
   }
 
   const logoutGoogle = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user_email");
     localStorage.removeItem("user_name");
-    window.location.reload()
+    // window.location.reload()
   }
   //Oauth
 
@@ -125,4 +126,4 @@ const Signup = props =>{
 
 }
 
-export default connect(null, { signUp })(Signup)
+export default connect(null, { signUp, signUpGoogle })(Signup)
