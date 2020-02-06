@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .movie-list{
   margin: 10% 5%;
   display: flex;
@@ -17,6 +19,7 @@
 
 .movie-img{
   width: 155px;
+  height: 235px;
 }
 
 .red-box{
@@ -30,8 +33,24 @@
 }
 
 .next-button{
-  background-color: red;
+  background-color: $disabled_action_button;
   position: fixed;
-  bottom: 0px;
-  right: 0px; 
+  bottom: 15px;
+  right: 0%; 
+  width: 75%;
+  color: $disabled_text;
+  margin: 0 auto;
+  border: none;
+  border-radius: 7px;
+  height: 52%;
+  left: 0%;
+}
+
+.black-box{
+  position: fixed;
+  width: 415px;
+  height: 75px;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
 }
