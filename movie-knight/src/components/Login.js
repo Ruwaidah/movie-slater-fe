@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import { login } from '../actions/index';
 import { connect } from 'react-redux';
+import { signUpGoogle } from '../actions/index';
 // import { withRouter } from "react-router-dom";
 
 //Oauth//
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import GoogleLogin, {GoogleLogout} from 'react-google-login';
 
 const Login = props =>{
@@ -25,21 +26,22 @@ const Login = props =>{
 
         //Oauth
         const responseGoogle = (response) => {
-          console.log("what we are getting back from google",response);
-          const { tokenId, profileObj } = response;
+          
+          const { tokenId } = response;
           localStorage.setItem("token", tokenId);
-          localStorage.setItem("user_email", profileObj.email);
-          localStorage.setItem("user_name", profileObj.name);
-          window.location.reload()
+          props.signUpGoogle();
+          props.history.push('/')
+
         }
 
         const logoutGoogle = () => {
+
           localStorage.removeItem("token");
-          localStorage.removeItem("user_email");
-          localStorage.removeItem("user_name");
-          window.location.reload()
+          props.history.push('/')
+
         }
-        //Oauth      
+        //Oauth 
+
     return(
         <div>
           <h1>Log In</h1>
@@ -73,7 +75,7 @@ const Login = props =>{
          <div style={{ display: localStorage.token ? "none" : "block" }}>
         <GoogleLogin
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
-          buttonText="Login"
+          buttonText="Login with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
         />
@@ -98,4 +100,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { login })(Login)
+export default connect(mapStateToProps, { login, signUpGoogle })(Login)

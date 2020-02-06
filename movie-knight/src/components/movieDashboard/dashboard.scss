@@ -1,0 +1,33 @@
+@import '../../variables.scss';
+
+.movie-list{
+  margin: 10% 5%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+ 
+}
+
+.movie-card{
+  text-align: left;
+}
+
+.movie-title{
+  margin: 0 0 32px 0;
+  padding: 0 0 0 0;
+}
+
+.movie-img{
+  width: 155px;
+  height: 235px;
+}
+
+.searchForm{
+  width: 85%;
+  padding: 6px 2% ;
+  border-radius: 6px;
+}
+
+.unpiced {
+  opacity: 0.5;
+}
