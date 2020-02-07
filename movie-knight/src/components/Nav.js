@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import useDarkMode from '../hooks/useDarkMode';
@@ -6,16 +6,18 @@ import useDarkMode from '../hooks/useDarkMode';
 const Nav = props =>{
     
     const [DarkMode, setUseDarkMode] = useDarkMode(false)
+    // const [google, setGoogle] = useState(props.googleData)
 
     const toggleDarkMode = e =>{
         e.preventDefault()
         setUseDarkMode(!DarkMode);
     }
 
-    // console.log(props.userData.username)
+    //console.log(props.userData.username)
     const logOut = () => {
         localStorage.removeItem('token')
         props.history.push('/')
+        localStorage.removeItem("google_username");
     }
 
     return (
@@ -24,8 +26,10 @@ const Nav = props =>{
         ?
             <div>
                 <NavLink  to='/' >Home</NavLink>
-                <p>{props.userData.username}</p>
-                {/* <p>{props.googleUser.data.user.name}</p> */}
+
+                <p>{props.userData.username === true?`${props.userData.username}`:`${localStorage.getItem('google_username')}`}</p>
+                {/* <p>{props.userData.username}</p> */}
+                {/* <p>{google === true?`${google.data.user.name}`:"not loaded"}</p> */}
                 <button onClick={()=> logOut()}>Log Out</button>
                 {
                     DarkMode === true ?
@@ -54,8 +58,10 @@ const Nav = props =>{
 
 const mapStateToProps = state => {
     return {
+        ...state,
         userData: state.userData,
-        googleUser: state.googleData
+        // googleUser: state.googleData
+        
     };
   };
 

@@ -54,7 +54,7 @@ export const signUpGoogle = signUpData => dispatch => {
   dispatch({ type: USER_SIGNING_GOOGLE });
 
   axiosWithGoogle()
-    // .post('https://movieknight01.herokuapp.com/api/oauth/login', signUpData)
+    //.post('https://movieknight01.herokuapp.com/api/oauth/login', signUpData)
     .get('https://movieknight01.herokuapp.com/api/oauth/login')
     .then(response =>
       dispatch(
