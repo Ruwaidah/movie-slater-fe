@@ -32,8 +32,8 @@ const Signup = props =>{
     // console.log("google response",response);
     const { tokenId, profileObj } = response;
     localStorage.setItem("token", tokenId);
-    // localStorage.setItem("user_email", profileObj.email);
-    // localStorage.setItem("user_name", profileObj.name);
+    localStorage.setItem("user_email", profileObj.email);
+    localStorage.setItem("user_name", profileObj.name);
     props.signUpGoogle();
     // signUpGoogle(tokenId, profileObj.email, profileObj.name)
     // window.location.reload();
@@ -42,8 +42,8 @@ const Signup = props =>{
 
   const logoutGoogle = () => {
     localStorage.removeItem("token");
-    // localStorage.removeItem("user_email");
-    // localStorage.removeItem("user_name");
+    localStorage.removeItem("user_email");
+    localStorage.removeItem("user_name");
     // window.location.reload()
     props.history.push('/')
   }

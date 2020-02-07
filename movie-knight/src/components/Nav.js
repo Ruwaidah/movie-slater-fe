@@ -13,7 +13,6 @@ const Nav = props =>{
     }
 
     // console.log(props.userData.username)
-
     const logOut = () => {
         localStorage.removeItem('token')
         props.history.push('/')
@@ -26,6 +25,7 @@ const Nav = props =>{
             <div>
                 <NavLink  to='/' >Home</NavLink>
                 <p>{props.userData.username}</p>
+                <p>{props.googleUser.data.user.name}</p>
                 <button onClick={()=> logOut()}>Log Out</button>
                 {
                     DarkMode === true ?
@@ -54,7 +54,8 @@ const Nav = props =>{
 
 const mapStateToProps = state => {
     return {
-        userData: state.userData
+        userData: state.userData,
+        googleUser: state.googleData
     };
   };
 
