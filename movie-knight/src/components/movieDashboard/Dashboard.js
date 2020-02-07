@@ -1,5 +1,6 @@
 import React from 'react'
 import MovieList from "./MovieList"
+import './dashboard.scss'
 
 const Dashboard = props => {
 
@@ -13,7 +14,7 @@ const Dashboard = props => {
             
             <MovieList />
             <div className='black-box'>
-                <button className='next-button' onClick={DatePage}>Next</button>
+                <button className='next-button-disable' onClick={DatePage}>Next</button>
             </div>
         </div>
     )

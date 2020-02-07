@@ -20,26 +20,6 @@ body{
   transition: 01s ease-in-out;
 }
 
-.red-box{
-  border: 4px $enabled_action_button solid;
-  border-radius: 5px;
-}
-
-.next-button{
-  background-color: $disabled_action_button;
-  position: fixed;
-  bottom: 15px;
-  right: 0%; 
-  width: 75%;
-  color: $disabled_text;
-  margin: 0 auto;
-  border: none;
-  border-radius: 7px;
-  height: 45px;
-  left: 0%;
-  outline: none;
-}
-
 .black-box{
   position: fixed;
   width: 415px;
