@@ -55,7 +55,7 @@ export const signUpGoogle = signUpData => dispatch => {
 
   axiosWithGoogle()
     // .post('https://movieknight01.herokuapp.com/api/oauth/login', signUpData)
-    .get('https://movieknight01.herokuapp.com/api/oauth/login')
+    .get('https://movieknight.herokuapp.com/api/oauth/login')
     .then(response =>
       dispatch(
         { type: USER_SIGNING_GOOGLE_SUCCESS, payload: response },
@@ -115,7 +115,7 @@ export const getMovie = (zipcode) => dispatch => {
   dispatch({ type: GET_MOVIES_START });
 
   axios
-    .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipcode}`)
+    .get(`https://movieknight.herokuapp.com/api/movies?zip=${zipcode}`)
     .then(response =>
       dispatch(
         { type: GET_MOVIES_SUCCESS, payload: response.data }
