@@ -111,15 +111,17 @@ export const GET_MOVIES_START = "GET_MOVIES_START";
 export const GET_MOVIES_SUCCESS = "GET_MOVIES_SUCCESS";
 export const GET_MOVIES_FAILURE = "GET_MOVIES_FAILURE";
 
-export const getMovies = () => dispatch => {
-    axios()
-        .get("https://movieknight01.herokuapp.com/api/movies")
-        .then(res => {
-            console.log("get moveis res", res)
-            dispatch({type:GET_MOVIES_SUCCESS, payload:res.data})
-        })
-        .catch(error => {
-            dispatch({type:GET_MOVIES_FAILURE, payload:error})
-        })
-};
-//GET MOVIES WIHTOUT LOGIN//
+export const getMovie = (zipcode) => dispatch => {
+  dispatch({ type: GET_MOVIES_START });
+
+  axios
+    .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipcode}`)
+    .then(response =>
+      dispatch(
+        { type: GET_MOVIES_SUCCESS, payload: response.data }
+      )
+    )
+    .catch(err =>
+        dispatch({ type: GET_MOVIES_FAILURE, payload: err.response })
+      )
+}
