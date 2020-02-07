@@ -22,27 +22,8 @@ body {
   transition: 01s ease-in-out;
 }
 
-.red-box {
-  border: 4px $enabled_action_button solid;
-  border-radius: 5px;
-}
 
-.next-button {
-  background-color: $disabled_action_button;
-  position: fixed;
-  bottom: 15px;
-  width: 90%;
-  color: $disabled_text;
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: 7px;
-  height: 45px;
-  left: 5%;
-  outline: none;
-}
-
-.black-box {
+.black-box{
   position: fixed;
   width: 100%;
   left: 0;
