@@ -1,60 +1,64 @@
-@import 'variables.scss';
+@import "variables.scss";
 
 .App {
   text-align: center;
+  width: 90%;
+  margin: 0 auto;
 }
 
-body{
+body {
   transition: 01s ease-in-out;
 }
 
-.google{
+.google {
   border: 1px black solid;
   margin: 1% 40%;
   cursor: pointer;
 }
 
-.dark-mode{
+.dark-mode {
   background-color: $pure_black;
   color: white;
   transition: 01s ease-in-out;
 }
 
-.red-box{
+.red-box {
   border: 4px $enabled_action_button solid;
   border-radius: 5px;
 }
 
-.next-button{
+.next-button {
   background-color: $disabled_action_button;
   position: fixed;
   bottom: 15px;
-  right: 0%; 
-  width: 75%;
+  width: 90%;
   color: $disabled_text;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
   border: none;
   border-radius: 7px;
   height: 45px;
-  left: 0%;
+  left: 5%;
   outline: none;
 }
 
-.black-box{
+.black-box {
   position: fixed;
-  width: 415px;
+  width: 100%;
+  left: 0;
+  margin: 0 auto;
   height: 75px;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(12px);
 }
 
-.days{
+.days {
   display: flex;
   flex-direction: column;
 }
 
-.day{
+.day {
   margin: 5% 5% 2% 5%;
   background-color: #262526;
   border: none;
@@ -63,11 +67,120 @@ body{
   outline: none;
 }
 
-.day.red-box{
+.day.red-box {
   margin: 5% 5% 2% 5%;
   background-color: #262526;
   border: 2px red solid;
   color: white;
   padding: 4% 0;
   outline: none;
+}
+
+// Nav
+.nav-component {
+  width: 100%;
+  margin: 6% auto 0 auto;
+  background: none;
+  .nav-bar {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    div {
+      .line {
+        width: 35px;
+        height: 5px;
+        background: white;
+        border-radius: 10px;
+      }
+      .black {
+        background: black;
+      }
+    }
+    img {
+      margin: 0;
+    }
+  }
+}
+
+.menu-list {
+  display: none;
+  position: fixed;
+  opacity: 0;
+  top: 6%;
+  right: 5%;
+  width: 50%;
+  div {
+    width: 300px;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    border-radius: 2px;
+    border-top-right-radius: 0px;
+    a {
+      font-size: 20px;
+      text-decoration: none;
+      color: white;
+      margin: 10px 0;
+    }
+
+    button {
+      font-size: 20px;
+      border: none;
+      background: black;
+      color: white;
+      margin: 10px 0 20px 0;
+    }
+  }
+}
+
+.nav-component .toggle-menu {
+  opacity: 1;
+  animation: fadein 0.5s;
+  display: flex;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Login Component // SignUp Component
+.login-component,
+.signup-component {
+  display: flex;
+  flex-direction: column;
+
+  input {
+    font-size: 20px;
+    outline: none;
+    border: none;
+    height: 30px;
+    width: 96%;
+    border-radius: 6px;
+    padding: 6px 2%;
+    border: black 2px solid;
+  }
+
+  .next-button {
+    position: static;
+    margin: 20px 0 20px 0;
+    width: 100%;
+  }
+}
+
+.google-btn {
+  width: 100%;
+  span {
+    font-size: 18px;
+  }
 }
