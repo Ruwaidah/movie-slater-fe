@@ -12,6 +12,7 @@ const Dashboard = props => {
             <h1>See a movie</h1>
             
             <MovieList />
+            
             <div className='black-box'>
                 <button className='next-button' onClick={DatePage}>Next</button>
             </div>
