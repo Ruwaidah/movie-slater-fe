@@ -1,29 +1,35 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import MovieCard from "./MovieCard";
-import "./dashboard.scss";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import MovieCard from "./MovieCard"
+import './dashboard.scss';
+import { getMovie } from '../../actions/index';
+import { connect } from 'react-redux'
 
-export default function MovieList() {
-  const [movies, setMovies] = useState([]);
-  const [searchParam, setSearchParam] = useState();
-  const [zipCode, setZipCode] = useState(47712);
+function MovieList(props) {
+  const [movies, setMovies] = useState([])
+  const [searchParam, setSearchParam] = useState()
+  const [zipCode, setZipCode] = useState(47712)
   // const [theatreName, setTheaterName] = useState()
-
-  console.log(zipCode);
 
   function makeCall() {
     axios
       .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipCode}`)
       .then(response => {
+
         console.log(response);
         setMovies(response.data);
         // setTheaterName(response.data[0].showtimes[0].theatre.name)
       });
   }
+  
+  // console.log(props.fetchingData)
+  // console.log(props.movieList[0])
 
-  useEffect(() => {
-    makeCall();
-  }, []);
+  useEffect(() =>{
+    makeCall()
+    props.getMovie(zipCode)
+  }, [])
+
 
   const handleChange = e => {
     e.preventDefault();
@@ -33,7 +39,9 @@ export default function MovieList() {
   const handleSubmit = e => {
     e.preventDefault();
     makeCall();
-  };
+    props.getMovie(zipCode)
+  }
+
 
   const handleChangeSearch = event => {
     console.log(event.target.value);
@@ -81,3 +89,12 @@ export default function MovieList() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    movieList: state.movieList,
+    fetchingData: state.fetchingData
+  }
+}
+
+export default connect(mapStateToProps, { getMovie })(MovieList)

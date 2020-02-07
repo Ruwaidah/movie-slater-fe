@@ -27,7 +27,6 @@ import{
 } from '../actions/index';
 
 const initialState = {
-    userDataWorkout: [],
     movieList: [],
     userData: {},
     fetchingData: false,
@@ -139,6 +138,7 @@ const reducer = (state = initialState, action) =>{
         case GET_MOVIES_FAILURE:
             return {
                 ...state,
+                fetchingData: false,
                 error: action.payload
             };
         //GET MOVIES//   
