@@ -25,7 +25,7 @@ const Nav = props =>{
             <div>
                 <NavLink  to='/' >Home</NavLink>
                 <p>{props.userData.username}</p>
-                <p>{props.googleUser.data.user.name}</p>
+                {/* <p>{props.googleUser.data.user.name}</p> */}
                 <button onClick={()=> logOut()}>Log Out</button>
                 {
                     DarkMode === true ?
