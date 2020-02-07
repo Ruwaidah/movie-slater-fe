@@ -39,7 +39,7 @@ function App() {
 
       <Route exact path="/" component={Dashboard}/>
 
-      <Route exact path="/details" component={MovieDetails}/>
+      <Route exact path="/details/:movieName" component={MovieDetails}/>
 
       <Route exact path="/availability" component={Availability}/>
 
