@@ -13,7 +13,7 @@ function MovieList(props) {
 
   function makeCall() {
     axios
-      .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipCode}`)
+      .get(`https://movieknight.herokuapp.com/api/movies?zip=${zipCode}`)
       .then(response => {
 
         console.log(response);
