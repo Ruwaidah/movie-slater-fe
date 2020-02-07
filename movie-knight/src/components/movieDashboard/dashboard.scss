@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .movie-list{
   margin: 10% 5%;
   display: flex;
@@ -11,16 +13,13 @@
 }
 
 .movie-title{
-  margin: 0 0 20px 0;
+  margin: 0 0 32px 0;
   padding: 0 0 0 0;
 }
 
 .movie-img{
   width: 155px;
-}
-
-.red-box{
-  border: 1px red solid;
+  height: 235px;
 }
 
 .searchForm{
@@ -29,9 +28,6 @@
   border-radius: 6px;
 }
 
-.next-button{
-  background-color: red;
-  position: fixed;
-  bottom: 0px;
-  right: 0px; 
+.unpiced {
+  opacity: 0.5;
 }
