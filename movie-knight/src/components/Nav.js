@@ -24,11 +24,26 @@ const Nav = props => {
     document.getElementById("nav").classList.toggle("toggle-menu");
   };
 
+  var userName = () => {
+        if (props.userData.username) {
+        return `${props.userData.username}`;
+        } else if (props.userData.username && localStorage.google_username) {
+        return `${props.userData.username}`;
+        } else if (localStorage.google_username) {
+        return `${localStorage.google_username}`;
+        } else {
+        return ""; 
+        }
+    };
+
   return (
     <div className="nav-component">
       <div className="nav-bar">
         <h1>See a movie</h1>
-        <h1>{props.userData.username === true?`${props.userData.username}`:`${localStorage.getItem('google_username')}`}</h1>
+        <h1>
+            {/* {props.userData.username === true?`${props.userData.username}`:`${localStorage.getItem('google_username')}`} */}
+            {userName()}
+        </h1>
         <div onClick={toggleMenu} id="hamburger-menu">
           {/* <img src="./images/menu.png" width="30px" /> */}
           <div className="line black"></div>
