@@ -31,7 +31,8 @@ const initialState = {
     userData: {},
     fetchingData: false,
     error: '',
-    googleData: {}
+    googleData: {},
+    NextButton: false
 }
 
 const reducer = (state = initialState, action) =>{
