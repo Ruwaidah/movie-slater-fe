@@ -1,23 +1,22 @@
-import React from 'react'
-import MovieList from "./MovieList"
+import React from "react";
+import MovieList from "./MovieList";
 
 const Dashboard = props => {
+  //   document.getElementById("nav").classList.toggle("menubar");
+  function DatePage() {
+    props.history.push("/date");
+  }
 
-    function DatePage(){
-        props.history.push('/date')
-    }
-
-    return (
-        <div>
-            <h1>See a movie</h1>
-            
-            <MovieList />
-            
-            <div className='black-box'>
-                <button className='next-button' onClick={DatePage}>Next</button>
-            </div>
-        </div>
-    )
-}
+  return (
+    <div className="dash-board">
+      <MovieList />
+      <div className="black-box">
+        <button className="next-button" onClick={DatePage}>
+          Next
+        </button>
+      </div>
+    </div>
+  );
+};
 
 export default Dashboard;
