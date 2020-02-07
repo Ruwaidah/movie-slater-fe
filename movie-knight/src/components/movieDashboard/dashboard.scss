@@ -1,33 +1,109 @@
-@import '../../variables.scss';
+@import "../../variables.scss";
 
-.movie-list{
-  margin: 10% 5%;
+.dash-board {
+  margin-top: 2%;
+}
+
+.movie-list {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
- 
 }
 
-.movie-card{
+.movie-card {
   text-align: left;
+  width: 140px;
+  margin: 5px auto;
 }
 
-.movie-title{
-  margin: 0 0 32px 0;
+
+.movie-title-disable{
+  margin: 0 0 15px 0;
   padding: 0 0 0 0;
+  color: $disabled_text;
 }
 
-.movie-img{
+.movie-title-enable{
+  margin: 0 0 15px 0;
+  padding: 0 0 0 0;
+  color: $mid_text;
+}
+
+.movie-img-enable{
   width: 155px;
   height: 235px;
+  opacity: 1;
+  margin-bottom: 0px;
 }
 
-.searchForm{
-  width: 85%;
-  padding: 6px 2% ;
-  border-radius: 6px;
-}
-
-.unpiced {
+.movie-img-disable{
+  width: 155px;
+  height: 235px;
   opacity: 0.5;
+  margin-bottom: 0px;
+}
+
+// Search Form By Movie name
+.searchForm {
+  input {
+    font-size: 20px;
+    outline: none;
+    border: none;
+    height: 20px;
+    width: 96%;
+    border-radius: 6px;
+    padding: 6px 2%;
+    margin-bottom: 20px;
+    border: black 2px solid;
+  }
+}
+
+// Zipcode Search Form
+.zipsearch {
+  input {
+    width: 96%;
+    font-size: 20px;
+    outline: none;
+    border: none;
+    height: 20px;
+    border-radius: 6px;
+    padding: 6px 2%;
+    margin-bottom: 10px;
+    border: black 2px solid;
+  }
+}
+
+.red-box{
+  border: 4px $enabled_action_button solid;
+  border-radius: 5px;
+}
+
+.next-button-disable{
+  background-color: $disabled_action_button;
+  position: fixed;
+  bottom: 15px;
+  right: 0%; 
+  width: 75%;
+  color: $disabled_text;
+  margin: 0 auto;
+  border: none;
+  border-radius: 7px;
+  height: 45px;
+  left: 0%;
+  outline: none;
+}
+
+.next-button-enable{
+  background-color: $disabled_action_button;
+  position: fixed;
+  bottom: 15px;
+  right: 0%; 
+  width: 75%;
+  color: $disabled_text;
+  margin: 0 auto;
+  border: none;
+  border-radius: 7px;
+  height: 45px;
+  left: 0%;
+  outline: none;
 }
