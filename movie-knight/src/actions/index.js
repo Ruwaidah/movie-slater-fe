@@ -51,10 +51,9 @@ export const USER_SIGNING_GOOGLE_SUCCESS = "USER_SIGNING_GOOGLE_SUCCESS";
 export const USER_SIGNING_GOOGLE_FAILURE = "USER_SIGNING_GOOGLE_FAILURE";
 
 export const signUpGoogle = signUpData => dispatch => {
-  dispatch({ type: USER_SIGNING_GOOGLE });
+  dispatch({ type: USER_SIGNING_GOOGLE, payload: signUpData });
 
   axiosWithGoogle()
-    //.post('https://movieknight01.herokuapp.com/api/oauth/login', signUpData)
     .get('https://movieknight01.herokuapp.com/api/oauth/login')
     .then(response =>
       dispatch(

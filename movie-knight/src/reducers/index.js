@@ -43,7 +43,8 @@ const reducer = (state = initialState, action) =>{
         case USER_SIGNING_GOOGLE:
             return{
                 ...state,
-                fetchingData: true
+                fetchingData: true,
+                googleData: action.payload
             }
 
         case USER_SIGNING_GOOGLE_SUCCESS:
@@ -51,7 +52,7 @@ const reducer = (state = initialState, action) =>{
             return{
                 ...state,
                 fetchingData: false,
-                googleData: action.payload,
+                googleData: action.payload
             }    
 
         case USER_SIGNING_GOOGLE_FAILURE:

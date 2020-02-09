@@ -41,7 +41,6 @@ const Nav = props => {
       <div className="nav-bar">
         <h1>See a movie</h1>
         <h1>
-            {/* {props.userData.username === true?`${props.userData.username}`:`${localStorage.getItem('google_username')}`} */}
             {userName()}
         </h1>
         <div onClick={toggleMenu} id="hamburger-menu">
@@ -61,7 +60,6 @@ const Nav = props => {
               Home
             </NavLink>
             {/* <p>{props.userData.username}</p> */}
-            {/* <p>{props.userData.username === true?`${props.userData.username}`:`${localStorage.getItem('google_username')}`}</p> */}
             <button onClick={() => logOut()}>Log Out</button>
             {DarkMode === true ? (
               <button
@@ -119,6 +117,7 @@ const Nav = props => {
 
 const mapStateToProps = state => {
   return {
+    googleData: state.googleData,
     userData: state.userData
   };
 };
