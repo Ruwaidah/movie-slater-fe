@@ -101,7 +101,11 @@ function MovieList(props) {
           Release Date
         </div>
         <div>
-          Movie Rating
+          <p>Movie Rating</p>
+          <p>R</p>
+          <p>PG-13</p>
+          <p>PG</p>
+          <p>G</p>
         </div>
         <div>
           Review Rating
