@@ -165,3 +165,61 @@ body {
     font-size: 18px;
   }
 }
+
+// Filter Menu
+.linediv{
+  display: flex;
+  align-items: flex-start;
+}
+.linecon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.line {
+  width: 35px;
+  height: 5px;
+  background: white;
+  border-radius: 10px;
+  
+}
+.line2 {
+  width: 23px;
+  height: 5px;
+  background: white;
+  border-radius: 10px;
+  
+}
+.line3 {
+  width: 11px;
+  height: 5px;
+  background: white;
+  border-radius: 10px;
+}
+
+.menu-filter {
+  display: none;
+}
+
+.toggle-menu2 {
+  opacity: 1;
+  animation: fadein 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  width: 300px;
+  background-color: black;
+  border-radius: 2px;
+  border-top-right-radius: 0px;
+
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  margin: 10px 0;
+
+}
+
+.black {
+  background: black;
+}
