@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 const MovieDetails = props =>{
     
     const [movies, setMovies] = useState([])
-
+    const [cast, setCast] = useState([])
 
     const movie = props.location.pathname
 
@@ -24,7 +24,20 @@ const MovieDetails = props =>{
         })
     }, [])
 
-    console.log(movies)
+    useEffect(() =>{
+      axios
+      .get(`https://api.themoviedb.org/3/movie/${movies.id}/credits?api_key=feb6f0eeaa0a72662967d77079850353`)
+      .then(res =>{
+        setCast(res.data.cast)
+      })
+      .catch(err =>{
+        console.log(err)
+      })
+    }, [`https://api.themoviedb.org/3/movie/${movies.id}/credits?api_key=feb6f0eeaa0a72662967d77079850353`])
+
+    console.log('movie data', movies)
+
+    console.log('movie cast', cast)
 
     if(!movies){
       return(
@@ -39,12 +52,30 @@ const MovieDetails = props =>{
             <h3>Overview</h3>
             <p>{movies.overview}</p>
             {/* <img src={`http://image.tmdb.org/t/p/w185/${movies.backdrop_path}`} /> */}
+            {
+              cast.map(people =>(
+                <div>
+                  <img src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`} />
+                  <p>{people.character}</p>
+                  <p>{people.name}</p>
+                </div>
+              ))
+            }
   
           </div>
       )
     }
 
 }
+
+// const Moviecast = props =>{
+
+
+
+//   return(
+
+//   )
+// }
 
 const mapStateToProps = state => {
   return {
