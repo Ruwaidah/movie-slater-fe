@@ -1,5 +1,6 @@
-import React from "react";
-import MovieList from "./MovieList";
+import React from 'react'
+import MovieList from "./MovieList"
+import './dashboard.scss'
 
 const Dashboard = props => {
   //   document.getElementById("nav").classList.toggle("menubar");
@@ -11,7 +12,7 @@ const Dashboard = props => {
     <div className="dash-board">
       <MovieList />
       <div className="black-box">
-        <button className="next-button" onClick={DatePage}>
+        <button className="next-button-disable" onClick={DatePage}>
           Next
         </button>
       </div>
