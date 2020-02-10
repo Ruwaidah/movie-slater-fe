@@ -4,9 +4,8 @@ import { signUp } from "../actions/index";
 import { signUpGoogle } from "../actions/index";
 
 //Oauth//
-// import ReactDOM from 'react-dom';
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-//Oauth//
+
 
 const Signup = props => {
   const [signup, setsignup] = useState({
@@ -28,25 +27,19 @@ const Signup = props => {
 
   //Oauth
   const responseGoogle = response => {
-    // console.log("google response",response);
-    const { tokenId, profileObj } = response;
+    console.log("google response",response);
+    const { tokenId } = response;
     localStorage.setItem("token", tokenId);
-    // localStorage.setItem("user_email", profileObj.email);
-    // localStorage.setItem("user_name", profileObj.name);
-    props.signUpGoogle();
-    // signUpGoogle(tokenId, profileObj.email, profileObj.name)
-    // window.location.reload();
+    
+    props.signUpGoogle(response);
     props.history.push("/");
   };
 
   const logoutGoogle = () => {
     localStorage.removeItem("token");
-    // localStorage.removeItem("user_email");
-    // localStorage.removeItem("user_name");
-    // window.location.reload()
     props.history.push("/");
   };
-  //Oauth
+  
 
   return (
     <div className="signup-component">
@@ -120,7 +113,7 @@ const Signup = props => {
           onLogoutSuccess={logoutGoogle}
         ></GoogleLogout>
       </div>
-      {/* Oauth */}
+      
     </div>
   );
 };
