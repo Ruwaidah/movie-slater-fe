@@ -1,5 +1,9 @@
 import{
 
+    USER_SIGNING_GOOGLE,
+    USER_SIGNING_GOOGLE_SUCCESS,
+    USER_SIGNING_GOOGLE_FAILURE,
+
     USER_LOGING_IN,
     USER_LOGING_IN_SUCCESS,
     USER_LOGING_IN_FAILURE,
@@ -20,10 +24,6 @@ import{
     GET_MOVIES_SUCCESS,
     GET_MOVIES_FAILURE,
 
-    USER_SIGNING_GOOGLE,
-    USER_SIGNING_GOOGLE_SUCCESS,
-    USER_SIGNING_GOOGLE_FAILURE,
-
 } from '../actions/index';
 
 const initialState = {
@@ -31,13 +31,37 @@ const initialState = {
     userData: {},
     fetchingData: false,
     error: '',
-    googleData: {}
+    googleData: {},
+    NextButton: false
 }
 
 const reducer = (state = initialState, action) =>{
     switch(action.type){
 
+        
 
+        //GOOGLE SIGN UP/    
+        case USER_SIGNING_GOOGLE:
+            return{
+                ...state,
+                fetchingData: true,
+                googleData: action.payload
+            }
+
+        case USER_SIGNING_GOOGLE_SUCCESS:
+            localStorage.setItem("google_username", action.payload.data.user.name);
+            return{
+                ...state,
+                fetchingData: false,
+                googleData: action.payload
+            }    
+
+        case USER_SIGNING_GOOGLE_FAILURE:
+            return{
+                ...state,
+                fetchingData: false,
+                error: action.payload
+            }
 
         //*************************USER LOGIN */
         case USER_LOGING_IN: 
@@ -142,27 +166,6 @@ const reducer = (state = initialState, action) =>{
                 error: action.payload
             };
         //GET MOVIES//   
-        
-        //GOOGLE SIGN UP/    
-        case USER_SIGNING_GOOGLE:
-            return{
-                ...state,
-                fetchingData: true
-            }
-
-        case USER_SIGNING_GOOGLE_SUCCESS:
-            return{
-                ...state,
-                fetchingData: false,
-                googleData: action.payload
-            }    
-
-        case USER_SIGNING_GOOGLE_FAILURE:
-            return{
-                ...state,
-                fetchingData: false,
-                error: action.payload
-            }
 
         default:
             return state

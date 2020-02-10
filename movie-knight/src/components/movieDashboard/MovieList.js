@@ -48,6 +48,10 @@ function MovieList(props) {
     setSearchParam(event.target.value);
   };
 
+  const toggleMenu = () => {
+    document.getElementById("filter").classList.toggle("toggle-menu2");
+  };
+
   return (
     <div className="movielist-component">
       {/* <h2>{theatreName}</h2> */}
@@ -72,7 +76,38 @@ function MovieList(props) {
             value={searchParam}
           />
         </form>
+
+        {/* filter menu */}
+        <div onClick={toggleMenu} id="hamburger-menu">
+          {/* <img src="./images/menu.png" width="30px" /> */}
+          <div className="linediv">
+            Filter  
+            <div className="linecon">
+              <div className="line black"></div>
+              <div className="line white"></div>
+              <div className="line2 black"></div>
+              <div className="line white"></div>
+              <div className="line3 black"></div>
+              <div className="line white"></div>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      {/* filter menu */}
+      <div className="menu-filter" id="filter">
+        <div>
+          Release Date
+        </div>
+        <div>
+          Movie Rating
+        </div>
+        <div>
+          Review Rating
+        </div>
+      </div>
+      
       <div className="movie-list">
         {movies
           .filter(movie => {

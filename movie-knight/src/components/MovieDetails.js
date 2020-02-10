@@ -5,41 +5,45 @@ import { connect } from 'react-redux'
 
 const MovieDetails = props =>{
     
-    // const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState([])
 
-    // useEffect(() => {
-    //     axios.get(`https://movieknight01.herokuapp.com/api/movies`)
-    //       .then(response => {
-    //         console.log(response)
-    //         setMovies(response.data)
-            
-    //       })
-    //   },[]);
 
-    const zipcode = 20707
+    const movie = props.location.pathname
 
-    useEffect(() =>{
-      props.getMovie(zipcode)
+    console.log(movie.slice(9, ))
+
+    useEffect(() => {
+        axios
+        .get(`https://api.themoviedb.org/3/search/movie?api_key=feb6f0eeaa0a72662967d77079850353&language=en-US&query=${movie.slice(9, )}&page=1&include_adult=true`)
+        .then(resp =>{
+          // console.log(resp)
+          setMovies(resp.data.results[0])
+        })
+        .catch(err =>{
+          console.log(err)
+        })
     }, [])
 
-    console.log(props.movieList)
+    console.log(movies)
 
-    return (
-        <div>
-          <h1>MovieDetails</h1>
-            
-        {/* {movies.map(movie => {
-            return <div>
-                <div>Rated{movie.title}</div>
-                <div>{movie.ratings.code}</div>
-                <div>{movie.longDescription}</div>
-                <div>{movie.topCast}</div>
-            
-            </div>
-          })} */}
+    if(!movies){
+      return(
+        <h1>Lodding...</h1>
+      )
+    }else{
+      return (
+          <div>
+            <h1>{movies.title}</h1>
+            <img  src={`http://image.tmdb.org/t/p/w185/${movies.poster_path}`} alt={movies.title} />
+            <h3>Rating: {movies.vote_average}</h3>
+            <h3>Overview</h3>
+            <p>{movies.overview}</p>
+            {/* <img src={`http://image.tmdb.org/t/p/w185/${movies.backdrop_path}`} /> */}
+  
+          </div>
+      )
+    }
 
-        </div>
-    )
 }
 
 const mapStateToProps = state => {

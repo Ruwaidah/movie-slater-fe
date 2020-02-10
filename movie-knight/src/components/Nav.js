@@ -17,16 +17,32 @@ const Nav = props => {
     localStorage.removeItem("token");
     toggleMenu();
     props.history.push("/");
+    localStorage.removeItem("google_username");
   };
 
   const toggleMenu = () => {
     document.getElementById("nav").classList.toggle("toggle-menu");
   };
 
+  var userName = () => {
+        if (props.userData.username) {
+        return `${props.userData.username}`;
+        } else if (props.userData.username && localStorage.google_username) {
+        return `${props.userData.username}`;
+        } else if (localStorage.google_username) {
+        return `${localStorage.google_username}`;
+        } else {
+        return ""; 
+        }
+    };
+
   return (
     <div className="nav-component">
       <div className="nav-bar">
         <h1>See a movie</h1>
+        <h1>
+            {userName()}
+        </h1>
         <div onClick={toggleMenu} id="hamburger-menu">
           {/* <img src="./images/menu.png" width="30px" /> */}
           <div className="line black"></div>
@@ -43,7 +59,7 @@ const Nav = props => {
             <NavLink to="/" onClick={toggleMenu}>
               Home
             </NavLink>
-            <p>{props.userData.username}</p>
+            {/* <p>{props.userData.username}</p> */}
             <button onClick={() => logOut()}>Log Out</button>
             {DarkMode === true ? (
               <button
@@ -63,6 +79,7 @@ const Nav = props => {
           </div>
         ) : (
           <div>
+
             <NavLink to="/" onClick={toggleMenu}>
               {" "}
               Home{" "}
@@ -75,7 +92,7 @@ const Nav = props => {
               {" "}
               Login
             </NavLink>
-
+            
             {DarkMode === true ? (
               <button
                 onClick={toggleDarkMode}
@@ -100,6 +117,7 @@ const Nav = props => {
 
 const mapStateToProps = state => {
   return {
+    googleData: state.googleData,
     userData: state.userData
   };
 };
