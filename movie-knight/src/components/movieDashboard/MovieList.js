@@ -81,6 +81,7 @@ function MovieList(props) {
         <div onClick={toggleMenu} id="hamburger-menu">
           {/* <img src="./images/menu.png" width="30px" /> */}
           <div className="linediv">
+            Filter  
             <div className="linecon">
               <div className="line black"></div>
               <div className="line white"></div>
