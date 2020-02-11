@@ -9,7 +9,9 @@ function MovieList(props) {
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState()
   const [zipCode, setZipCode] = useState(47712)
+  const [releaseDate, setReleaseDate] = useState("default")//ReleaseDate
   // const [theatreName, setTheaterName] = useState()
+  console.log(releaseDate);
 
   function makeCall() {
     axios
@@ -41,7 +43,11 @@ function MovieList(props) {
     makeCall();
     props.getMovie(zipCode)
   }
-
+  //ReleaseDate
+  const releaseChange = e => {
+    e.preventDefault();
+    setReleaseDate(e.target.value);
+  };
 
   const handleChangeSearch = event => {
     console.log(event.target.value);
@@ -98,7 +104,13 @@ function MovieList(props) {
       {/* filter menu */}
       <div className="menu-filter" id="filter">
         <div>
-          Release Date
+        {/* ReleaseDate */}
+          <div>Release Date :  <select value={releaseDate} onChange={releaseChange}>
+              <option value="default">Default</option>
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+          </div>
         </div>
         <div>
           Movie Rating
@@ -107,9 +119,10 @@ function MovieList(props) {
           Review Rating
         </div>
       </div>
-      
+
       <div className="movie-list">
-        {movies
+      
+      {movies
           .filter(movie => {
             return (
               movie.title.includes(searchParam) ||
@@ -117,9 +130,21 @@ function MovieList(props) {
               searchParam == null
             );
           })
+          //ReleaseDate
+          .sort(function(a, b){
+            if(releaseDate === "newest")
+            {var dateA = new Date(a.releaseDate), dateB = new Date(b.releaseDate)
+            return dateA-dateB}
+            else if (releaseDate === "oldest")
+            {var dateA = new Date(a.releaseDate), dateB = new Date(b.releaseDate)
+            return dateB-dateA}
+            else
+            {return null}
+          })
           .map(movie => {
             return <MovieCard movie={movie} key={movie.tmsId} />;
           })}
+
       </div>
     </div>
   );
