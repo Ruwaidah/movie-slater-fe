@@ -7,7 +7,8 @@
 }
 
 body {
-  transition: 01s ease-in-out;
+  background-color: $pure_black;
+  color: white;
 }
 
 .google {
@@ -16,11 +17,11 @@ body {
   cursor: pointer;
 }
 
-.dark-mode {
-  background-color: $pure_black;
-  color: white;
-  transition: 01s ease-in-out;
-}
+// .dark-mode {
+//   background-color: $pure_black;
+//   color: white;
+//   transition: 01s ease-in-out;
+// }
 
 
 .black-box{

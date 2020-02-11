@@ -1,15 +1,15 @@
 import React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import useDarkMode from "../hooks/useDarkMode";
+// import useDarkMode from "../hooks/useDarkMode";
 
 const Nav = props => {
-  const [DarkMode, setUseDarkMode] = useDarkMode(false);
-  const toggleDarkMode = e => {
-    e.preventDefault();
-    toggleMenu();
-    setUseDarkMode(!DarkMode);
-  };
+  // const [DarkMode, setUseDarkMode] = useDarkMode(false);
+  // const toggleDarkMode = e => {
+  //   e.preventDefault();
+  //   toggleMenu();
+  //   setUseDarkMode(!DarkMode);
+  // };
 
   // console.log(props.userData.username)
 
@@ -61,7 +61,7 @@ const Nav = props => {
             </NavLink>
             {/* <p>{props.userData.username}</p> */}
             <button onClick={() => logOut()}>Log Out</button>
-            {DarkMode === true ? (
+            {/* {DarkMode === true ? (
               <button
                 onClick={toggleDarkMode}
                 className={DarkMode ? "dark-button dark-mode" : "dark-button"}
@@ -75,7 +75,7 @@ const Nav = props => {
               >
                 Dark
               </button>
-            )}
+            )} */}
           </div>
         ) : (
           <div>
@@ -93,7 +93,7 @@ const Nav = props => {
               Login
             </NavLink>
             
-            {DarkMode === true ? (
+            {/* {DarkMode === true ? (
               <button
                 onClick={toggleDarkMode}
                 className={DarkMode ? "dark-button dark-mode" : "dark-button"}
@@ -107,7 +107,7 @@ const Nav = props => {
               >
                 Dark
               </button>
-            )}
+            )} */}
           </div>
         )}
       </div>
