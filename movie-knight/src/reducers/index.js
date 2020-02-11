@@ -24,6 +24,10 @@ import{
     GET_MOVIES_SUCCESS,
     GET_MOVIES_FAILURE,
 
+    GET_MOVIE_DETAIL_START,
+    GET_MOVIE_DETAIL_SUCCESS,
+    GET_MOVIE_DETAIL_FAILURE
+
 } from '../actions/index';
 
 const initialState = {
@@ -32,7 +36,8 @@ const initialState = {
     fetchingData: false,
     error: '',
     googleData: {},
-    NextButton: false
+    NextButton: false,
+    movieDetails: {}
 }
 
 const reducer = (state = initialState, action) =>{
@@ -147,7 +152,7 @@ const reducer = (state = initialState, action) =>{
                 error: action.payload
             }
 
-        //GET MOVIES//   
+        //*************************** GET MOVIES//   
         case GET_MOVIES_START:
             return {
                 ...state,
@@ -165,7 +170,28 @@ const reducer = (state = initialState, action) =>{
                 fetchingData: false,
                 error: action.payload
             };
-        //GET MOVIES//   
+        
+
+        //********************** GET MOVIE DETAILS */
+        case GET_MOVIE_DETAIL_START:
+            return {
+                ...state,
+                fetchingData: true,
+            }
+
+        case GET_MOVIE_DETAIL_SUCCESS:
+            return {
+                ...state,
+                fetchingData: false,
+                movieDetails: action.payload
+            }
+
+        case GET_MOVIE_DETAIL_FAILURE:
+            return {
+                ...state,
+                fetchingData: false,
+                error: action.payload
+            }
 
         default:
             return state
