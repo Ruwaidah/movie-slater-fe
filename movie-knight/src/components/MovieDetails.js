@@ -27,6 +27,10 @@ const MovieDetails = props => {
     return `${hours}hr ${minutes}m`;
   }
 
+  function reverseString(str) {
+    return str.split("-").reverse().join("-");
+}
+
   if (!movie) {
     return <h1>Loading...</h1>;
   } else {
@@ -49,19 +53,21 @@ const MovieDetails = props => {
           <div className="headers">
             <h5 className="title">{movie.movie.original_title}</h5>
             <p>
-              Runtime <span> {runtime(movie.moviedetail.runtime)}</span>
+              <span>Directed by {movie.directors[0].name}</span>
             </p>
             <p>
-              Rating: <span>{movie.movie.vote_average}</span>
+              <span> {runtime(movie.moviedetail.runtime)}</span>
             </p>
             <p>
-              Release Date:{" "}
-              <span>{movie.moviedetail.release_date.replace(/-/g, " ")}</span>
+              <span>{movie.movie.vote_average} IMDB</span>
+            </p>
+            <p>
+              <span>{reverseString(movie.moviedetail.release_date).replace(/-/g, ' / ')}</span>
             </p>
             <p className="genres">
-              <span className="genere"> Genres:</span>
+              <span className="genere"></span>
               {movie.moviedetail.genres.map(genre => (
-                <span key={genre.id}>{genre.name}</span>
+                <span key={genre.id}>{genre.name},</span>
               ))}
             </p>
           </div>
@@ -93,6 +99,7 @@ const MovieDetails = props => {
             {movie.directors.map(people => (
               <div key={people.id}>
                 <img
+                className='dir-img'
                   src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
                 />
                 <p>{people.name}</p>

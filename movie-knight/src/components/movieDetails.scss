@@ -1,7 +1,3 @@
-.title {
-  color: red;
-}
-
 .movieDetails-com {
   display: flex;
   flex-direction: column;
@@ -83,6 +79,10 @@
       align-items: flex-start;
 
       flex-wrap: wrap;
+
+      .dir-img{
+        height: 150px;
+      }
 
       div {
         width: 120px;
