@@ -12,7 +12,6 @@ const MovieDetails = props =>{
       .post(`https://movieknight01.herokuapp.com/api/movies/moviedetails`, {'title': `${props.location.pathname.slice(9, )}` })
       .then(respone =>{
         setMovie(respone.data)
-        // console.log('respon in useEffect ',respone.data.casts[0][0].name)
       })
       .catch(err =>{
         console.log(err)
@@ -24,9 +23,16 @@ const MovieDetails = props =>{
         <h1>Lodding...</h1>
       )
     }else{
-      console.log(movie.videos)
       return (
           <div>
+
+            <iframe src={`https://www.youtube.com/embed/${movie.videos[0].key}`}
+                    frameBorder='0'
+                    allow='autoplay; encrypted-media'
+                    allowFullScreen
+                    title='video'
+            />
+
             <img src={`http://image.tmdb.org/t/p/w185/${movie.movie.poster_path}`} />
             <h5>{movie.movie.original_title}</h5>
             <p>Rating: {movie.movie.vote_average}</p>
