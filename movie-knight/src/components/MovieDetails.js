@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './movieDetails.scss'
 import { getMovieDetail } from '../actions/index';
 import { connect } from 'react-redux'
 
@@ -18,11 +19,20 @@ const MovieDetails = props =>{
       })
     }, [])
 
+    function runtime(num)
+    { 
+    let hours = Math.floor(num / 60);  
+    let minutes = num % 60;
+    return `${hours}hr ${minutes}m`;         
+  }
+
+
     if(!movie){
       return(
         <h1>Lodding...</h1>
       )
     }else{
+      // console.log(movie)
       return (
           <div>
 
@@ -34,8 +44,14 @@ const MovieDetails = props =>{
             />
 
             <img src={`http://image.tmdb.org/t/p/w185/${movie.movie.poster_path}`} />
-            <h5>{movie.movie.original_title}</h5>
+            <h5 className='title'>{movie.movie.original_title}</h5>
+            <p>Runtime {runtime(movie.moviedetail.runtime)}</p>
             <p>Rating: {movie.movie.vote_average}</p>
+            {
+              movie.moviedetail.genres.map(genre => (
+                <p key={genre.id}>{genre.name}</p>
+              ))
+            }
             <p>{movie.movie.overview}</p>
 
               <h3>Cast</h3>
