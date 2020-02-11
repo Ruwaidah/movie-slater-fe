@@ -44,14 +44,27 @@ const MovieDetails = props =>{
             />
 
             <img src={`http://image.tmdb.org/t/p/w185/${movie.movie.poster_path}`} />
+
             <h5 className='title'>{movie.movie.original_title}</h5>
-            <p>Runtime {runtime(movie.moviedetail.runtime)}</p>
-            <p>Rating: {movie.movie.vote_average}</p>
-            {
+
+            <p>Directed by {movie.directors[0].name}</p>
+
+            <p>{runtime(movie.moviedetail.runtime)}</p>
+
+            <p>Rated G</p>
+
+            {/* <p>Rating: {movie.movie.vote_average}</p> */}
+
+            <div class="rating">
+              <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+            </div>
+
+            {/* {
               movie.moviedetail.genres.map(genre => (
                 <p key={genre.id}>{genre.name}</p>
               ))
-            }
+            } */}
+
             <p>{movie.movie.overview}</p>
 
               <h3>Cast</h3>
@@ -63,6 +76,7 @@ const MovieDetails = props =>{
                   </div>
                 ))
               }
+
           </div>
       )
     }
