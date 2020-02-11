@@ -120,3 +120,21 @@ export const getMovie = zipcode => dispatch => {
       dispatch({ type: GET_MOVIES_FAILURE, payload: err.response })
     );
 };
+     
+// GET MOVIE DETAIL
+export const GET_MOVIE_DETAIL_START = 'GET_MOVIE_DETAIL_START';
+export const GET_MOVIE_DETAIL_SUCCESS = 'GET_MOVIE_DETAIL_SUCCESS';
+export const GET_MOVIE_DETAIL_FAILURE = 'GET_MOVIE_DETAIL_FAILURE';
+
+export const getMovieDetail = (movieName) => dispatch =>{
+  dispatch({ type: GET_MOVIE_DETAIL_START });
+  axios
+  .post(`https://movieknight01.herokuapp.com/api/movies/moviedetails`, {"title": `${movieName}`})
+  .then(respone =>
+    dispatch({ type: GET_MOVIE_DETAIL_SUCCESS, payload: respone.data })
+  )
+  .catch(err =>
+    dispatch({ type: GET_MOVIE_DETAIL_FAILURE, payload: err.respone })  
+  )
+}
+
