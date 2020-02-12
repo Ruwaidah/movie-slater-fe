@@ -7,8 +7,9 @@ import { connect } from 'react-redux'
 
 function MovieList(props) {
   const [movies, setMovies] = useState([])
-  const [searchParam, setSearchParam] = useState()
+  const [searchParam, setSearchParam] = useState("")
   const [zipCode, setZipCode] = useState(47712)
+  const [searchParamRating, setSearchParamRating] = useState()
   // const [theatreName, setTheaterName] = useState()
 
   function makeCall() {
@@ -46,6 +47,16 @@ function MovieList(props) {
   const handleChangeSearch = event => {
     console.log(event.target.value);
     setSearchParam(event.target.value);
+  };
+
+  const handleChangeSearchRating = event => {
+    console.log(event.target.value);
+    setSearchParamRating(event.target.value);
+    if(event.target.value !== "reset"){
+      setSearchParam(null);
+    } else {
+      setSearchParam("");
+    }
   };
 
   const toggleMenu = () => {
@@ -105,6 +116,54 @@ function MovieList(props) {
         </div>
         <div>
           Review Rating
+          <div class = "movie-rating">
+            <form class="rating" id="ratingSelect" onChange={handleChangeSearchRating}>
+              <label>
+                <input type="radio" name="stars" value="reset" />
+                <span>Reset</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="1" />
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="2" />
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="3" />
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="4" />
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="5" />
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+              </label>
+            </form>
+          </div>
         </div>
       </div>
       
@@ -114,7 +173,7 @@ function MovieList(props) {
             return (
               movie.title.includes(searchParam) ||
               movie.title.toLowerCase().includes(searchParam) ||
-              searchParam == null
+              (movie.maturityRating[0] && parseInt(movie.maturityRating[0].Value.split("/")[0]) < 2 * parseInt(searchParamRating) + 1 && parseInt(movie.maturityRating[0].Value.split("/")[0]) >= 2 * parseInt(searchParamRating) - 1)
             );
           })
           .map(movie => {
