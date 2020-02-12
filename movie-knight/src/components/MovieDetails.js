@@ -3,6 +3,14 @@ import axios from "axios";
 import "./movieDetails.scss";
 import { getMovieDetail } from "../actions/index";
 import { connect } from "react-redux";
+import { css } from "@emotion/core";
+import { DotLoader } from "react-spinners";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
 
 const MovieDetails = props => {
   const [movie, setMovie] = useState();
@@ -32,7 +40,16 @@ const MovieDetails = props => {
 }
 
   if (!movie) {
-    return <h1>Loading...</h1>;
+    return(
+      <div className="sweet-loading">
+        <DotLoader
+          css={override}
+          size={150}
+          //size={"150px"} this also works
+          color={"red"}
+        />
+      </div>
+    )
   } else {
     console.log(movie);
     if (seeAllCasts) var casts = movie.casts[0];
@@ -59,7 +76,7 @@ const MovieDetails = props => {
               <span> {runtime(movie.moviedetail.runtime)}</span>
             </p>
             <p>
-              <span>{movie.movie.vote_average} IMDB</span>
+              <span>{movie.movie.vote_average}/10 <i class="fab fa-imdb"></i></span>
             </p>
             <p>
               <span>{reverseString(movie.moviedetail.release_date).replace(/-/g, ' / ')}</span>

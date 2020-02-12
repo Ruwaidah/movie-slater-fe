@@ -16,6 +16,11 @@ const Nav = props => {
     localStorage.removeItem("google_username");
   };
 
+  const homeButton = () =>{
+    props.history.push('/')
+  }
+
+
   var userName = () => {
     if (props.userData.username) {
       return `${props.userData.username}`;
@@ -29,8 +34,23 @@ const Nav = props => {
   };
 
   return (
+
+    localStorage.getItem('token')?
     <>
-      <h1 className="app-name">Movie Knight</h1>
+    <h1 onClick={() => homeButton()} className="app-name">Movie Knight</h1>
+    <Menu right width={"250px"}>
+        <NavLink exact to="/" id="home" className="menu-item">
+          Home
+        </NavLink>
+        <span onClick={() => logOut()} id="logout" className="menu-item">
+          Logout
+        </span>
+        <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
+      </Menu>
+      </>
+    :
+    <>
+      <h1 onClick={() => homeButton()} className="app-name">Movie Knight</h1>
       <Menu right width={"250px"}>
         <NavLink exact to="/" id="home" className="menu-item">
           Home
@@ -41,9 +61,6 @@ const Nav = props => {
         <NavLink to="/login" id="login" className="menu-item">
           Login
         </NavLink>
-        <span onClick={() => logOut()} id="logout" className="menu-item">
-          Logout
-        </span>
         <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
       </Menu>
     </>
