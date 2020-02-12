@@ -36,7 +36,7 @@ const MovieDetails = props => {
   } else {
     console.log(movie);
     if (seeAllCasts) var casts = movie.casts[0];
-    else casts = movie.casts[0].slice(0, 3);
+    else casts = movie.casts[0].slice(0, 4);
     return (
       <div className="movieDetails-com">
         <iframe
@@ -66,9 +66,13 @@ const MovieDetails = props => {
             </p>
             <p className="genres">
               <span className="genere"></span>
-              {movie.moviedetail.genres.map(genre => (
-                <span key={genre.id}>{genre.name},</span>
-              ))}
+              {movie.moviedetail.genres.slice(0, 3).map((genre, i, arr) => {
+                if(arr.length - 1 === i){
+                  return <span key={genre.id}>{genre.name}</span>
+                }else{
+                  return <span key={genre.id}>{genre.name},</span>
+                }
+              })}
             </p>
           </div>
         </div>
@@ -78,14 +82,15 @@ const MovieDetails = props => {
         <div className="casts">
           <div className="cast-title">
             <h3>Top Casts</h3>
-            <p onClick={() => setSeeAllCasts(!seeAllCasts)}>
+            {/* <p onClick={() => setSeeAllCasts(!seeAllCasts)}>
               {seeAllCasts ? "See top Casts" : "See all casts "}{" "}
-            </p>
+            </p> */}
           </div>
           <div className="casts-dir-div">
             {casts.map(people => (
               <div key={people.cast_id}>
                 <img
+                  className='cast-img'
                   src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
                 />
                 <p>{people.name}</p>
