@@ -69,8 +69,6 @@ function MovieList(props) {
     
   // };
 
-  
-
   const handleChangeSearch = event => {
     console.log(event.target.value);
     setSearchParam(event.target.value);
