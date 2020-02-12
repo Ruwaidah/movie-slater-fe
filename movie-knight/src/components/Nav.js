@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { stack as Menu } from "react-burger-menu";
 
 const Nav = props => {
-  
-// import useDarkMode from "../hooks/useDarkMode";
+  // import useDarkMode from "../hooks/useDarkMode";
 
   // console.log(props.userData.username)
 

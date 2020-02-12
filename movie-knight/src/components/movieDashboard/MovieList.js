@@ -9,6 +9,13 @@ function MovieList(props) {
   const [movies, setMovies] = useState([]);
   const [searchParam, setSearchParam] = useState();
   const [zipCode, setZipCode] = useState(47712);
+  const [releaseDate, setReleaseDate] = useState({
+    default: "on",
+    az: "off",
+    recent: "off",
+    soon: "off"
+  }); //ReleaseDate
+  // const [theatreName, setTheaterName] = useState()
 
   function makeCall() {
     axios
@@ -33,6 +40,21 @@ function MovieList(props) {
     e.preventDefault();
     makeCall();
     props.getMovie(zipCode);
+    props.getMovie(zipCode);
+  };
+  //ReleaseDate
+  const releaseChange = e => {
+    e.preventDefault();
+    if (e.target.value === "recent") {
+      return setReleaseDate({ ...releaseDate, recent: "on" });
+    } else if (e.target.value === "az") {
+      return setReleaseDate({ ...releaseDate, az: "on" });
+    } else if (e.target.value === "soon") {
+      return setReleaseDate({ ...releaseDate, soon: "on" });
+    } else {
+      return null;
+    }
+    toggleMenu();
   };
 
   const handleChangeSearch = event => {
@@ -40,6 +62,10 @@ function MovieList(props) {
     setSearchParam(event.target.value);
   };
 
+  const toggleMenu = () => {
+    document.getElementById("filter").classList.toggle("toggle-menu2");
+  };
+  console.log(releaseDate);
   return (
     <div className="movielist-component">
       <br></br>
@@ -64,7 +90,51 @@ function MovieList(props) {
             value={searchParam}
           />
         </form>
+
+        {/* filter menu */}
+        <div onClick={toggleMenu} id="hamburger-menu">
+          {/* <img src="./images/menu.png" width="30px" /> */}
+          <div className="linediv">
+            Filter
+            <div className="linecon">
+              <div className="line1 black"></div>
+              <div className="line1 white"></div>
+              <div className="line2 black"></div>
+              <div className="line2 white"></div>
+              <div className="line3 black"></div>
+              <div className="line3 white"></div>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* filter menu */}
+      <div className="menu-filter" id="filter">
+        <div>
+          {/* ReleaseDate */}
+          <div>
+            Sort By :
+            <select value={releaseDate} onChange={releaseChange}>
+              <option value="default">Default</option>
+              <option value="newest">Newest</option>
+              <option value="oldest">Oldest</option>
+            </select>
+            <form onSubmit={releaseChange}>
+              <input value="recent" name="recent" type="checkbox" />
+              Most Recent
+              <input value="az" name="az" type="checkbox" />A to Z
+              <input value="soon" name="soon" type="checkbox" />
+              Coming Soon
+              <button className="filter-btn" type="submit">
+                See Results
+              </button>
+            </form>
+          </div>
+        </div>
+        <div>Movie Rating</div>
+        <div>Review Rating</div>
+      </div>
+
       <div className="movie-list">
         {movies
           .filter(movie => {
@@ -73,6 +143,24 @@ function MovieList(props) {
               movie.title.toLowerCase().includes(searchParam) ||
               searchParam == null
             );
+          })
+          //ReleaseDate
+          .sort(function(a, b) {
+            if (releaseDate.recent === "on") {
+              var dateA = new Date(a.releaseDate),
+                dateB = new Date(b.releaseDate);
+              return dateA - dateB;
+            } else if (releaseDate.az === "on") {
+              var nameA = a.title.toLowerCase(),
+                nameB = b.title.toLowerCase();
+              if (nameA < nameB)
+                //sort string ascending
+                return -1;
+              if (nameA > nameB) return 1;
+              return 0;
+            } else {
+              return null;
+            }
           })
           .map(movie => {
             return <MovieCard movie={movie} key={movie.tmsId} />;
