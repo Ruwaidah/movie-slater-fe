@@ -72,13 +72,14 @@ function MovieList(props) {
       {return setSortValue({ default: true, az: false, za: false, recent: false, old: false, soon: !sortValue.soon })}
     else
       {return null}
-    toggleMenu();
+    
   };
   console.log(sortValue);
 
   const releaseSubmit = e => {
     e.preventDefault();
     setSortFilter(sortValue);
+    toggleMenu();
   //   console.log(filters);
     // if(e.target.value === "recent")
     //   {return setSortFilter({...sortFilter, recent: "on"})}
