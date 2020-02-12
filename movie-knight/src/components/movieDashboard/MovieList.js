@@ -18,8 +18,8 @@ function MovieList(props) {
   //   filter: "default"
   // });
   
-  const [sortFilter, setSortFilter] = useState({ default: "on", az: "off", za: "off", recent: "off", old: "off", soon: "off" })//ReleaseDate
-  const [sortValue, setSortValue] = useState({ default: "on", az: "off",  za: "off", recent: "off",  old: "off", soon: "off" })//ReleaseDate
+  const [sortFilter, setSortFilter] = useState({ default: true, az: false, za: false, recent: false, old: false, soon: false })//ReleaseDate
+  const [sortValue, setSortValue] = useState({ default: true, az: false,  za: false, recent: false,  old: false, soon: false })//ReleaseDate
 
   //Checkbox toggle
   const [checked, setChecked] = useState({isChecked1: false, isChecked2: false, isChecked3: false, isChecked4: false});
@@ -61,15 +61,15 @@ function MovieList(props) {
   const releaseValue = e => {
     // e.preventDefault();
     if(e.target.value === "recent")
-      {return setSortValue({...sortValue, recent: "on"})}
+      {return setSortValue({ default: true, az: false, za: false, recent: !sortValue.recent, old: false, soon: false })}
     else if (e.target.value === "old")
-      {return setSortValue({...sortValue, old: "on"})}  
+      {return setSortValue({ default: true, az: false, za: false, recent: false, old: !sortValue.old, soon: false })}  
     else if (e.target.value === "az")
-      {return setSortValue({...sortValue, az: "on"})}
+      {return setSortValue({ default: true, az: !sortValue.az, za: false, recent: false, old: false, soon: false })}
     else if (e.target.value === "za")
-      {return setSortValue({...sortValue, za: "on"})}
+      {return setSortValue({ default: true, az: false, za: !sortValue.za, recent: false, old: false, soon: false })}
     else if (e.target.value === "soon")
-      {return setSortValue({...sortValue, soon: "on"})}
+      {return setSortValue({ default: true, az: false, za: false, recent: false, old: false, soon: !sortValue.soon })}
     else
       {return null}
     toggleMenu();
@@ -94,7 +94,7 @@ function MovieList(props) {
     //   {return null}
     // toggleMenu();
   };
-  console.log(sortFilter);
+  
 
   function makeCall() {
     axios
@@ -233,11 +233,15 @@ function MovieList(props) {
           })
           //NEW CODES
           .sort(function(a, b) {
-            if (sortFilter.recent === "on") {
+            if (sortFilter.recent === true) {
               var dateA = new Date(a.releaseDate),
                 dateB = new Date(b.releaseDate);
               return dateA - dateB;
-            } else if (sortFilter.az === "on") {
+            } else if (sortFilter.old === true) {
+              var dateA = new Date(a.releaseDate),
+                dateB = new Date(b.releaseDate);
+              return dateB - dateA;
+            } else if (sortFilter.az === true) {
               var nameA = a.title.toLowerCase(),
                 nameB = b.title.toLowerCase();
               if (nameA < nameB)
@@ -245,7 +249,15 @@ function MovieList(props) {
                 return -1;
               if (nameA > nameB) return 1;
               return 0;
-            } else {
+            } else if (sortFilter.za === true) {
+              var nameA = a.title.toLowerCase(),
+                nameB = b.title.toLowerCase();
+              if (nameA < nameB)
+                //sort string ascending
+                return 0;
+              if (nameA > nameB) return 1;
+              return -1;
+            }else {
               return null;
             }
           })
