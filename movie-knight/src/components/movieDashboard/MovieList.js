@@ -9,8 +9,20 @@ function MovieList(props) {
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState()
   const [zipCode, setZipCode] = useState(47712)
-  const [releaseDate, setReleaseDate] = useState({ default: "on", az: "off", recent: "off", soon: "off" })//ReleaseDate
+  // const [releaseDate, setReleaseDate] = useState({ default: "on", az: "off", recent: "off", soon: "off" })//ReleaseDate
   // const [theatreName, setTheaterName] = useState()
+  
+  //NEW CODES//
+  const [values, setValues] = useState({
+    filter: ""
+  });
+   const submit = event => {
+    event.preventDefault();
+    console.log(values);
+  };
+  const change = event => {
+    setValues({ filter: event.target.value });
+  };
 
   function makeCall() {
     axios
@@ -43,19 +55,21 @@ function MovieList(props) {
     props.getMovie(zipCode)
   }
   //ReleaseDate
-  const releaseChange = e => {
-    e.preventDefault();
-    if(e.target.value === "recent")
-      {return setReleaseDate({...releaseDate, recent: "on"})}
-    else if (e.target.value === "az")
-      {return setReleaseDate({...releaseDate, az: "on"})}
-      else if (e.target.value === "soon")
-      {return setReleaseDate({...releaseDate, soon: "on"})}
-    else
-      {return null}
-    toggleMenu();
+  // const releaseChange = e => {
+  //   e.preventDefault();
+  //   if(e.target.value === "recent")
+  //     {return setReleaseDate({...releaseDate, recent: "on"})}
+  //   else if (e.target.value === "az")
+  //     {return setReleaseDate({...releaseDate, az: "on"})}
+  //     else if (e.target.value === "soon")
+  //     {return setReleaseDate({...releaseDate, soon: "on"})}
+  //   else
+  //     {return null}
+  //   toggleMenu();
     
-  };
+  // };
+
+  
 
   const handleChangeSearch = event => {
     console.log(event.target.value);
@@ -65,7 +79,6 @@ function MovieList(props) {
   const toggleMenu = () => {
     document.getElementById("filter").classList.toggle("toggle-menu2");
   };
-console.log(releaseDate);
   return (
     <div className="movielist-component">
       {/* <h2>{theatreName}</h2> */}
@@ -114,17 +127,28 @@ console.log(releaseDate);
         <div>
         {/* ReleaseDate */}
           <div>Sort By :  
-            <select value={releaseDate} onChange={releaseChange}>
+            {/* <select value={releaseDate} onChange={releaseChange}>
               <option value="default">Default</option>
               <option value="newest">Newest</option>
               <option value="oldest">Oldest</option>
-            </select>
-            <form onSubmit={releaseChange}>
-              <input value="recent" name="recent" type="checkbox" />Most Recent
-              <input value="az" name="az" type="checkbox" />A to Z
-              <input value="soon" name="soon" type="checkbox" />Coming Soon
-              <button className="filter-btn" type="submit" >See Results</button>
-            </form>  
+            </select> */}
+            {/* <form>
+              <input value="recent" name="recent" type="radio" onChange={releaseChange} />Most Recent
+              <input value="az" name="az" type="radio" onChange={releaseChange}/>A to Z
+              <input value="soon" name="soon" type="radio" onChange={releaseChange}/>Coming Soon
+              <button className="filter-btn" >See Results</button>
+            </form>   */}
+            
+            {/* NEW CODES */}
+            <form onSubmit={submit}>
+              <input type="radio" value="most" name="filter" onChange={change} />
+              most
+              <input type="radio" value="a-z" name="filter" onChange={change} />
+              a-z
+              <input type="radio" value="gener" onChange={change} name="filter" />
+              gener
+              <button>search</button>
+            </form>
           </div>
         </div>
         <div>
@@ -145,12 +169,12 @@ console.log(releaseDate);
               searchParam == null
             );
           })
-          //ReleaseDate
+          //NEW CODES
           .sort(function(a, b){
-            if(releaseDate.recent === "on")
+            if(values.filter === "most")
               {var dateA = new Date(a.releaseDate), dateB = new Date(b.releaseDate)
               return dateA-dateB}
-            else if (releaseDate.az === "on")
+            else if (values.filter === "a-z")
               {var nameA=a.title.toLowerCase(), nameB=b.title.toLowerCase()
               if (nameA < nameB) //sort string ascending
                   return -1 
