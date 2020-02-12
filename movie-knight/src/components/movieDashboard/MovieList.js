@@ -8,25 +8,94 @@ function MovieList(props) {
   const [movies, setMovies] = useState([]);
   const [searchParam, setSearchParam] = useState();
   const [zipCode, setZipCode] = useState(47712);
-  const [filters, setFilter] = useState({
-    filter: ""
-  });
-  const [values, setValues] = useState({
-    filter: "default"
-  });
+
+  //ReleaseDate
+  // const [filters, setFilter] = useState({
+  //   filter: ""
+  // });
+  //ReleaseDate
+  // const [values, setValues] = useState({
+  //   filter: "default"
+  // });
   
-  // const [releaseDate, setReleaseDate] = useState({ default: "on", az: "off", recent: "off", soon: "off" })//ReleaseDate
+  const [sortFilter, setSortFilter] = useState({ default: "on", az: "off", za: "off", recent: "off", old: "off", soon: "off" })//ReleaseDate
+  const [sortValue, setSortValue] = useState({ default: "on", az: "off",  za: "off", recent: "off",  old: "off", soon: "off" })//ReleaseDate
+
+  //Checkbox toggle
+  const [checked, setChecked] = useState({isChecked1: false, isChecked2: false, isChecked3: false, isChecked4: false});
+
+  const toggleIsChecked1 = (e) => {
+    setChecked({isChecked1: !checked.isChecked1});
+  }
+  const toggleIsChecked2 = (e) => {
+    setChecked({isChecked2: !checked.isChecked2});
+  }
+  const toggleIsChecked3 = (e) => {
+    setChecked({isChecked3: !checked.isChecked3});
+  }
+  const toggleIsChecked4 = (e) => {
+    setChecked({isChecked4: !checked.isChecked4});
+  }
+
+  // const handleButtonClick = (e) => {
+  //   toggleIsChecked();
+  // }
+
   // const [theatreName, setTheaterName] = useState()
   
-  const submit = event => {
-    event.preventDefault();
-    setFilter(values);
-    console.log(filters);
+   //ReleaseDate
+  // const submit = event => {
+  //   event.preventDefault();
+  //   setFilter(values);
+  //   console.log(filters);
+  // };
+
+   //ReleaseDate
+  // const change = event => {
+  //   setValues({ filter: event.target.value });
+  // };
+  // console.log(filters);
+
+   //ReleaseDate
+
+  const releaseValue = e => {
+    // e.preventDefault();
+    if(e.target.value === "recent")
+      {return setSortValue({...sortValue, recent: "on"})}
+    else if (e.target.value === "old")
+      {return setSortValue({...sortValue, old: "on"})}  
+    else if (e.target.value === "az")
+      {return setSortValue({...sortValue, az: "on"})}
+    else if (e.target.value === "za")
+      {return setSortValue({...sortValue, za: "on"})}
+    else if (e.target.value === "soon")
+      {return setSortValue({...sortValue, soon: "on"})}
+    else
+      {return null}
+    toggleMenu();
   };
-  const change = event => {
-    setValues({ filter: event.target.value });
+  console.log(sortValue);
+
+  const releaseSubmit = e => {
+    e.preventDefault();
+    setSortFilter(sortValue);
+  //   console.log(filters);
+    // if(e.target.value === "recent")
+    //   {return setSortFilter({...sortFilter, recent: "on"})}
+    // else if (e.target.value === "old")
+    //   {return setSortFilter({...sortFilter, old: "on"})}  
+    // else if (e.target.value === "az")
+    //   {return setSortFilter({...sortFilter, az: "on"})}
+    // else if (e.target.value === "za")
+    //   {return setSortFilter({...sortFilter, za: "on"})}  
+    //   else if (e.target.value === "soon")
+    //   {return setSortFilter({...sortFilter, soon: "on"})}
+    // else
+    //   {return null}
+    // toggleMenu();
   };
-  console.log(filters);
+  console.log(sortFilter);
+
   function makeCall() {
     axios
       .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipCode}`)
@@ -49,19 +118,7 @@ function MovieList(props) {
     props.getMovie(zipCode);
     props.getMovie(zipCode);
   };
-  //ReleaseDate
-  // const releaseChange = e => {
-  //   e.preventDefault();
-  //   if(e.target.value === "recent")
-  //     {return setReleaseDate({...releaseDate, recent: "on"})}
-  //   else if (e.target.value === "az")
-  //     {return setReleaseDate({...releaseDate, az: "on"})}
-  //     else if (e.target.value === "soon")
-  //     {return setReleaseDate({...releaseDate, soon: "on"})}
-  //   else
-  //     {return null}
-  //   toggleMenu();
-  // };
+  
   const handleChangeSearch = event => {
     console.log(event.target.value);
     setSearchParam(event.target.value);
@@ -69,6 +126,7 @@ function MovieList(props) {
   const toggleMenu = () => {
     document.getElementById("filter").classList.toggle("toggle-menu2");
   };
+  
   return (
     <div className="movielist-component">
       <br></br>
@@ -115,19 +173,24 @@ function MovieList(props) {
           {/* ReleaseDate */}
           <div>
             Sort By :
+
             {/* <select value={releaseDate} onChange={releaseChange}>
               <option value="default">Default</option>
               <option value="newest">Newest</option>
               <option value="oldest">Oldest</option>
             </select> */}
-            {/* <form>
-              <input value="recent" name="recent" type="radio" onChange={releaseChange} />Most Recent
-              <input value="az" name="az" type="radio" onChange={releaseChange}/>A to Z
-              <input value="soon" name="soon" type="radio" onChange={releaseChange}/>Coming Soon
-              <button className="filter-btn" >See Results</button>
-            </form>   */}
+
+            <form onSubmit={releaseSubmit}>
+              <input value="recent" name="recent" type="radio" onChange={releaseValue} checked={checked.isChecked1} onClick={toggleIsChecked1}/>Most Recent
+              <input value="old" name= "old" type="radio" onChange={releaseValue} checked={checked.isChecked2} onClick={toggleIsChecked2}/>Oldest
+              <input value="az" name="az" type="radio" onChange={releaseValue} checked={checked.isChecked3} onClick={toggleIsChecked3}/>A to Z
+              <input value="za" name="za" type="radio" onChange={releaseValue} checked={checked.isChecked4} onClick={toggleIsChecked4}/>Z to A
+              {/* <input value="soon" name="soon" type="radio" onChange={releaseChange}/>Coming Soon */}
+              <button className="filter-btn"  >See Results</button>
+            </form>  
+
             {/* NEW CODES */}
-            <form onSubmit={submit}>
+            {/* <form onSubmit={submit}> */}
               {/* <input
                 type="radio"
                 value="default"
@@ -135,7 +198,7 @@ function MovieList(props) {
                 onChange={change}
               />
               Default */}
-              <input
+              {/* <input
                 type="radio"
                 value="most"
                 name="filter"
@@ -152,7 +215,8 @@ function MovieList(props) {
               />
               Coming Soon
               <button>See Results</button>
-            </form>
+            </form> */}
+
           </div>
         </div>
         <div>Movie Rating</div>
@@ -169,11 +233,11 @@ function MovieList(props) {
           })
           //NEW CODES
           .sort(function(a, b) {
-            if (filters.filter === "most") {
+            if (sortFilter.recent === "on") {
               var dateA = new Date(a.releaseDate),
                 dateB = new Date(b.releaseDate);
               return dateA - dateB;
-            } else if (filters.filter === "a-z") {
+            } else if (sortFilter.az === "on") {
               var nameA = a.title.toLowerCase(),
                 nameB = b.title.toLowerCase();
               if (nameA < nameB)
