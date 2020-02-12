@@ -182,12 +182,15 @@ function MovieList(props) {
             </select> */}
 
             <form onSubmit={releaseSubmit}>
-              <input value="recent" name="recent" type="checkbox" onChange={releaseValue} checked={checked.isChecked1} onClick={toggleIsChecked1}/>Most Recent
-              <input value="old" name= "old" type="checkbox" onChange={releaseValue} checked={checked.isChecked2} onClick={toggleIsChecked2}/>Oldest
-              <input value="az" name="az" type="checkbox" onChange={releaseValue} checked={checked.isChecked3} onClick={toggleIsChecked3}/>A to Z
+              <input value="recent" name="recent" type="checkbox" onChange={releaseValue} checked={checked.isChecked1} onClick={toggleIsChecked1}/>Most Recent<br></br>
+              <input value="old" name= "old" type="checkbox" onChange={releaseValue} checked={checked.isChecked2} onClick={toggleIsChecked2}/>Oldest<br></br>
+              <input value="az" name="az" type="checkbox" onChange={releaseValue} checked={checked.isChecked3} onClick={toggleIsChecked3}/>A to Z<br></br>
               <input value="za" name="za" type="checkbox" onChange={releaseValue} checked={checked.isChecked4} onClick={toggleIsChecked4}/>Z to A
               {/* <input value="soon" name="soon" type="radio" onChange={releaseChange}/>Coming Soon */}
-              <button className="filter-btn"  >See Results</button>
+
+              <div>Movie Rating</div>
+              <div>Review Rating</div>
+              <button className="filter-btn" >See Results</button>
             </form>  
 
             {/* NEW CODES */}
@@ -220,8 +223,6 @@ function MovieList(props) {
 
           </div>
         </div>
-        <div>Movie Rating</div>
-        <div>Review Rating</div>
       </div>
       <div className="movie-list">
         {movies
