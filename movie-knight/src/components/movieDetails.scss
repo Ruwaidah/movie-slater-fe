@@ -33,9 +33,7 @@
           margin: 0;
           margin-right: 5px;
         }
-
       }
-
 
       h5 {
         font-size: 25px;
@@ -49,7 +47,6 @@
         span {
           font-weight: normal;
           margin-left: 10px;
-          
         }
       }
     }
@@ -79,11 +76,11 @@
     .casts-dir-div {
       width: 100%;
       display: flex;
-      justify-content: space-around;
+      justify-content: start;
       align-items: flex-start;
       flex-wrap: wrap;
 
-      .dir-img{
+      .dir-img {
         height: 150px;
       }
 
@@ -103,7 +100,19 @@
   }
 }
 
-.sweet-loading{
-  margin-top: 190px ;
+.sweet-loading {
+  margin-top: 190px;
 }
 
+@media screen and (min-width: 800px) {
+  .movieDetails-com {
+    margin: 0 auto;
+    iframe {
+      margin: 0 auto;
+      margin-top: 10%;
+      margin-bottom: 6%;
+      width: 60%;
+      height: 360px;
+    }
+  }
+}

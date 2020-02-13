@@ -3,14 +3,7 @@ import axios from "axios";
 import "./movieDetails.scss";
 import { getMovieDetail } from "../actions/index";
 import { connect } from "react-redux";
-import { css } from "@emotion/core";
-import { DotLoader } from "react-spinners";
-
-const override = css`
-  display: block;
-  margin: 0 auto;
-  border-color: red;
-`;
+import Loading from "./Loading.js";
 
 const MovieDetails = props => {
   const [movie, setMovie] = useState();
@@ -36,21 +29,14 @@ const MovieDetails = props => {
   }
 
   function reverseString(str) {
-    return str.split("-").reverse().join("-");
-}
+    return str
+      .split("-")
+      .reverse()
+      .join("-");
+  }
 
-  if (!movie) {
-    return(
-      <div className="sweet-loading">
-        <DotLoader
-          css={override}
-          size={150}
-          //size={"150px"} this also works
-          color={"red"}
-        />
-      </div>
-    )
-  } else {
+  if (!movie) return <Loading />;
+  else {
     console.log(movie);
     if (seeAllCasts) var casts = movie.casts[0];
     else casts = movie.casts[0].slice(0, 4);
@@ -76,18 +62,25 @@ const MovieDetails = props => {
               <span> {runtime(movie.moviedetail.runtime)}</span>
             </p>
             <p>
-              <span>{movie.movie.vote_average}/10 <i class="fab fa-imdb"></i></span>
+              <span>
+                {movie.movie.vote_average}/10 <i className="fab fa-imdb"></i>
+              </span>
             </p>
             <p>
-              <span>{reverseString(movie.moviedetail.release_date).replace(/-/g, ' / ')}</span>
+              <span>
+                {reverseString(movie.moviedetail.release_date).replace(
+                  /-/g,
+                  " / "
+                )}
+              </span>
             </p>
             <p className="genres">
               <span className="genere"></span>
               {movie.moviedetail.genres.slice(0, 3).map((genre, i, arr) => {
-                if(arr.length - 1 === i){
-                  return <span key={genre.id}>{genre.name}</span>
-                }else{
-                  return <span key={genre.id}>{genre.name},</span>
+                if (arr.length - 1 === i) {
+                  return <span key={genre.id}>{genre.name}</span>;
+                } else {
+                  return <span key={genre.id}>{genre.name},</span>;
                 }
               })}
             </p>
@@ -107,7 +100,7 @@ const MovieDetails = props => {
             {casts.map(people => (
               <div key={people.cast_id}>
                 <img
-                  className='cast-img'
+                  className="cast-img"
                   src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
                 />
                 <p>{people.name}</p>
@@ -121,7 +114,7 @@ const MovieDetails = props => {
             {movie.directors.map(people => (
               <div key={people.id}>
                 <img
-                className='dir-img'
+                  className="dir-img"
                   src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
                 />
                 <p>{people.name}</p>

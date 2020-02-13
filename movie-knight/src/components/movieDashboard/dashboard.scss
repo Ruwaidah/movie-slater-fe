@@ -7,47 +7,92 @@
 
 .movie-list {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  @media screen and (max-width: 500px) {
-    padding-right: 10px;
-    margin-bottom: 50px;
-  }
+  min-height: 100vh;
+  margin-top: 20px;
+  // @media screen and (max-width: 500px) {
+  //   padding-right: 10px;
+  //   margin-bottom: 50px;
+  // }
 }
 
 .movie-card {
   text-align: left;
-  width: 140px;
-  margin: 5px auto;
-  padding: 5px;
+  width: 160px;
+  // margin: 16px 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  margin: 3px;
+  margin-bottom: 40px;
+  height: 270px;
+  p {
+    margin: 5px 0 0 0;
+  }
+
+  @media screen and (min-width: 800px) {
+    margin-right: 2px;
+  }
 }
 
-.movie-title-disable {
-  margin: 0 0 15px 0;
-  padding: 0 0 0 0;
-  color: $disabled_text;
-}
+// .movie-title-disable {
+// margin: 0 0 15px 0;
+// padding: 0 0 0 0;
+// color: $disabled_text;
+// color: $mid_text;
+// }
 
-.movie-title-enable {
-  margin: 0 0 15px 0;
-  padding: 0 0 0 0;
-  color: $mid_text;
-}
+// .movie-title-enable {
+//   margin: 0 0 15px 0;
+//   padding: 0 0 0 0;
+//   color: $mid_text;
+// }
 
 .movie-img-enable {
-  width: 155px;
-  height: 235px;
-  opacity: 1;
-  margin-bottom: 0px;
+  border-radius: 5px;
+  padding-top: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+  background: $enabled_action_button;
+  height: 254px;
+
+  // width: 155px;
+  // height: 235px;
+  // opacity: 1;
+  // margin-bottom: 0px;
+  img {
+    width: 154px;
+    height: 210px;
+    border-radius: 4px;
+    filter: grayscale(80%);
+    // filter: blur(1px);
+  }
+  p {
+    margin: 6px 0 0 0;
+    font-size: 13px;
+  }
 }
 
 .movie-img-disable {
-  width: 155px;
-  height: 235px;
-  opacity: 0.5;
-  margin-bottom: 0px;
-  border: 4px $pure_black solid;
+  height: 246px;
+  // width: 50px;
+  // height: 235px;
+  // opacity: 1;
+  // margin-bottom: 0px;
+  // border: 4px $pure_black solid;
+
+  img {
+    width: 160px;
+  }
 }
+
+// .red-box {
+//   border: 4px $enabled_action_button solid;
+//   border-radius: 5px;
+// }
 
 // Search Form By Movie name
 .searchForm {
@@ -56,22 +101,31 @@
     outline: none;
     border: none;
     height: 20px;
-    width: 99%;
+    width: 87%;
     border-radius: 6px;
     padding: 6px;
     margin-bottom: 20px;
     margin-left: 5px;
-    border: black 2px solid;
-    @media screen and (max-width: 500px) {
-      width: 87%;
+    // @media screen and (max-width: 500px) {
+    //   width: 87%;
+    // }
+
+    @media screen and (min-width: 800px) {
+      margin-left: 0;
+      font-size: 12px;
     }
+  }
+
+  @media screen and (min-width: 800px) {
+    text-align: start;
+    width: 28%;
   }
 }
 
 // Zipcode Search Form
 .zipsearch {
   input {
-    width: 99%;
+    width: 87%;
     font-size: 16px;
     outline: none;
     border: none;
@@ -80,16 +134,20 @@
     padding: 6px;
     margin-bottom: 10px;
     margin-left: 5px;
-    border: black 2px solid;
-    @media screen and (max-width: 500px) {
-      width: 87%;
+    // @media screen and (max-width: 500px) {
+    //   width: 87%;
+    // }
+
+    @media screen and (min-width: 800px) {
+      margin-left: 0;
+      font-size: 12px;
     }
   }
-}
 
-.red-box {
-  border: 4px $enabled_action_button solid;
-  border-radius: 5px;
+  @media screen and (min-width: 800px) {
+    text-align: start;
+    width: 28%;
+  }
 }
 
 .next-button-disable {
@@ -135,8 +193,8 @@
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
   right: 36px;
   top: 36px;
 }
@@ -172,6 +230,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background: $pure_black;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+  overflow: hidden !important;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -189,6 +248,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-item {
   display: inline-block;
   padding: 0.5em;
+  outline: none;
 }
 
 .bm-item-list .active {
@@ -226,6 +286,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .titles {
   text-align: left;
   margin-left: 20px;
+
+  @media screen and (min-width: 800px) {
+    margin-left: 0;
+  }
 }
 
 .fontAwesome {
@@ -238,4 +302,26 @@ Note: Beware of modifying this element as it can break the animations - you shou
   align-items: center;
   margin-top: 24px;
   margin-left: 20px;
+}
+
+@media screen and (min-width: 800px) {
+  .bm-burger-button {
+    right: 70px;
+  }
+
+  .app-name {
+    left: 70px;
+  }
+}
+
+// *******Coming Soon Component
+.upcoming-com {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 auto;
+  margin-bottom: 100px;
+  h4 {
+    text-align: start;
+  }
 }
