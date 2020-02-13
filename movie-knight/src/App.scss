@@ -166,7 +166,7 @@ body {
   }
 }
 
-// Filter Menu
+// Advance Filter Menu
 .linediv{
   display: flex;
   align-items: flex-start;
@@ -176,7 +176,7 @@ body {
   flex-direction: column;
   align-items: center;
 }
-.line {
+.line1 {
   width: 35px;
   height: 5px;
   background: white;
@@ -202,7 +202,6 @@ body {
 }
 
 .toggle-menu2 {
-  opacity: 1;
   animation: fadein 0.5s;
   display: flex;
   flex-direction: column;
@@ -222,4 +221,7 @@ body {
 
 .black {
   background: black;
+}
+.white {
+  background: white;
 }
