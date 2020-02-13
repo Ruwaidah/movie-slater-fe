@@ -4,10 +4,12 @@ import MovieCard from "./MovieCard"
 import './dashboard.scss';
 import { getMovie } from '../../actions/index';
 import { connect } from 'react-redux'
+import { Checkbox } from 'antd';
 
 function MovieList(props) {
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState()
+  const [maturityRatingsParam, setMaturityRatingsParam] = useState(["R", "PG-13", "PG", "G"])
   const [zipCode, setZipCode] = useState(47712)
   // const [theatreName, setTheaterName] = useState()
 
@@ -51,6 +53,13 @@ function MovieList(props) {
   const toggleMenu = () => {
     document.getElementById("filter").classList.toggle("toggle-menu2");
   };
+
+  const filterMaturity = rating =>{
+    setMaturityRatingsParam(maturityRatingsParam.map((currRating)=>{
+      return currRating !== rating ? currRating : null;      
+    }))
+  }
+
 
   return (
     <div className="movielist-component">
@@ -100,13 +109,23 @@ function MovieList(props) {
         <div>
           Release Date
         </div>
-        <div>
-          <p>Movie Rating</p>
-          <p>R</p>
-          <p>PG-13</p>
-          <p>PG</p>
-          <p>G</p>
-        </div>
+        <div className = "movie-rating">
+          Rating
+            <form className="rating" id="ratingSelect" onChange={filterMaturity}>
+              <label>
+                <input type="checkbox" name="stars" id="R" value="R" defaultChecked/>
+              R</label>
+              <label>
+                <input type="checkbox" name="stars" value="PG-13" defaultChecked/>
+              PG-13</label>
+              <label>
+                <input type="checkbox" name="stars" value="PG" defaultChecked/>
+              PG</label>
+              <label>
+                <input type="checkbox" name="stars" value="G" defaultChecked/>
+              G</label>
+            </form>
+          </div>
         <div>
           Review Rating
         </div>
@@ -116,9 +135,10 @@ function MovieList(props) {
         {movies
           .filter(movie => {
             return (
-              movie.title.includes(searchParam) ||
+              (movie.title.includes(searchParam) ||
               movie.title.toLowerCase().includes(searchParam) ||
-              searchParam == null
+              searchParam == null) &&
+              (maturityRatingsParam.includes(movie.ratings.code))
             );
           })
           .map(movie => {
