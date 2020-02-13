@@ -303,13 +303,14 @@ function MovieList(props) {
           </div>
         </div>
       </div>
+    </div>
       <div className="movie-list">
         {movies
           .filter(movie => {
             return (
               (movie.title.includes(searchParam) ||
-              movie.title.toLowerCase().includes(searchParam)) &&
-              (maturityRatingsParam.includes(movie.ratings.code))
+              movie.title.toLowerCase().includes(searchParam)) ||
+              (movie.ratings && (maturityRatingsParam.includes(movie.ratings.code))) ||
               (movie.maturityRating[0] && parseInt(movie.maturityRating[0].Value.split("/")[0]) < 2 * parseInt(searchParamRating) + 1 && parseInt(movie.maturityRating[0].Value.split("/")[0]) >= 2 * parseInt(searchParamRating) - 1)
 
             );
