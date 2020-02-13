@@ -255,7 +255,6 @@ function MovieList(props) {
               var nameA = a.title.toLowerCase(),
                 nameB = b.title.toLowerCase();
               if (nameA < nameB)
-                //sort string ascending
                 return 0;
               if (nameA > nameB) return 1;
               return -1;
