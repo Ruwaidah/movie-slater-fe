@@ -109,32 +109,52 @@ export const GET_MOVIES_SUCCESS = "GET_MOVIES_SUCCESS";
 export const GET_MOVIES_FAILURE = "GET_MOVIES_FAILURE";
 
 export const getMovie = zipcode => dispatch => {
+  if (localStorage.getItem("zip") == null) zipcode = 47712;
   dispatch({ type: GET_MOVIES_START });
 
   axios
     .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipcode}`)
-    .then(response =>
-      dispatch({ type: GET_MOVIES_SUCCESS, payload: response.data })
-    )
+    .then(response => {
+      console.log(response);
+      dispatch({ type: GET_MOVIES_SUCCESS, payload: response.data });
+    })
     .catch(err =>
       dispatch({ type: GET_MOVIES_FAILURE, payload: err.response })
     );
 };
-     
-// GET MOVIE DETAIL
-export const GET_MOVIE_DETAIL_START = 'GET_MOVIE_DETAIL_START';
-export const GET_MOVIE_DETAIL_SUCCESS = 'GET_MOVIE_DETAIL_SUCCESS';
-export const GET_MOVIE_DETAIL_FAILURE = 'GET_MOVIE_DETAIL_FAILURE';
 
-export const getMovieDetail = (movieName) => dispatch =>{
+// GET MOVIE DETAIL
+export const GET_MOVIE_DETAIL_START = "GET_MOVIE_DETAIL_START";
+export const GET_MOVIE_DETAIL_SUCCESS = "GET_MOVIE_DETAIL_SUCCESS";
+export const GET_MOVIE_DETAIL_FAILURE = "GET_MOVIE_DETAIL_FAILURE";
+
+export const getMovieDetail = movieName => dispatch => {
   dispatch({ type: GET_MOVIE_DETAIL_START });
   axios
-  .post(`https://movieknight01.herokuapp.com/api/movies/moviedetails`, {"title": `${movieName}`})
-  .then(respone =>
-    dispatch({ type: GET_MOVIE_DETAIL_SUCCESS, payload: respone.data })
-  )
-  .catch(err =>
-    dispatch({ type: GET_MOVIE_DETAIL_FAILURE, payload: err.respone })  
-  )
-}
+    .post(`https://movieknight01.herokuapp.com/api/movies/moviedetails`, {
+      title: `${movieName}`
+    })
+    .then(respone =>
+      dispatch({ type: GET_MOVIE_DETAIL_SUCCESS, payload: respone.data })
+    )
+    .catch(err =>
+      dispatch({ type: GET_MOVIE_DETAIL_FAILURE, payload: err.respone })
+    );
+};
 
+// GET UPCOMING MOVIES
+export const GET_MOVIES_UPCOMING_START = "GET_MOVIES_UPCOMING_START";
+export const GET_MOVIES_UPCOMING_SUCCESS = "GET_MOVIES_UPCOMING_SUCCESS";
+export const GET_MOVIES_UPCOMING_FAILURE = "GET_MOVIES_UPCOMING_FAILURE";
+
+export const getUpcomingMovies = () => dispatch => {
+  dispatch({ type: GET_MOVIES_UPCOMING_START });
+  axios
+    .get(`https://movieknight01.herokuapp.com/api/upcoming`)
+    .then(respone =>
+      dispatch({ type: GET_MOVIES_UPCOMING_SUCCESS, payload: respone.data })
+    )
+    .catch(err =>
+      dispatch({ type: GET_MOVIES_UPCOMING_FAILURE, payload: err.respone })
+    );
+};
