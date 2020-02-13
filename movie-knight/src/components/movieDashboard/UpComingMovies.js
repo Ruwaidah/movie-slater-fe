@@ -15,27 +15,38 @@ function UpComingMovies(props) {
     <div className="upcoming-com">
       <h4>Coming Soon ..</h4>
       <div className="movie-list">
-        {props.upcomingMovies.map(movie => (
-          <div className="movie-card" key={movie.id}>
-            <div className="movie-img-disable ">
-              <img
-                src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
-                alt={movie.title}
-              />
+        {props.upcomingMovies.map(movies =>
+          movies.map(movie => (
+            <div className="movie-card" key={movie.id}>
+              <div className="movie-img-disable ">
+                {
+                  movie.poster_path === null ?
+                    <img
+                      className='no-movie-poster'
+                      src={`https://res.cloudinary.com/donsjzduw/image/upload/v1580504817/hfjrl5wbkiugy4y0gmqu.jpg`}
+                    />
+                  :
+                    <img
+                      src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
+                      alt={movie.title}
+                    />
+                }
+              </div>
+              <p
+                onClick={() => props.history.push(`/details/${movie.title}`)}
+                className="movie-title-disable"
+              >
+                {movie.title.length > 20
+                  ? movie.title.slice(0, 17) + "..."
+                  : movie.title}
+              </p>
             </div>
-            <p
-              onClick={() => props.history.push(`/details/${movie.title}`)}
-              className="movie-title-disable"
-            >
-              {movie.title.length > 20
-                ? movie.title.slice(0, 17) + "..."
-                : movie.title}
-            </p>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
+
 }
 
 const mapStateToProps = state => {
