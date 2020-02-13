@@ -4,6 +4,10 @@ import MovieCard from "./MovieCard";
 import "./dashboard.scss";
 import { getMovie } from "../../actions/index";
 import { connect } from "react-redux";
+import ZipSearch from "./ZipSearch.js";
+import SearchForm from "./SearchForm.js";
+import FilterMenu from "./FilterMenu.js";
+import Loading from "../Loading.js";
 
 function MovieList(props) {
 
@@ -165,190 +169,46 @@ function MovieList(props) {
           />
         </form>
         {/* filter menu */}
-        <div onClick={toggleMenu} id="hamburger-menu">
-          {/* <img src="./images/menu.png" width="30px" /> */}
-          <div className="linediv">
-            Filter
-            <div className="linecon">
-              <div className="line1 black"></div>
-              <div className="line1 white"></div>
-              <div className="line2 black"></div>
-              <div className="line2 white"></div>
-              <div className="line3 black"></div>
-              <div className="line3 white"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* filter menu */}
-      <div className="menu-filter" id="filter">
-        <div>
-          Release Date
-        </div>
-        <div className = "movie-rating">
-          Rating
-            <form className="rating" id="ratingSelect" onChange={filterMaturity}>
-              <label>
-                <input type="checkbox" name="stars" id="R" value="R" defaultChecked/>
-              R</label>
-              <label>
-                <input type="checkbox" name="stars" value="PG-13" defaultChecked/>
-              PG-13</label>
-              <label>
-                <input type="checkbox" name="stars" value="PG" defaultChecked/>
-              PG</label>
-              <label>
-                <input type="checkbox" name="stars" value="G" defaultChecked/>
-              G</label>
-            </form>
-          </div>
-        <div>
-          Review Rating
-          <div class = "movie-rating">
-            <form class="rating" id="ratingSelect" onChange={handleChangeSearchRating}>
-              <label>
-                <input type="radio" name="stars" value="reset" />
-                <span>Reset</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value="1" />
-                <span class="icon-full">★</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value="2" />
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value="3" />
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value="4" />
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon">☆</span>
-              </label>
-              <label>
-                <input type="radio" name="stars" value="5" />
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-              </label>
-            </form>
-          {/* ReleaseDate */}
-          <div>
-            Sort By :
 
-            {/* <select value={releaseDate} onChange={releaseChange}>
-              <option value="default">Default</option>
-              <option value="newest">Newest</option>
-              <option value="oldest">Oldest</option>
-            </select> */}
+      <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
 
-            <form onSubmit={releaseSubmit}>
-              <input value="recent" name="recent" type="checkbox" onChange={releaseValue} checked={checked.isChecked1} onClick={toggleIsChecked1}/>Most Recent<br></br>
-              <input value="old" name= "old" type="checkbox" onChange={releaseValue} checked={checked.isChecked2} onClick={toggleIsChecked2}/>Oldest<br></br>
-              <input value="az" name="az" type="checkbox" onChange={releaseValue} checked={checked.isChecked3} onClick={toggleIsChecked3}/>A to Z<br></br>
-              <input value="za" name="za" type="checkbox" onChange={releaseValue} checked={checked.isChecked4} onClick={toggleIsChecked4}/>Z to A
-              {/* <input value="soon" name="soon" type="radio" onChange={releaseChange}/>Coming Soon */}
+      <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
 
-              <div>Movie Rating</div>
-              <div>Review Rating</div>
-              <button className="filter-btn" >See Results</button>
-            </form>  
-
-            {/* NEW CODES */}
-            {/* <form onSubmit={submit}> */}
-              {/* <input
-                type="radio"
-                value="default"
-                name="filter"
-                onChange={change}
-              />
-              Default */}
-              {/* <input
-                type="radio"
-                value="most"
-                name="filter"
-                onChange={change}
-              />
-              Most Recent
-              <input type="radio" value="a-z" name="filter" onChange={change} />
-              A-Z
-              <input
-                type="radio"
-                value="soon"
-                onChange={change}
-                name="filter"
-              />
-              Coming Soon
-              <button>See Results</button>
-            </form> */}
-          </div>
-        </div>
-      </div>
-    </div>
-      <div className="movie-list">
-        {movies
-          .filter(movie => {
-            return (
-              (movie.title.includes(searchParam) ||
-              movie.title.toLowerCase().includes(searchParam)) ||
-              (movie.ratings && (maturityRatingsParam.includes(movie.ratings.code))) ||
-              (movie.maturityRating[0] && parseInt(movie.maturityRating[0].Value.split("/")[0]) < 2 * parseInt(searchParamRating) + 1 && parseInt(movie.maturityRating[0].Value.split("/")[0]) >= 2 * parseInt(searchParamRating) - 1)
-
-            );
-          })
-          //NEW CODES
-          .sort(function(a, b) {
-            if (sortFilter.recent === true) {
-              var dateA = new Date(a.releaseDate),
-                dateB = new Date(b.releaseDate);
-              return dateA - dateB;
-            } else if (sortFilter.old === true) {
-              var dateA = new Date(a.releaseDate),
-                dateB = new Date(b.releaseDate);
-              return dateB - dateA;
-            } else if (sortFilter.az === true) {
-              var nameA = a.title.toLowerCase(),
-                nameB = b.title.toLowerCase();
-              if (nameA < nameB)
-                //sort string ascending
-                return -1;
-              if (nameA > nameB) return 1;
-              return 0;
-            } else if (sortFilter.za === true) {
-              var nameA = a.title.toLowerCase(),
-                nameB = b.title.toLowerCase();
-              if (nameA < nameB)
-                //sort string ascending
+      <FilterMenu setFilter={setFilter} />
+      {props.fetchingData ? (
+        <Loading />
+      ) : (
+        <div className="movie-list">
+          {props.movieList
+            .filter(movie => {
+              return (
+                movie.title.includes(searchParam) ||
+                movie.title.toLowerCase().includes(searchParam) ||
+                searchParam == null
+              );
+            })
+            .sort(function(a, b) {
+              if (filters.filter === "most") {
+                var dateA = new Date(a.releaseDate),
+                  dateB = new Date(b.releaseDate);
+                return dateA - dateB;
+              } else if (filters.filter === "a-z") {
+                var nameA = a.title.toLowerCase(),
+                  nameB = b.title.toLowerCase();
+                if (nameA < nameB)
+                  //sort string ascending
+                  return -1;
+                if (nameA > nameB) return 1;
                 return 0;
-              if (nameA > nameB) return 1;
-              return -1;
-            }else {
-              return null;
-            }
-          })
-          .map(movie => {
-            return <MovieCard movie={movie} key={movie.tmsId} />;
-          })}
-      </div>
+              } else {
+                return null;
+              }
+            })
+            .map(movie => {
+              return <MovieCard movie={movie} key={movie.tmsId} />;
+            })}
+        </div>
+      )}
     </div>
   );
 }

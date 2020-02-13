@@ -38,37 +38,8 @@ const Login = props => {
   //Oauth
 
   return (
-    <div className="login-component">
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        {/* <label>Email</label> */}
-        <br />
-        <input
-          required
-          type="text"
-          name="email"
-          placeholder="email"
-          value={loginInfo.email}
-          onChange={handleChange}
-        />
-        <br />
-        {/* <label>Password</label> */}
-        <br />
-        <input
-          required
-          type="password"
-          name="password"
-          placeholder="password"
-          value={loginInfo.password}
-          onChange={handleChange}
-        />
-        <br />
-        <button type="submit" className="next-button">
-          Log In
-        </button>
-      </form>
-
-      {/* Oauth */}
+    <div className="login-com">
+      <h4>Log in to your Movie Knight account</h4>
       <div style={{ display: localStorage.token ? "none" : "block" }}>
         <GoogleLogin
           className="google-btn"
@@ -78,13 +49,52 @@ const Login = props => {
           onFailure={responseGoogle}
         />
       </div>
-      <div style={{ display: localStorage.token ? "block" : "none" }}>
+      <div>
+        <p>or</p>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            required
+            id="email"
+            type="email"
+            name="email"
+            placeholder="email"
+            value={loginInfo.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          {" "}
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            required
+            type="password"
+            name="password"
+            placeholder="********"
+            value={loginInfo.password}
+            onChange={handleChange}
+          />
+          <p className="forgot-psw">
+            Forgot password? <span>Click here</span>
+          </p>
+        </div>
+        <button type="submit" className="next-button login-btn">
+          Log In
+        </button>
+      </form>
+
+      {/* Oauth */}
+
+      {/* <div style={{ display: localStorage.token ? "block" : "none" }}>
         <GoogleLogout
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Logout"
           onLogoutSuccess={logoutGoogle}
         ></GoogleLogout>
-      </div>
+      </div> */}
       {/* Oauth */}
     </div>
   );
