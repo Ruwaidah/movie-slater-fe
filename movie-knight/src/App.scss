@@ -105,6 +105,22 @@ body {
     margin: 20% auto 100px auto;
     font-weight: normal;
     text-align: start;
+    margin-bottom: 40px;
+    @media screen and (min-width: 800px) {
+      margin: 20px 0px 30px 89px;
+    }
+  }
+
+  .member-p {
+    text-align: start;
+    p {
+      position: absolute;
+      span {
+        margin-left: 10px;
+        border-bottom: solid 1px #4294f4;
+        color: #4294f4;
+      }
+    }
   }
 
   .next-button {
@@ -156,6 +172,7 @@ body {
     width: 90%;
     text-align: start;
     color: #4294f4;
+    margin-top: 20px;
 
     p {
       width: 90%;
