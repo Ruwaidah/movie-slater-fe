@@ -41,7 +41,7 @@ const Nav = props => {
       <div className="nav-bar">
         <h1>See a movie</h1>
         <h1>
-            {userName()}
+          {userName()}
         </h1>
         <div onClick={toggleMenu} id="hamburger-menu">
           {/* <img src="./images/menu.png" width="30px" /> */}
