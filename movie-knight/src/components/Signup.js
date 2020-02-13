@@ -42,7 +42,7 @@ const Signup = props => {
 
   return (
     <div className="signup-com">
-      <h4>Register</h4>
+      <h4>Save your information for a faster checkout</h4>
 
       {/* Oauth */}
       <div
@@ -106,20 +106,21 @@ const Signup = props => {
             onChange={handleChange}
           />
         </div>{" "}
+        <div className="member-p">
+          <p>
+            Already have an account?
+            <span onClick={() => props.history.push("/login")}>
+              Log in here
+            </span>
+          </p>{" "}
+        </div>
         <button type="submit" className="next-button">
           Sign Up
         </button>
       </form>
       <button onClick={() => props.history.push("/")} className="guest-button">
-        continue as a guest
+        Continue as guest
       </button>
-      <footer>
-        {" "}
-        <p>
-          Already have an account?
-          <span onClick={() => props.history.push("/login")}>Log in here</span>
-        </p>{" "}
-      </footer>
     </div>
   );
 };
