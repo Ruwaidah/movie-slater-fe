@@ -12,88 +12,10 @@ import Loading from "../Loading.js";
 function MovieList(props) {
 
   const [movies, setMovies] = useState([])
-  const [maturityRatingsParam, setMaturityRatingsParam] = useState(["R", "PG-13", "PG", "G"])
   const [searchParam, setSearchParam] = useState("")
   const [zipCode, setZipCode] = useState(47712)
-  const [searchParamRating, setSearchParamRating] = useState()
-  const [sortFilter, setSortFilter] = useState({ default: true, az: false, za: false, recent: false, old: false, soon: false })//ReleaseDate
-  const [sortValue, setSortValue] = useState({ default: true, az: false,  za: false, recent: false,  old: false, soon: false })//ReleaseDate
 
   //Checkbox toggle
-  const [checked, setChecked] = useState({isChecked1: false, isChecked2: false, isChecked3: false, isChecked4: false});
-
-  const toggleIsChecked1 = (e) => {
-    setChecked({isChecked1: !checked.isChecked1});
-  }
-  const toggleIsChecked2 = (e) => {
-    setChecked({isChecked2: !checked.isChecked2});
-  }
-  const toggleIsChecked3 = (e) => {
-    setChecked({isChecked3: !checked.isChecked3});
-  }
-  const toggleIsChecked4 = (e) => {
-    setChecked({isChecked4: !checked.isChecked4});
-  }
-
-  // const handleButtonClick = (e) => {
-  //   toggleIsChecked();
-  // }
-
-
-  // const [theatreName, setTheaterName] = useState()
-  
-   //ReleaseDate
-  // const submit = event => {
-  //   event.preventDefault();
-  //   setFilter(values);
-  //   console.log(filters);
-  // };
-
-   //ReleaseDate
-  // const change = event => {
-  //   setValues({ filter: event.target.value });
-  // };
-  // console.log(filters);
-
-   //ReleaseDate
-
-  const releaseValue = e => {
-    // e.preventDefault();
-    if(e.target.value === "recent")
-      {return setSortValue({ default: true, az: false, za: false, recent: !sortValue.recent, old: false, soon: false })}
-    else if (e.target.value === "old")
-      {return setSortValue({ default: true, az: false, za: false, recent: false, old: !sortValue.old, soon: false })}  
-    else if (e.target.value === "az")
-      {return setSortValue({ default: true, az: !sortValue.az, za: false, recent: false, old: false, soon: false })}
-    else if (e.target.value === "za")
-      {return setSortValue({ default: true, az: false, za: !sortValue.za, recent: false, old: false, soon: false })}
-    else if (e.target.value === "soon")
-      {return setSortValue({ default: true, az: false, za: false, recent: false, old: false, soon: !sortValue.soon })}
-    else
-      {return null}
-    
-  };
-  console.log(sortValue);
-
-  const releaseSubmit = e => {
-    e.preventDefault();
-    setSortFilter(sortValue);
-    toggleMenu();
-  //   console.log(filters);
-    // if(e.target.value === "recent")
-    //   {return setSortFilter({...sortFilter, recent: "on"})}
-    // else if (e.target.value === "old")
-    //   {return setSortFilter({...sortFilter, old: "on"})}  
-    // else if (e.target.value === "az")
-    //   {return setSortFilter({...sortFilter, az: "on"})}
-    // else if (e.target.value === "za")
-    //   {return setSortFilter({...sortFilter, za: "on"})}  
-    //   else if (e.target.value === "soon")
-    //   {return setSortFilter({...sortFilter, soon: "on"})}
-    // else
-    //   {return null}
-    // toggleMenu();
-  };
   
 
   function makeCall() {
@@ -124,26 +46,6 @@ function MovieList(props) {
     setSearchParam(event.target.value);
   };
 
-  const handleChangeSearchRating = event => {
-    console.log(event.target.value);
-    setSearchParamRating(event.target.value);
-    if(event.target.value !== "reset"){
-      setSearchParam(null);
-    } else {
-      setSearchParam("");
-    }
-  };
-
-  const toggleMenu = () => {
-    document.getElementById("filter").classList.toggle("toggle-menu2");
-  };
-
-  const filterMaturity = rating =>{
-    setMaturityRatingsParam(maturityRatingsParam.map((currRating)=>{
-      return currRating !== rating ? currRating : null;      
-    }))
-  }
-
   return (
     <div className="movielist-component">
       <br></br>
@@ -169,40 +71,23 @@ function MovieList(props) {
           />
         </form>
         {/* filter menu */}
-
+      </div>
       <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
 
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
 
-      <FilterMenu setFilter={setFilter} />
+      <FilterMenu setMovies={setMovies} />
       {props.fetchingData ? (
         <Loading />
       ) : (
         <div className="movie-list">
-          {props.movieList
+          {movies
             .filter(movie => {
               return (
                 movie.title.includes(searchParam) ||
                 movie.title.toLowerCase().includes(searchParam) ||
                 searchParam == null
               );
-            })
-            .sort(function(a, b) {
-              if (filters.filter === "most") {
-                var dateA = new Date(a.releaseDate),
-                  dateB = new Date(b.releaseDate);
-                return dateA - dateB;
-              } else if (filters.filter === "a-z") {
-                var nameA = a.title.toLowerCase(),
-                  nameB = b.title.toLowerCase();
-                if (nameA < nameB)
-                  //sort string ascending
-                  return -1;
-                if (nameA > nameB) return 1;
-                return 0;
-              } else {
-                return null;
-              }
             })
             .map(movie => {
               return <MovieCard movie={movie} key={movie.tmsId} />;
