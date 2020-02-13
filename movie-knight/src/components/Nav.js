@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { stack as Menu } from "react-burger-menu";
 
 const Nav = props => {
   // import useDarkMode from "../hooks/useDarkMode";
+  const [isOpen, setIsOpen] = useState(false);
 
   // console.log(props.userData.username)
 
@@ -15,10 +16,9 @@ const Nav = props => {
     localStorage.removeItem("google_username");
   };
 
-  const homeButton = () =>{
-    props.history.push('/')
-  }
-
+  const homeButton = () => {
+    props.history.push("/");
+  };
 
   var userName = () => {
     if (props.userData.username) {
@@ -32,13 +32,28 @@ const Nav = props => {
     }
   };
 
-  return (
+  const handleStateChange = state => {
+    setIsOpen(state);
+  };
 
-    localStorage.getItem('token')?
+  const closeMenu = () => {
+    console.log("hit");
+    setIsOpen(false);
+  };
+
+  return localStorage.getItem("token") ? (
     <>
-    <h1 onClick={() => homeButton()} className="app-name">Movie Knight</h1>
-    <Menu right width={"250px"}>
-        <NavLink exact to="/" id="home" className="menu-item">
+      <h1 onClick={() => homeButton()} className="app-name">
+        Movie Knight
+      </h1>
+      <Menu right width={"250px"} isOpen={isOpen}>
+        <NavLink
+          exact
+          to="/"
+          id="home"
+          className="menu-item"
+          onClick={() => closeMenu()}
+        >
           Home
         </NavLink>
         <span onClick={() => logOut()} id="logout" className="menu-item">
@@ -46,18 +61,41 @@ const Nav = props => {
         </span>
         <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
       </Menu>
-      </>
-    :
+    </>
+  ) : (
     <>
-      <h1 onClick={() => homeButton()} className="app-name">Movie Knight</h1>
-      <Menu right width={"250px"}>
-        <NavLink exact to="/" id="home" className="menu-item">
+      <h1 onClick={() => homeButton()} className="app-name">
+        Movie Knight
+      </h1>
+      <Menu
+        right
+        width={"250px"}
+        isOpen={isOpen}
+        onStateChange={state => handleStateChange(state.isOpen)}
+      >
+        <NavLink
+          exact
+          to="/"
+          id="home"
+          className="menu-item"
+          onClick={() => closeMenu()}
+        >
           Home
         </NavLink>
-        <NavLink to="/signup" id="signup" className="menu-item">
+        <NavLink
+          to="/signup"
+          id="signup"
+          className="menu-item"
+          onClick={closeMenu}
+        >
           Sign Up
         </NavLink>
-        <NavLink to="/login" id="login" className="menu-item">
+        <NavLink
+          to="/login"
+          id="login"
+          className="menu-item"
+          onClick={closeMenu}
+        >
           Login
         </NavLink>
         <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
