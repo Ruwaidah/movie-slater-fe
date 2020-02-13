@@ -4,13 +4,14 @@ import MovieCard from "./MovieCard";
 import "./dashboard.scss";
 import { getMovie } from "../../actions/index";
 import { connect } from "react-redux";
+
 function MovieList(props) {
 
   const [movies, setMovies] = useState([])
+  const [maturityRatingsParam, setMaturityRatingsParam] = useState(["R", "PG-13", "PG", "G"])
   const [searchParam, setSearchParam] = useState("")
   const [zipCode, setZipCode] = useState(47712)
   const [searchParamRating, setSearchParamRating] = useState()
-  
   const [sortFilter, setSortFilter] = useState({ default: true, az: false, za: false, recent: false, old: false, soon: false })//ReleaseDate
   const [sortValue, setSortValue] = useState({ default: true, az: false,  za: false, recent: false,  old: false, soon: false })//ReleaseDate
 
@@ -132,7 +133,13 @@ function MovieList(props) {
   const toggleMenu = () => {
     document.getElementById("filter").classList.toggle("toggle-menu2");
   };
-  
+
+  const filterMaturity = rating =>{
+    setMaturityRatingsParam(maturityRatingsParam.map((currRating)=>{
+      return currRating !== rating ? currRating : null;      
+    }))
+  }
+
   return (
     <div className="movielist-component">
       <br></br>
@@ -178,9 +185,23 @@ function MovieList(props) {
         <div>
           Release Date
         </div>
-        <div>
-          Movie Rating
-        </div>
+        <div className = "movie-rating">
+          Rating
+            <form className="rating" id="ratingSelect" onChange={filterMaturity}>
+              <label>
+                <input type="checkbox" name="stars" id="R" value="R" defaultChecked/>
+              R</label>
+              <label>
+                <input type="checkbox" name="stars" value="PG-13" defaultChecked/>
+              PG-13</label>
+              <label>
+                <input type="checkbox" name="stars" value="PG" defaultChecked/>
+              PG</label>
+              <label>
+                <input type="checkbox" name="stars" value="G" defaultChecked/>
+              G</label>
+            </form>
+          </div>
         <div>
           Review Rating
           <div class = "movie-rating">
@@ -286,9 +307,11 @@ function MovieList(props) {
         {movies
           .filter(movie => {
             return (
-              movie.title.includes(searchParam) ||
-              movie.title.toLowerCase().includes(searchParam) ||
+              (movie.title.includes(searchParam) ||
+              movie.title.toLowerCase().includes(searchParam)) &&
+              (maturityRatingsParam.includes(movie.ratings.code))
               (movie.maturityRating[0] && parseInt(movie.maturityRating[0].Value.split("/")[0]) < 2 * parseInt(searchParamRating) + 1 && parseInt(movie.maturityRating[0].Value.split("/")[0]) >= 2 * parseInt(searchParamRating) - 1)
+
             );
           })
           //NEW CODES

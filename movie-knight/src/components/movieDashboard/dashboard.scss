@@ -17,6 +17,20 @@
 }
 
 
+.maturity-filter{
+  display: flex;
+  flex-direction: column;
+  align-content: left;
+  .maturity-rating-active{
+    padding: 0 0 0 5px;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px $enabled_action_button, 0 0 30px $enabled_action_button, 0 0 40px $enabled_action_button, 0 0 55px $enabled_action_button, 0 0 75px $enabled_action_button;
+  }
+  .maturity-rating-disable{
+    padding: 0 0 0 5px;
+    text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px $disabled_action_button, 0 0 30px $disabled_action_button, 0 0 40px $disabled_action_button, 0 0 55px $disabled_action_button, 0 0 75px $disabled_action_button;
+  }
+}
+
 .movie-title-disable{
   margin: 0 0 15px 0;
   padding: 0 0 0 0;
