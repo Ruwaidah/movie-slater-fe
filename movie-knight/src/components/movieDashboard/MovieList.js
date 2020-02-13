@@ -5,18 +5,11 @@ import "./dashboard.scss";
 import { getMovie } from "../../actions/index";
 import { connect } from "react-redux";
 function MovieList(props) {
-  const [movies, setMovies] = useState([]);
-  const [searchParam, setSearchParam] = useState();
-  const [zipCode, setZipCode] = useState(47712);
 
-  //ReleaseDate
-  // const [filters, setFilter] = useState({
-  //   filter: ""
-  // });
-  //ReleaseDate
-  // const [values, setValues] = useState({
-  //   filter: "default"
-  // });
+  const [movies, setMovies] = useState([])
+  const [searchParam, setSearchParam] = useState("")
+  const [zipCode, setZipCode] = useState(47712)
+  const [searchParamRating, setSearchParamRating] = useState()
   
   const [sortFilter, setSortFilter] = useState({ default: true, az: false, za: false, recent: false, old: false, soon: false })//ReleaseDate
   const [sortValue, setSortValue] = useState({ default: true, az: false,  za: false, recent: false,  old: false, soon: false })//ReleaseDate
@@ -40,6 +33,7 @@ function MovieList(props) {
   // const handleButtonClick = (e) => {
   //   toggleIsChecked();
   // }
+
 
   // const [theatreName, setTheaterName] = useState()
   
@@ -124,6 +118,17 @@ function MovieList(props) {
     console.log(event.target.value);
     setSearchParam(event.target.value);
   };
+
+  const handleChangeSearchRating = event => {
+    console.log(event.target.value);
+    setSearchParamRating(event.target.value);
+    if(event.target.value !== "reset"){
+      setSearchParam(null);
+    } else {
+      setSearchParam("");
+    }
+  };
+
   const toggleMenu = () => {
     document.getElementById("filter").classList.toggle("toggle-menu2");
   };
@@ -171,6 +176,60 @@ function MovieList(props) {
       {/* filter menu */}
       <div className="menu-filter" id="filter">
         <div>
+          Release Date
+        </div>
+        <div>
+          Movie Rating
+        </div>
+        <div>
+          Review Rating
+          <div class = "movie-rating">
+            <form class="rating" id="ratingSelect" onChange={handleChangeSearchRating}>
+              <label>
+                <input type="radio" name="stars" value="reset" />
+                <span>Reset</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="1" />
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="2" />
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="3" />
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="4" />
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="radio" name="stars" value="5" />
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+              </label>
+            </form>
           {/* ReleaseDate */}
           <div>
             Sort By :
@@ -220,7 +279,6 @@ function MovieList(props) {
               Coming Soon
               <button>See Results</button>
             </form> */}
-
           </div>
         </div>
       </div>
@@ -230,7 +288,7 @@ function MovieList(props) {
             return (
               movie.title.includes(searchParam) ||
               movie.title.toLowerCase().includes(searchParam) ||
-              searchParam == null
+              (movie.maturityRating[0] && parseInt(movie.maturityRating[0].Value.split("/")[0]) < 2 * parseInt(searchParamRating) + 1 && parseInt(movie.maturityRating[0].Value.split("/")[0]) >= 2 * parseInt(searchParamRating) - 1)
             );
           })
           //NEW CODES
