@@ -1,51 +1,180 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { getMovie } from '../actions/index';
-import { connect } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "./movieDetails.scss";
+import { getMovieDetail } from "../actions/index";
+import { connect } from "react-redux";
+import Loading from "./Loading.js";
 
-const MovieDetails = props =>{
-    
-    // const [movies, setMovies] = useState([])
+const MovieDetails = props => {
+  const rating = props.location.pathname.split("=");
+  const [movie, setMovie] = useState();
+  const [seeAllCasts, setSeeAllCasts] = useState(false);
 
-    // useEffect(() => {
-    //     axios.get(`https://movieknight01.herokuapp.com/api/movies`)
-    //       .then(response => {
-    //         console.log(response)
-    //         setMovies(response.data)
-            
-    //       })
-    //   },[]);
+  useEffect(() => {
+    axios
+      .post(`https://movieknight01.herokuapp.com/api/movies/moviedetails`, {
+        title: `${props.location.pathname.slice(9)}`
+      })
+      .then(respone => {
+        setMovie(respone.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
-    const zipcode = 20707
+  function runtime(num) {
+    let hours = Math.floor(num / 60);
+    let minutes = num % 60;
+    return `${hours}hr ${minutes}m`;
+  }
 
-    useEffect(() =>{
-      props.getMovie(zipcode)
-    }, [])
+  function reverseString(str) {
+    return str
+      .split("-")
+      .reverse()
+      .join("-");
+  }
 
-    console.log(props.movieList)
-
+  if (!movie) return <Loading />;
+  else {
+    console.log(movie);
+    if (seeAllCasts) var casts = movie.casts[0];
+    else casts = movie.casts[0].slice(0, 4);
     return (
-        <div>
-          <h1>MovieDetails</h1>
-            
-        {/* {movies.map(movie => {
-            return <div>
-                <div>Rated{movie.title}</div>
-                <div>{movie.ratings.code}</div>
-                <div>{movie.longDescription}</div>
-                <div>{movie.topCast}</div>
-            
-            </div>
-          })} */}
+      <div className="movieDetails-com">
+        <>
+          {!movie.videos[0] ? (
+            <iframe
+              src={`https://www.youtube.com/embed/dQw4w9WgXcQ`}
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              title="video"
+            />
+          ) : (
+            <iframe
+              src={`https://www.youtube.com/embed/${movie.videos[0].key}`}
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+              title="video"
+            />
+          )}
+        </>
+        <div className="image-headers">
+          <img
+            src={`http://image.tmdb.org/t/p/w185/${movie.movie.poster_path}`}
+          />
+          <div className="headers">
+            <h5 className="title">{movie.movie.original_title}</h5>
+            <>
+              {!movie.directors[0] ? (
+                <p>
+                  <span>Directed by N/A</span>
+                </p>
+              ) : (
+                <p>
+                  <span>Directed by {movie.directors[0].name}</span>
+                </p>
+              )}
+            </>
+            <p>
+              <span> {runtime(movie.moviedetail.runtime)}</span>
+            </p>
 
+            {rating[1] ? (
+              <p>
+                <span>{rating[1]}</span>
+              </p>
+            ) : null}
+
+            <p>
+              <span>
+                {movie.movie.vote_average}/10 <i className="fab fa-imdb"></i>
+              </span>
+            </p>
+            <p>
+              <span>
+                {reverseString(movie.moviedetail.release_date).replace(
+                  /-/g,
+                  " / "
+                )}
+              </span>
+            </p>
+            <p className="genres">
+              <span className="genere"></span>
+              {movie.moviedetail.genres.slice(0, 3).map((genre, i, arr) => {
+                if (arr.length - 1 === i) {
+                  return <span key={genre.id}>{genre.name}</span>;
+                } else {
+                  return <span key={genre.id}>{genre.name},</span>;
+                }
+              })}
+            </p>
+          </div>
         </div>
-    )
-}
+        <div className="overview">
+          <p>{movie.movie.overview}</p>
+        </div>
+        <div className="casts">
+          <div className="cast-title">
+            <h3>Top Casts</h3>
+            {/* <p onClick={() => setSeeAllCasts(!seeAllCasts)}>
+              {seeAllCasts ? "See top Casts" : "See all casts "}{" "}
+            </p> */}
+          </div>
+          <div className="casts-dir-div">
+            {casts.map(people => (
+              <div key={people.cast_id}>
+                {people.profile_path === null ? (
+                  <img
+                    className="cast-img"
+                    src={`https://res.cloudinary.com/donsjzduw/image/upload/v1580504817/hfjrl5wbkiugy4y0gmqu.jpg`}
+                  />
+                ) : (
+                  <img
+                    className="cast-img"
+                    src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
+                  />
+                )}
+                <p>{people.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="director">
+          <h3>Directors </h3>
+          <div className="casts-dir-div">
+            {movie.directors.map(people => (
+              <div key={people.id}>
+                <>
+                  {people.profile_path === null ? (
+                    <img
+                      className="dir-img"
+                      src={`https://res.cloudinary.com/donsjzduw/image/upload/v1580504817/hfjrl5wbkiugy4y0gmqu.jpg`}
+                    />
+                  ) : (
+                    <img
+                      className="dir-img"
+                      src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
+                    />
+                  )}
+                </>
+                <p>{people.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+};
 
 const mapStateToProps = state => {
   return {
-    movieList: state.movieList
-  }
-}
+    movieDetails: state.movieDetails
+  };
+};
 
-export default connect(mapStateToProps, { getMovie })(MovieDetails);
+export default connect(mapStateToProps, { getMovieDetail })(MovieDetails);

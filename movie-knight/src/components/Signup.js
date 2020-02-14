@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { signUp } from "../actions/index";
 import { signUpGoogle } from "../actions/index";
+import { withRouter } from "react-router-dom";
 
 //Oauth//
-// import ReactDOM from 'react-dom';
 import GoogleLogin, { GoogleLogout } from "react-google-login";
-//Oauth//
 
 const Signup = props => {
   const [signup, setsignup] = useState({
@@ -28,83 +27,28 @@ const Signup = props => {
 
   //Oauth
   const responseGoogle = response => {
-    // console.log("google response",response);
-    const { tokenId, profileObj } = response;
+    console.log("google response", response);
+    const { tokenId } = response;
     localStorage.setItem("token", tokenId);
-    // localStorage.setItem("user_email", profileObj.email);
-    // localStorage.setItem("user_name", profileObj.name);
-    props.signUpGoogle();
-    // signUpGoogle(tokenId, profileObj.email, profileObj.name)
-    // window.location.reload();
+
+    props.signUpGoogle(response);
     props.history.push("/");
   };
 
   const logoutGoogle = () => {
     localStorage.removeItem("token");
-    // localStorage.removeItem("user_email");
-    // localStorage.removeItem("user_name");
-    // window.location.reload()
     props.history.push("/");
   };
-  //Oauth
 
   return (
-    <div className="signup-component">
-      <h1>Sign Up</h1>
-
-      <form onSubmit={handleSubmit}>
-        {/* <label> Username </label> */}
-
-        <br />
-
-        <input
-          required
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={signup.username}
-          onChange={handleChange}
-        />
-
-        <br />
-
-        {/* <label>Email</label> */}
-
-        <br />
-
-        <input
-          required
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={signup.email}
-          onChange={handleChange}
-        />
-
-        <br />
-
-        {/* <label>Password</label> */}
-
-        <br />
-
-        <input
-          required
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={signup.password}
-          onChange={handleChange}
-        />
-
-        <br />
-
-        <button type="submit" className="next-button">
-          Sign Up
-        </button>
-      </form>
+    <div className="signup-com">
+      <h4>Save your information for a faster checkout</h4>
 
       {/* Oauth */}
-      <div style={{ display: localStorage.token ? "none" : "block" }}>
+      <div
+        className="login-google"
+        style={{ display: localStorage.token ? "none" : "block" }}
+      >
         <GoogleLogin
           className="google-btn"
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
@@ -113,16 +57,72 @@ const Signup = props => {
           onFailure={responseGoogle}
         />
       </div>
-      <div style={{ display: localStorage.token ? "block" : "none" }}>
+      {/* <div style={{ display: localStorage.token ? "block" : "none" }}>
         <GoogleLogout
           clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
           buttonText="Logout"
           onLogoutSuccess={logoutGoogle}
-        ></GoogleLogout>
+        ></GoogleLogout> */}
+      <div>
+        <p>or</p>{" "}
       </div>
-      {/* Oauth */}
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username"> Username </label>
+          <input
+            required
+            id="username"
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={signup.username}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          {" "}
+          <label htmlFor="email">Email</label>
+          <input
+            required
+            id="email"
+            type="email"
+            name="email"
+            placeholder="email@example.com"
+            value={signup.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          {" "}
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            required
+            type="password"
+            name="password"
+            placeholder="********"
+            value={signup.password}
+            onChange={handleChange}
+          />
+        </div>{" "}
+        <div className="member-p">
+          <p>
+            Already have an account?
+            <span onClick={() => props.history.push("/login")}>
+              Log in here
+            </span>
+          </p>{" "}
+        </div>
+        <button type="submit" className="next-button">
+          Sign Up
+        </button>
+      </form>
+      <button onClick={() => props.history.push("/")} className="guest-button">
+        Continue as guest
+      </button>
     </div>
   );
 };
 
-export default connect(null, { signUp, signUpGoogle })(Signup);
+export default connect(null, { signUp, signUpGoogle })(withRouter(Signup));

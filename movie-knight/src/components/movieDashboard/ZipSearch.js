@@ -1,0 +1,32 @@
+import React, { useState, useEffect } from "react";
+
+function ZipSearch(props) {
+  const [zip, setZip] = useState(localStorage.getItem("zip") || "");
+
+  const handleChange = e => {
+    setZip(e.target.value);
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    localStorage.setItem("zip", zip);
+    props.setZipCode(zip);
+  };
+
+  return (
+    <div className="zipsearch">
+      <form onSubmit={handleSubmit}>
+        <input
+          className="fontAwesome"
+          value={zip}
+          type="number"
+          name="zipcode"
+          placeholder="&#xf3c5;  Enter zip code to see movies near you"
+          onChange={handleChange}
+        />
+      </form>
+    </div>
+  );
+}
+
+export default ZipSearch;
