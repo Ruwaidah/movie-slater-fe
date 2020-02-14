@@ -6,9 +6,9 @@
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# 1️⃣ Title of project goes here
+# Movie Knight
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+ You can find the deployed project at https://movieknight.dev/.
 
 ## 4️⃣ Contributors
 
@@ -35,17 +35,20 @@
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello] https://trello.com/b/8MvjHQji/labs-20-movie-knight
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas] https://www.notion.so/Movie-Knight-2d71feaa483f4843967ca88119a72d03
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files] https://www.figma.com/file/yxTLXTgvpsFYTDdKmmjjoW/Movie-Slater-Monique-Soto-and-Harper-Atlas?node-id=1206%3A39
 
-🚫 Replace lorem ipsum with a description of your project
+The best possible experience for booking movie tickets with assigned seats, as a group, or solo when the constraints of seeing a movie are variable.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Problem: 
+- Choosing a movie time and theater for a group of friends to see a movie is broken and unintuitive.
+- All movie booking interfaces assume you already know what time, which theater, and which movie you want to go see, and that's entirely not the case.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Mission: 
+To make booking movie tickets brainless and fast. To be able to know what, where and when the group of you could go to a movie and maybe even be able to sit together.
 
 
 ### 4️⃣ Key Features
