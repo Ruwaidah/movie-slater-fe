@@ -34,7 +34,7 @@ function MovieList(props) {
   useEffect(() => {
     makeCall();
     props.getMovie(zipCode);
-  }, []);
+  }, [zipCode]);
   const handleChange = e => {
     e.preventDefault();
     setZipCode(e.target.value);
