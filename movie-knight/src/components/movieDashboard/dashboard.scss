@@ -181,56 +181,62 @@
   outline: none;
 }
 
-.movie-rating {
-  .rating {
+.menu-filter {
+  .movie-review, .movie-rating, .sorting{
     display: flex;
-    flex-flow: column-reverse nowrap;
+    flex-flow: column nowrap;
     justify-content: flex-start;
     text-align: left;
-    input{
-      position: static;
-      -webkit-appearance: none;
-      border-radius: 2px;
+    .star-buttons{
+      display: flex;
+      flex-flow: column-reverse nowrap;
+      justify-content: flex-start;
+      text-align: left;
+      .icon-full{
+        color: gold;
+        width: 16px;
+        height: 16px;
+        left: 86px;
+        top: 249px;
+      }
+    }
+  }
+  input{
+    position: static;
+    -webkit-appearance: none;
+    border-radius: 2px;
 
-      border: 2px solid #838383;
-      margin-right: 5px;
-      width: 16px;
-      height: 16px;
-      left: 16px;
-      top: 65px;
+    border: 2px solid #838383;
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    left: 16px;
+    top: 65px;
 
-      /* enabled button color */
+    /* enabled button color */
 
-      background-color: #3D3D3D;
-      /* Box outline/seats not chosen */
-      box-sizing: border-box;
-      outline: none;
-    }
-    input:active{
-      background-color: #FD2D2D;
-      border: 2px solid #FD2D2D;
-      outline: none;
-    }
-    input:checked{
-      background-color: #FD2D2D;
-      border: 2px solid #FD2D2D;
-      outline: none;
-    }
-    input:checked:after{
-      content: '\2714';
-      font-size: 100%;
-      position: relative;
-      bottom: 3px;
-      left: 1px;
-      color: white;
-    }
-    .icon-full{
-      color: gold;
-      width: 16px;
-      height: 16px;
-      left: 86px;
-      top: 249px;
-    }
+    background-color: #3D3D3D;
+    /* Box outline/seats not chosen */
+    box-sizing: border-box;
+    outline: none;
+  }
+  input:active{
+    background-color: #FD2D2D;
+    border: 2px solid #FD2D2D;
+    outline: none;
+  }
+  input:checked{
+    background-color: #FD2D2D;
+    border: 2px solid #FD2D2D;
+    outline: none;
+  }
+  input:checked:after{
+    content: '\2714';
+    font-size: 100%;
+    position: relative;
+    bottom: 3px;
+    left: 1px;
+    color: white;
   }
 }
 // Hamburger menu styles

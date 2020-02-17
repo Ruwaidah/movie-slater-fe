@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function SearchForm(props) {
   const handleChangeSearch = event => {
-    props.setSearchParam(event.target.value);
+    props.setSearchParam({...props.searchParam, title: event.target.value});
   };
 
   return (
@@ -12,7 +12,7 @@ function SearchForm(props) {
           className="fontAwesome"
           placeholder="&#xf002;  Search Movies"
           onChange={handleChangeSearch}
-          value={props.searchParam}
+          value={props.searchParam.title}
         />
       </form>
     </div>

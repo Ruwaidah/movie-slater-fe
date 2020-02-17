@@ -15,6 +15,11 @@ function MovieList(props) {
   const [searchParam, setSearchParam] = useState("")
   const [zipCode, setZipCode] = useState(47712)
 
+  const [filters, setFilter] = useState({
+    filter: "",
+    rating: ["1", "2", "3", "4", "5"],
+    mature: ["G", "PG", "PG-13", "R"]
+  });
   //Checkbox toggle
   
 
@@ -48,35 +53,12 @@ function MovieList(props) {
 
   return (
     <div className="movielist-component">
-      <br></br>
-      <div className="zipsearch">
-        <form onSubmit={handleSubmit}>
-          <input
-            className="fontAwesome"
-            type="number"
-            name="zipcode"
-            placeholder="&#xf3c5;  Enter zip code to see movies near you"
-            // value={zipCode}
-            onChange={handleChange}
-          />
-        </form>
-      </div>
-      <div className="searchForm">
-        <form>
-          <input
-            className="fontAwesome"
-            placeholder="&#xf002;  Search Movies"
-            onChange={handleChangeSearch}
-            value={searchParam}
-          />
-        </form>
-        {/* filter menu */}
-      </div>
+
       <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
 
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
 
-      <FilterMenu setMovies={setMovies} />
+      <FilterMenu setFilter={setFilter} filters={filters}/>
       {props.fetchingData ? (
         <Loading />
       ) : (
@@ -84,10 +66,40 @@ function MovieList(props) {
           {movies
             .filter(movie => {
               return (
-                movie.title.includes(searchParam) ||
-                movie.title.toLowerCase().includes(searchParam) ||
-                searchParam == null
+                (movie.title.includes(searchParam.title) ||
+                movie.title.toLowerCase().includes(searchParam.title)) ||
+                ((movie.ratings && (filters.mature.includes(movie.ratings[0].code))) &&
+                (movie.maturityRating[0] && filters.rating.includes(Math.round(parseInt(movie.maturityRating[0].Value.split("/")[0]) / 2).toString())))
               );
+            })
+            .sort(function(a, b) {
+              if (filters.filter === "recent") {
+                var dateA = new Date(a.releaseDate),
+                  dateB = new Date(b.releaseDate);
+                return dateB - dateA;
+              } else if (filters.filter === "old") {
+                var dateA = new Date(a.releaseDate),
+                  dateB = new Date(b.releaseDate);
+                return dateA - dateB;
+              } else if (filters.filter === "az") {
+                var nameA = a.title.toLowerCase(),
+                  nameB = b.title.toLowerCase();
+                if (nameA < nameB)
+                  //sort string ascending
+                  return -1;
+                if (nameA > nameB) return 1;
+                return 0;
+              } else if (filters.filter === "za") {
+                var nameA = a.title.toLowerCase(),
+                  nameB = b.title.toLowerCase();
+                if (nameA > nameB)
+                  //sort string ascending
+                  return -1;
+                if (nameA < nameB) return 1;
+                return 0;
+              }else {
+                return null;
+              }
             })
             .map(movie => {
               return <MovieCard movie={movie} key={movie.tmsId} />;

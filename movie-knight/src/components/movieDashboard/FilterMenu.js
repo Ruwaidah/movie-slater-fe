@@ -8,31 +8,66 @@ function ZipSearch(props) {
   const [sortValue, setSortValue] = useState({ default: true, az: false,  za: false, recent: false,  old: false, soon: false })//ReleaseDate
   const [checked, setChecked] = useState({isChecked1: false, isChecked2: false, isChecked3: false, isChecked4: false});
   */
-  const [filters, setFilters] = useState({
-    Sort: {
-      default: true,
-      az: false,
-      za: false,
-      recent: false,
-      old: false,
-      soon: false
-    },
-    Ratings: [],
-    Maturity: []
-  });
-
   const toggleMenu = () => {
     document.getElementById("filter").classList.toggle("toggle-menu2");
   };
-  const handleChanges = event => {
-    setFilters(event.target.value)
-    console.log(filters);
+  
+  const [values, setValues] = useState({
+    filter: "",
+    rating: ["1", "2", "3", "4", "5"],
+    mature: ["G", "PG", "PG-13", "R"]
+  });
+  const submit = event => {
+    event.preventDefault();
+    props.setFilter(values);
+    // toggleMenu();
+    console.log(props.filters);
+  };
+  const change = event => {
+    setValues({ ...values, filter: event.target.value });
+  };
+
+  const changeRating = event => {
+    let temp = values.rating;
+    if(temp.includes(event.target.value)){
+      temp.splice(temp.indexOf(event.target.value), 1)
+    } else {
+      temp.push(event.target.value)
+    }
+    setValues({...values, rating: temp})
+  };
+
+  const changeMature = event => {
+    let temp = values.mature;
+    if(temp.includes(event.target.value)){
+      temp.splice(temp.indexOf(event.target.value), 1)
+    } else {
+      temp.push(event.target.value)
+    }
+    setValues({...values, mature: temp})
+  };
+
+  const handleChangesRatings = event => {
+    console.log(event.target.value)
+    props.setSearchParam({...props.searchParam, Ratings: event.target.value})
+    console.log(props.searchParam)
+  }
+  const handleChangesMaturity = event => {
+    let temp = props.searchParam.Maturity;
+    if(temp.includes(event.target.value)){
+      temp.splice(temp.indexOf(event.target.value), 1)
+    } else {
+      temp.push(event.target.value)
+    }
+    props.setSearchParam({...props.searchParam, Maturity: temp})
+  }
+  const handleChangesSort = event => {
+    props.setSearchParam({...props.searchParam, Sort: event.target.value})
   }
 
   return (
-    <div className="filter-com">
+    <div>
       <div onClick={toggleMenu} id="hamburger-menu">
-        {/* <img src="./images/menu.png" width="30px" /> */}
         <div className="linediv">
           Filter
           <div className="linecon">
@@ -45,77 +80,103 @@ function ZipSearch(props) {
           </div>
         </div>
       </div>
+      
       <div className="menu-filter" id="filter">
-        <form onChange={handleChanges}>
-          <div className="Sorter">
-            <span>Sort by:</span><br />
-            <input value="recent" name="recent" type="radio"/>Most Recent<br></br>
-            <input value="old" name= "old" type="radio"/>Oldest<br></br>
-            <input value="az" name="az" type="radio"/>A to Z<br></br>
-            <input value="za" name="za" type="radio"/>Z to A
+        <form  class="filtering" id="ratingSelect" onSubmit={toggleMenu, submit}>
+          <div className = "movie-rating">
+            Rating
+              <label>
+                <input type="checkbox" name="stars" id="R" value="R"  onChange={changeMature} defaultChecked/>
+              R</label>
+              <label>
+                <input type="checkbox" name="stars" value="PG-13"  onChange={changeMature} defaultChecked/>
+              PG-13</label>
+              <label>
+                <input type="checkbox" name="stars" value="PG"  onChange={changeMature}defaultChecked/>
+              PG</label>
+              <label>
+                <input type="checkbox" name="stars" value="G"  onChange={changeMature}defaultChecked/>
+              G</label>
           </div>
-          <div>
-            <span>Movie Reviews:</span><br />
+          <div className='movie-review'>
             <label>
-              <input type="radio" name="stars" value="reset" />
-              <span>Reset</span>
+              Review Rating
+            </label>
+            <div className="star-buttons">
+              <label>
+                <input type="checkbox" name="stars" value="1" onChange={changeRating} defaultChecked/>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="checkbox" name="stars" value="2" onChange={changeRating} defaultChecked/>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="checkbox" name="stars" value="3" onChange={changeRating} defaultChecked/>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="checkbox" name="stars" value="4" onChange={changeRating} defaultChecked/>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon">☆</span>
+              </label>
+              <label>
+                <input type="checkbox" name="stars" value="5" onChange={changeRating} defaultChecked/>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+                <span class="icon-full">★</span>
+              </label>
+            </div>
+          </div>
+          <div className="sorting">
+            <label>
+              Sort By :
             </label>
             <label>
-              <input type="radio" name="stars" value="1" />
-              <span class="icon-full">★</span>
-              <span class="icon">☆</span>
-              <span class="icon">☆</span>
-              <span class="icon">☆</span>
-              <span class="icon">☆</span>
+              <input
+                type="radio"
+                value="recent"
+                name="filter"
+                onChange={change}
+              />
+              Most Recent
             </label>
             <label>
-              <input type="radio" name="stars" value="2" />
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon">☆</span>
-              <span class="icon">☆</span>
-              <span class="icon">☆</span>
+              <input
+                type="radio"
+                value="old"
+                onChange={change}
+                name="filter"
+              />
+              Oldest
             </label>
             <label>
-              <input type="radio" name="stars" value="3" />
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon">☆</span>
-              <span class="icon">☆</span>
+              <input type="radio" value="az" name="filter" onChange={change} />
+              A-Z
             </label>
             <label>
-              <input type="radio" name="stars" value="4" />
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon">☆</span>
-            </label>
-            <label>
-              <input type="radio" name="stars" value="5" />
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
-              <span class="icon-full">★</span>
+              <input type="radio" value="za" name="filter" onChange={change} />
+              Z-A
             </label>
           </div>
-          <div>
-            <span>Movie Rating</span><br />
-            <label>
-              <input type="checkbox" name="stars" id="R" value="R" defaultChecked/>
-            R</label>
-            <label>
-              <input type="checkbox" name="stars" value="PG-13" defaultChecked/>
-            PG-13</label>
-            <label>
-              <input type="checkbox" name="stars" value="PG" defaultChecked/>
-            PG</label>
-            <label>
-              <input type="checkbox" name="stars" value="G" defaultChecked/>
-            G</label>
-          </div>
+          <button>search</button>
         </form>
       </div>
     </div>
