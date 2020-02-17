@@ -176,7 +176,7 @@ function ZipSearch(props) {
               Z-A
             </label>
           </div>
-          <button>search</button>
+          <button className="results-btn">See Results</button>
         </form>
       </div>
     </div>
