@@ -66,8 +66,8 @@ function MovieList(props) {
           {movies
             .filter(movie => {
               return (
-                (movie.title.includes(searchParam.title) ||
-                movie.title.toLowerCase().includes(searchParam.title)) ||
+                (movie.title.includes(searchParam) ||
+                movie.title.toLowerCase().includes(searchParam)) &&
                 ((movie.ratings && (filters.mature.includes(movie.ratings[0].code))) &&
                 (movie.maturityRating[0] && filters.rating.includes(Math.round(parseInt(movie.maturityRating[0].Value.split("/")[0]) / 2).toString())))
               );
