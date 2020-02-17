@@ -18,6 +18,8 @@ function MovieList(props) {
     filter: ""
   });
 
+  const [movieSelect, setMovieSelect] = useState([]);
+
   useEffect(() => {
     props.getMovie(zipCode);
   }, [zipCode]);
@@ -63,7 +65,7 @@ function MovieList(props) {
               }
             })
             .map(movie => {
-              return <MovieCard movie={movie} key={movie.tmsId} />;
+              return <MovieCard movie={movie} key={movie.tmsId} movieSelect={movieSelect} setMovieSelect={setMovieSelect}/>;
             })}
         </div>
       )}
