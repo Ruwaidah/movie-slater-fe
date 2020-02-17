@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./dashboard.scss";
 import { withRouter } from "react-router-dom";
+import { toggleNext } from '../../actions/index';
+import { connect } from "react-redux";
 
 function MovieCard(props) {
   let path;
   const [active, setActive] = useState(false);
+  // const [movieSelect, setMovieSelect] = useState([]);
 
   if (props.movie.ratings)
     path = `${props.movie.title}&rate=${props.movie.ratings[0].code}`;
@@ -13,7 +16,25 @@ function MovieCard(props) {
   function toggleClass() {
     const currentState = active;
     setActive(!currentState);
+    // props.toggleNext()
+
   }
+
+  useEffect(() => {
+    if (active) props.setMovieSelect([...props.movieSelect, props.movie.title]);
+    else {
+      const filter = props.movieSelect.filter(movie1 => {
+        return movie1 !== props.movie.title;
+      });
+      props.setMovieSelect(filter);
+      
+    }
+  }, [active]);
+
+  if(props.movieSelect.length > 0){
+    props.toggleNext()
+  }
+
 
   return (
     <div className="movie-card">
@@ -44,4 +65,10 @@ function MovieCard(props) {
   );
 }
 
-export default withRouter(MovieCard);
+const mapStateToProps = state => {
+  return {
+    NextButton: state.NextButton
+  };
+};
+
+export default connect(mapStateToProps, { toggleNext })(withRouter(MovieCard));

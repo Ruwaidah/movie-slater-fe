@@ -158,3 +158,9 @@ export const getUpcomingMovies = () => dispatch => {
       dispatch({ type: GET_MOVIES_UPCOMING_FAILURE, payload: err.respone })
     );
 };
+
+export const TOGGLE_NEXT_BUTTON = "TOGGLE_NEXT_BUTTON"
+
+export const toggleNext = () => dispatch =>{
+      dispatch({ type: TOGGLE_NEXT_BUTTON })
+}
