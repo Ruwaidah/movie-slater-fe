@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 function ZipSearch(props) {
 
   const toggleMenu = () => {
-    document.getElementById("filter").classList.toggle("toggle-menu2");
+    document.getElementById("filter").classList.add("toggle-menu2");
   };
-  
+
   const [values, setValues] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
@@ -22,41 +22,23 @@ function ZipSearch(props) {
 
   const changeRating = event => {
     let temp = values.rating;
-    if(temp.includes(event.target.value)){
+    if (temp.includes(event.target.value)) {
       temp.splice(temp.indexOf(event.target.value), 1)
     } else {
       temp.push(event.target.value)
     }
-    setValues({...values, rating: temp})
+    setValues({ ...values, rating: temp })
   };
 
   const changeMature = event => {
     let temp = values.mature;
-    if(temp.includes(event.target.value)){
+    if (temp.includes(event.target.value)) {
       temp.splice(temp.indexOf(event.target.value), 1)
     } else {
       temp.push(event.target.value)
     }
-    setValues({...values, mature: temp})
+    setValues({ ...values, mature: temp })
   };
-
-  const handleChangesRatings = event => {
-    console.log(event.target.value)
-    props.setSearchParam({...props.searchParam, Ratings: event.target.value})
-    console.log(props.searchParam)
-  }
-  const handleChangesMaturity = event => {
-    let temp = props.searchParam.Maturity;
-    if(temp.includes(event.target.value)){
-      temp.splice(temp.indexOf(event.target.value), 1)
-    } else {
-      temp.push(event.target.value)
-    }
-    props.setSearchParam({...props.searchParam, Maturity: temp})
-  }
-  const handleChangesSort = event => {
-    props.setSearchParam({...props.searchParam, Sort: event.target.value})
-  }
 
   return (
     <div>
@@ -73,14 +55,14 @@ function ZipSearch(props) {
           </div>
         </div>
       </div>
-      
+
       <div className="menu-filter" id="filter">
-        <form  class="filtering" id="ratingSelect" onSubmit={toggleMenu, submit}>
-        <div className="sorting">
+        <form class="filtering" id="ratingSelect" onSubmit={toggleMenu, submit}>
+          <div className="sorting">
             <label>
               Sort By
-            </label>
-            <label className = "label-text">
+              </label>
+            <label className="label-text">
               <input
                 type="checkbox"
                 value="recent"
@@ -88,8 +70,8 @@ function ZipSearch(props) {
                 onChange={change}
               />
               Most Recent
-            </label>
-            <label className = "label-text">
+              </label>
+            <label className="label-text">
               <input
                 type="checkbox"
                 value="old"
@@ -97,40 +79,40 @@ function ZipSearch(props) {
                 name="filter"
               />
               Oldest
-            </label>
-            <label className = "label-text">
+              </label>
+            <label className="label-text">
               <input type="checkbox" value="az" name="filter" onChange={change} />
               A-Z
-            </label>
-            <label className = "label-text">
+              </label>
+            <label className="label-text">
               <input type="checkbox" value="za" name="filter" onChange={change} />
               Z-A
-            </label>
+              </label>
           </div>
           <div className="divider"></div>
-          <div className = "movie-rating">
+          <div className="movie-rating">
             Rating
-              <label className = "label-text">
-                <input type="checkbox" name="stars" id="R" value="R"  onChange={changeMature} defaultChecked/>
+                <label className="label-text">
+              <input type="checkbox" name="stars" id="R" value="R" onChange={changeMature} defaultChecked />
               R</label>
-              <label className = "label-text">
-                <input type="checkbox" name="stars" value="PG-13"  onChange={changeMature} defaultChecked/>
+            <label className="label-text">
+              <input type="checkbox" name="stars" value="PG-13" onChange={changeMature} defaultChecked />
               PG-13</label>
-              <label className = "label-text">
-                <input type="checkbox" name="stars" value="PG"  onChange={changeMature}defaultChecked/>
+            <label className="label-text">
+              <input type="checkbox" name="stars" value="PG" onChange={changeMature} defaultChecked />
               PG</label>
-              <label className = "label-text">
-                <input type="checkbox" name="stars" value="G"  onChange={changeMature}defaultChecked/>
+            <label className="label-text">
+              <input type="checkbox" name="stars" value="G" onChange={changeMature} defaultChecked />
               G</label>
           </div>
           <div className="divider"></div>
           <div className='movie-review'>
             <label>
               Review Rating
-            </label>
+              </label>
             <div className="star-buttons">
               <label>
-                <input type="checkbox" name="stars" value="1" onChange={changeRating} defaultChecked/>
+                <input type="checkbox" name="stars" value="1" onChange={changeRating} defaultChecked />
                 <span class="icon-full">★</span>
                 <span class="icon">☆</span>
                 <span class="icon">☆</span>
@@ -138,7 +120,7 @@ function ZipSearch(props) {
                 <span class="icon">☆</span>
               </label>
               <label>
-                <input type="checkbox" name="stars" value="2" onChange={changeRating} defaultChecked/>
+                <input type="checkbox" name="stars" value="2" onChange={changeRating} defaultChecked />
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
                 <span class="icon">☆</span>
@@ -146,7 +128,7 @@ function ZipSearch(props) {
                 <span class="icon">☆</span>
               </label>
               <label>
-                <input type="checkbox" name="stars" value="3" onChange={changeRating} defaultChecked/>
+                <input type="checkbox" name="stars" value="3" onChange={changeRating} defaultChecked />
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
@@ -154,7 +136,7 @@ function ZipSearch(props) {
                 <span class="icon">☆</span>
               </label>
               <label>
-                <input type="checkbox" name="stars" value="4" onChange={changeRating} defaultChecked/>
+                <input type="checkbox" name="stars" value="4" onChange={changeRating} defaultChecked />
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
@@ -162,7 +144,7 @@ function ZipSearch(props) {
                 <span class="icon">☆</span>
               </label>
               <label>
-                <input type="checkbox" name="stars" value="5" onChange={changeRating} defaultChecked/>
+                <input type="checkbox" name="stars" value="5" onChange={changeRating} defaultChecked />
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
