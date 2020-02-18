@@ -14,7 +14,8 @@ jobs:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ matrix.node }}    
+      - run: cd movie-knight
       - run: npm install
       - run: npm run build --if-present
       - run: npm test
