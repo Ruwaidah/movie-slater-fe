@@ -21,7 +21,6 @@ function MovieList(props) {
     mature: ["G", "PG", "PG-13", "R"]
   });
   //Checkbox toggle
-  
 
   function makeCall() {
     axios
@@ -31,6 +30,7 @@ function MovieList(props) {
         setMovies(response.data);
       });
   }
+
   useEffect(() => {
     makeCall();
     props.getMovie(zipCode);
@@ -102,7 +102,7 @@ function MovieList(props) {
               }
             })
             .map(movie => {
-              return <MovieCard movie={movie} key={movie.tmsId} />;
+              return <MovieCard movie={movie} key={movie.tmsId} movieSelect={movieSelect} setMovieSelect={setMovieSelect}/>;
             })}
         </div>
       )}

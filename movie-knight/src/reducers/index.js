@@ -22,7 +22,8 @@ import {
   GET_MOVIE_DETAIL_FAILURE,
   GET_MOVIES_UPCOMING_START,
   GET_MOVIES_UPCOMING_SUCCESS,
-  GET_MOVIES_UPCOMING_FAILURE
+  GET_MOVIES_UPCOMING_FAILURE,
+  TOGGLE_NEXT_BUTTON
 } from "../actions/index";
 
 const initialState = {
@@ -206,6 +207,13 @@ const reducer = (state = initialState, action) => {
         fetchingData: false,
         error: action.payload
       };
+
+    case TOGGLE_NEXT_BUTTON:
+      return {
+        ...state,
+        NextButton: !state.NextButton
+      }
+
     default:
       return state;
   }
