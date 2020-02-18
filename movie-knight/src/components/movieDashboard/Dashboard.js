@@ -2,12 +2,14 @@ import React from "react";
 import MovieList from "./MovieList";
 import "./dashboard.scss";
 import UpComingMovies from "./UpComingMovies.js";
+import { connect } from "react-redux";
 
 const Dashboard = props => {
   //   document.getElementById("nav").classList.toggle("menubar");
   function DatePage() {
     props.history.push("/date");
   }
+
 
   return (
     <div className="dash-board">
@@ -16,13 +18,25 @@ const Dashboard = props => {
       </div>
       <MovieList />
       <UpComingMovies />
-      <div className="black-box">
-        <button className="next-button-disable" onClick={DatePage}>
-          Next
-        </button>
-      </div>
+
+      {
+        props.NextButton ?
+          <div className="black-box">
+            <button className="next-button-disable" onClick={DatePage}>
+              Next
+            </button>
+          </div>
+        :
+          null
+      }
     </div>
   );
 };
 
-export default Dashboard;
+const mapStateToProps = state => {
+  return {
+    NextButton: state.NextButton
+  };
+};
+
+export default connect(mapStateToProps)(Dashboard);

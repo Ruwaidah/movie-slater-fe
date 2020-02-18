@@ -14,14 +14,13 @@ function MovieList(props) {
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState("")
   const [zipCode, setZipCode] = useState(47712)
-
+  const [movieSelect, setMovieSelect] = useState([]);
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
     mature: ["G", "PG", "PG-13", "R"]
   });
   //Checkbox toggle
-  
 
   function makeCall() {
     axios
@@ -31,10 +30,12 @@ function MovieList(props) {
         setMovies(response.data);
       });
   }
+
   useEffect(() => {
     makeCall();
     props.getMovie(zipCode);
   }, [zipCode]);
+<<<<<<< HEAD
   const handleChange = e => {
     e.preventDefault();
     setZipCode(e.target.value);
@@ -49,6 +50,11 @@ function MovieList(props) {
   const handleChangeSearch = event => {
     console.log(event.target.value);
     setSearchParam(event.target.value);
+=======
+  
+  const toggleMenu = () => {
+    document.getElementById("filter").classList.remove("toggle-menu2");
+>>>>>>> 775f129dc5a316075ab2e6971367265d87b6ff2d
   };
 
   return (
@@ -62,7 +68,7 @@ function MovieList(props) {
       {props.fetchingData ? (
         <Loading />
       ) : (
-        <div className="movie-list">
+        <div className="movie-list" onClick={toggleMenu}>
           {movies
             .filter(movie => {
               return (
@@ -102,7 +108,7 @@ function MovieList(props) {
               }
             })
             .map(movie => {
-              return <MovieCard movie={movie} key={movie.tmsId} />;
+              return <MovieCard movie={movie} key={movie.tmsId} movieSelect={movieSelect} setMovieSelect={setMovieSelect}/>;
             })}
         </div>
       )}
