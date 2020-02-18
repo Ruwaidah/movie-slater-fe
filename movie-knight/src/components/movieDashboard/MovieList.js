@@ -35,20 +35,9 @@ function MovieList(props) {
     makeCall();
     props.getMovie(zipCode);
   }, [zipCode]);
-  const handleChange = e => {
-    e.preventDefault();
-    setZipCode(e.target.value);
-  };
-  const handleSubmit = e => {
-    e.preventDefault();
-    makeCall();
-    props.getMovie(zipCode);
-    props.getMovie(zipCode);
-  };
   
-  const handleChangeSearch = event => {
-    console.log(event.target.value);
-    setSearchParam(event.target.value);
+  const toggleMenu = () => {
+    document.getElementById("filter").classList.remove("toggle-menu2");
   };
 
   return (
@@ -62,7 +51,7 @@ function MovieList(props) {
       {props.fetchingData ? (
         <Loading />
       ) : (
-        <div className="movie-list">
+        <div className="movie-list" onClick={toggleMenu}>
           {movies
             .filter(movie => {
               return (
