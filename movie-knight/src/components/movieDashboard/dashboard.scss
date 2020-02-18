@@ -43,11 +43,12 @@
 // color: $mid_text;
 // }
 
-// .movie-title-enable {
-//   margin: 0 0 15px 0;
-//   padding: 0 0 0 0;
-//   color: $mid_text;
-// }
+
+.movie-title-disable{
+  margin: 0 0 15px 0;
+  padding: 0 0 0 0;
+  color: $disabled_text;
+}
 
 .movie-img-enable {
   border-radius: 5px;
@@ -180,7 +181,88 @@
   left: 0%;
   outline: none;
 }
+.label-text{
+  color: $disabled_text;
+}
 
+.results-btn {
+  background-color: $disabled_action_button;
+  color: $disabled_text;
+  margin: 5px 0px;
+  border: none;
+  border-radius: 7px;
+  height: 32px;
+  width: 180px;
+  left: 0%;
+  outline: none;
+}
+
+.divider{
+  background: $disabled_text;
+  height: 2px;
+  margin: 5px 0px 5px 0px;
+}
+
+.menu-filter {
+  position: absolute;
+  width: 50%;
+  .movie-review, .movie-rating, .sorting{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    text-align: left;
+    .star-buttons{
+      display: flex;
+      flex-flow: column-reverse nowrap;
+      justify-content: flex-start;
+      text-align: left;
+      .icon-full{
+        color: gold;
+        width: 16px;
+        height: 16px;
+        left: 86px;
+        top: 249px;
+      }
+    }
+  }
+  input{
+    position: static;
+    -webkit-appearance: none;
+    border-radius: 2px;
+
+    border: 2px solid #838383;
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    left: 16px;
+    top: 65px;
+
+    /* enabled button color */
+
+    background-color: #3D3D3D;
+    /* Box outline/seats not chosen */
+    box-sizing: border-box;
+    outline: none;
+  }
+  input:active{
+    background-color: #FD2D2D;
+    border: 2px solid #FD2D2D;
+    outline: none;
+  }
+  input:checked{
+    background-color: #FD2D2D;
+    border: 2px solid #FD2D2D;
+    outline: none;
+  }
+  input:checked:after{
+    content: '\2714';
+    font-size: 100%;
+    position: relative;
+    bottom: 3px;
+    left: 1px;
+    color: white;
+  }
+}
 // Hamburger menu styles
 
 /* Color/shape of burger icon bars */
