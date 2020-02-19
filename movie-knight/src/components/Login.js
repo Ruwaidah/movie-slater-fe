@@ -8,7 +8,7 @@ import { signUpGoogle } from "../actions/index";
 // import ReactDOM from 'react-dom';
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
-const Login = props => {
+export const Login = props => {
   const [loginInfo, setLogininfo] = useState({ email: "", password: "" });
 
   const handleSubmit = event => {

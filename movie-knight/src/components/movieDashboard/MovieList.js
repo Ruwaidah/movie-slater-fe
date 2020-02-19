@@ -35,26 +35,9 @@ function MovieList(props) {
     makeCall();
     props.getMovie(zipCode);
   }, [zipCode]);
-<<<<<<< HEAD
-  const handleChange = e => {
-    e.preventDefault();
-    setZipCode(e.target.value);
-  };
-  const handleSubmit = e => {
-    e.preventDefault();
-    makeCall();
-    props.getMovie(zipCode);
-    props.getMovie(zipCode);
-  };
-
-  const handleChangeSearch = event => {
-    console.log(event.target.value);
-    setSearchParam(event.target.value);
-=======
   
   const toggleMenu = () => {
     document.getElementById("filter").classList.remove("toggle-menu2");
->>>>>>> 775f129dc5a316075ab2e6971367265d87b6ff2d
   };
 
   return (

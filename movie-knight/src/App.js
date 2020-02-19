@@ -17,15 +17,11 @@ import MakeSeatingChart from "./components/MakeSeatingChart";
 import PrivateRoute from "./components/PrivateRoute";
 import DataPicker from "./components/DatePicker";
 
-function App() {
+export function App() {
   return (
     <Router>
       <div className="App">
         <Nav />
-
-        {/* okta */}
-        {/* <Route exact path="/home" component={Home}/> */}
-        {/* okta */}
 
         <Route exact path="/login" component={Login} />
 
@@ -38,7 +34,7 @@ function App() {
 
         <Route exact path="/" component={Dashboard} />
 
-      <Route exact path="/details/:movieName" component={MovieDetails}/>
+        <Route exact path="/details/:movieName" component={MovieDetails}/>
 
 
         <Route exact path="/details" component={MovieDetails} />
