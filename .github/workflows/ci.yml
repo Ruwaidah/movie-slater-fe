@@ -17,7 +17,7 @@ jobs:
           CI: true
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: npm run coverage cc-test-reporter before-build --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+          coverageCommand: npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
           debug: true
           path: /movie-knight
 
