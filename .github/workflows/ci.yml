@@ -18,7 +18,8 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
-          command: ./cc-reporter after-build -d
+          command: cc-reporter after-build 
+           when: always
 
 # name: build
 
