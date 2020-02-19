@@ -54,7 +54,7 @@ export const signUpGoogle = signUpData => dispatch => {
   dispatch({ type: USER_SIGNING_GOOGLE, payload: signUpData });
 
   axiosWithGoogle()
-    .get("https://movieknight01.herokuapp.com/api/oauth/login")
+    .post('https://movieknight01.herokuapp.com/api/oauth/login', { token: localStorage.getItem('token')})
     .then(response =>
       dispatch({ type: USER_SIGNING_GOOGLE_SUCCESS, payload: response })
     )
@@ -158,3 +158,9 @@ export const getUpcomingMovies = () => dispatch => {
       dispatch({ type: GET_MOVIES_UPCOMING_FAILURE, payload: err.respone })
     );
 };
+
+export const TOGGLE_NEXT_BUTTON = "TOGGLE_NEXT_BUTTON"
+
+export const toggleNext = () => dispatch =>{
+      dispatch({ type: TOGGLE_NEXT_BUTTON })
+}

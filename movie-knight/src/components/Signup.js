@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 //Oauth//
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
-const Signup = props => {
+export const Signup = props => {
   const [signup, setsignup] = useState({
     username: "",
     password: "",
