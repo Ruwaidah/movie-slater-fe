@@ -125,4 +125,4 @@ const Signup = props => {
   );
 };
 
-export default connect(null, { signUp, signUpGoogle })(withRouter(Signup));
+export default withRouter(connect(null, { signUp, signUpGoogle })(Signup));
