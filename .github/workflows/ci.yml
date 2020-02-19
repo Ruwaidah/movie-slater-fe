@@ -19,7 +19,7 @@ jobs:
         with:
           coverageCommand: npm run coverage
           debug: true
-          coverageLocations: /movie-knight
+          path: /movie-knight
 
 
 
