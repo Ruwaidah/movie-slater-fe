@@ -13,7 +13,6 @@ jobs:
           node-version: "12"
       - run:  npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - uses: paambaati/codeclimate-action@v2.4.0
-      - uses:  ./cc-test-reporter after-build --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
         env:
           CI: true
           CC_TEST_REPORTER_ID: 9c08b8b48a20827e20adf3fedc6fa80904e8306f418ab3714f885af57e736fff
