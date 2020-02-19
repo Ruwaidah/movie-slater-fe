@@ -7,8 +7,8 @@ jobs:
     name: Test and publish test coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
+      - uses: actions/checkout@master --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+      - uses: actions/setup-node@master --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
         with:
           node-version: "12"
       - run:  npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
