@@ -34,10 +34,6 @@
     "coverage": "jest --coverage --detectOpenHandles --forceExit || true"
   },
   "jest": {
-    "transform": {
-      "^.+\\.svg$": "<rootDir>/svgTransform.js",
-      "^.+\\.(js|jsx)$": "babel-jest"
-    },
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/node_modules/**",
