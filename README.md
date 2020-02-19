@@ -6,7 +6,7 @@
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# Movie Knight
+# Movie Knight 
 
  You can find the deployed project at https://movieknight.dev/.
 
