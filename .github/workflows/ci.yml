@@ -17,11 +17,6 @@ jobs:
         env:
           CI: true
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          OM_API_KEY: ${{ secrets.OM_API_KEY }}
-          API_KEY: ${{ secrets.API_KEY }}
-          OAUTH_CLIENT: ${{ secrets.OAUTH_CLIENT }}
-          TMDB_APIKEY: ${{ secrets.TMDB_APIKEY }}
         with:
           coverageCommand: npm run coverage
 
