@@ -16,6 +16,7 @@ import OwnerDashboard from "./components/OwnerDashboard";
 import MakeSeatingChart from "./components/MakeSeatingChart";
 import PrivateRoute from "./components/PrivateRoute";
 import DataPicker from "./components/DatePicker";
+import TimePicker from "./components/TimePicker";
 
 function App() {
   return (
@@ -35,11 +36,9 @@ function App() {
 
         <Route exact path="/theater-login" component={OwnerLogin} />
 
-
         <Route exact path="/" component={Dashboard} />
 
-      <Route exact path="/details/:movieName" component={MovieDetails}/>
-
+        <Route exact path="/details/:movieName" component={MovieDetails} />
 
         <Route exact path="/details" component={MovieDetails} />
 
@@ -50,6 +49,8 @@ function App() {
         <Route exact path="/event" component={Event} />
 
         <Route exact path="/date" component={DataPicker} />
+
+        <Route exact path="/time" component={TimePicker} />
 
         <PrivateRoute exact path="/ownerdashboard" component={OwnerDashboard} />
 
@@ -64,4 +65,3 @@ function App() {
 }
 
 export default App;
-

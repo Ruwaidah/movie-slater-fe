@@ -54,7 +54,9 @@ export const signUpGoogle = signUpData => dispatch => {
   dispatch({ type: USER_SIGNING_GOOGLE, payload: signUpData });
 
   axiosWithGoogle()
-    .post('https://movieknight01.herokuapp.com/api/oauth/login', { token: localStorage.getItem('token')})
+    .post("https://movieknight01.herokuapp.com/api/oauth/login", {
+      token: localStorage.getItem("token")
+    })
     .then(response =>
       dispatch({ type: USER_SIGNING_GOOGLE_SUCCESS, payload: response })
     )
@@ -159,8 +161,26 @@ export const getUpcomingMovies = () => dispatch => {
     );
 };
 
-export const TOGGLE_NEXT_BUTTON = "TOGGLE_NEXT_BUTTON"
+export const TOGGLE_NEXT_BUTTON = "TOGGLE_NEXT_BUTTON";
 
-export const toggleNext = () => dispatch =>{
-      dispatch({ type: TOGGLE_NEXT_BUTTON })
-}
+export const toggleNext = () => dispatch => {
+  dispatch({ type: TOGGLE_NEXT_BUTTON });
+};
+
+export const TOGGLE_NEXT_OFF = "TOGGLE_NEXT_OFF";
+
+export const toggleNextOff = () => dispatch => {
+  dispatch({ type: TOGGLE_NEXT_OFF });
+};
+
+export const MOVIE_NEXT_BUTTON = "MOVIE_NEXT_BUTTON";
+
+export const movieNext = movies => dispatch => {
+  dispatch({ type: MOVIE_NEXT_BUTTON, payload: movies });
+};
+
+export const DAY_NEXT_BUTTON = "DAY_NEXT_BUTTON";
+
+export const dayNext = days => dispatch => {
+  dispatch({ type: DAY_NEXT_BUTTON, payload: days });
+};
