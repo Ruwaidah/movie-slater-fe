@@ -11,14 +11,19 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: "12"
-      - run:  npm install
+      - run:  npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
           CI: true
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
-          coverageCommand: npm run coverage cc-reporter after-build --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
-          command: ./cc-reporter after-build
+          coverageCommand: npm run coverage c--prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+        
+        run:
+        name: code-coverage
+        command: |
+            ./cc-test-reporter after-build -d -t cobertura --exit-code $?
+        when: always
 
 # name: build
 
