@@ -3,24 +3,6 @@ name: build
 on: [push, pull_request]
 
 jobs:
-  test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
-        node: [12, 10]
-    name: Test ${{ matrix.os }}/${{ matrix.node }}
-    runs-on: ${{ matrix.os }}
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-node@master
-        with:
-          node-version: ${{ matrix.node }}    
-      - run: cd movie-knight
-      - run: npm install
-      - run: npm run build --if-present
-      - run: npm test
-        env:
-          CI: true
   coverage:
     name: Test and publish test coverage
     runs-on: ubuntu-latest
@@ -33,7 +15,55 @@ jobs:
       - run: npm install
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
+          CI: true
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          OM_API_KEY: ${{ secrets.OM_API_KEY }}
+          API_KEY: ${{ secrets.API_KEY }}
+          OAUTH_CLIENT: ${{ secrets.OAUTH_CLIENT }}
+          TMDB_APIKEY: ${{ secrets.TMDB_APIKEY }}
         with:
-          coverageCommand: npx jest --coverage
-          debug: true
+          coverageCommand: npm run coverage
+
+
+
+
+# name: build
+
+# on: [push, pull_request]
+
+# jobs:
+#   test:
+#     strategy:
+#       matrix:
+#         os: [ubuntu-latest, macos-latest]
+#         node: [12, 10]
+#     name: Test ${{ matrix.os }}/${{ matrix.node }}
+#     runs-on: ${{ matrix.os }}
+#     steps:
+#       - uses: actions/checkout@master
+#       - uses: actions/setup-node@master
+#         with:
+#           node-version: ${{ matrix.node }}    
+#       - run: cd movie-knight
+#       - run: npm install
+#       - run: npm run build --if-present
+#       - run: npm test
+#         env:
+#           CI: true
+#   coverage:
+#     name: Test and publish test coverage
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@master
+#       - uses: actions/setup-node@master
+#         with:
+#           node-version: "12"
+#       - run: cd movie-knight
+#       - run: npm install
+#       - uses: paambaati/codeclimate-action@v2.4.0
+#         env:
+#           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+#         with:
+#           coverageCommand: npx jest --coverage
+#           debug: true
