@@ -38,8 +38,8 @@
       "json-summary",
       "text",
       "lcov"
-    ],
-  }
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
