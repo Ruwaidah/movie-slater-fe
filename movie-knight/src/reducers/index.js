@@ -39,7 +39,7 @@ const initialState = {
   movieDetails: {},
   upcomingMovies: [],
   MovieSelects: [],
-  daySelect: []
+  daySelects: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -234,7 +234,7 @@ const reducer = (state = initialState, action) => {
     case DAY_NEXT_BUTTON:
       return {
         ...state,
-        daySelect: action.payload
+        daySelects: action.payload
       };
 
     default:

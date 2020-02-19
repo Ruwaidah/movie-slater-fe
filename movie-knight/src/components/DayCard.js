@@ -16,7 +16,6 @@ const DayCard = props => {
     var dd = String(day.getDate()).padStart(2, "0");
     var mm = String(day.getMonth() + 1).padStart(2, "0");
     var yyyy = day.getFullYear();
-    // const dayName = days[day.getDay()];
     const dm = mm + "/" + dd;
     return dm;
   }
@@ -26,16 +25,6 @@ const DayCard = props => {
       props.setDaySelect([...props.daySelect, getday(props.index)]);
     }
   }, [active]);
-
-  //   useEffect(() => {
-  //     if (active) props.setMovieSelect([...props.movieSelect, props.movie.title]);
-  //     else {
-  //       const filter = props.movieSelect.filter(movie1 => {
-  //         return movie1 !== props.movie.title;
-  //       });
-  //       props.setMovieSelect(filter);
-  //     }
-  //   }, [active]);
 
   return (
     <button
@@ -50,7 +39,7 @@ const DayCard = props => {
 const mapStateToProps = state => {
   return {
     MovieSelects: state.MovieSelects,
-    daySelect: state.daySelect
+    daySelects: state.daySelects
   };
 };
 

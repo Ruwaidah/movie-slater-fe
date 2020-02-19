@@ -10,7 +10,7 @@ const DataPicker = props => {
 
   console.log(new Date());
 
-  console.log("day", daySelect);
+  console.log("dayPage", daySelect);
 
   const days = [
     "Monday",
