@@ -12,7 +12,6 @@ jobs:
         with:
           node-version: "12"
       - run: cd movie-knight && npm install
-      - run: cc-test-reporter before-build --prefix /movie-knight
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
           CI: true
