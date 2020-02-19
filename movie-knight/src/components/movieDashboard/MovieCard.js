@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./dashboard.scss";
 import { withRouter } from "react-router-dom";
-import { toggleNext } from '../../actions/index';
+import { toggleNext, toggleNextOff } from "../../actions/index";
 import { connect } from "react-redux";
 
 function MovieCard(props) {
@@ -16,8 +16,7 @@ function MovieCard(props) {
   function toggleClass() {
     const currentState = active;
     setActive(!currentState);
-    // props.toggleNext()
-
+    props.toggleNext();
   }
 
   useEffect(() => {
@@ -27,42 +26,43 @@ function MovieCard(props) {
         return movie1 !== props.movie.title;
       });
       props.setMovieSelect(filter);
-      
     }
   }, [active]);
 
-  if(props.movieSelect.length > 0){
-    props.toggleNext()
+  if (props.movieSelect.length > 0) {
+    props.toggleNext();
+  } else if (props.movieSelect.length === 0) {
+    props.toggleNextOff();
   }
 
-
-  return (
-    <div className="movie-card">
-      <div
-        className={active ? "movie-img-enable red-box" : "movie-img-disable "}
-      >
-        <img
-          src={props.movie.image}
-          alt={props.movie.title}
-          onClick={toggleClass}
-        />
+  if (props.movie)
+    return (
+      <div className="movie-card">
+        <div
+          className={active ? "movie-img-enable red-box" : "movie-img-disable "}
+        >
+          <img
+            src={props.movie.image}
+            alt={props.movie.title}
+            onClick={toggleClass}
+          />
+          <p
+            onClick={() => props.history.push(`/details/${path}`)}
+            className={active ? "movie-title-enable" : "movie-title-disable"}
+          >
+            {active ? "View Details" : null}
+          </p>
+        </div>
         <p
           onClick={() => props.history.push(`/details/${path}`)}
           className={active ? "movie-title-enable" : "movie-title-disable"}
         >
-          {active ? "View Details" : null}
+          {props.movie.title.length > 20
+            ? props.movie.title.slice(0, 17) + "..."
+            : props.movie.title}
         </p>
       </div>
-      <p
-        onClick={() => props.history.push(`/details/${path}`)}
-        className={active ? "movie-title-enable" : "movie-title-disable"}
-      >
-        {props.movie.title.length > 20
-          ? props.movie.title.slice(0, 17) + "..."
-          : props.movie.title}
-      </p>
-    </div>
-  );
+    );
 }
 
 const mapStateToProps = state => {
@@ -71,4 +71,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { toggleNext })(withRouter(MovieCard));
+export default connect(mapStateToProps, { toggleNext, toggleNextOff })(
+  withRouter(MovieCard)
+);

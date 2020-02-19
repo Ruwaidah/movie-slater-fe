@@ -8,13 +8,12 @@ import ZipSearch from "./ZipSearch.js";
 import SearchForm from "./SearchForm.js";
 import FilterMenu from "./FilterMenu.js";
 import Loading from "../Loading.js";
+import { toggleNext } from "../../actions/index";
 
 function MovieList(props) {
-
-  const [movies, setMovies] = useState([])
-  const [searchParam, setSearchParam] = useState("")
-  const [zipCode, setZipCode] = useState(47712)
-  const [movieSelect, setMovieSelect] = useState([]);
+  const [movies, setMovies] = useState([]);
+  const [searchParam, setSearchParam] = useState("");
+  const [zipCode, setZipCode] = useState(47712);
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
@@ -35,19 +34,22 @@ function MovieList(props) {
     makeCall();
     props.getMovie(zipCode);
   }, [zipCode]);
-  
+
+  // useEffect(() => {
+  //   props.toggleNext(props.movieSelect);
+  // }, []);
+
   const toggleMenu = () => {
     document.getElementById("filter").classList.remove("toggle-menu2");
   };
 
   return (
     <div className="movielist-component">
-
       <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
 
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
 
-      <FilterMenu setFilter={setFilter} filters={filters}/>
+      <FilterMenu setFilter={setFilter} filters={filters} />
       {props.fetchingData ? (
         <Loading />
       ) : (
@@ -56,9 +58,15 @@ function MovieList(props) {
             .filter(movie => {
               return (
                 (movie.title.includes(searchParam) ||
-                movie.title.toLowerCase().includes(searchParam)) &&
-                ((movie.ratings && (filters.mature.includes(movie.ratings[0].code))) &&
-                (movie.maturityRating[0] && filters.rating.includes(Math.round(parseInt(movie.maturityRating[0].Value.split("/")[0]) / 2).toString())))
+                  movie.title.toLowerCase().includes(searchParam)) &&
+                movie.ratings &&
+                filters.mature.includes(movie.ratings[0].code) &&
+                movie.maturityRating[0] &&
+                filters.rating.includes(
+                  Math.round(
+                    parseInt(movie.maturityRating[0].Value.split("/")[0]) / 2
+                  ).toString()
+                )
               );
             })
             .sort(function(a, b) {
@@ -86,12 +94,19 @@ function MovieList(props) {
                   return -1;
                 if (nameA < nameB) return 1;
                 return 0;
-              }else {
+              } else {
                 return null;
               }
             })
             .map(movie => {
-              return <MovieCard movie={movie} key={movie.tmsId} movieSelect={movieSelect} setMovieSelect={setMovieSelect}/>;
+              return (
+                <MovieCard
+                  movie={movie}
+                  key={movie.tmsId}
+                  movieSelect={props.movieSelect}
+                  setMovieSelect={props.setMovieSelect}
+                />
+              );
             })}
         </div>
       )}
@@ -104,4 +119,4 @@ const mapStateToProps = state => {
     fetchingData: state.fetchingData
   };
 };
-export default connect(mapStateToProps, { getMovie })(MovieList);
+export default connect(mapStateToProps, { getMovie, toggleNext })(MovieList);

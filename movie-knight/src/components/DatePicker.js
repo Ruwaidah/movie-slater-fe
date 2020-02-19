@@ -1,54 +1,74 @@
-import React,{useState} from 'react';
+import React, { useState } from "react";
+import DayCard from "./DayCard";
+import { connect } from "react-redux";
+import { dayNext } from "../actions/index.js";
 
-const DataPicker = props =>{
-    
-    var today = new Date();
-    var tomorrow = new Date(today.getTime() );
+const DataPicker = props => {
+  const [daySelect, setDaySelect] = useState([]);
+  var today = new Date();
+  var tomorrow = new Date(today.getTime());
 
-    const [active, setActive] = useState(false);
+  console.log(new Date());
 
-    function toggleClass(){
-    const currentState = active;
-    setActive(!currentState)
+  console.log("day", daySelect);
+
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+  ];
+
+  function HomePage() {
+    props.history.push("/");
   }
-    
-    console.log(tomorrow);
 
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  function timePage() {
+    props.dayNext(daySelect);
+    props.history.push("/time");
+  }
 
-    function HomePage(){
-        props.history.push('/')
-    }
+  console.log("movieselect", props.MovieSelects);
 
-    return (
-        <div>
+  return (
+    <div>
+      <div>
+        <button onClick={HomePage}>⬅</button>
+      </div>
 
-        <div>
-            <button onClick={HomePage}>⬅</button>
-        </div>
+      <h2 className="question">When would you like to go?</h2>
 
-           <h2 className='question'>When would you like to go?</h2>
+      <div className="days">
+        {days.map((day, i) => {
+          return (
+            <DayCard
+              key={i}
+              day={day}
+              index={i}
+              daySelect={daySelect}
+              setDaySelect={setDaySelect}
+            />
+          );
+        })}
+      </div>
 
-            <div className="days">
+      <div className="black-box">
+        <button className="next-button" onClick={timePage}>
+          Next
+        </button>
+      </div>
+    </div>
+  );
+};
 
-            
-            {
-               days.map(day => {
-                   return(
-                       <button key={day} className={active ? ' day red-box' : 'day'} onClick={() =>toggleClass()}>{day}</button>
-                   )
-               })
-            }
+const mapStateToProps = state => {
+  return {
+    MovieSelects: state.MovieSelects,
+    daySelect: state.daySelect
+  };
+};
 
-            </div>
-
-
-
-           <div className='black-box'>
-                <button className='next-button'>Next</button>
-            </div>
-        </div>
-    )
-}
-
-export default DataPicker;
+export default connect(mapStateToProps, { dayNext })(DataPicker);
