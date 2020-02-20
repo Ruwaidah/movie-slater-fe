@@ -1,26 +1,52 @@
 name: build
-
-on: [push, pull_request]
-
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '!*' # Do not execute on tags
+    paths:
+      - src/*
+      - test/*
+      - '*.json'
+      - yarn.lock
+  pull_request:
+    paths:
+      - '!*.MD'
 jobs:
+  test:
+    strategy:
+      matrix:
+        platform: [ ubuntu-latest, macOS-latest ]
+        node: [ '12', '10' ]
+    name: test/node ${{ matrix.node }}/${{ matrix.platform }}
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: ${{ matrix.node }}
+    - run: npm install -g yarn
+    - run: yarn install
+    - run: yarn build
+    - run: yarn test
   coverage:
-    name: Test and publish test coverage
+    needs: [ test ]
+    name: coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master 
-      - uses: actions/setup-node@master 
-        with:
-          node-version: "12"
-      - run:  npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
-      - uses: paambaati/codeclimate-action@v2.4.0
-      with: 
-          node-version: "12"
-        env:
-          CI: true
-          CC_TEST_REPORTER_ID: 9c08b8b48a20827e20adf3fedc6fa80904e8306f418ab3714f885af57e736fff
-        with:
-          coverageCommand: npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
-
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '12'
+    - run: npm install -g yarn --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+    - run: yarn install
+    - run: yarn build
+    - uses: paambaati/codeclimate-action@v2.2.4
+      env:
+        CC_TEST_REPORTER_ID: b33924e219cbba656533756aac95e29b47b60a29e3040262e08bef22d9583b55
+      with:
+        coverageCommand: yarn coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
 
 # name: build
 
@@ -61,3 +87,6 @@ jobs:
 #         with:
 #           coverageCommand: npx jest --coverage
 #           debug: true
+
+
+--prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
