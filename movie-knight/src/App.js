@@ -17,6 +17,7 @@ import MakeSeatingChart from "./components/MakeSeatingChart";
 import PrivateRoute from "./components/PrivateRoute";
 import DataPicker from "./components/DatePicker";
 import TimePicker from "./components/TimePicker";
+import SeatChart from "./components/SeatChart";
 
 function App() {
   return (
@@ -51,6 +52,8 @@ function App() {
         <Route exact path="/date" component={DataPicker} />
 
         <Route exact path="/time" component={TimePicker} />
+
+        <Route exact path="/seats" component={SeatChart} />
 
         <PrivateRoute exact path="/ownerdashboard" component={OwnerDashboard} />
 
