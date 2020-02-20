@@ -31,12 +31,18 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "coverage": "CI=true yarn test --coverage || true"
+    "coverage": "CI=true npm test --coverage || true"
   },
   "jest": {
     "coverageReporters": [
       "json-summary",
       "lcov"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__tests__/**"
     ]
   },
   "eslintConfig": {
