@@ -24,7 +24,7 @@ jobs:
         # Coverage will be generated while running the specs using SimpleCov
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
-        run: GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA ./cc-test-reporter after-build --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+        run: GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA ./cc-test-reporter after-build --prefix /home/runner/work/movie-slater-fe/movie-slater-fe
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
