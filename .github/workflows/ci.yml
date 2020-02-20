@@ -15,8 +15,7 @@ jobs:
         run: npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
 
       - name: Prepare for test
-        run: ./cc-test-reporter before-build 
-        run: ls -la coverage
+        run: ./cc-test-reporter before-build  ls -la coverage
 
       - name: Unit test with Rspec test suite
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
