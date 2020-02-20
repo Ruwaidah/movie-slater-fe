@@ -23,7 +23,7 @@ jobs:
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
         run: 
-              SOURCE_PATH=/home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight ./cc-test-reporter format-coverage coverage/codeclimate.json --input-type lcov --debug
+              SOURCE_PATH=/home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight ./cc-test-reporter format-coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/coverage/clover.xml --input-type clover --debug
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       - name: upload
