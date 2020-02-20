@@ -27,6 +27,6 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       - name: upload
-          run: ./cc-test-reporter upload-coverage
+        run: ./cc-test-reporter upload-coverage
         
 
