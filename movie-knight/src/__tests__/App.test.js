@@ -76,4 +76,3 @@ test('OwnerDashboard is rendering', () => {
 test('MakeSeatingChart is rendering', () => {
   render(<MakeSeatingChart />);
 })
-
