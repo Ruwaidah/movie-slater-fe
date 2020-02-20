@@ -10,8 +10,8 @@ const TimePicker = props => {
 
   console.log("timepage", props.daySelects);
 
-  function seatPage() {
-    props.history.push("/seats");
+  function ticketsPage() {
+    props.history.push("/tickets");
   }
 
   function HomePage() {
@@ -41,7 +41,7 @@ const TimePicker = props => {
       </div>
 
       <div className="black-box">
-        <button className="next-button" onClick={seatPage}>
+        <button className="next-button" onClick={ticketsPage}>
           Next
         </button>
       </div>

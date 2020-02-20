@@ -18,6 +18,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import DataPicker from "./components/DatePicker";
 import TimePicker from "./components/TimePicker";
 import SeatChart from "./components/SeatChart";
+import Tickets from "./components/Tickets";
+
 
 function App() {
   return (
@@ -54,6 +56,8 @@ function App() {
         <Route exact path="/time" component={TimePicker} />
 
         <Route exact path="/seats" component={SeatChart} />
+
+        <Route exact path="/tickets" component={Tickets} />
 
         <PrivateRoute exact path="/ownerdashboard" component={OwnerDashboard} />
 

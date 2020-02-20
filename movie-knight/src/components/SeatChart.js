@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./seatChart.scss";
+import Loading from './Loading';
 import screen from "./images/screen.svg";
 import ProgressBar from "./ProgressBar";
+import { connect } from 'react-redux'
 
 const Seatchart = props => {
   const [active, setActive] = useState([]);
@@ -20,11 +22,18 @@ const Seatchart = props => {
 
   console.log("we have seats", seats);
 
+  console.log('Movie name', props.MovieSelects)
+  console.log('Date', props.daySelect)
+  console.log('Tickets', props.ticketsNumber)
+
   useEffect(() => {
     seatCall();
   }, []);
 
-  return (
+  if(!seats){
+    return <Loading/>
+  } else{
+   return (
     <div>
       <div className="seat-container">
         {/* <h1 className="seat-title">Where would you like to sit?</h1> */}
@@ -46,6 +55,15 @@ const Seatchart = props => {
       <ProgressBar />
     </div>
   );
+  }
 };
 
-export default Seatchart;
+const mapStateToProps = state => {
+  return {
+      MovieSelects: state.MovieSelects,
+      daySelect: state.daySelect,
+      ticketsNumber: state.ticketsNumber
+  };
+};
+
+export default connect(mapStateToProps)(Seatchart);
