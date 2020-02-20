@@ -27,7 +27,6 @@ jobs:
       - run:
           name: Upload code climate report
           command: ./cc-test-reporter upload-coverage -r $CC_TEST_REPORTER_ID
-          when: on_success
       with: 
           node-version: "12"
         env:
