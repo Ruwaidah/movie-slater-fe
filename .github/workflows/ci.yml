@@ -24,6 +24,7 @@ jobs:
       - name: Report coverage
         run: 
               SOURCE_PATH=/home/runner/work/movie-slater-fe/movie-slater-fe ./cc-test-reporter format-coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight --input-type lcov --debug
-        run: ./cc-test-reporter upload-coverage
-              env:
+          env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        run: ./cc-test-reporter upload-coverage
+      
