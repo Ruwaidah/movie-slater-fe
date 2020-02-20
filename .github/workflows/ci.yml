@@ -12,7 +12,7 @@ jobs:
         with:
           node-version: "12"
       - run:  npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
-      - uses: cc-test-reporter format-coverage
+      - uses: ./cc-test-reporter format-coverage
         env:
           CI: true
           CC_TEST_REPORTER_ID: 9c08b8b48a20827e20adf3fedc6fa80904e8306f418ab3714f885af57e736fff
