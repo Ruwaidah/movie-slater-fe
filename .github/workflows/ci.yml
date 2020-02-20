@@ -24,7 +24,7 @@ jobs:
         # Coverage will be generated while running the specs using SimpleCov
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
-        run: JACOCO_SOURCE_PATH=src/main/kotlin ./cc-test-reporter format-coverage ./build/reports/jacoco/test/jacocoTestReport.xml --input-type jacoco
+        run: JACOCO_SOURCE_PATH=home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight ./cc-test-reporter format-coverage ./build/reports/jacoco/test/jacocoTestReport.xml --input-type jacoco
             ./cc-test-reporter upload-coverage 
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
