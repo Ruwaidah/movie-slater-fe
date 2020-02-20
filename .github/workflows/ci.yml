@@ -15,12 +15,14 @@ jobs:
         run: npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
 
       - name: Prepare for test
-        run: ./cc-test-reporter before-build  ls -la coverage
-
+        run: |
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+          GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA ./cc-test-reporter before-build 
       - name: Unit test with Rspec test suite
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
         run: 
-               ./cc-test-reporter format-coverage -p /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight --debug
+               ./cc-test-reporter format-coverage -p /home/runner/work/_temp --debug
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
