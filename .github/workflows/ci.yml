@@ -22,11 +22,10 @@ jobs:
 
       - name: Unit test with Rspec test suite
         # Coverage will be generated while running the specs using SimpleCov
-        run:  npm run coverage  --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight cc-test-reporter format-coverage -t lcov -o /home/runner/work/movie-slater-fe/movie-slater-fe/codeclimate.frontend.json coverage/frontend/lcov.info
+        run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
-        run: |
-            ./home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/cc-test-reporter sum-coverage tmp/codeclimate.*.json -p 2 -o /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/codeclimate.total.json
-            ./home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/cc-test-reporter upload-coverage -i /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/codeclimate.total.json
+        run: 
+              ./cc-test-reporter after-build  --prefix /home/runner/work
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
