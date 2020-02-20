@@ -184,3 +184,9 @@ export const DAY_NEXT_BUTTON = "DAY_NEXT_BUTTON";
 export const dayNext = days => dispatch => {
   dispatch({ type: DAY_NEXT_BUTTON, payload: days });
 };
+
+export const TICKETS_NEXT_BUTTON = 'TICKETS_NEXT_BUTTON'
+
+export const ticketsNum = num => dispatch => {
+  dispatch({ type: TICKETS_NEXT_BUTTON, payload: num })
+}

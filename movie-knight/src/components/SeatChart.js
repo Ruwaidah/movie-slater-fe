@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./seatChart.scss";
+import Loading from './Loading';
 import screen from "./images/screen.svg";
+import { connect } from 'react-redux'
 
 const Seatchart = props => {
   const [active, setActive] = useState([]);
@@ -15,24 +17,41 @@ const Seatchart = props => {
 
   console.log("we have seats", seats);
 
+  console.log('Movie name', props.MovieSelects)
+  console.log('Date', props.daySelect)
+  console.log('Tickets', props.ticketsNumber)
+
   useEffect(() => {
     seatCall();
   }, []);
 
-  return (
-    <div className="seat-container">
-      <h1 className="seat-title">Where would you like to sit?</h1>
-      <h2 className="seat-header">
-        Select the area in which you’d like to sit
-      </h2>
-      <div className="seat-chart">
-        <img className="screen" src={screen} alt="movie theater screen" />
-        {seats.map(seat => (
-          <span className="seat">{seat.seatName}</span>
-        ))}
+  if(!seats){
+    return <Loading/>
+  }else{
+    return (
+      <div className="seat-container">
+        <h1 className="seat-title">Where would you like to sit?</h1>
+        <h2 className="seat-header">
+          Select the area in which you’d like to sit
+        </h2>
+        <div className="seat-chart">
+          <img className="screen" src={screen} alt="movie theater screen" />
+          {seats.map(seat => (
+            <span key={seat.id} className="seat">{seat.seatName}</span>
+          ))}
+        </div>
       </div>
-    </div>
-  );
+  
+    );
+  }
 };
 
-export default Seatchart;
+const mapStateToProps = state => {
+  return {
+      MovieSelects: state.MovieSelects,
+      daySelect: state.daySelect,
+      ticketsNumber: state.ticketsNumber
+  };
+};
+
+export default connect(mapStateToProps)(Seatchart);
