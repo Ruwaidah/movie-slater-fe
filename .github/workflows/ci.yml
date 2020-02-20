@@ -22,11 +22,6 @@ jobs:
       - run:
           name: Set jacoco.xml path for code climate
           command: JACOCO_SOURCE_PATH=src/main/kotlin ./cc-test-reporter format-coverage ./build/reports/jacoco/test/jacocoTestReport.xml --input-type jacoco
-
-      # upload coverage on code climate
-      - run:
-          name: Upload code climate report
-          command: ./cc-test-reporter upload-coverage 
       with: 
           node-version: "12"
         env:
