@@ -58,7 +58,6 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       - name: upload
         run: ./cc-test-reporter upload-coverage
-        if: ./cc-test-reporter format-coverage
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         
