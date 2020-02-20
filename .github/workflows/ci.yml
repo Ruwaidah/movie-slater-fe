@@ -25,7 +25,7 @@ jobs:
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
         run: 
-               ./cc-test-reporter sum-coverage 
+               ./cc-test-reporter format-coverage
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
