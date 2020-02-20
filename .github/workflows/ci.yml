@@ -46,8 +46,8 @@ jobs:
 
       - name: Prepare for test
         run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/cc-test-reporter
-          chmod +x ./home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/cc-test-reporter
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
           GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA ./cc-test-reporter before-build 
       - name: Unit test with Rspec test suite
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
@@ -58,6 +58,7 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       - name: upload
         run: ./cc-test-reporter upload-coverage
+        if: ./cc-test-reporter format-coverage
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         
