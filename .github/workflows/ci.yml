@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: "12"
-      - run: cd movie-knight && npm install
+      - run: npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
        - name: Prepare for test
         run: |
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
