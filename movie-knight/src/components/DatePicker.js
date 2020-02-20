@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DayCard from "./DayCard";
 import { connect } from "react-redux";
 import { dayNext } from "../actions/index.js";
+import ProgressBar from "./ProgressBar";
 
 const DataPicker = props => {
   const [daySelect, setDaySelect] = useState([]);
@@ -60,6 +61,7 @@ const DataPicker = props => {
           Next
         </button>
       </div>
+      <ProgressBar />
     </div>
   );
 };

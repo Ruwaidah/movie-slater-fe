@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import TimeCard from "./TimeCard";
+import ProgressBar from "./ProgressBar";
 
 const TimePicker = props => {
   const [timeSelect, setTimeSelect] = useState([]);
@@ -44,6 +45,7 @@ const TimePicker = props => {
           Next
         </button>
       </div>
+      <ProgressBar />
     </div>
   );
 };
