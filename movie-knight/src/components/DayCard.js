@@ -9,6 +9,16 @@ const DayCard = props => {
     setActive(!currentState);
   }
 
+  const days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+
   //  Date Format
   function getday(number) {
     var day = new Date();
@@ -16,8 +26,9 @@ const DayCard = props => {
     var dd = String(day.getDate()).padStart(2, "0");
     var mm = String(day.getMonth() + 1).padStart(2, "0");
     var yyyy = day.getFullYear();
+    const dayName = days[day.getDay()];
     const dm = mm + "/" + dd;
-    return dm;
+    return [dm, dayName];
   }
 
   useEffect(() => {
@@ -31,7 +42,7 @@ const DayCard = props => {
       className={active ? " day red-box" : "day"}
       onClick={() => toggleClass()}
     >
-      {`${props.day} - ${getday(props.index)}`}
+      {`${getday(props.index)[1]} - ${getday(props.index)[0]}`}
     </button>
   );
 };
