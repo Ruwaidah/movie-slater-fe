@@ -25,7 +25,7 @@ jobs:
         run:  npm run coverage  --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight cc-test-reporter format-coverage -t lcov -o /home/runner/work/movie-slater-fe/movie-slater-fe/codeclimate.frontend.json coverage/frontend/lcov.info
       - name: Report coverage
         run: 
-              ./cc-test-reporter after-build  
+              ./cc-test-reporter after-build  --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
