@@ -19,6 +19,11 @@ function MovieCard(props) {
     props.toggleNext();
   }
 
+  function unSelectMovie() {
+    setActive(false);
+    props.toggleNext();
+  }
+
   useEffect(() => {
     if (active) props.setMovieSelect([...props.movieSelect, props.movie.title]);
     else {
@@ -29,9 +34,9 @@ function MovieCard(props) {
     }
   }, [active]);
 
-  if (props.movieSelect.length > 0) {
+  if (props.movieSelect.length > 0 && props.NextButton == false) {
     props.toggleNext();
-  } else if (props.movieSelect.length === 0) {
+  } else if (props.movieSelect.length === 0 && props.NextButton == true) {
     props.toggleNextOff();
   }
 
@@ -44,7 +49,7 @@ function MovieCard(props) {
           <img
             src={props.movie.image}
             alt={props.movie.title}
-            onClick={toggleClass}
+            onClick={props.movieSelect.length == 3 ? unSelectMovie : toggleClass}
           />
           <p
             onClick={() => props.history.push(`/details/${path}`)}
@@ -71,6 +76,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { toggleNext, toggleNextOff })(
-  withRouter(MovieCard)
+export default withRouter(connect(mapStateToProps, { toggleNext, toggleNextOff })
+  (MovieCard)
 );

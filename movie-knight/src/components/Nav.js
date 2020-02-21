@@ -66,42 +66,42 @@ const Nav = props => {
     <>
       <h1 onClick={() => homeButton()} className="app-name">
         Movie<span className="app-name-knight">Knight</span>
-      </h1>
-      <Menu
-        right
-        width={"250px"}
-        isOpen={isOpen}
-        onStateChange={state => handleStateChange(state.isOpen)}
-      >
-        <NavLink
-          exact
-          to="/"
-          id="home"
-          className="menu-item"
-          onClick={() => closeMenu()}
+      <>
+        <Menu
+          right
+          width={"250px"}
+          isOpen={isOpen}
+          onStateChange={state => handleStateChange(state.isOpen)}
         >
-          Home
+          <NavLink
+            exact
+            to="/"
+            id="home"
+            className="menu-item"
+            onClick={() => closeMenu()}
+          >
+            Home
         </NavLink>
-        <NavLink
-          to="/signup"
-          id="signup"
-          className="menu-item"
-          onClick={closeMenu}
-        >
-          Sign Up
+          <NavLink
+            to="/signup"
+            id="signup"
+            className="menu-item"
+            onClick={closeMenu}
+          >
+            Sign Up
         </NavLink>
-        <NavLink
-          to="/login"
-          id="login"
-          className="menu-item"
-          onClick={closeMenu}
-        >
-          Login
+          <NavLink
+            to="/login"
+            id="login"
+            className="menu-item"
+            onClick={closeMenu}
+          >
+            Login
         </NavLink>
-        <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
-      </Menu>
-    </>
-  );
+          <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
+        </Menu>
+      </>
+    );
 };
 
 const mapStateToProps = state => {
@@ -111,4 +111,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(withRouter(Nav));
+export default withRouter(connect(mapStateToProps)(Nav));
