@@ -44,7 +44,7 @@ const Nav = props => {
   return localStorage.getItem("token") ? (
     <>
       <h1 onClick={() => homeButton()} className="app-name">
-        Movie Knight
+        Movie<span className="app-name-knight">Knight</span>
       </h1>
       <Menu right width={"250px"} isOpen={isOpen}>
         <NavLink
@@ -63,10 +63,10 @@ const Nav = props => {
       </Menu>
     </>
   ) : (
+    <>
+      <h1 onClick={() => homeButton()} className="app-name">
+        Movie<span className="app-name-knight">Knight</span>
       <>
-        <h1 onClick={() => homeButton()} className="app-name">
-          Movie Knight
-      </h1>
         <Menu
           right
           width={"250px"}

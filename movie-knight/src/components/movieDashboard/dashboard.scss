@@ -43,8 +43,7 @@
 // color: $mid_text;
 // }
 
-
-.movie-title-disable{
+.movie-title-disable {
   margin: 0 0 15px 0;
   padding: 0 0 0 0;
   color: $disabled_text;
@@ -181,7 +180,7 @@
   left: 0%;
   outline: none;
 }
-.label-text{
+.label-text {
   color: $disabled_text;
 }
 
@@ -197,7 +196,7 @@
   outline: none;
 }
 
-.divider{
+.divider {
   background: $disabled_text;
   height: 2px;
   margin: 5px 0px 5px 0px;
@@ -207,17 +206,19 @@
   position: fixed;
   width: 50%;
   height: 100%;
-  .movie-review, .movie-rating, .sorting{
+  .movie-review,
+  .movie-rating,
+  .sorting {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     text-align: left;
-    .star-buttons{
+    .star-buttons {
       display: flex;
       flex-flow: column-reverse nowrap;
       justify-content: flex-start;
       text-align: left;
-      .icon-full{
+      .icon-full {
         color: gold;
         width: 16px;
         height: 16px;
@@ -226,7 +227,7 @@
       }
     }
   }
-  input{
+  input {
     position: static;
     -webkit-appearance: none;
     border-radius: 2px;
@@ -240,23 +241,23 @@
 
     /* enabled button color */
 
-    background-color: #3D3D3D;
+    background-color: #3d3d3d;
     /* Box outline/seats not chosen */
     box-sizing: border-box;
     outline: none;
   }
-  input:active{
-    background-color: #FD2D2D;
-    border: 2px solid #FD2D2D;
+  input:active {
+    background-color: #fd2d2d;
+    border: 2px solid #fd2d2d;
     outline: none;
   }
-  input:checked{
-    background-color: #FD2D2D;
-    border: 2px solid #FD2D2D;
+  input:checked {
+    background-color: #fd2d2d;
+    border: 2px solid #fd2d2d;
     outline: none;
   }
-  input:checked:after{
-    content: '\2714';
+  input:checked:after {
+    content: "\2714";
     font-size: 100%;
     position: relative;
     bottom: 3px;
@@ -354,17 +355,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 // Styling of App name and header on dashboard
 .app-name {
-  font-family: "Cinzel Decorative", cursive;
-  font-size: 20px;
-  color: $enabled_action_button;
+  font-family: "Lato";
+  font-size: 16px;
+  color: $pure_white;
   position: absolute;
   top: 25px;
   left: 40px;
+  font-weight: black;
+}
+
+.app-name-knight {
+  font-weight: lighter;
 }
 
 .header-dash {
   font-size: 18px;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 }
 
 .titles {
