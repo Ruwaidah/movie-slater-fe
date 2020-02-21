@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: "12"
-      - run: npm install
+      - run: npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - uses: paambaati/codeclimate-action@v2.4.0
         env:
           CI: true
