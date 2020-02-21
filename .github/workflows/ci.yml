@@ -12,28 +12,66 @@ jobs:
         with:
           node-version: "12"
       - name: Install dependencies
-        run: npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+        run: cd movie-knight && npm install
 
-      - name: Prepare for test
-        run: |
-          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-          chmod +x ./cc-test-reporter
+      - uses: paambaati/codeclimate-action@v2.4.0
+        env:
+          CI: true
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+          coverageLocations: "movie-knight/coverage/lcov.info:lcov"
 
-      - name: before build
-        run: 
-           ./cc-test-reporter before-build
-          GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA 
-      - name: Unit test with Rspec test suite
-        run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
-      - name: Report coverage
-        run: 
-              SOURCE_PATH=/home/runner/work/movie-slater-fe/movie-slater-fe ./cc-test-reporter format-coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/coverage/clover.xml --input-type clover --debug
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-      - name: upload
-        run: ./cc-test-reporter upload-coverage
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# name: build
+
+# on: [push, pull_request]
+
+# jobs:
+#   coverage:
+#     name: Test and publish test coverage
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@master
+#       - uses: actions/setup-node@master
+#         with:
+#           node-version: "12"
+#       - name: Install dependencies
+#         run: npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+
+#       - name: Prepare for test
+#         run: |
+#           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+#           chmod +x ./cc-test-reporter
+
+#       - name: before build
+#         run: 
+#            ./cc-test-reporter before-build
+#           GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA 
+#       - name: Unit test with Rspec test suite
+#         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+#       - name: Report coverage
+#         run: 
+#               SOURCE_PATH=/home/runner/work/movie-slater-fe/movie-slater-fe ./cc-test-reporter format-coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/coverage/clover.xml --input-type clover --debug
+#         env:
+#           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+#       - name: upload
+#         run: ./cc-test-reporter upload-coverage
+#         env:
+#           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         
 
 
