@@ -16,8 +16,8 @@ const Seatchart = props => {
     });
   }
 
-  function resultsPage() {
-    props.history.push("/results");
+  function showtimePage() {
+    props.history.push("/showtime");
   }
 
   console.log("we have seats", seats);
@@ -43,11 +43,11 @@ const Seatchart = props => {
         <div className="seat-chart">
           <img className="screen" src={screen} alt="movie theater screen" />
           {seats.map(seat => (
-            <span className="seat">{seat.seatName}</span>
+            <span key={seat.id} className="seat">{seat.seatName}</span>
           ))}
         </div>
         <div className="black-box">
-          <button className="next-button" onClick={resultsPage}>
+          <button className="next-button" onClick={showtimePage}>
             Next
           </button>
         </div>
