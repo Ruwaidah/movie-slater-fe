@@ -53,12 +53,12 @@ jobs:
 
       - name: before build
         run: 
-           ./cc-test-reporter before-build
+           ./cc-test-reporter before-build --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Unit test with Rspec test suite
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
         run: 
-              SOURCE_PATH=/home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight ./cc-test-reporter format-coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knigh/coverage/clover.xml --input-type clover --debug
+              SOURCE_PATH=/home/runner/work/movie-slater-fe/movie-slater-fe ./cc-test-reporter format-coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knigh/coverage/clover.xml --input-type clover --debug
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       - name: upload
