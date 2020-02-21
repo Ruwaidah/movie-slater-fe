@@ -10,13 +10,23 @@ const Showtime = props =>{
     return(
         <div>
             <h3 className='text'>Your matches</h3>
-            <div>
                 {
                     props.MovieSelects.map(movie =>(
-                    <h6>{movie}</h6>
+                        <div key={movie.tmsId}>
+                            <img src={movie.image} alt={movie.title}/>
+                            <h2>{movie.title}</h2>
+                            <h4>Rated {movie.ratings[0].code}</h4>
+                            {
+                                movie.showtimes.map((showtime, i) =>(
+                                    <div key={i}>
+                                        <h3>{showtime.theatre.name}</h3>
+                                        <a href={showtime.ticketURI}>{showtime.dateTime}</a>
+                                    </div>
+                                ))
+                            }
+                        </div>
                     ))
                 }
-            </div>
         </div>
     )
 }
