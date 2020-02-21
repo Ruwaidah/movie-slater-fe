@@ -53,7 +53,7 @@ jobs:
         run: 
            ./cc-test-reporter before-build
           GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA 
-          run: movie-knight@0.1.0 coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+      - uses: movie-knight@0.1.0 coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Unit test with Rspec test suite
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
