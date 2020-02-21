@@ -3,6 +3,7 @@ import DayCard from "./DayCard";
 import { connect } from "react-redux";
 import { dayNext } from "../actions/index.js";
 import ProgressBar from "./ProgressBar";
+import "../App.scss";
 
 const DataPicker = props => {
   const [daySelect, setDaySelect] = useState([]);
@@ -36,24 +37,22 @@ const DataPicker = props => {
 
   return (
     <div>
-      <div>
-        <button onClick={HomePage}>⬅</button>
-      </div>
+      <div className="day-container">
+        <h2 className="question">When would you like to go?</h2>
 
-      <h2 className="question">When would you like to go?</h2>
-
-      <div className="days">
-        {days.map((day, i) => {
-          return (
-            <DayCard
-              key={i}
-              day={day}
-              index={i}
-              daySelect={daySelect}
-              setDaySelect={setDaySelect}
-            />
-          );
-        })}
+        <div className="days">
+          {days.map((day, i) => {
+            return (
+              <DayCard
+                key={i}
+                day={day}
+                index={i}
+                daySelect={daySelect}
+                setDaySelect={setDaySelect}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <div className="black-box">

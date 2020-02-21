@@ -20,24 +20,22 @@ const TimePicker = props => {
 
   return (
     <div>
-      <div>
-        <button onClick={HomePage}>⬅</button>
-      </div>
+      <div className="time-container">
+        <h2 className="question">What time would you like to go?</h2>
 
-      <h2 className="question">What time would you like to go?</h2>
-
-      <div className="days">
-        {times.map((time, i) => {
-          return (
-            <TimeCard
-              key={i}
-              time={time}
-              index={i}
-              timeSelect={timeSelect}
-              setTimeSelect={setTimeSelect}
-            />
-          );
-        })}
+        <div className="days">
+          {times.map((time, i) => {
+            return (
+              <TimeCard
+                key={i}
+                time={time}
+                index={i}
+                timeSelect={timeSelect}
+                setTimeSelect={setTimeSelect}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <div className="black-box">
