@@ -3,6 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import axiosWithGoogle from "../utils/axiosWithGoogle";
 
 import { createBrowserHistory } from "history";
+import Search from "antd/lib/input/Search";
 export const history = createBrowserHistory();
 
 export const USER_LOGING_IN = "USER_LOGING_IN";
@@ -189,4 +190,13 @@ export const TICKETS_NEXT_BUTTON = 'TICKETS_NEXT_BUTTON'
 
 export const ticketsNum = num => dispatch => {
   dispatch({ type: TICKETS_NEXT_BUTTON, payload: num })
+}
+
+
+
+export const SEATS_NEXT_BUTTON = 'SEATS_NEXT_BUTTON'
+
+export const seatsArea = seats => dispatch => {
+  console.log(seats)
+  dispatch({ type: SEATS_NEXT_BUTTON, payload: seats })
 }

@@ -5,6 +5,7 @@
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin-top: 20px;
+  width: 100%;
 }
 
 .seat {
@@ -47,3 +48,38 @@
 .screen {
   margin-bottom: 10px;
 }
+
+
+.middle-section {
+ display: flex;
+
+ .left {
+  width: 25%;
+  margin-top: 0
+}
+
+.mid {
+  width: 50%;
+  margin-top: 0
+}
+
+.right {
+  width: 25%;
+  margin-top: 0
+
+}
+
+}
+
+.end {
+  margin-top: 0;
+}
+
+
+.seats-selected {
+  .seat {
+    background: rgb(205, 190, 50);
+  }
+}
+
+

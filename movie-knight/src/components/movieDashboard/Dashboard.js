@@ -13,7 +13,7 @@ const Dashboard = props => {
     props.history.push("/date");
   }
 
-  console.log("movies", props.MovieSelects);
+  console.log("movies", movieSelect);
 
   return (
     <div className="dash-board">

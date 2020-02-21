@@ -27,7 +27,8 @@ import {
   TOGGLE_NEXT_OFF,
   MOVIE_NEXT_BUTTON,
   DAY_NEXT_BUTTON,
-  TICKETS_NEXT_BUTTON
+  TICKETS_NEXT_BUTTON,
+  SEATS_NEXT_BUTTON
 } from "../actions/index";
 
 const initialState = {
@@ -41,7 +42,8 @@ const initialState = {
   upcomingMovies: [],
   MovieSelects: [],
   daySelects: [],
-  ticketsNumber: 0
+  ticketsNumber: 0,
+  seatsSelects: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -240,9 +242,14 @@ const reducer = (state = initialState, action) => {
       };
 
     case TICKETS_NEXT_BUTTON:
-      return{
+      return {
         ...state,
         ticketsNumber: action.payload
+      }
+    case SEATS_NEXT_BUTTON:
+      return {
+        ...state,
+        seatsSelects: action.payload
       }
 
     default:
