@@ -34,10 +34,10 @@
     "coverage": "CI=true yarn test --coverage || true"
   },
   "jest": {
-    "coverageReporters": [
-      "json-summary",
-      "lcov"
-    ],
+    "transform": {
+      "^.+\\.svg$": "<rootDir>/svgTransform.js",
+      "^.+\\.(js|jsx)$": "babel-jest"
+    },
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/node_modules/**",
