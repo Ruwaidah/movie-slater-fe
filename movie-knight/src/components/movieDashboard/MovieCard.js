@@ -3,12 +3,12 @@ import "./dashboard.scss";
 import { withRouter } from "react-router-dom";
 import { toggleNext, toggleNextOff } from "../../actions/index";
 import { connect } from "react-redux";
+import { act } from "react-dom/test-utils";
 
 function MovieCard(props) {
   let path;
   const [active, setActive] = useState(false);
   // const [movieSelect, setMovieSelect] = useState([]);
-
   if (props.movie.ratings)
     path = `${props.movie.title}&rate=${props.movie.ratings[0].code}`;
   else path = props.movie.title;
@@ -20,16 +20,19 @@ function MovieCard(props) {
   }
 
   function unSelectMovie() {
+    console.log("maxxx")
     setActive(false);
-    props.toggleNext();
+    // props.toggleNext();
   }
 
   useEffect(() => {
+    console.log(active)
     if (active) props.setMovieSelect([...props.movieSelect, props.movie]);
     else {
-      const filter = props.movieSelect.filter(movie1 => {
-        return movie1 !== props.movie.title;
-      });
+      const filter = props.movieSelect.filter(movie1 =>
+        movie1.title !== props.movie.title
+      );
+      // console.log(active,filter)
       props.setMovieSelect(filter);
     }
   }, [active]);
