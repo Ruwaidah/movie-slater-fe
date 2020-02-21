@@ -11,6 +11,7 @@
   flex-wrap: wrap;
   min-height: 100vh;
   margin-top: 20px;
+  justify-content: left;
   // @media screen and (max-width: 500px) {
   //   padding-right: 10px;
   //   margin-bottom: 50px;
@@ -25,14 +26,17 @@
   flex-direction: column;
   justify-content: end;
   margin: 3px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   height: 270px;
+  margin-left: 5px;
   p {
     margin: 5px 0 0 0;
   }
 
   @media screen and (min-width: 800px) {
     margin-right: 2px;
+    width: 310px;
+    height: 400px;
   }
 }
 
@@ -58,6 +62,9 @@
   // justify-content: center;
   background: $enabled_action_button;
   height: 254px;
+  @media screen and (min-width: 800px) {
+    height: 367px;
+  }
 
   // width: 155px;
   // height: 235px;
@@ -69,6 +76,10 @@
     border-radius: 4px;
     filter: grayscale(80%);
     // filter: blur(1px);
+    @media screen and (min-width: 800px) {
+      width: 290px;
+      height: 340px;
+    }
   }
   p {
     margin: 6px 0 0 0;
@@ -83,10 +94,17 @@
   // opacity: 1;
   // margin-bottom: 0px;
   // border: 4px $pure_black solid;
+  @media screen and (min-width: 800px) {
+    height: 370px;
+  }
 
   img {
     width: 160px;
     height: 246px;
+    @media screen and (min-width: 800px) {
+      width: 300px;
+      height: 360px;
+    }
   }
 }
 
@@ -106,7 +124,7 @@
     border-radius: 6px;
     padding: 6px;
     margin-bottom: 20px;
-    margin-left: 5px;
+    margin-right: 20px;
     // @media screen and (max-width: 500px) {
     //   width: 87%;
     // }
@@ -134,7 +152,7 @@
     border-radius: 6px;
     padding: 6px;
     margin-bottom: 10px;
-    margin-left: 5px;
+    margin-right: 20px;
     // @media screen and (max-width: 500px) {
     //   width: 87%;
     // }
@@ -205,7 +223,6 @@
 .menu-filter {
   position: absolute;
   width: 50%;
-  height: 100%;
   .movie-review,
   .movie-rating,
   .sorting {
@@ -360,7 +377,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   color: $pure_white;
   position: absolute;
   top: 25px;
-  left: 40px;
+  left: 25px;
   font-weight: black;
 }
 
@@ -375,7 +392,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .titles {
   text-align: left;
-  margin-left: 20px;
+  margin-left: 6px;
 
   @media screen and (min-width: 800px) {
     margin-left: 0;
@@ -411,6 +428,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
   align-items: flex-start;
   margin: 0 auto;
   margin-bottom: 100px;
+  @media screen and (min-width: 800px) {
+    margin-left: 30px;
+  }
   h4 {
     text-align: start;
   }

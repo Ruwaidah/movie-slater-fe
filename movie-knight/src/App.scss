@@ -36,6 +36,17 @@ body {
   backdrop-filter: blur(12px);
 }
 
+.black-box-abs {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  margin: 0 auto;
+  height: 75px;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
 .days {
   display: flex;
   flex-direction: column;
@@ -226,9 +237,14 @@ body {
   }
 }
 
+.hamburger-menu {
+  width: 20%;
+  margin-left: 8px;
+}
+
 .linediv {
-  width: 87%;
-  margin: 0 auto;
+  width: 20%;
+  // margin: 0 auto;
   display: flex;
   align-items: flex-start;
 

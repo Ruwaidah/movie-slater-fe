@@ -53,7 +53,9 @@ function MovieCard(props) {
           <img
             src={props.movie.image}
             alt={props.movie.title}
-            onClick={props.movieSelect.length == 3 ? unSelectMovie : toggleClass}
+            onClick={
+              props.movieSelect.length == 3 ? unSelectMovie : toggleClass
+            }
           />
           <p
             onClick={() => props.history.push(`/details/${path}`)}
@@ -80,6 +82,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, { toggleNext, toggleNextOff })
-  (MovieCard)
+export default withRouter(
+  connect(mapStateToProps, { toggleNext, toggleNextOff })(MovieCard)
 );

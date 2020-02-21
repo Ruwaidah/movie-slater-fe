@@ -41,7 +41,7 @@ function ZipSearch(props) {
 
   return (
     <div>
-      <div onClick={toggleMenu} id="hamburger-menu">
+      <div onClick={toggleMenu} id="hamburger-menu" className="hamburger-menu">
         <div className="linediv">
           Filter
           <div className="linecon">
