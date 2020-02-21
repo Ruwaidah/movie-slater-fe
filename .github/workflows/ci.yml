@@ -51,8 +51,9 @@ jobs:
                     GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA 
 
 
-       
-      - uses: ./cc-test-reporter before-build --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+      - name: before build
+        run: 
+           ./cc-test-reporter before-build --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Unit test with Rspec test suite
         run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
