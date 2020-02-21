@@ -4,34 +4,39 @@ import "./seatChart.scss";
 import Loading from "./Loading";
 import screen from "./images/screen.svg";
 import ProgressBar from "./ProgressBar";
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
+import { Avatar } from "antd";
+import { seatsArea } from '../actions/index.js'
+import SeatsCard from "./SeatsCard.js"
+
 
 const Seatchart = props => {
-  const [active, setActive] = useState([]);
   const [seats, setSeats] = useState([]);
+  const [seatsSelect, setSeatSelect] = useState({
+    front: [],
+    left: [],
+    middle: [],
+    right: [],
+    end: []
+  })
 
-  function seatCall() {
+
+  useEffect(() => {
     axios.get("https://movie-knight.herokuapp.com/api/seats").then(res => {
       setSeats(res.data);
     });
-  }
+  }, []);
+
+
 
   function showtimePage() {
+   props.seatsArea(seatsSelect)
     props.history.push("/showtime");
   }
 
-  console.log("we have seats", seats);
-
-  console.log("Movie name", props.MovieSelects);
-  console.log("Date", props.daySelect);
-  console.log("Tickets", props.ticketsNumber);
-
-  useEffect(() => {
-    seatCall();
-  }, []);
-
   if (!seats) {
-    return <Loading />;
+    return <Loading />
+
   } else {
     return (
       <div>
@@ -39,21 +44,20 @@ const Seatchart = props => {
           {/* <h1 className="seat-title">Where would you like to sit?</h1> */}
           <h1 className="seat-header">
             Select the area in which you’d like to sit
-          </h1>
+        </h1>
           <div className="seat-chart">
             <img className="screen" src={screen} alt="movie theater screen" />
-            {seats.map(seat => (
-              <span key={seat.id} className="seat"></span>
-            ))}
+            <SeatsCard seats={seats} setSeatSelect={setSeatSelect} seatsSelect={seatsSelect} />
           </div>
           <div className="black-box">
             <button className="next-button" onClick={showtimePage}>
               Next
-            </button>
+          </button>
           </div>
-          <ProgressBar />
         </div>
-      </div>
+        <ProgressBar />
+      </div >
+
     );
   }
 };
@@ -62,8 +66,10 @@ const mapStateToProps = state => {
   return {
     MovieSelects: state.MovieSelects,
     daySelect: state.daySelect,
-    ticketsNumber: state.ticketsNumber
+    ticketsNumber: state.ticketsNumber,
+    seatsSelects: state.seatsSelects
+
   };
 };
 
-export default connect(mapStateToProps)(Seatchart);
+export default connect(mapStateToProps, { seatsArea })(Seatchart);
