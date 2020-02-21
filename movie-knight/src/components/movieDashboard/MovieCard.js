@@ -28,7 +28,7 @@ function MovieCard(props) {
     if (active) props.setMovieSelect([...props.movieSelect, props.movie]);
     else {
       const filter = props.movieSelect.filter(movie1 => {
-        return movie1 !== props.movie.title;
+        return movie1.title !== props.movie.title;
       });
       props.setMovieSelect(filter);
     }
