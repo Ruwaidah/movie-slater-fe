@@ -29,10 +29,11 @@ function MovieCard(props) {
     console.log(active)
     if (active) props.setMovieSelect([...props.movieSelect, props.movie]);
     else {
-      const filter = props.movieSelect.filter(movie1 =>
-        movie1.title !== props.movie.title
-      );
-      // console.log(active,filter)
+
+      const filter = props.movieSelect.filter(movie1 => {
+        return movie1.title !== props.movie.title;
+      });
+
       props.setMovieSelect(filter);
     }
   }, [active]);
