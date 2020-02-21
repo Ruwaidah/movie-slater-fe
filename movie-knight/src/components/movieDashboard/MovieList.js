@@ -8,7 +8,7 @@ import ZipSearch from "./ZipSearch.js";
 import SearchForm from "./SearchForm.js";
 import FilterMenu from "./FilterMenu.js";
 import Loading from "../Loading.js";
-import { toggleNext } from "../../actions/index";
+import { toggleNext, toggleNextOff } from "../../actions/index";
 
 function MovieList(props) {
   const [movies, setMovies] = useState([]);
@@ -20,6 +20,14 @@ function MovieList(props) {
     mature: ["G", "PG", "PG-13", "R"]
   });
   //Checkbox toggle
+
+  // useEffect(() => {
+  //   if (props.movieSelect.length > 0) {
+  //     props.toggleNext();
+  //   } else if (props.movieSelect.length === 0) {
+  //     props.toggleNextOff();
+  //   }
+  // })
 
   function makeCall() {
     axios
@@ -48,68 +56,70 @@ function MovieList(props) {
       <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
 
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
-
-      <FilterMenu setFilter={setFilter} filters={filters} />
+      <div className="filter-max">
+        <FilterMenu setFilter={setFilter} filters={filters} />
+        {props.movieSelect.length == 3 ? <p className="max-num">Max Number</p> : <p className="max-num"></p>}
+      </div>
       {props.fetchingData ? (
         <Loading />
       ) : (
-        <div className="movie-list" onClick={toggleMenu}>
-          {movies
-            .filter(movie => {
-              return (
-                (movie.title.includes(searchParam) ||
-                  movie.title.toLowerCase().includes(searchParam)) &&
-                movie.ratings &&
-                filters.mature.includes(movie.ratings[0].code) &&
-                movie.maturityRating[0] &&
-                filters.rating.includes(
-                  Math.round(
-                    parseInt(movie.maturityRating[0].Value.split("/")[0]) / 2
-                  ).toString()
-                )
-              );
-            })
-            .sort(function(a, b) {
-              if (filters.filter === "recent") {
-                var dateA = new Date(a.releaseDate),
-                  dateB = new Date(b.releaseDate);
-                return dateB - dateA;
-              } else if (filters.filter === "old") {
-                var dateA = new Date(a.releaseDate),
-                  dateB = new Date(b.releaseDate);
-                return dateA - dateB;
-              } else if (filters.filter === "az") {
-                var nameA = a.title.toLowerCase(),
-                  nameB = b.title.toLowerCase();
-                if (nameA < nameB)
-                  //sort string ascending
-                  return -1;
-                if (nameA > nameB) return 1;
-                return 0;
-              } else if (filters.filter === "za") {
-                var nameA = a.title.toLowerCase(),
-                  nameB = b.title.toLowerCase();
-                if (nameA > nameB)
-                  //sort string ascending
-                  return -1;
-                if (nameA < nameB) return 1;
-                return 0;
-              } else {
-                return null;
-              }
-            })
-            .map(movie => {
-              return (
-                <MovieCard
-                  movie={movie}
-                  key={movie.tmsId}
-                  movieSelect={props.movieSelect}
-                  setMovieSelect={props.setMovieSelect}
-                />
-              );
-            })}
-        </div>
-      )}
+          <div className="movie-list" onClick={toggleMenu}>
+            {movies
+              .filter(movie => {
+                return (
+                  (movie.title.includes(searchParam) ||
+                    movie.title.toLowerCase().includes(searchParam)) &&
+                  movie.ratings &&
+                  filters.mature.includes(movie.ratings[0].code) &&
+                  movie.maturityRating[0] &&
+                  filters.rating.includes(
+                    Math.round(
+                      parseInt(movie.maturityRating[0].Value.split("/")[0]) / 2
+                    ).toString()
+                  )
+                );
+              })
+              .sort(function (a, b) {
+                if (filters.filter === "recent") {
+                  var dateA = new Date(a.releaseDate),
+                    dateB = new Date(b.releaseDate);
+                  return dateB - dateA;
+                } else if (filters.filter === "old") {
+                  var dateA = new Date(a.releaseDate),
+                    dateB = new Date(b.releaseDate);
+                  return dateA - dateB;
+                } else if (filters.filter === "az") {
+                  var nameA = a.title.toLowerCase(),
+                    nameB = b.title.toLowerCase();
+                  if (nameA < nameB)
+                    //sort string ascending
+                    return -1;
+                  if (nameA > nameB) return 1;
+                  return 0;
+                } else if (filters.filter === "za") {
+                  var nameA = a.title.toLowerCase(),
+                    nameB = b.title.toLowerCase();
+                  if (nameA > nameB)
+                    //sort string ascending
+                    return -1;
+                  if (nameA < nameB) return 1;
+                  return 0;
+                } else {
+                  return null;
+                }
+              })
+              .map(movie => {
+                return (
+                  <MovieCard
+                    movie={movie}
+                    key={movie.tmsId}
+                    movieSelect={props.movieSelect}
+                    setMovieSelect={props.setMovieSelect}
+                  />
+                );
+              })}
+          </div>
+        )}
     </div>
   );
 }
@@ -119,4 +129,4 @@ const mapStateToProps = state => {
     fetchingData: state.fetchingData
   };
 };
-export default connect(mapStateToProps, { getMovie, toggleNext })(MovieList);
+export default connect(mapStateToProps, { getMovie, toggleNext, toggleNextOff })(MovieList);

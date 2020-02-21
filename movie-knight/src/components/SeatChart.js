@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./seatChart.scss";
-import Loading from './Loading';
+import Loading from "./Loading";
 import screen from "./images/screen.svg";
 import ProgressBar from "./ProgressBar";
-import { connect } from 'react-redux'
+import { connect } from "react-redux";
 
 const Seatchart = props => {
   const [active, setActive] = useState([]);
@@ -22,13 +22,14 @@ const Seatchart = props => {
 
   console.log("we have seats", seats);
 
-  console.log('Movie name', props.MovieSelects)
-  console.log('Date', props.daySelect)
-  console.log('Tickets', props.ticketsNumber)
+  console.log("Movie name", props.MovieSelects);
+  console.log("Date", props.daySelect);
+  console.log("Tickets", props.ticketsNumber);
 
   useEffect(() => {
     seatCall();
   }, []);
+
 
   if(!seats){
     return <Loading/>
@@ -50,19 +51,19 @@ const Seatchart = props => {
           <button className="next-button" onClick={showtimePage}>
             Next
           </button>
+
         </div>
+        <ProgressBar />
       </div>
-      <ProgressBar />
-    </div>
-  );
+    );
   }
 };
 
 const mapStateToProps = state => {
   return {
-      MovieSelects: state.MovieSelects,
-      daySelect: state.daySelect,
-      ticketsNumber: state.ticketsNumber
+    MovieSelects: state.MovieSelects,
+    daySelect: state.daySelect,
+    ticketsNumber: state.ticketsNumber
   };
 };
 

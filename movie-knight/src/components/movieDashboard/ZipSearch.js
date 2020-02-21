@@ -18,7 +18,6 @@ function ZipSearch(props) {
       <form onSubmit={handleSubmit}>
         <input
           className="fontAwesome"
-          value={zip}
           type="number"
           name="zipcode"
           placeholder="&#xf3c5;  Enter zip code to see movies near you"

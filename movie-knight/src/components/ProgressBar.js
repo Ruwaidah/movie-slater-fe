@@ -20,7 +20,7 @@ const ProgressBar = props => {
       />
       <div className="progress-line" />
       <img
-        className="icons"
+        className="icons brightness"
         src={calendar}
         alt="calendar logo"
         onClick={() => props.history.push("/date")}
