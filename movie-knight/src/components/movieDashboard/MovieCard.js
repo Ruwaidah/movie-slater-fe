@@ -71,6 +71,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { toggleNext, toggleNextOff })(
-  withRouter(MovieCard)
+export default withRouter(connect(mapStateToProps, { toggleNext, toggleNextOff })
+  (MovieCard)
 );

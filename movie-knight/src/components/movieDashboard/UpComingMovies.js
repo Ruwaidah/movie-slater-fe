@@ -25,7 +25,7 @@ function UpComingMovies(props) {
                       className='no-movie-poster'
                       src={`https://res.cloudinary.com/donsjzduw/image/upload/v1580504817/hfjrl5wbkiugy4y0gmqu.jpg`}
                     />
-                  :
+                    :
                     <img
                       src={`http://image.tmdb.org/t/p/w185/${movie.poster_path}`}
                       alt={movie.title}
@@ -57,6 +57,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getUpcomingMovies })(
-  withRouter(UpComingMovies)
-);
+export default withRouter(connect(mapStateToProps, { getUpcomingMovies })(UpComingMovies))
