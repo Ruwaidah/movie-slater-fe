@@ -41,8 +41,8 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: "12"
-      # - name: Install dependencies
-        # run: npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+      - name: Install dependencies
+        run: npm install --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
 
       - name: Prepare for test
         run: |
@@ -53,8 +53,8 @@ jobs:
         run: 
            ./cc-test-reporter before-build
           GIT_BRANCH=$GITHUB_REF GIT_COMMIT_SHA=$GITHUB_SHA 
-      # - name: Unit test with Rspec test suite
-      #   run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
+      - name: Unit test with Rspec test suite
+        run:  npm run coverage --prefix /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight
       - name: Report coverage
         run: 
               SOURCE_PATH=/home/runner/work/movie-slater-fe/movie-slater-fe ./cc-test-reporter format-coverage /home/runner/work/movie-slater-fe/movie-slater-fe/movie-knight/coverage/clover.xml --input-type clover --debug
