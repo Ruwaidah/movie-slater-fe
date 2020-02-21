@@ -28,7 +28,7 @@ function MovieCard(props) {
     if (active) props.setMovieSelect([...props.movieSelect, props.movie]);
     else {
       const filter = props.movieSelect.filter(movie1 => {
-        return movie1 !== props.movie.title;
+        return movie1.title !== props.movie.title;
       });
       props.setMovieSelect(filter);
     }
@@ -49,7 +49,9 @@ function MovieCard(props) {
           <img
             src={props.movie.image}
             alt={props.movie.title}
-            onClick={props.movieSelect.length == 3 ? unSelectMovie : toggleClass}
+            onClick={
+              props.movieSelect.length == 3 ? unSelectMovie : toggleClass
+            }
           />
           <p
             onClick={() => props.history.push(`/details/${path}`)}
@@ -76,6 +78,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, { toggleNext, toggleNextOff })
-  (MovieCard)
+export default withRouter(
+  connect(mapStateToProps, { toggleNext, toggleNextOff })(MovieCard)
 );

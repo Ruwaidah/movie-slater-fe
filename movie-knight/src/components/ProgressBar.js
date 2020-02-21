@@ -13,6 +13,7 @@ const ProgressBar = props => {
   return (
     <div className="progress-bar">
       <img
+        id="search"
         className="icons"
         src={searchmovie}
         alt="searchmovie logo"
@@ -20,6 +21,7 @@ const ProgressBar = props => {
       />
       <div className="progress-line" />
       <img
+        id="calendar"
         className="icons brightness"
         src={calendar}
         alt="calendar logo"
@@ -27,6 +29,7 @@ const ProgressBar = props => {
       />
       <div className="progress-line" />
       <img
+        id="clock"
         className="icons"
         src={clock}
         alt="clock logo"
@@ -34,6 +37,7 @@ const ProgressBar = props => {
       />
       <div className="progress-line" />
       <img
+        id="tickets"
         className="icons"
         src={tickets}
         alt="tickets logo"
@@ -41,6 +45,7 @@ const ProgressBar = props => {
       />
       <div className="progress-line" />
       <img
+        id="chair"
         className="icons"
         src={chair}
         alt="chair logo"
@@ -48,6 +53,7 @@ const ProgressBar = props => {
       />
       <div className="progress-line" />
       <img
+        id="movieslate"
         className="icons"
         src={movieslate}
         alt="movieslate logo"

@@ -13,6 +13,9 @@ const Dashboard = props => {
     props.history.push("/date");
   }
 
+  // const search = document.getElementById("search");
+  // search.classList.add("brightness");
+
   console.log("movies", props.MovieSelects);
 
   return (
