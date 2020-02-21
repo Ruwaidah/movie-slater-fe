@@ -5,20 +5,35 @@ import Loading from './Loading';
 import screen from "./images/screen.svg";
 import ProgressBar from "./ProgressBar";
 import { connect } from 'react-redux'
+import { Avatar } from "antd";
+import { seatsArea } from '../actions/index.js'
+import SeatsCard from "./SeatsCard.js"
+
 
 const Seatchart = props => {
-  const [active, setActive] = useState([]);
   const [seats, setSeats] = useState([]);
+  const [seatsSelect, setSeatSelect] = useState({
+    front: [],
+    left: [],
+    middle: [],
+    right: [],
+    end: []
+  })
 
-  function seatCall() {
+
+  useEffect(() => {
     axios.get("https://movie-knight.herokuapp.com/api/seats").then(res => {
       setSeats(res.data);
     });
-  }
+  }, []);
+
 
   function resultsPage() {
+    props.seatsArea(seatsSelect)
     props.history.push("/results");
   }
+  console.log(props.seatsSelect)
+
 
   console.log("we have seats", seats);
 
@@ -26,44 +41,41 @@ const Seatchart = props => {
   console.log('Date', props.daySelect)
   console.log('Tickets', props.ticketsNumber)
 
-  useEffect(() => {
-    seatCall();
-  }, []);
 
-  if(!seats){
-    return <Loading/>
-  } else{
-   return (
-    <div>
-      <div className="seat-container">
-        {/* <h1 className="seat-title">Where would you like to sit?</h1> */}
-        <h1 className="seat-header">
-          Select the area in which you’d like to sit
+
+  if (!seats) {
+    return <Loading />
+  } else {
+    return (
+      <div>
+        <div className="seat-container">
+          {/* <h1 className="seat-title">Where would you like to sit?</h1> */}
+          <h1 className="seat-header">
+            Select the area in which you’d like to sit
         </h1>
-        <div className="seat-chart">
-          <img className="screen" src={screen} alt="movie theater screen" />
-          {seats.map(seat => (
-            <span className="seat">{seat.seatName}</span>
-          ))}
-        </div>
-        <div className="black-box">
-          <button className="next-button" onClick={resultsPage}>
-            Next
+          <div className="seat-chart">
+            <img className="screen" src={screen} alt="movie theater screen" />
+            <SeatsCard seats={seats} setSeatSelect={setSeatSelect} seatsSelect={seatsSelect} />
+          </div>
+          <div className="black-box">
+            <button className="next-button" onClick={resultsPage}>
+              Next
           </button>
+          </div>
         </div>
-      </div>
-      <ProgressBar />
-    </div>
-  );
+        <ProgressBar />
+      </div >
+    );
   }
 };
 
 const mapStateToProps = state => {
   return {
-      MovieSelects: state.MovieSelects,
-      daySelect: state.daySelect,
-      ticketsNumber: state.ticketsNumber
+    MovieSelects: state.MovieSelects,
+    daySelect: state.daySelect,
+    ticketsNumber: state.ticketsNumber,
+    seatsSelects: state.seatsSelects
   };
 };
 
-export default connect(mapStateToProps)(Seatchart);
+export default connect(mapStateToProps, { seatsArea })(Seatchart);
