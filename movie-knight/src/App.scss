@@ -42,21 +42,35 @@ body {
 }
 
 .day {
-  margin: 5% 5% 2% 5%;
+  margin-top: 16px;
   background-color: #262526;
   border: none;
   color: #706e70;
   padding: 4% 0;
   outline: none;
+  height: 40px;
+}
+
+.day-container {
+  margin-top: 20%;
+}
+
+.time-container {
+  margin-top: 24%;
 }
 
 .day.red-box {
   margin: 5% 5% 2% 5%;
   background-color: #262526;
-  border: 2px red solid;
+  border: 2px solid $pure_white;
   color: white;
   padding: 4% 0;
   outline: none;
+  border-radius: 5px;
+}
+
+.question {
+  margin-top: 20px;
 }
 
 @keyframes fadein {

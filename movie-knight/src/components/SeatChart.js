@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./seatChart.scss";
-import Loading from './Loading';
+import Loading from "./Loading";
 import screen from "./images/screen.svg";
 import ProgressBar from "./ProgressBar";
 import { connect } from 'react-redux'
@@ -28,23 +28,15 @@ const Seatchart = props => {
   }, []);
 
 
-  function resultsPage() {
-    props.seatsArea(seatsSelect)
-    props.history.push("/results");
+
+  function showtimePage() {
+   props.seatsArea(seatsSelect)
+    props.history.push("/showtime");
   }
-  console.log(props.seatsSelect)
-
-
-  console.log("we have seats", seats);
-
-  console.log('Movie name', props.MovieSelects)
-  console.log('Date', props.daySelect)
-  console.log('Tickets', props.ticketsNumber)
-
-
 
   if (!seats) {
     return <Loading />
+
   } else {
     return (
       <div>
@@ -58,13 +50,14 @@ const Seatchart = props => {
             <SeatsCard seats={seats} setSeatSelect={setSeatSelect} seatsSelect={seatsSelect} />
           </div>
           <div className="black-box">
-            <button className="next-button" onClick={resultsPage}>
+            <button className="next-button" onClick={showtimePage}>
               Next
           </button>
           </div>
         </div>
         <ProgressBar />
       </div >
+
     );
   }
 };
@@ -75,6 +68,7 @@ const mapStateToProps = state => {
     daySelect: state.daySelect,
     ticketsNumber: state.ticketsNumber,
     seatsSelects: state.seatsSelects
+
   };
 };
 
