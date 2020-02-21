@@ -17,6 +17,7 @@ const Dashboard = props => {
   // search.classList.add("brightness");
 
   console.log("movies", props.MovieSelects);
+  console.log("movies", movieSelect);
 
   return (
     <div className="dash-board">
