@@ -82,7 +82,7 @@ function ZipSearch(props) {
       </div>
       
       <div className="menu-filter" id="filter">
-        <form  class="filtering" id="ratingSelect" onSubmit={toggleMenu, submit}>
+        <form  className="filtering" id="ratingSelect" onSubmit={toggleMenu, submit}>
           <div className = "movie-rating">
             Rating
               <label>
@@ -105,43 +105,43 @@ function ZipSearch(props) {
             <div className="star-buttons">
               <label>
                 <input type="checkbox" name="stars" value="1" onChange={changeRating} defaultChecked/>
-                <span class="icon-full">★</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
               </label>
               <label>
                 <input type="checkbox" name="stars" value="2" onChange={changeRating} defaultChecked/>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
               </label>
               <label>
                 <input type="checkbox" name="stars" value="3" onChange={changeRating} defaultChecked/>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon">☆</span>
-                <span class="icon">☆</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
               </label>
               <label>
                 <input type="checkbox" name="stars" value="4" onChange={changeRating} defaultChecked/>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon">☆</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
               </label>
               <label>
                 <input type="checkbox" name="stars" value="5" onChange={changeRating} defaultChecked/>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
-                <span class="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
               </label>
             </div>
           </div>

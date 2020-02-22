@@ -9,7 +9,7 @@ import SearchForm from "./SearchForm.js";
 import FilterMenu from "./FilterMenu.js";
 import Loading from "../Loading.js";
 
-function MovieList(props) {
+export function MovieList(props) {
 
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState("")

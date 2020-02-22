@@ -57,6 +57,7 @@ export const Login = props => {
           <label htmlFor="email">Email</label>
           <input
             required
+            data-testid="emailform"
             id="email"
             type="email"
             name="email"
@@ -69,6 +70,7 @@ export const Login = props => {
           {" "}
           <label htmlFor="password">Password</label>
           <input
+            data-testid="passwordform"
             id="password"
             required
             type="password"

@@ -31,11 +31,9 @@ export function App() {
 
         <Route exact path="/theater-login" component={OwnerLogin} />
 
-
         <Route exact path="/" component={Dashboard} />
 
         <Route exact path="/details/:movieName" component={MovieDetails}/>
-
 
         <Route exact path="/details" component={MovieDetails} />
 

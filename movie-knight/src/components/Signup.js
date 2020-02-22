@@ -71,6 +71,7 @@ export const Signup = props => {
         <div>
           <label htmlFor="username"> Username </label>
           <input
+            data-testid="usernameform"
             required
             id="username"
             type="text"
@@ -84,6 +85,7 @@ export const Signup = props => {
           {" "}
           <label htmlFor="email">Email</label>
           <input
+            data-testid="emailform"
             required
             id="email"
             type="email"
@@ -97,6 +99,7 @@ export const Signup = props => {
           {" "}
           <label htmlFor="password">Password</label>
           <input
+            data-testid="passwordform"
             id="password"
             required
             type="password"
@@ -114,7 +117,7 @@ export const Signup = props => {
             </span>
           </p>{" "}
         </div>
-        <button type="submit" className="next-button">
+        <button type="submit" className="next-button" data-testid="signup-btn">
           Sign Up
         </button>
       </form>
