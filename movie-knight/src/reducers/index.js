@@ -23,7 +23,12 @@ import {
   GET_MOVIES_UPCOMING_START,
   GET_MOVIES_UPCOMING_SUCCESS,
   GET_MOVIES_UPCOMING_FAILURE,
-  TOGGLE_NEXT_BUTTON
+  TOGGLE_NEXT_BUTTON,
+  TOGGLE_NEXT_OFF,
+  MOVIE_NEXT_BUTTON,
+  DAY_NEXT_BUTTON,
+  TICKETS_NEXT_BUTTON,
+  SEATS_NEXT_BUTTON
 } from "../actions/index";
 
 const initialState = {
@@ -34,7 +39,11 @@ const initialState = {
   googleData: {},
   NextButton: false,
   movieDetails: {},
-  upcomingMovies: []
+  upcomingMovies: [],
+  MovieSelects: [],
+  daySelects: [],
+  ticketsNumber: 0,
+  seatsSelects: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -211,7 +220,36 @@ const reducer = (state = initialState, action) => {
     case TOGGLE_NEXT_BUTTON:
       return {
         ...state,
-        NextButton: !state.NextButton
+        NextButton: true
+      };
+
+    case TOGGLE_NEXT_OFF:
+      return {
+        ...state,
+        NextButton: false
+      };
+
+    case MOVIE_NEXT_BUTTON:
+      return {
+        ...state,
+        MovieSelects: action.payload
+      };
+
+    case DAY_NEXT_BUTTON:
+      return {
+        ...state,
+        daySelects: action.payload
+      };
+
+    case TICKETS_NEXT_BUTTON:
+      return {
+        ...state,
+        ticketsNumber: action.payload
+      }
+    case SEATS_NEXT_BUTTON:
+      return {
+        ...state,
+        seatsSelects: action.payload
       }
 
     default:

@@ -11,6 +11,7 @@
   flex-wrap: wrap;
   min-height: 100vh;
   margin-top: 20px;
+  justify-content: space-evenly;
   // @media screen and (max-width: 500px) {
   //   padding-right: 10px;
   //   margin-bottom: 50px;
@@ -24,15 +25,17 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
-  margin: 3px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   height: 270px;
+  margin-left: 5px;
   p {
     margin: 5px 0 0 0;
   }
 
   @media screen and (min-width: 800px) {
     margin-right: 2px;
+    width: 310px;
+    height: 400px;
   }
 }
 
@@ -43,14 +46,14 @@
 // color: $mid_text;
 // }
 
-
-.movie-title-disable{
+.movie-title-disable {
   margin: 0 0 15px 0;
   padding: 0 0 0 0;
   color: $disabled_text;
 }
 
 .movie-img-enable {
+  box-shadow: -1px 1px 10px gray;
   border-radius: 5px;
   padding-top: 3px;
   display: flex;
@@ -59,6 +62,9 @@
   // justify-content: center;
   background: $enabled_action_button;
   height: 254px;
+  @media screen and (min-width: 800px) {
+    height: 367px;
+  }
 
   // width: 155px;
   // height: 235px;
@@ -70,6 +76,10 @@
     border-radius: 4px;
     filter: grayscale(80%);
     // filter: blur(1px);
+    @media screen and (min-width: 800px) {
+      width: 290px;
+      height: 340px;
+    }
   }
   p {
     margin: 6px 0 0 0;
@@ -78,16 +88,24 @@
 }
 
 .movie-img-disable {
+  box-shadow: -1px 1px 10px gray;
   height: 246px;
   // width: 50px;
   // height: 235px;
   // opacity: 1;
   // margin-bottom: 0px;
   // border: 4px $pure_black solid;
+  @media screen and (min-width: 800px) {
+    height: 370px;
+  }
 
   img {
     width: 160px;
     height: 246px;
+    @media screen and (min-width: 800px) {
+      width: 300px;
+      height: 360px;
+    }
   }
 }
 
@@ -107,7 +125,7 @@
     border-radius: 6px;
     padding: 6px;
     margin-bottom: 20px;
-    margin-left: 5px;
+    margin-right: 20px;
     // @media screen and (max-width: 500px) {
     //   width: 87%;
     // }
@@ -135,7 +153,7 @@
     border-radius: 6px;
     padding: 6px;
     margin-bottom: 10px;
-    margin-left: 5px;
+    margin-right: 20px;
     // @media screen and (max-width: 500px) {
     //   width: 87%;
     // }
@@ -181,7 +199,7 @@
   left: 0%;
   outline: none;
 }
-.label-text{
+.label-text {
   color: $disabled_text;
 }
 
@@ -197,27 +215,28 @@
   outline: none;
 }
 
-.divider{
+.divider {
   background: $disabled_text;
   height: 2px;
   margin: 5px 0px 5px 0px;
 }
 
 .menu-filter {
-  position: fixed;
+  position: absolute;
   width: 50%;
-  height: 100%;
-  .movie-review, .movie-rating, .sorting{
+  .movie-review,
+  .movie-rating,
+  .sorting {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     text-align: left;
-    .star-buttons{
+    .star-buttons {
       display: flex;
       flex-flow: column-reverse nowrap;
       justify-content: flex-start;
       text-align: left;
-      .icon-full{
+      .icon-full {
         color: gold;
         width: 16px;
         height: 16px;
@@ -226,7 +245,7 @@
       }
     }
   }
-  input{
+  input {
     position: static;
     -webkit-appearance: none;
     border-radius: 2px;
@@ -240,23 +259,23 @@
 
     /* enabled button color */
 
-    background-color: #3D3D3D;
+    background-color: #3d3d3d;
     /* Box outline/seats not chosen */
     box-sizing: border-box;
     outline: none;
   }
-  input:active{
-    background-color: #FD2D2D;
-    border: 2px solid #FD2D2D;
+  input:active {
+    background-color: #fd2d2d;
+    border: 2px solid #fd2d2d;
     outline: none;
   }
-  input:checked{
-    background-color: #FD2D2D;
-    border: 2px solid #FD2D2D;
+  input:checked {
+    background-color: #fd2d2d;
+    border: 2px solid #fd2d2d;
     outline: none;
   }
-  input:checked:after{
-    content: '\2714';
+  input:checked:after {
+    content: "\2714";
     font-size: 100%;
     position: relative;
     bottom: 3px;
@@ -354,22 +373,27 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 // Styling of App name and header on dashboard
 .app-name {
-  font-family: "Cinzel Decorative", cursive;
-  font-size: 20px;
-  color: $enabled_action_button;
+  font-family: "Lato";
+  font-size: 16px;
+  color: $pure_white;
   position: absolute;
   top: 25px;
-  left: 40px;
+  left: 25px;
+  font-weight: black;
+}
+
+.app-name-knight {
+  font-weight: lighter;
 }
 
 .header-dash {
   font-size: 18px;
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 }
 
 .titles {
   text-align: left;
-  margin-left: 20px;
+  margin-left: 6px;
 
   @media screen and (min-width: 800px) {
     margin-left: 0;
@@ -405,6 +429,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
   align-items: flex-start;
   margin: 0 auto;
   margin-bottom: 100px;
+  @media screen and (min-width: 800px) {
+    margin-left: 30px;
+  }
   h4 {
     text-align: start;
   }
@@ -430,3 +457,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
   outline: none;
 }
 
+<<<<<<< HEAD
+=======
+.filter-max {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .max-num {
+    margin: 0;
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd

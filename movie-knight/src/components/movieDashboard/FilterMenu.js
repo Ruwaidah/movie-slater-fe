@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function ZipSearch(props) {
+<<<<<<< HEAD
   /*
   const [maturityRatingsParam, setMaturityRatingsParam] = useState(["R", "PG-13", "PG", "G"])
   const [searchParamRating, setSearchParamRating] = useState()
@@ -8,6 +9,8 @@ function ZipSearch(props) {
   const [sortValue, setSortValue] = useState({ default: true, az: false,  za: false, recent: false,  old: false, soon: false })//ReleaseDate
   const [checked, setChecked] = useState({isChecked1: false, isChecked2: false, isChecked3: false, isChecked4: false});
   */
+=======
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
   const toggleMenu = () => {
     document.getElementById("filter").classList.toggle("toggle-menu2");
   };
@@ -29,22 +32,40 @@ function ZipSearch(props) {
 
   const changeRating = event => {
     let temp = values.rating;
+<<<<<<< HEAD
     if(temp.includes(event.target.value)){
       temp.splice(temp.indexOf(event.target.value), 1)
+=======
+    if (temp.includes(event.target.value)) {
+      temp.splice(temp.indexOf(event.target.value), 1);
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
     } else {
-      temp.push(event.target.value)
+      temp.push(event.target.value);
     }
+<<<<<<< HEAD
     setValues({...values, rating: temp})
+=======
+    setValues({ ...values, rating: temp });
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
   };
 
   const changeMature = event => {
     let temp = values.mature;
+<<<<<<< HEAD
     if(temp.includes(event.target.value)){
       temp.splice(temp.indexOf(event.target.value), 1)
+=======
+    if (temp.includes(event.target.value)) {
+      temp.splice(temp.indexOf(event.target.value), 1);
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
     } else {
-      temp.push(event.target.value)
+      temp.push(event.target.value);
     }
+<<<<<<< HEAD
     setValues({...values, mature: temp})
+=======
+    setValues({ ...values, mature: temp });
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
   };
 
   const handleChangesRatings = event => {
@@ -67,7 +88,7 @@ function ZipSearch(props) {
 
   return (
     <div>
-      <div onClick={toggleMenu} id="hamburger-menu">
+      <div onClick={toggleMenu} id="hamburger-menu" className="hamburger-menu">
         <div className="linediv">
           Filter
           <div className="linecon">
@@ -82,6 +103,7 @@ function ZipSearch(props) {
       </div>
       
       <div className="menu-filter" id="filter">
+<<<<<<< HEAD
         <form  className="filtering" id="ratingSelect" onSubmit={toggleMenu, submit}>
           <div className = "movie-rating">
             Rating
@@ -150,6 +172,16 @@ function ZipSearch(props) {
               Sort By :
             </label>
             <label>
+=======
+        <form
+          className="filtering"
+          id="ratingSelect"
+          onSubmit={(toggleMenu, submit)}
+        >
+          <div className="sorting">
+            <label>Sort By</label>
+            <label className="label-text">
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
               <input
                 type="radio"
                 value="recent"
@@ -158,7 +190,11 @@ function ZipSearch(props) {
               />
               Most Recent
             </label>
+<<<<<<< HEAD
             <label>
+=======
+            <label className="label-text">
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
               <input
                 type="radio"
                 value="old"
@@ -167,6 +203,7 @@ function ZipSearch(props) {
               />
               Oldest
             </label>
+<<<<<<< HEAD
             <label>
               <input type="radio" value="az" name="filter" onChange={change} />
               A-Z
@@ -369,6 +406,145 @@ export default ZipSearch;
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
                 <span class="icon-full">★</span>
+=======
+            <label className="label-text">
+              <input
+                type="checkbox"
+                value="az"
+                name="filter"
+                onChange={change}
+              />
+              A-Z
+            </label>
+            <label className="label-text">
+              <input
+                type="checkbox"
+                value="za"
+                name="filter"
+                onChange={change}
+              />
+              Z-A
+            </label>
+          </div>
+          <div className="divider"></div>
+          <div className="movie-rating">
+            Rating
+            <label className="label-text">
+              <input
+                type="checkbox"
+                name="stars"
+                id="R"
+                value="R"
+                onChange={changeMature}
+                defaultChecked
+              />
+              R
+            </label>
+            <label className="label-text">
+              <input
+                type="checkbox"
+                name="stars"
+                value="PG-13"
+                onChange={changeMature}
+                defaultChecked
+              />
+              PG-13
+            </label>
+            <label className="label-text">
+              <input
+                type="checkbox"
+                name="stars"
+                value="PG"
+                onChange={changeMature}
+                defaultChecked
+              />
+              PG
+            </label>
+            <label className="label-text">
+              <input
+                type="checkbox"
+                name="stars"
+                value="G"
+                onChange={changeMature}
+                defaultChecked
+              />
+              G
+            </label>
+          </div>
+          <div className="divider"></div>
+          <div className="movie-review">
+            <label>Review Rating</label>
+            <div className="star-buttons">
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="1"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="2"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="3"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="4"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="5"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
               </label>
             </form>
           <div>
@@ -392,6 +568,7 @@ export default ZipSearch;
         </div>
       </div>
     </div>
+<<<<<<< HEAD
       <div className="movie-list">
         {movies
           .filter(movie => {
@@ -437,3 +614,8 @@ export default ZipSearch;
             return <MovieCard movie={movie} key={movie.tmsId} />;
           })}
       </div> */}
+=======
+  );
+}
+export default ZipSearch;
+>>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd

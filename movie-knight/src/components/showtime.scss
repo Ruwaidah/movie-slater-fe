@@ -1,0 +1,80 @@
+.showtime-card{
+    margin-top: 95px;
+    margin-left: 20px;
+    .text{
+        font-family: "Lato";
+        color: #FFFFFF;
+        text-align: left;
+    }
+    .movie-info{
+        display: flex;
+        .poster{
+            width: 100px;
+            height: auto;
+        }
+        .movie-text{
+            text-align: left;
+            margin-left: 5%;
+            
+            .title{
+                margin: 0;
+                font-size: 18px;
+                text-align: left;
+            }
+            .runtime{
+                margin: 5px 0 0 0;
+                font-size: 16px;
+                font-weight: normal;
+            }
+            
+            .rated{
+                font-size: 16px;
+                margin: 10px 0 0 0;
+                font-weight: normal;
+            }
+        }
+    }
+    .theatre{
+        background-color: #292A2B;
+        margin: 10px -21px 0 -50px;
+        height: 45px; 
+        
+        .theatre-name{
+            margin: 0 0 0 0;
+            font-family: 'Lato';
+            padding-top: 5px;
+            font-size: 20px;
+            font-weight: 300;
+        }
+    }
+    .theatre-showtime{
+        background-color: #3D3D3D;
+        margin: 0px -21px 0 -50px;
+        padding-left: 50px;
+        .sub-text{
+            margin: 0 0 0 0;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: left;
+            color: rgba(255,255,255,0.6);
+        }
+        .back-home{
+            color: #4294F4;
+            text-decoration: underline;
+            font-size: 16px;
+            font-weight: 500;
+            font-style: normal;
+            cursor: pointer;
+            padding-bottom: 15px;
+            text-align: left;
+        }
+    }
+    .days-text{
+        text-align: left;
+        font-size: 16px;
+        font-weight: normal;
+        line-height: 24px;
+        color: #FFFFFF;
+    }
+}

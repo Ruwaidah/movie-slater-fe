@@ -36,27 +36,53 @@ body {
   backdrop-filter: blur(12px);
 }
 
+.black-box-abs {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  margin: 0 auto;
+  height: 75px;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+}
+
 .days {
   display: flex;
   flex-direction: column;
 }
 
 .day {
-  margin: 5% 5% 2% 5%;
+  margin-top: 16px;
   background-color: #262526;
   border: none;
   color: #706e70;
   padding: 4% 0;
   outline: none;
+  height: 40px;
+}
+
+.day-container {
+  margin-top: 20%;
+}
+
+.time-container {
+  margin-top: 24%;
 }
 
 .day.red-box {
-  margin: 5% 5% 2% 5%;
+  margin-top: 16px;
   background-color: #262526;
-  border: 2px red solid;
-  color: white;
-  padding: 4% 0;
-  outline: none;
+  border: none;
+  color: #FFFFFF;
+  padding: 3% 0;
+  border: 2px solid #FFFFFF;
+  border-radius: 5px;
+  height: 40px;
+}
+
+.question {
+  margin-top: 20px;
 }
 
 @keyframes fadein {
@@ -212,9 +238,14 @@ body {
   }
 }
 
+.hamburger-menu {
+  width: 20%;
+  margin-left: 8px;
+}
+
 .linediv {
-  width: 87%;
-  margin: 0 auto;
+  width: 20%;
+  // margin: 0 auto;
   display: flex;
   align-items: flex-start;
 

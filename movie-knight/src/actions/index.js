@@ -3,6 +3,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import axiosWithGoogle from "../utils/axiosWithGoogle";
 
 import { createBrowserHistory } from "history";
+import Search from "antd/lib/input/Search";
 export const history = createBrowserHistory();
 
 export const USER_LOGING_IN = "USER_LOGING_IN";
@@ -54,7 +55,9 @@ export const signUpGoogle = signUpData => dispatch => {
   dispatch({ type: USER_SIGNING_GOOGLE, payload: signUpData });
 
   axiosWithGoogle()
-    .post('https://movieknight01.herokuapp.com/api/oauth/login', { token: localStorage.getItem('token')})
+    .post("https://movieknight01.herokuapp.com/api/oauth/login", {
+      token: localStorage.getItem("token")
+    })
     .then(response =>
       dispatch({ type: USER_SIGNING_GOOGLE_SUCCESS, payload: response })
     )
@@ -159,8 +162,41 @@ export const getUpcomingMovies = () => dispatch => {
     );
 };
 
-export const TOGGLE_NEXT_BUTTON = "TOGGLE_NEXT_BUTTON"
+export const TOGGLE_NEXT_BUTTON = "TOGGLE_NEXT_BUTTON";
 
-export const toggleNext = () => dispatch =>{
-      dispatch({ type: TOGGLE_NEXT_BUTTON })
+export const toggleNext = () => dispatch => {
+  dispatch({ type: TOGGLE_NEXT_BUTTON });
+};
+
+export const TOGGLE_NEXT_OFF = "TOGGLE_NEXT_OFF";
+
+export const toggleNextOff = () => dispatch => {
+  dispatch({ type: TOGGLE_NEXT_OFF });
+};
+
+export const MOVIE_NEXT_BUTTON = "MOVIE_NEXT_BUTTON";
+
+export const movieNext = movies => dispatch => {
+  dispatch({ type: MOVIE_NEXT_BUTTON, payload: movies });
+};
+
+export const DAY_NEXT_BUTTON = "DAY_NEXT_BUTTON";
+
+export const dayNext = days => dispatch => {
+  dispatch({ type: DAY_NEXT_BUTTON, payload: days });
+};
+
+export const TICKETS_NEXT_BUTTON = 'TICKETS_NEXT_BUTTON'
+
+export const ticketsNum = num => dispatch => {
+  dispatch({ type: TICKETS_NEXT_BUTTON, payload: num })
+}
+
+
+
+export const SEATS_NEXT_BUTTON = 'SEATS_NEXT_BUTTON'
+
+export const seatsArea = seats => dispatch => {
+  console.log(seats)
+  dispatch({ type: SEATS_NEXT_BUTTON, payload: seats })
 }
