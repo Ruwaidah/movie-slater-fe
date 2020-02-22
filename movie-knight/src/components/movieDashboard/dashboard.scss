@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   min-height: 100vh;
   margin-top: 20px;
-  justify-content: left;
+  justify-content: space-evenly;
   // @media screen and (max-width: 500px) {
   //   padding-right: 10px;
   //   margin-bottom: 50px;
@@ -25,7 +25,6 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
-  margin: 3px;
   margin-bottom: 30px;
   height: 270px;
   margin-left: 5px;
@@ -54,6 +53,7 @@
 }
 
 .movie-img-enable {
+  box-shadow: -1px 1px 10px gray;
   border-radius: 5px;
   padding-top: 3px;
   display: flex;
@@ -88,6 +88,7 @@
 }
 
 .movie-img-disable {
+  box-shadow: -1px 1px 10px gray;
   height: 246px;
   // width: 50px;
   // height: 235px;
