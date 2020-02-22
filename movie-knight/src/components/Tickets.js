@@ -6,10 +6,16 @@ import ProgressBar from "./ProgressBar";
 
 const Ticket = props => {
   const [ticket, setTicket] = useState(1);
+  const [active, setActive] = useState(true);
 
   function seatPage() {
     props.ticketsNum(ticket);
     props.history.push("/seats");
+  }
+
+  function toggleClass(){
+    const currentState = active;
+    setActive(!currentState); 
   }
 
   return (
@@ -41,8 +47,8 @@ const Ticket = props => {
         </h3>
 
         <div className="yes-no-option">
-          <button className="no button">No</button>
-          <button className="yes button">Yes</button>
+          <button className={active ? 'no button' :'button no-off'  }  onClick={() => toggleClass() } >No</button>
+          <button className={active ? 'button yes' : 'button yes-off' } onClick={() => toggleClass() }>Yes</button>
         </div>
         {ticket <= 0 ? null : (
           <button className="next button" onClick={seatPage}>
