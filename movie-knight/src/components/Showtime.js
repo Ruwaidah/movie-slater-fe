@@ -1,26 +1,15 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import './showtime.scss'
-
 const Showtime = props =>{
-
     console.log(props.MovieSelects)
-
+    console.log(props.daySelects);
     function runTime(str){
         let num = str.replace(/\D+/g, "")
         let hours = num.substring(1,2)
         let min = num.substring(2,4)
         return `${hours}h ${min}m`
     }
-
-    function movieTheartres(arr){
-        let theatres = []
-
-        
-    }
-
-
-
     return(
         <div className='showtime-card'>
             <h3 className='text'>Your matches</h3>
@@ -35,26 +24,30 @@ const Showtime = props =>{
                                     <h4 className='rated'>Rated {movie.ratings[0].code}</h4>
                                 </div>
                             </div>
-                            {
-                                movie.showtimes.map((showtime, i) =>(
-                                    <div key={i}>
-                                        <h3>{showtime.theatre.name}</h3>
-                                        <a href={showtime.ticketURI}>{showtime.dateTime}</a>
-                                    </div>
-                                ))
-                            }
+                            <div className='theatre'>
+                                <h2 className='theatre-name'>{movie.showtimes[0].theatre.name}</h2>
+                            </div>
+                            <div className='theatre-showtime'>
+                                <h5 className='sub-text'>Standard format</h5>
+                                {
+                                    props.daySelects.map((days, i) =>(
+                                        <div key={i}>
+                                            <h4 className='days-text'>{`${days[1]}  ${days[0].substring(1,5)}`}</h4>
+                                        </div>
+                                    ))
+                                }
+                                <h5 className='back-home' onClick={() => props.history.push('/') }>Want to see a different movie?</h5>
+                            </div>
                         </div>
                     ))
                 }
         </div>
     )
 }
-
 const mapStateToProps = state => {
     return {
-        MovieSelects: state.MovieSelects
+        MovieSelects: state.MovieSelects,
+        daySelects: state.daySelects
     };
 };
-
-
 export default connect(mapStateToProps)(Showtime);
