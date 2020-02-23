@@ -27,6 +27,7 @@ const Login = props => {
   const responseGoogle = response => {
     const { tokenId } = response;
     localStorage.setItem("token", tokenId);
+    localStorage.setItem("image", response.profileObj.imageUrl)
     props.signUpGoogle();
     props.history.push("/");
   };

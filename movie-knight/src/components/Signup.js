@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 //Oauth//
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
-export default function Signup(props) {
+function Signup(props) {
   const [signup, setsignup] = useState({
     username: "",
     password: "",
@@ -28,6 +28,8 @@ export default function Signup(props) {
   //Oauth
   const responseGoogle = response => {
     console.log("google response", response);
+    console.log(response.profileObj.imageUrl)
+    localStorage.setItem("image", response.profileObj.imageUrl)
     const { tokenId } = response;
     localStorage.setItem("token", tokenId);
 
@@ -106,6 +108,15 @@ export default function Signup(props) {
             onChange={handleChange}
           />
         </div>{" "}
+
+        <button type="submit" className="signUp-btn">
+          Sign Up
+        </button>
+      </form>
+      <div>
+        <button onClick={() => props.history.push("/")} className="guest-button">
+          Continue as guest
+      </button>
         <div className="member-p">
           <p>
             Already have an account?
@@ -114,15 +125,9 @@ export default function Signup(props) {
             </span>
           </p>{" "}
         </div>
-        <button type="submit" className="next-button">
-          Sign Up
-        </button>
-      </form>
-      <button onClick={() => props.history.push("/")} className="guest-button">
-        Continue as guest
-      </button>
+      </div>
     </div>
   );
 };
 
-// export default withRouter(connect(null, { signUp, signUpGoogle })(Signup));
+export default withRouter(connect(null, { signUp, signUpGoogle })(Signup));

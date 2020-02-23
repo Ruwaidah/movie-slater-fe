@@ -2,7 +2,7 @@
 
 .App {
   text-align: center;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   font-family: "Lato", sans-serif;
   color: white;
@@ -57,7 +57,6 @@ body {
   background-color: #262526;
   border: none;
   color: #706e70;
-  padding: 4% 0;
   outline: none;
   height: 40px;
 }
@@ -73,6 +72,7 @@ body {
 .day.red-box {
   margin-top: 16px;
   background-color: #262526;
+
   border: none;
   color: #FFFFFF;
   padding: 3% 0;
@@ -97,9 +97,26 @@ body {
 // Login Component // SignUp Component
 .login-com,
 .signup-com {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   margin-top: 8%;
+
+  .signUp-btn{
+    background-color: $disabled_action_button;
+    width: 98%;
+    color: $mid_text;
+    margin: 0 auto;
+    border: none;
+    border-radius: 4px;
+    height: 45px;
+    outline: none;
+    font-size: 18px;
+    margin-top: 10px;
+   
+  }
+
+
   form div {
     display: flex;
     flex-direction: column;
@@ -119,7 +136,7 @@ body {
       outline: none;
       border: none;
       height: 30px;
-      width: 86%;
+      width: 94%;
       border-radius: 4px;
       padding: 6px 2%;
     }
@@ -138,6 +155,7 @@ body {
   }
 
   .member-p {
+    margin-top: 40px;
     text-align: start;
     p {
       position: absolute;
@@ -149,18 +167,6 @@ body {
     }
   }
 
-  .next-button {
-    background-color: $disabled_action_button;
-    width: 90%;
-    color: $mid_text;
-    margin: 0 auto;
-    border: none;
-    border-radius: 4px;
-    height: 45px;
-    outline: none;
-    font-size: 18px;
-    margin-top: 40px;
-  }
 
   .login-btn {
     position: absolute;
@@ -171,14 +177,14 @@ body {
   .guest-button {
     background-color: $disabled_button;
     border: 1px solid $mid_text;
-    width: 90%;
+    width: 98%;
     color: $mid_text;
     margin: 0 auto;
     border-radius: 4px;
     height: 45px;
     outline: none;
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 40px;
   }
 
   .forgot-psw {
@@ -215,7 +221,7 @@ body {
   display: flex;
   justify-content: end;
   align-items: flex-end;
-  width: 90%;
+  width: 98%;
   span {
     width: 75%;
     text-align: start;
@@ -316,4 +322,15 @@ body {
 
 .login-com h4 {
   font-size: 26px;
+}
+
+
+.noMenu {
+  display: none;
+  h1{
+    display: none;
+  }
+}
+.showMenu {
+  display: block;
 }
