@@ -89,7 +89,7 @@ function Profile(props) {
             </div>
             {viewImage ? <div className="showImage"><img src={preview ? preview : image} />
                 <form onSubmit={saveImage}>
-                    <input type="file" onChange={onImageChange} accept="application/msword,image/gif,image/jpeg,application/pdf,image/png,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/zip,.doc,.gif,.jpeg,.jpg,.pdf,.png,.xls,.xlsx,.zip" />
+                    <input type="file" onChange={onImageChange} />
                     <button type="submit">Save</button>
                     <button onClick={() => cancelIamge()}>Cancel</button>
                 </form>{para ? <p onClick={() => updateUserData()}> Use Google Image</p> : null}
