@@ -14,9 +14,9 @@ function SeatsCard(props) {
 
     const frontArea = props.seats.filter(seat => "AB".includes(seat.row))
     const endArea = props.seats.filter(seat => "GH".includes(seat.row))
-    const leftArea = props.seats.filter(seat => "CDEF".includes(seat.row) && seat.column < 3)
-    const rightArea = props.seats.filter(seat => "CDEF".includes(seat.row) && seat.column > 6)
-    const midArea = props.seats.filter(seat => "CDEF".includes(seat.row) && seat.column < 7 && seat.column > 2)
+    const leftArea = props.seats.filter(seat => "CDEF".includes(seat.row) && seat.column < 2)
+    const rightArea = props.seats.filter(seat => "CDEF".includes(seat.row) && seat.column > 5)
+    const midArea = props.seats.filter(seat => "CDEF".includes(seat.row) && seat.column < 6 && seat.column > 1)
 
 
     const pickSeat = (area, array) => {
