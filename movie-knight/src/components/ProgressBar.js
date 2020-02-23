@@ -10,11 +10,16 @@ import "./ProgressBar.scss";
 import { withRouter } from "react-router-dom";
 
 const ProgressBar = props => {
+
+
+  console.log(props.location.pathname.slice(1,))
+
+
   return (
     <div className="progress-bar">
       <img
         id="search"
-        className="icons"
+        className={props.location.pathname.slice(1,7) === 'details' ? 'icons brightness' : 'icons'}
         src={searchmovie}
         alt="searchmovie logo"
         onClick={() => props.history.push("/")}
@@ -22,7 +27,7 @@ const ProgressBar = props => {
       <div className="progress-line" />
       <img
         id="calendar"
-        className="icons brightness"
+        className={props.location.pathname.slice(1,) === 'date' ? 'icons brightness': 'icons'}
         src={calendar}
         alt="calendar logo"
         onClick={() => props.history.push("/date")}
@@ -30,7 +35,7 @@ const ProgressBar = props => {
       <div className="progress-line" />
       <img
         id="clock"
-        className="icons"
+        className={props.location.pathname.slice(1,) === 'time' ? 'icons brightness' : 'icons'}
         src={clock}
         alt="clock logo"
         onClick={() => props.history.push("/time")}
@@ -38,7 +43,7 @@ const ProgressBar = props => {
       <div className="progress-line" />
       <img
         id="tickets"
-        className="icons"
+        className={props.location.pathname.slice(1,) === 'tickets' ? 'icons brightness' : 'icons'}
         src={tickets}
         alt="tickets logo"
         onClick={() => props.history.push("/tickets")}
@@ -46,7 +51,7 @@ const ProgressBar = props => {
       <div className="progress-line" />
       <img
         id="chair"
-        className="icons"
+        className={props.location.pathname.slice(1,) === 'seats' ? 'icons brightness' : 'icons'}
         src={chair}
         alt="chair logo"
         onClick={() => props.history.push("/seats")}
@@ -54,7 +59,7 @@ const ProgressBar = props => {
       <div className="progress-line" />
       <img
         id="movieslate"
-        className="icons"
+        className={props.location.pathname.slice(1,) === 'showtime' ? 'icons brightness' : 'icons'}
         src={movieslate}
         alt="movieslate logo"
         onClick={() => props.history.push("/showtime")}

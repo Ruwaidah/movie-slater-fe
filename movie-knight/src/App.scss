@@ -70,13 +70,15 @@ body {
 }
 
 .day.red-box {
-  margin: 5% 5% 2% 5%;
+  margin-top: 16px;
   background-color: #262526;
-  border: 2px solid $pure_white;
-  color: white;
 
-  outline: none;
+  border: none;
+  color: #FFFFFF;
+  padding: 3% 0;
+  border: 2px solid #FFFFFF;
   border-radius: 5px;
+  height: 40px;
 }
 
 .question {
