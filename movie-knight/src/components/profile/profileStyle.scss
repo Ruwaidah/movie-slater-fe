@@ -101,9 +101,9 @@
   }
   .custom-file-input::-webkit-file-upload-button {
     // visibility: hidden;
-    width: 0px;
-    height: 0px;
-    overflow: hidden;
+      width: 0px;
+     height: 0px;
+     overflow: hidden;
   }
   .custom-file-input::before {
     content: 'change Image';
