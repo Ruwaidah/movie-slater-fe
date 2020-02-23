@@ -81,7 +81,7 @@ function Profile(props) {
         <div className="profile-container" >
 
             {/* Nav-Bar */}
-            <div className="profile-nav" onClick={() => viewImage ? setViewIamge(false) : null}>
+            <div className="profile-nav" >
                 <h3>Profile</h3>
                 <div>
                     <img src={Close} onClick={() => exit()} />
@@ -96,7 +96,7 @@ function Profile(props) {
             </div> : null}
 
             {/* Header */}
-            <div className="header" onClick={() => viewImage ? setViewIamge(false) : null}>
+            <div className="header" >
                 <div className="profile-image">
                     <img src={image} onClick={() => changeImage()} />
                 </div>
