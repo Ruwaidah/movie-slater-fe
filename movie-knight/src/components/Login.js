@@ -27,6 +27,7 @@ export const Login = props => {
   const responseGoogle = response => {
     const { tokenId } = response;
     localStorage.setItem("token", tokenId);
+    localStorage.setItem("image", response.profileObj.imageUrl)
     props.signUpGoogle();
     props.history.push("/");
   };
@@ -57,6 +58,7 @@ export const Login = props => {
           <label htmlFor="email">Email</label>
           <input
             required
+            data-testid="emailform"
             id="email"
             type="email"
             name="email"
@@ -69,6 +71,7 @@ export const Login = props => {
           {" "}
           <label htmlFor="password">Password</label>
           <input
+            data-testid="passwordform"
             id="password"
             required
             type="password"

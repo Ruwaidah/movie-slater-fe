@@ -23,7 +23,15 @@ import {
   GET_MOVIES_UPCOMING_START,
   GET_MOVIES_UPCOMING_SUCCESS,
   GET_MOVIES_UPCOMING_FAILURE,
-  TOGGLE_NEXT_BUTTON
+  TOGGLE_NEXT_BUTTON,
+  TOGGLE_NEXT_OFF,
+  MOVIE_NEXT_BUTTON,
+  DAY_NEXT_BUTTON,
+  TICKETS_NEXT_BUTTON,
+  SEATS_NEXT_BUTTON,
+  USER_BYID_LOADING,
+  USER_BYID_SUCCESS,
+  USER_BYID_FAILURE
 } from "../actions/index";
 
 const initialState = {
@@ -34,7 +42,11 @@ const initialState = {
   googleData: {},
   NextButton: false,
   movieDetails: {},
-  upcomingMovies: []
+  upcomingMovies: [],
+  MovieSelects: [],
+  daySelects: [],
+  ticketsNumber: 0,
+  seatsSelects: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -48,13 +60,13 @@ const reducer = (state = initialState, action) => {
       };
 
     case USER_SIGNING_GOOGLE_SUCCESS:
-      localStorage.setItem("google_username", action.payload.data.user.name);
+      localStorage.setItem("googleId", action.payload.data.user.googleId);
       return {
         ...state,
         fetchingData: false,
-        googleData: action.payload
+        googleData: action.payload,
+        userData: action.payload
       };
-
     case USER_SIGNING_GOOGLE_FAILURE:
       return {
         ...state,
@@ -66,14 +78,16 @@ const reducer = (state = initialState, action) => {
     case USER_LOGING_IN:
       return {
         ...state,
-        fetchingData: true
+        fetchingData: true,
+        error: ""
       };
 
     case USER_LOGING_IN_SUCCESS:
       return {
         ...state,
         fetchingData: false,
-        userData: action.payload
+        userData: action.payload,
+        error: ""
       };
 
     case USER_LOGING_IN_FAILURE:
@@ -91,6 +105,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case USER_SIGNING_SUCCESS:
+      localStorage.setItem("userId", action.payload.id);
       return {
         ...state,
         fetchingData: false,
@@ -194,7 +209,6 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_MOVIES_UPCOMING_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
         fetchingData: false,
@@ -208,12 +222,72 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
 
+    // ******************************** Next Button Show
     case TOGGLE_NEXT_BUTTON:
       return {
         ...state,
-        NextButton: !state.NextButton
+        NextButton: true
+      };
+
+
+    // ******************************** Next Button invisible
+    case TOGGLE_NEXT_OFF:
+      return {
+        ...state,
+        NextButton: false
+      };
+
+    // *********************************** Movies Selected
+    case MOVIE_NEXT_BUTTON:
+      return {
+        ...state,
+        MovieSelects: action.payload
+      };
+
+    //  *********************************** Days Selected
+    case DAY_NEXT_BUTTON:
+      return {
+        ...state,
+        daySelects: action.payload
+      };
+
+    case TICKETS_NEXT_BUTTON:
+      return {
+        ...state,
+        ticketsNumber: action.payload
       }
 
+    //  *********************************** Seats Selected
+    case SEATS_NEXT_BUTTON:
+      return {
+        ...state,
+        seatsSelects: action.payload
+      }
+
+
+    // ************************************** Get User By ID
+
+    case USER_BYID_LOADING:
+      return {
+        ...state,
+        fetchingData: true,
+        error: ""
+      }
+
+    case USER_BYID_SUCCESS:
+      return {
+        ...state,
+        fetchingData: false,
+        error: "",
+        userData: action.payload
+      }
+
+    case USER_BYID_FAILURE:
+      return {
+        ...state,
+        fetchingData: false,
+        error: action.payload
+      }
     default:
       return state;
   }
