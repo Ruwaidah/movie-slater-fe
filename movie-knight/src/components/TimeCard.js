@@ -9,11 +9,16 @@ const TimeCard = props => {
     setActive(!currentState);
   }
 
-  //   useEffect(() => {
-  //     if (active) {
-  //       props.setTimeSelect([...props.timeSelect, ]);
-  //     }
-  //   }, [active]);
+  useEffect(() => {
+    if (active) props.setTimeSelect([...props.timeSelect, props.time]);
+    else {
+      const filter = props.timeSelect.filter(time => {
+        return time !== props.time;
+      });
+      props.setTimeSelect(filter);
+    }
+  }, [active]);
+
 
   return (
     <button
