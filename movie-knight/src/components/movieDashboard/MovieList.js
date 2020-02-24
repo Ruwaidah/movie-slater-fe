@@ -10,19 +10,12 @@ import FilterMenu from "./FilterMenu.js";
 import Loading from "../Loading.js";
 import { toggleNext, toggleNextOff } from "../../actions/index";
 
-<<<<<<< HEAD
 export function MovieList(props) {
 
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState("")
   const [zipCode, setZipCode] = useState(47712)
   const [movieSelect, setMovieSelect] = useState([]);
-=======
-function MovieList(props) {
-  const [movies, setMovies] = useState([]);
-  const [searchParam, setSearchParam] = useState("");
-  const [zipCode, setZipCode] = useState(47712);
->>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
