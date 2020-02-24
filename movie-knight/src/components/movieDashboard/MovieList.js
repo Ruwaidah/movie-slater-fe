@@ -57,7 +57,7 @@ export function MovieList(props) {
   return (
     <div className="movielist-component">
       <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
-
+        <p className='or-text'>or</p>
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
       <div className="filter-max">
         <FilterMenu setFilter={setFilter} filters={filters} />

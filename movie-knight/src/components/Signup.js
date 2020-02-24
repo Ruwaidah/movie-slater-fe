@@ -117,11 +117,11 @@ function Signup(props) {
           Sign Up
         </button>
       </form>
-      <div>
-        <button onClick={() => props.history.push("/")} className="guest-button">
-          Continue as guest
-      </button>
         <div className="member-p">
+
+        <button onClick={() => props.history.push("/")} className="guest-button">
+        Continue as guest
+      </button>
           <p>
             Already have an account?
             <span onClick={() => props.history.push("/login")}>
@@ -129,14 +129,16 @@ function Signup(props) {
             </span>
           </p>{" "}
         </div>
+      <div>
+        {/* <button onClick={() => props.history.push("/")} className="guest-button">
+          Continue as guest
+      </button> */}
 
-        <button type="submit" className="next-button" data-testid="signup-btn">
+        {/* <button type="submit" className="next-button" data-testid="signup-btn">
           Sign Up
-        </button>
+        </button> */}
 
-      <button onClick={() => props.history.push("/")} className="guest-button">
-        Continue as guest
-      </button>
+      
 
       </div>
 

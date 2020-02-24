@@ -30,7 +30,7 @@ const Dashboard = props => {
 
       {props.NextButton ? (
         <div className="black-box">
-          <button className="next-button-disable" onClick={DatePage}>
+          <button className="next-button-enable" onClick={DatePage}>
             Next
           </button>
         </div>
