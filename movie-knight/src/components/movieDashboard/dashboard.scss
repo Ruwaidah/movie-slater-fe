@@ -27,7 +27,6 @@
   justify-content: end;
   margin-bottom: 30px;
   height: 270px;
-  margin-left: 5px;
   p {
     margin: 5px 0 0 0;
   }
@@ -326,8 +325,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100vh;
-  top:0px;
-
+  top: 0px;
 }
 
 /* General sidebar styles */
