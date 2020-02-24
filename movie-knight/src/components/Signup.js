@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 function Signup(props) {
+
   const [signup, setsignup] = useState({
     username: "",
     password: "",
@@ -73,6 +74,7 @@ function Signup(props) {
         <div>
           <label htmlFor="username"> Username </label>
           <input
+            data-testid="usernameform"
             required
             id="username"
             type="text"
@@ -86,6 +88,7 @@ function Signup(props) {
           {" "}
           <label htmlFor="email">Email</label>
           <input
+            data-testid="emailform"
             required
             id="email"
             type="email"
@@ -99,6 +102,7 @@ function Signup(props) {
           {" "}
           <label htmlFor="password">Password</label>
           <input
+            data-testid="passwordform"
             id="password"
             required
             type="password"
@@ -125,7 +129,17 @@ function Signup(props) {
             </span>
           </p>{" "}
         </div>
+
+        <button type="submit" className="next-button" data-testid="signup-btn">
+          Sign Up
+        </button>
+      </form>
+      <button onClick={() => props.history.push("/")} className="guest-button">
+        Continue as guest
+      </button>
+
       </div>
+
     </div>
   );
 };

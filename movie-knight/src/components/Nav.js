@@ -3,7 +3,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { stack as Menu } from "react-burger-menu";
 
-const Nav = props => {
+export const Nav = props => {
   // import useDarkMode from "../hooks/useDarkMode";
   const [isOpen, setIsOpen] = useState(false);
   // console.log(props.userData.username)

@@ -7,8 +7,9 @@ import "./movieDetails.scss";
 import { getMovieDetail } from "../actions/index";
 import { connect } from "react-redux";
 import Loading from "./Loading.js";
+import { withRouter } from "react-router-dom"; 
 
-const MovieDetails = props => {
+export const MovieDetails = props => {
   const rating = props.location.pathname.split("=");
   const [movie, setMovie] = useState();
 
@@ -197,4 +198,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { getMovieDetail })(MovieDetails);
+export default withRouter(connect(mapStateToProps, { getMovieDetail })(MovieDetails));
