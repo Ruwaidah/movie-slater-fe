@@ -275,6 +275,8 @@ export const dayNext = days => dispatch => {
   dispatch({ type: DAY_NEXT_BUTTON, payload: days });
 };
 
+
+
 export const TICKETS_NEXT_BUTTON = 'TICKETS_NEXT_BUTTON'
 
 export const ticketsNum = num => dispatch => {
@@ -282,10 +284,17 @@ export const ticketsNum = num => dispatch => {
 }
 
 
-
+// ************************************************* SEAT SELECT
 export const SEATS_NEXT_BUTTON = 'SEATS_NEXT_BUTTON'
 
 export const seatsArea = seats => dispatch => {
-  console.log(seats)
   dispatch({ type: SEATS_NEXT_BUTTON, payload: seats })
+}
+
+
+// ************************************************* TIME SELECT
+export const TIME_NEXT_BUTTON = 'TIME_NEXT_BUTTON'
+
+export const timeSelectAction = time => dispatch => {
+  dispatch({ type: TIME_NEXT_BUTTON, payload: time })
 }

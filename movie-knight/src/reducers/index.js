@@ -31,7 +31,8 @@ import {
   SEATS_NEXT_BUTTON,
   USER_BYID_LOADING,
   USER_BYID_SUCCESS,
-  USER_BYID_FAILURE
+  USER_BYID_FAILURE,
+  TIME_NEXT_BUTTON
 } from "../actions/index";
 
 const initialState = {
@@ -46,7 +47,8 @@ const initialState = {
   MovieSelects: [],
   daySelects: [],
   ticketsNumber: 0,
-  seatsSelects: []
+  seatsSelects: [],
+  timeSelects: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -287,6 +289,13 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingData: false,
         error: action.payload
+      }
+
+    // ****************************** TIME SELECT
+    case TIME_NEXT_BUTTON:
+      return {
+        ...state,
+        timeSelects: action.payload
       }
     default:
       return state;
