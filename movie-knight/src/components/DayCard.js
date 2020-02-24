@@ -28,12 +28,17 @@ const DayCard = props => {
     var yyyy = day.getFullYear();
     const dayName = days[day.getDay()];
     const dm = mm + "/" + dd;
-    return [dm, dayName];
+    const fulldate = `${yyyy}-${mm}-${dd}`
+    return [dm, dayName, fulldate];
   }
 
   useEffect(() => {
-    if (active) {
-      props.setDaySelect([...props.daySelect, getday(props.index)]);
+    if (active) props.setDaySelect([...props.daySelect, getday(props.index)]);
+    else {
+      const filter = props.daySelect.filter(day => {
+        return day[1] !== getday(props.index)[1];
+      });
+      props.setDaySelect(filter);
     }
   }, [active]);
 

@@ -133,7 +133,7 @@ function Signup(props) {
         <button type="submit" className="next-button" data-testid="signup-btn">
           Sign Up
         </button>
-      </form>
+
       <button onClick={() => props.history.push("/")} className="guest-button">
         Continue as guest
       </button>

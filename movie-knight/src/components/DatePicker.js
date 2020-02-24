@@ -10,9 +10,6 @@ const DataPicker = props => {
   var today = new Date();
   var tomorrow = new Date(today.getTime());
 
-  console.log(new Date());
-
-  console.log("dayPage", daySelect);
 
   const days = [
     "Monday",
@@ -24,16 +21,11 @@ const DataPicker = props => {
     "Sunday"
   ];
 
-  function HomePage() {
-    props.history.push("/");
-  }
 
   function timePage() {
     props.dayNext(daySelect);
     props.history.push("/time");
   }
-
-  console.log("movieselect", props.MovieSelects);
 
   return (
     <div>
