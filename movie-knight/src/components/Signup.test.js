@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { render } from '@testing-library/react';
 import * as rtl from '@testing-library/react';
-import { Signup } from './SignUp';
+import Signup from './SignUp';
 import Enzyme from "enzyme";
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -55,7 +55,6 @@ test ("signup button", async () => {
   const button = wrapper.getByTestId("signup-btn");
   rtl.fireEvent.click(button);
   expect(button).toBeTruthy(); 
-
 })  
 
 test('username form', () => {

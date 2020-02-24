@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
 import { Login } from './components/Login';
-import { Signup } from './components/Signup';
+import  Signup  from './components/Signup';
 import OwnerLogin from './components/OwnerLogin';
 import OwnerSignup from './components/OwnerSignup';
 import { Nav } from './components/Nav';

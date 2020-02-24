@@ -4,47 +4,40 @@ import { Login } from './Login';
 import * as rtl from '@testing-library/react';
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
+import { login } from "../actions/index";
 
 configure({ adapter: new Adapter() });
 
-test('renders "Log in to your Movie Knight account" text', () => {
-const wrapper = render(<Login/>);
-wrapper.getByText(/Log in to your Movie Knight account/i);
-});
+it('renders texts', () => {
 
-test('renders email form', () => {
-  const wrapper = render(<Login/>);
-  wrapper.getByPlaceholderText(/email/i);
-  });
-
-test('renders password form', () => {
-  const wrapper = render(<Login/>);
-  wrapper.getByPlaceholderText('********');
-  });  
-
-test('Log in to your Movie Knight account', () => {
   const wrapper = render(<Login/>);
   wrapper.getByText('Log in to your Movie Knight account');
-  });    
-
-test('Forgot password? and Click here', () => {
-  const wrapper = render(<Login/>);
   wrapper.getByText('Forgot password?');
   wrapper.getByText('Click here');
-});  
-  
-test('renders a email input', () => {
-expect(shallow(<Login/>).find('#email').length).toEqual(1)
-})
 
-test('renders a password input', () => {
-expect(shallow(<Login/>).find('#password').length).toEqual(1)
-})
+  });
+
+it('renders form', () => {
+
+  const wrapper = render(<Login/>);
+  wrapper.getByPlaceholderText(/email/i);
+  wrapper.getByPlaceholderText('********');
+
+  });
+  
+it('renders input', () => {
+
+  expect(shallow(<Login/>).find('#email').length).toEqual(1)
+  expect(shallow(<Login/>).find('#password').length).toEqual(1)
+
+  })
 
 test('renders form labels', () => {
+
   const wrapper = render(<Login/>);
   wrapper.getByText('Email');
   wrapper.getByText('Password');
+
 });
 
 test('email form', () => {
@@ -64,3 +57,14 @@ test('password form', () => {
   expect(input.value).toBe("movieknights123");
 
 });
+
+const history = {
+  push: jest.fn(()=> "/")
+  }
+
+test ("login button", async () => {
+  const wrapper = render(<Login login={login} history={history} />);
+  const button = wrapper.getByTestId("login-btn");
+  rtl.fireEvent.click(button);
+  expect(button).toBeTruthy(); 
+})  

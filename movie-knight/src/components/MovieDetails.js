@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
+// import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import StarRatings from 'react-star-ratings';
+import 'react-circular-progressbar/dist/styles.css';
+=======
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import StarRatings from "react-star-ratings";
 import "react-circular-progressbar/dist/styles.css";
+>>>>>>> b708fd5a118fa14863e481025b28bb1397152d92
 import axios from "axios";
 import "./movieDetails.scss";
 import { getMovieDetail } from "../actions/index";

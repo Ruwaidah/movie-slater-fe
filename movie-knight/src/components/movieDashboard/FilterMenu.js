@@ -4,7 +4,7 @@ function ZipSearch(props) {
   const toggleMenu = () => {
     document.getElementById("filter").classList.toggle("toggle-menu2");
   };
-  
+
   const [values, setValues] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
@@ -13,7 +13,6 @@ function ZipSearch(props) {
   const submit = event => {
     event.preventDefault();
     props.setFilter(values);
-    // toggleMenu();
     console.log(props.filters);
   };
   const change = event => {
@@ -40,24 +39,6 @@ function ZipSearch(props) {
     setValues({ ...values, mature: temp });
   };
 
-  const handleChangesRatings = event => {
-    console.log(event.target.value)
-    props.setSearchParam({...props.searchParam, Ratings: event.target.value})
-    console.log(props.searchParam)
-  }
-  const handleChangesMaturity = event => {
-    let temp = props.searchParam.Maturity;
-    if(temp.includes(event.target.value)){
-      temp.splice(temp.indexOf(event.target.value), 1)
-    } else {
-      temp.push(event.target.value)
-    }
-    props.setSearchParam({...props.searchParam, Maturity: temp})
-  }
-  const handleChangesSort = event => {
-    props.setSearchParam({...props.searchParam, Sort: event.target.value})
-  }
-
   return (
     <div>
       <div onClick={toggleMenu} id="hamburger-menu" className="hamburger-menu">
@@ -73,8 +54,18 @@ function ZipSearch(props) {
           </div>
         </div>
       </div>
-      
+
       <div className="menu-filter" id="filter">
+<<<<<<< HEAD
+        <form
+          className="filtering"
+          id="ratingSelect"
+          onSubmit={(toggleMenu, submit)}
+        >
+          <div className="sorting">
+            <label>Sort By</label>
+            <label className="label-text">
+=======
         <form  className="filtering" id="ratingSelect" onSubmit={toggleMenu, submit}>
           <div className = "movie-rating">
             Rating
@@ -143,8 +134,9 @@ function ZipSearch(props) {
               Sort By :
             </label>
             <label>
+>>>>>>> b708fd5a118fa14863e481025b28bb1397152d92
               <input
-                type="radio"
+                type="checkbox"
                 value="recent"
                 name="filter"
                 onChange={change}
@@ -153,13 +145,155 @@ function ZipSearch(props) {
             </label>
             <label className="label-text">
               <input
-                type="radio"
+                type="checkbox"
                 value="old"
                 onChange={change}
                 name="filter"
               />
               Oldest
             </label>
+<<<<<<< HEAD
+            <label className="label-text">
+              <input
+                type="checkbox"
+                value="az"
+                name="filter"
+                onChange={change}
+              />
+              A-Z
+            </label>
+            <label className="label-text">
+              <input
+                type="checkbox"
+                value="za"
+                name="filter"
+                onChange={change}
+              />
+              Z-A
+            </label>
+          </div>
+          <div className="divider"></div>
+          <div className="movie-rating">
+            Rating
+            <label className="label-text">
+              <input
+                type="checkbox"
+                name="stars"
+                id="R"
+                value="R"
+                onChange={changeMature}
+                defaultChecked
+              />
+              R
+            </label>
+            <label className="label-text">
+              <input
+                type="checkbox"
+                name="stars"
+                value="PG-13"
+                onChange={changeMature}
+                defaultChecked
+              />
+              PG-13
+            </label>
+            <label className="label-text">
+              <input
+                type="checkbox"
+                name="stars"
+                value="PG"
+                onChange={changeMature}
+                defaultChecked
+              />
+              PG
+            </label>
+            <label className="label-text">
+              <input
+                type="checkbox"
+                name="stars"
+                value="G"
+                onChange={changeMature}
+                defaultChecked
+              />
+              G
+            </label>
+          </div>
+          <div className="divider"></div>
+          <div className="movie-review">
+            <label>Review Rating</label>
+            <div className="star-buttons">
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="1"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="2"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="3"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+                <span className="icon">☆</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="4"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon">☆</span>
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  name="stars"
+                  value="5"
+                  onChange={changeRating}
+                  defaultChecked
+                />
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+                <span className="icon-full">★</span>
+              </label>
+            </div>
+          </div>
+=======
             <label>
               <input type="radio" value="az" name="filter" onChange={change} />
               A-Z
@@ -169,6 +303,7 @@ function ZipSearch(props) {
               Z-A
             </label>
           </div>
+>>>>>>> b708fd5a118fa14863e481025b28bb1397152d92
           <button className="results-btn">See Results</button>
         </form>
       </div>
@@ -176,4 +311,7 @@ function ZipSearch(props) {
   );
 }
 export default ZipSearch;
+<<<<<<< HEAD
+=======
 
+>>>>>>> b708fd5a118fa14863e481025b28bb1397152d92
