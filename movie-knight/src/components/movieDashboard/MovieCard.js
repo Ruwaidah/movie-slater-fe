@@ -20,13 +20,11 @@ function MovieCard(props) {
   }
 
   function unSelectMovie() {
-    console.log("maxxx")
     setActive(false);
     // props.toggleNext();
   }
 
   useEffect(() => {
-    console.log(active)
     if (active) props.setMovieSelect([...props.movieSelect, props.movie]);
     else {
 
