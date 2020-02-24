@@ -95,7 +95,7 @@ export const MovieDetails = props => {
             </div> */}
             {rating[1] ? (
               <p>
-                <span>{rating[1]}</span>
+                <span>Rated {rating[1]}</span>
               </p>
             ) : null}
             {/* 
@@ -104,7 +104,7 @@ export const MovieDetails = props => {
                 {movie.movie.vote_average}/10 <i className="fab fa-imdb"></i>
               </span>
             </p> */}
-            <p>
+            {/* <p>
               <span>
                 {reverseString(movie.moviedetail.release_date).replace(
                   /-/g,
@@ -120,7 +120,7 @@ export const MovieDetails = props => {
                   return <span key={genre.id}>{genre.name},</span>;
                 }
               })}
-            </p>
+            </p> */}
             <StarRatings
               rating={movie.movie.vote_average / 2}
               starRatedColor="red"
@@ -130,6 +130,7 @@ export const MovieDetails = props => {
               starSpacing="1px"
               name='rating'
             />
+            
           </div>
         </div>
 
