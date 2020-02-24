@@ -16,6 +16,7 @@ export function MovieList(props) {
   const [searchParam, setSearchParam] = useState("")
   const [zipCode, setZipCode] = useState(47712)
   const [movieSelect, setMovieSelect] = useState([]);
+
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
