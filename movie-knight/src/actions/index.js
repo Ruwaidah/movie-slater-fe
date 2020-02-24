@@ -11,18 +11,24 @@ export const USER_LOGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
 export const USER_LOGING_IN_FAILURE = "USER_LOGING_IN_FAILURE";
 
 export const login = loginData => dispatch => {
+  console.log(loginData)
   dispatch({ type: USER_LOGING_IN });
-
+  console.log(localStorage.getItem("token"))
   axiosWithAuth()
     .post("/api/auth/login", loginData)
-    .then(response =>
+    .then(response => {
+      console.log(response)
+      localStorage.setItem("userId", response.data.user.id);
+      localStorage.setItem("token", response.data.token);
       dispatch(
-        { type: USER_LOGING_IN_SUCCESS, payload: response.data },
-        localStorage.setItem("token", response.data.token)
+        { type: USER_LOGING_IN_SUCCESS, payload: response.data.user }
       )
+    }
     )
-    .catch(err =>
+    .catch(err => {
+      console.log(err)
       dispatch({ type: USER_LOGING_IN_FAILURE, payload: err.response })
+    }
     );
 };
 
@@ -31,20 +37,101 @@ export const USER_SIGNING_SUCCESS = "USER_SIGNING_SUCCESS";
 export const USER_SIGNING_FAILURE = "USER_SIGNING_FAILURE";
 
 export const signUp = signUpData => dispatch => {
+  console.log(signUpData)
   dispatch({ type: USER_SIGNING });
 
   axiosWithAuth()
     .post("/api/auth/register ", signUpData)
-    .then(response =>
+    .then(response => {
+      console.log(response)
+      localStorage.setItem("userId", response.data.user.id);
       dispatch(
         { type: USER_SIGNING_SUCCESS, payload: response.data.user },
         localStorage.setItem("token", response.data.token)
       )
+    }
     )
     .catch(err =>
       dispatch({ type: USER_SIGNING_FAILURE, payload: err.response })
     );
 };
+
+
+// ******************************************* GET USER BY ID
+export const USER_BYID_LOADING = "USER_BYID_LOADING";
+export const USER_BYID_SUCCESS = "USER_BYID_SUCCESS";
+export const USER_BYID_FAILURE = "USER_BYID_FAILURE";
+
+export const getUserById = () => dispatch => {
+  let path;
+  dispatch({ type: USER_BYID_LOADING });
+  if (localStorage.getItem("googleId"))
+    path = `oauth/${localStorage.getItem("googleId")} `
+  else if (localStorage.getItem("userId"))
+    path = `auth/${localStorage.getItem("userId")} `
+  axiosWithAuth()
+    .get(`/api/${path}`)
+    .then(response => {
+      dispatch(
+        { type: USER_BYID_SUCCESS, payload: response.data.user },
+      )
+    }
+    )
+    .catch(err =>
+      dispatch({ type: USER_BYID_FAILURE, payload: err.response })
+    );
+};
+
+
+// *********************************************************** UPDATE USER IMAGE
+
+
+export const updateUser = image => dispatch => {
+  let path
+  if (localStorage.getItem("googleId"))
+    path = `/?googleId=${localStorage.getItem("googleId")}`
+  else if (localStorage.getItem("userId"))
+    path = `/?userId=${localStorage.getItem("userId")}`
+
+
+  dispatch({ type: USER_BYID_LOADING });
+
+  axiosWithAuth()
+    .post(`/api/image${path}`, image)
+    .then(response => {
+      console.log(response)
+      dispatch({ type: USER_BYID_SUCCESS, payload: response.data })
+    }
+    )
+    .catch(err =>
+      dispatch({ type: USER_BYID_FAILURE, payload: err.response })
+    );
+};
+
+
+// ****************************************************** UPDATE USER DATA
+export const updateUserData = data => dispatch => {
+  let path
+  if (localStorage.getItem("googleId"))
+    path = `oauth/${localStorage.getItem("googleId")}`
+  else if (localStorage.getItem("userId"))
+    path = `auth/${localStorage.getItem("userId")}`
+
+
+  dispatch({ type: USER_BYID_LOADING });
+
+  axiosWithAuth()
+    .put(`/api/${path}`, data)
+    .then(response => {
+      dispatch({ type: USER_BYID_SUCCESS, payload: response.data.user })
+    }
+    )
+    .catch(err =>
+      dispatch({ type: USER_BYID_FAILURE, payload: err.response })
+    );
+};
+
+
 
 //GOOGLE_LOGIN
 export const USER_SIGNING_GOOGLE = "USER_SIGNING_GOOGLE";
@@ -53,13 +140,15 @@ export const USER_SIGNING_GOOGLE_FAILURE = "USER_SIGNING_GOOGLE_FAILURE";
 
 export const signUpGoogle = signUpData => dispatch => {
   dispatch({ type: USER_SIGNING_GOOGLE, payload: signUpData });
-
-  axiosWithGoogle()
-    .post("https://movieknight01.herokuapp.com/api/oauth/login", {
+  console.log("jhoihiphouh")
+  axiosWithAuth()
+    .post("/api/oauth/login", {
       token: localStorage.getItem("token")
     })
-    .then(response =>
+    .then(response => {
+      localStorage.setItem("token", response.data.token);
       dispatch({ type: USER_SIGNING_GOOGLE_SUCCESS, payload: response })
+    }
     )
     .catch(err =>
       dispatch({ type: USER_SIGNING_GOOGLE_FAILURE, payload: err.response })
@@ -115,8 +204,8 @@ export const getMovie = zipcode => dispatch => {
   if (localStorage.getItem("zip") == null) zipcode = 47712;
   dispatch({ type: GET_MOVIES_START });
 
-  axios
-    .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipcode}`)
+  axiosWithAuth()
+    .get(`/api/movies?zip=${zipcode}`)
     .then(response => {
       console.log(response);
       dispatch({ type: GET_MOVIES_SUCCESS, payload: response.data });
@@ -133,8 +222,8 @@ export const GET_MOVIE_DETAIL_FAILURE = "GET_MOVIE_DETAIL_FAILURE";
 
 export const getMovieDetail = movieName => dispatch => {
   dispatch({ type: GET_MOVIE_DETAIL_START });
-  axios
-    .post(`https://movieknight01.herokuapp.com/api/movies/moviedetails`, {
+  axiosWithAuth()
+    .post(`/api/movies/moviedetails`, {
       title: `${movieName}`
     })
     .then(respone =>
@@ -152,8 +241,8 @@ export const GET_MOVIES_UPCOMING_FAILURE = "GET_MOVIES_UPCOMING_FAILURE";
 
 export const getUpcomingMovies = () => dispatch => {
   dispatch({ type: GET_MOVIES_UPCOMING_START });
-  axios
-    .get(`https://movieknight01.herokuapp.com/api/upcoming`)
+  axiosWithAuth()
+    .get(`/api/upcoming`)
     .then(respone =>
       dispatch({ type: GET_MOVIES_UPCOMING_SUCCESS, payload: respone.data })
     )
@@ -186,6 +275,8 @@ export const dayNext = days => dispatch => {
   dispatch({ type: DAY_NEXT_BUTTON, payload: days });
 };
 
+
+
 export const TICKETS_NEXT_BUTTON = 'TICKETS_NEXT_BUTTON'
 
 export const ticketsNum = num => dispatch => {
@@ -193,10 +284,17 @@ export const ticketsNum = num => dispatch => {
 }
 
 
-
+// ************************************************* SEAT SELECT
 export const SEATS_NEXT_BUTTON = 'SEATS_NEXT_BUTTON'
 
 export const seatsArea = seats => dispatch => {
-  console.log(seats)
   dispatch({ type: SEATS_NEXT_BUTTON, payload: seats })
+}
+
+
+// ************************************************* TIME SELECT
+export const TIME_NEXT_BUTTON = 'TIME_NEXT_BUTTON'
+
+export const timeSelectAction = time => dispatch => {
+  dispatch({ type: TIME_NEXT_BUTTON, payload: time })
 }

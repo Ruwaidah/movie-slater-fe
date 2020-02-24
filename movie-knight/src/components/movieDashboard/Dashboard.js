@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { MovieList } from "./MovieList";
+import { withRouter } from 'react-router-dom'
+import MovieList from "./MovieList";
 import "./dashboard.scss";
 import  UpComingMovies  from "./UpComingMovies.js";
 import { connect } from "react-redux";
@@ -45,4 +46,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { movieNext })(Dashboard);
+export default withRouter(connect(mapStateToProps, { movieNext })(Dashboard));

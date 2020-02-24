@@ -27,7 +27,6 @@
   justify-content: end;
   margin-bottom: 30px;
   height: 270px;
-  margin-left: 5px;
   p {
     margin: 5px 0 0 0;
   }
@@ -88,7 +87,7 @@
 }
 
 .movie-img-disable {
-  box-shadow: -1px 1px 10px gray;
+  // box-shadow: -1px 1px 10px gray;
   height: 246px;
   // width: 50px;
   // height: 235px;
@@ -121,7 +120,7 @@
     outline: none;
     border: none;
     height: 20px;
-    width: 87%;
+    width: 97%;
     border-radius: 6px;
     padding: 6px;
     margin-bottom: 20px;
@@ -145,7 +144,7 @@
 // Zipcode Search Form
 .zipsearch {
   input {
-    width: 87%;
+    width: 97%;
     font-size: 16px;
     outline: none;
     border: none;
@@ -186,12 +185,12 @@
 }
 
 .next-button-enable {
-  background-color: $disabled_action_button;
+  background-color:  $enabled_action_button;
   position: fixed;
   bottom: 15px;
   right: 0%;
   width: 75%;
-  color: $disabled_text;
+  color: $mid-text;
   margin: 0 auto;
   border: none;
   border-radius: 7px;
@@ -223,7 +222,14 @@
 
 .menu-filter {
   position: absolute;
-  width: 50%;
+  width: 49%;
+  height: 66%;
+
+  @media screen and (min-width: 800px) {
+    width: 20%;
+    height: 54%;
+  }
+
   .movie-review,
   .movie-rating,
   .sorting {
@@ -325,7 +331,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 */
 .bm-menu-wrap {
   position: fixed;
-  height: 100%;
+  height: 100vh;
+  top: 0px;
 }
 
 /* General sidebar styles */
@@ -448,7 +455,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background-color: $disabled_action_button;
   color: $disabled_text;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 40px;
   border: none;
   border-radius: 7px;
   height: 32px;
@@ -470,3 +477,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
     font-weight: bold;
   }
 }
+<<<<<<< HEAD
+=======
+
+.or-text{
+  margin: 0 0 10px 0;
+
+  @media screen and (min-width: 800px) {
+    margin-left: 0;
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 800px) {
+    width: 28%;
+  }
+}
+>>>>>>> b708fd5a118fa14863e481025b28bb1397152d92

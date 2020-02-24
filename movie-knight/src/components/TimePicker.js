@@ -2,21 +2,20 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import TimeCard from "./TimeCard";
 import ProgressBar from "./ProgressBar";
+import { timeSelectAction } from '../actions/index.js'
 
 const TimePicker = props => {
   const [timeSelect, setTimeSelect] = useState([]);
 
   const times = ["9-11 AM", "12-2 PM", "3-5 PM", "6-8 PM", "9-Midnight"];
 
-  console.log("timepage", props.daySelects);
 
   function ticketsPage() {
+    props.timeSelectAction(timeSelect)
     props.history.push("/tickets");
   }
 
-  function HomePage() {
-    props.history.push("/");
-  }
+
 
   return (
     <div>
@@ -55,4 +54,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(TimePicker);
+export default connect(mapStateToProps, { timeSelectAction })(TimePicker);

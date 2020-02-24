@@ -6,14 +6,15 @@ import { stack as Menu } from "react-burger-menu";
 export const Nav = props => {
   // import useDarkMode from "../hooks/useDarkMode";
   const [isOpen, setIsOpen] = useState(false);
-
   // console.log(props.userData.username)
 
   const logOut = () => {
     localStorage.removeItem("token");
     // toggleMenu();
-    props.history.push("/");
     localStorage.removeItem("google_username");
+    localStorage.clear()
+    setIsOpen(false);
+    props.history.push("/");
   };
 
   const homeButton = () => {
@@ -32,21 +33,24 @@ export const Nav = props => {
     }
   };
 
+  const goProfile = () => {
+    setIsOpen(false);
+  }
+
   const handleStateChange = state => {
     setIsOpen(state);
   };
 
   const closeMenu = () => {
-    console.log("hit");
     setIsOpen(false);
   };
 
   return localStorage.getItem("token") ? (
-    <>
+    <div className={props.location.pathname !== "/profile" ? null : "noMenu"}>
       <h1 onClick={() => homeButton()} className="app-name">
         Movie<span className="app-name-knight">Knight</span>
       </h1>
-      <Menu right width={"250px"} isOpen={isOpen}>
+      <Menu right width={"250px"} isOpen={isOpen} onStateChange={state => handleStateChange(state.isOpen)}>
         <NavLink
           exact
           to="/"
@@ -55,53 +59,62 @@ export const Nav = props => {
           onClick={() => closeMenu()}
         >
           Home
+        </NavLink>
+        <NavLink
+          exact
+          to="/profile"
+          id="profile"
+          className="menu-item"
+          onClick={() => goProfile()}
+        >
+          My Account
         </NavLink>
         <span onClick={() => logOut()} id="logout" className="menu-item">
           Logout
         </span>
         <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
       </Menu>
-    </>
+    </div>
   ) : (
-    <>
-      <h1 onClick={() => homeButton()} className="app-name">
-        Movie<span className="app-name-knight">Knight</span>
-      </h1>
-      <Menu
-        right
-        width={"250px"}
-        isOpen={isOpen}
-        onStateChange={state => handleStateChange(state.isOpen)}
-      >
-        <NavLink
-          exact
-          to="/"
-          id="home"
-          className="menu-item"
-          onClick={() => closeMenu()}
+      <>
+        <h1 onClick={() => homeButton()} className="app-name">
+          Movie<span className="app-name-knight">Knight</span>
+        </h1>
+        <Menu
+          right
+          width={"250px"}
+          isOpen={isOpen}
+          onStateChange={state => handleStateChange(state.isOpen)}
         >
-          Home
+          <NavLink
+            exact
+            to="/"
+            id="home"
+            className="menu-item"
+            onClick={() => closeMenu()}
+          >
+            Home
         </NavLink>
-        <NavLink
-          to="/signup"
-          id="signup"
-          className="menu-item"
-          onClick={closeMenu}
-        >
-          Sign Up
+          <NavLink
+            to="/signup"
+            id="signup"
+            className="menu-item"
+            onClick={closeMenu}
+          >
+            Sign Up
         </NavLink>
-        <NavLink
-          to="/login"
-          id="login"
-          className="menu-item"
-          onClick={closeMenu}
-        >
-          Login
+          <NavLink
+            to="/login"
+            id="login"
+            className="menu-item"
+            onClick={closeMenu}
+          >
+            Login
         </NavLink>
-        <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
-      </Menu>
-    </>
-  );
+          <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
+        </Menu>
+      </>
+    );
 };
 
 const mapStateToProps = state => {
@@ -111,4 +124,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(withRouter(Nav));
+export default withRouter(connect(mapStateToProps)(withRouter(Nav)))
