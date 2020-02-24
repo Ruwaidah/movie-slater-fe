@@ -12,7 +12,6 @@ import { withRouter } from "react-router-dom";
 export const MovieDetails = props => {
   const rating = props.location.pathname.split("=");
   const [movie, setMovie] = useState();
-  const [seeAllCasts, setSeeAllCasts] = useState(false);
 
   useEffect(() => {
     axios
@@ -26,26 +25,30 @@ export const MovieDetails = props => {
         console.log(err);
       });
   }, []);
-
+  console.log(movie)
   function runtime(num) {
     let hours = Math.floor(num / 60);
     let minutes = num % 60;
     return `${hours}hr ${minutes}m`;
   }
-
+  let firsttitle
+  let second_title
   function reverseString(str) {
     return str
       .split("-")
       .reverse()
       .join("-");
   }
-
+  if (movie) {
+    firsttitle = movie.movie.original_title.split("(")[0]
+    second_title = movie.movie.original_title.split("(")[1]
+  }
+  console.log(firsttitle)
   if (!movie) return <Loading />;
   else {
     const rate = movie.movie.vote_average.toString().replace(".", "");
-    console.log(rate)
-    if (seeAllCasts) var casts = movie.casts[0];
-    else casts = movie.casts[0].slice(0, 4);
+
+    let casts = movie.casts[0].slice(0, 4);
     return (
       <div className="movieDetails-com">
         <>
@@ -72,7 +75,7 @@ export const MovieDetails = props => {
             src={`http://image.tmdb.org/t/p/w185/${movie.movie.poster_path}`}
           />
           <div className="headers">
-            <h5 className="title">{movie.movie.original_title.includes("(") ? movie.movie.original_title.split("(")[0] : movie.movie.original_title}</h5>
+            <h5 className="title">{movie.movie.original_title.includes("(") ? movie.movie.original_title.split("(")[0] : movie.movie.original_title.includes(":") ? movie.movie.original_title.split(":")[0] : movie.movie.original_title}</h5>
             <>
               {!movie.directors[0] ? (
                 <p>
@@ -131,6 +134,8 @@ export const MovieDetails = props => {
         </div>
 
         <div className="overview">
+          <h5>{movie.movie.original_title.includes("(") ? movie.movie.original_title : movie.movie.original_title.includes(":") ?
+            movie.movie.original_title : null}</h5>
           <p>{movie.movie.overview}</p>
         </div>
         <div className="casts">

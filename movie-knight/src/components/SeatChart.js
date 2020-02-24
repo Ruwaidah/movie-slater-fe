@@ -22,7 +22,8 @@ const Seatchart = props => {
 
 
   useEffect(() => {
-    axios.get("https://movie-knight.herokuapp.com/api/seats").then(res => {
+    axios.get("https://movieknight01.herokuapp.com/api/seats").then(res => {
+      console.log(res.data)
       setSeats(res.data);
     });
   }, []);
@@ -30,7 +31,7 @@ const Seatchart = props => {
 
 
   function showtimePage() {
-   props.seatsArea(seatsSelect)
+    props.seatsArea(seatsSelect)
     props.history.push("/showtime");
   }
 
@@ -39,7 +40,7 @@ const Seatchart = props => {
 
   } else {
     return (
-      <div>
+      <div className="seats-com">
         <div className="seat-container">
           {/* <h1 className="seat-title">Where would you like to sit?</h1> */}
           <h1 className="seat-header">
@@ -50,7 +51,7 @@ const Seatchart = props => {
             <SeatsCard seats={seats} setSeatSelect={setSeatSelect} seatsSelect={seatsSelect} />
           </div>
           <div className="black-box">
-            <button className="next-button" onClick={showtimePage}>
+            <button className="next-button seats-next" onClick={showtimePage}>
               Next
           </button>
           </div>
