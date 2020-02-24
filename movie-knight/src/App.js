@@ -38,11 +38,7 @@ export function App() {
 
         <Route exact path="/" component={Dashboard} />
 
-<<<<<<< HEAD
-        <Route exact path="/details/:movieName" component={MovieDetails}/>
-=======
         <Route exact path="/details/:movieName" component={MovieDetails} />
->>>>>>> 221300e6b5db2c83c6505cecdf518bcb0b8c5ccd
 
         <Route exact path="/details" component={MovieDetails} />
 

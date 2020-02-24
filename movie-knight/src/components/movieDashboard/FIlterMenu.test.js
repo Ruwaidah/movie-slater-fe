@@ -2,9 +2,9 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import FilterMenu from "./FilterMenu.js";
 
-test('FilterMenu renders correctly',() =>{
-    expect(render(<FilterMenu/>)).toMatchSnapshot();
-   });
+// test('FilterMenu renders correctly',() =>{
+//     expect(render(<FilterMenu/>)).toMatchSnapshot();
+//    });
 
 test('FilterMenu displays', () => {
     const wrapper = render(<FilterMenu/>);

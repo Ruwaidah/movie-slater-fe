@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+// import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import StarRatings from 'react-star-ratings';
 import 'react-circular-progressbar/dist/styles.css';
 import axios from "axios";

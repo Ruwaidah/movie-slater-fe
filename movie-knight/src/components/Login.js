@@ -83,7 +83,7 @@ export const Login = props => {
             Forgot password? <span>Click here</span>
           </p>
         </div>
-        <button type="submit" className="next-button login-btn">
+        <button type="submit" className="next-button login-btn" data-testid="login-btn">
           Log In
         </button>
       </form>
