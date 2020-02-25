@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  margin-top: 20px;
+  // margin-top: 20px;
   width: 100%;
 }
 
@@ -19,6 +19,7 @@
 
 .seat-container {
   margin-top: 25%;
+  // min-height: 100vh;
 }
 
 .seat-title {
@@ -46,7 +47,7 @@
 }
 
 .screen {
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
 }
 
 
@@ -83,7 +84,8 @@
 }
 
 .seats-com {
-  min-height: 100vh;
+  width: 90%;
+  margin:0 auto;
 }
 
 

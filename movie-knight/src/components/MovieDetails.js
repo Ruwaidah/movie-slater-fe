@@ -14,7 +14,7 @@ const MovieDetails = props => {
 
   useEffect(() => {
     axios
-      .post(`https://movieknight01.herokuapp.com/api/movies/moviedetails`, {
+      .post(`http://localhost:5000/api/movies/moviedetails`, {
         title: `${props.location.pathname.slice(9)}`
       })
       .then(respone => {

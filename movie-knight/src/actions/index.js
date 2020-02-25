@@ -4,6 +4,7 @@ import axiosWithGoogle from "../utils/axiosWithGoogle";
 
 import { createBrowserHistory } from "history";
 import Search from "antd/lib/input/Search";
+import TheatresCard from "../components/showTimes/TheatresCard";
 export const history = createBrowserHistory();
 
 export const USER_LOGING_IN = "USER_LOGING_IN";
@@ -298,3 +299,26 @@ export const TIME_NEXT_BUTTON = 'TIME_NEXT_BUTTON'
 export const timeSelectAction = time => dispatch => {
   dispatch({ type: TIME_NEXT_BUTTON, payload: time })
 }
+
+
+// ******************************************************** SHOWTIMES RESULT
+export const GET_SHOWTIMES_RESULTS_LOADING = "GET_SHOWTIMES_RESULTS_LOADING";
+export const GET_SHOWTIMES_RESULTS_SUCCESS = "GET_SHOWTIMES_RESULTS_SUCCESS";
+export const GET_SHOWTIMES_RESULTS_FAILED = "GET_SHOWTIMES_RESULTS_FAILED";
+
+export const getShowTimesRsults = (data) => dispatch => {
+  dispatch({ type: GET_SHOWTIMES_RESULTS_LOADING });
+  axiosWithAuth()
+    .post(`/api/filtermovies`, data)
+    .then(respone => {
+      console.log(respone.data.map(show => show.showtimes.map(theatre => theatre.id)))
+      dispatch({ type: GET_SHOWTIMES_RESULTS_SUCCESS, payload: respone.data })
+    }
+    )
+    .catch(err =>
+      dispatch({ type: GET_SHOWTIMES_RESULTS_FAILED, payload: err.respone })
+    );
+};
+
+
+
