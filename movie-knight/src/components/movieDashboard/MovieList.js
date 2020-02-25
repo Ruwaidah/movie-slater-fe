@@ -11,9 +11,11 @@ import Loading from "../Loading.js";
 import { toggleNext, toggleNextOff } from "../../actions/index";
 
 export function MovieList(props) {
-  const [movies, setMovies] = useState([]);
-  const [searchParam, setSearchParam] = useState("");
-  const [zipCode, setZipCode] = useState(47712);
+
+  const [movies, setMovies] = useState([])
+  const [searchParam, setSearchParam] = useState("")
+  const [zipCode, setZipCode] = useState(47712)
+  const [movieSelect, setMovieSelect] = useState([]);
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
