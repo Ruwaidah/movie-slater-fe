@@ -67,6 +67,7 @@ export function MovieList(props) {
       {props.fetchingData ? (
         <Loading />
       ) : (
+
           <div className="movie-list" getByTestId="movielist" onClick={toggleMenu}>
             {movies
               .filter(movie => {
@@ -125,6 +126,7 @@ export function MovieList(props) {
               })}
           </div>
         )}
+
     </div>
   );
 }
