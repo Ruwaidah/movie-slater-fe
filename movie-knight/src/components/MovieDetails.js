@@ -8,7 +8,7 @@ import { getMovieDetail } from "../actions/index";
 import { connect } from "react-redux";
 import Loading from "./Loading.js";
 import ProgressBar from "./ProgressBar";
-import { withRouter } from "react-router-dom"; 
+import { withRouter } from "react-router-dom";
 
 
 export const MovieDetails = props => {
@@ -63,14 +63,14 @@ export const MovieDetails = props => {
               title="video"
             />
           ) : (
-            <iframe
-              src={`https://www.youtube.com/embed/${movie.videos[0].key}`}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              title="video"
-            />
-          )}
+              <iframe
+                src={`https://www.youtube.com/embed/${movie.videos[0].key}`}
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                title="video"
+              />
+            )}
         </>
         <div className="image-headers">
           <img
@@ -81,8 +81,8 @@ export const MovieDetails = props => {
               {movie.movie.original_title.includes("(")
                 ? movie.movie.original_title.split("(")[0]
                 : movie.movie.original_title.includes(":")
-                ? movie.movie.original_title.split(":")[0]
-                : movie.movie.original_title}
+                  ? movie.movie.original_title.split(":")[0]
+                  : movie.movie.original_title}
             </h5>
             <>
               {!movie.directors[0] ? (
@@ -90,10 +90,10 @@ export const MovieDetails = props => {
                   <span>Directed by N/A</span>
                 </p>
               ) : (
-                <p>
-                  <span>Directed by {movie.directors[0].name}</span>
-                </p>
-              )}
+                  <p>
+                    <span>Directed by {movie.directors[0].name}</span>
+                  </p>
+                )}
             </>
             <p>
               <span> {runtime(movie.moviedetail.runtime)}</span>
@@ -146,8 +146,8 @@ export const MovieDetails = props => {
             {movie.movie.original_title.includes("(")
               ? movie.movie.original_title
               : movie.movie.original_title.includes(":")
-              ? movie.movie.original_title
-              : null}
+                ? movie.movie.original_title
+                : null}
           </h5>
           <p>{movie.movie.overview}</p>
         </div>
@@ -167,11 +167,11 @@ export const MovieDetails = props => {
                     src={`https://res.cloudinary.com/donsjzduw/image/upload/v1580504817/hfjrl5wbkiugy4y0gmqu.jpg`}
                   />
                 ) : (
-                  <img
-                    className="cast-img"
-                    src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
-                  />
-                )}
+                    <img
+                      className="cast-img"
+                      src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
+                    />
+                  )}
                 <p>{people.name}</p>
               </div>
             ))}
@@ -189,11 +189,11 @@ export const MovieDetails = props => {
                       src={`https://res.cloudinary.com/donsjzduw/image/upload/v1580504817/hfjrl5wbkiugy4y0gmqu.jpg`}
                     />
                   ) : (
-                    <img
-                      className="dir-img"
-                      src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
-                    />
-                  )}
+                      <img
+                        className="dir-img"
+                        src={`http://image.tmdb.org/t/p/w185/${people.profile_path}`}
+                      />
+                    )}
                 </>
                 <p>{people.name}</p>
               </div>

@@ -56,7 +56,7 @@ export function MovieList(props) {
   return (
     <div className="movielist-component">
       <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
-        <p className='or-text'>or</p>
+      <p className='or-text'>or</p>
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
       <div className="filter-max">
         <FilterMenu setFilter={setFilter} filters={filters} />
@@ -70,64 +70,64 @@ export function MovieList(props) {
         <Loading />
       ) : (
 
-        <div className="movie-list" getByTestId="movielist" onClick={toggleMenu}>
-          {movies
-            .filter(movie => {
-              return (
-                (movie.title.includes(searchParam) ||
-                  movie.title.toLowerCase().includes(searchParam)) &&
-                movie.ratings &&
-                movie.maturityRating &&
-                filters.mature.includes(movie.ratings[0].code) &&
-                movie.maturityRating[0] &&
-                filters.rating.includes(
-                  Math.round(
-                    parseInt(movie.maturityRating[0].Value.split("/")[0]) / 2
-                  ).toString()
-                )
-              );
-            })
-            .sort(function(a, b) {
-              if (filters.filter === "recent") {
-                var dateA = new Date(a.releaseDate),
-                  dateB = new Date(b.releaseDate);
-                return dateB - dateA;
-              } else if (filters.filter === "old") {
-                var dateA = new Date(a.releaseDate),
-                  dateB = new Date(b.releaseDate);
-                return dateA - dateB;
-              } else if (filters.filter === "az") {
-                var nameA = a.title.toLowerCase(),
-                  nameB = b.title.toLowerCase();
-                if (nameA < nameB)
-                  //sort string ascending
-                  return -1;
-                if (nameA > nameB) return 1;
-                return 0;
-              } else if (filters.filter === "za") {
-                var nameA = a.title.toLowerCase(),
-                  nameB = b.title.toLowerCase();
-                if (nameA > nameB)
-                  //sort string ascending
-                  return -1;
-                if (nameA < nameB) return 1;
-                return 0;
-              } else {
-                return null;
-              }
-            })
-            .map(movie => {
-              return (
-                <MovieCard
-                  movie={movie}
-                  key={movie.tmsId}
-                  movieSelect={props.movieSelect}
-                  setMovieSelect={props.setMovieSelect}
-                />
-              );
-            })}
-        </div>
-      )}
+          <div className="movie-list" getByTestId="movielist" onClick={toggleMenu}>
+            {movies
+              .filter(movie => {
+                return (
+                  (movie.title.includes(searchParam) ||
+                    movie.title.toLowerCase().includes(searchParam)) &&
+                  movie.ratings &&
+                  movie.maturityRating &&
+                  filters.mature.includes(movie.ratings[0].code) &&
+                  movie.maturityRating[0] &&
+                  filters.rating.includes(
+                    Math.round(
+                      parseInt(movie.maturityRating[0].Value.split("/")[0]) / 2
+                    ).toString()
+                  )
+                );
+              })
+              .sort(function (a, b) {
+                if (filters.filter === "recent") {
+                  var dateA = new Date(a.releaseDate),
+                    dateB = new Date(b.releaseDate);
+                  return dateB - dateA;
+                } else if (filters.filter === "old") {
+                  var dateA = new Date(a.releaseDate),
+                    dateB = new Date(b.releaseDate);
+                  return dateA - dateB;
+                } else if (filters.filter === "az") {
+                  var nameA = a.title.toLowerCase(),
+                    nameB = b.title.toLowerCase();
+                  if (nameA < nameB)
+                    //sort string ascending
+                    return -1;
+                  if (nameA > nameB) return 1;
+                  return 0;
+                } else if (filters.filter === "za") {
+                  var nameA = a.title.toLowerCase(),
+                    nameB = b.title.toLowerCase();
+                  if (nameA > nameB)
+                    //sort string ascending
+                    return -1;
+                  if (nameA < nameB) return 1;
+                  return 0;
+                } else {
+                  return null;
+                }
+              })
+              .map(movie => {
+                return (
+                  <MovieCard
+                    movie={movie}
+                    key={movie.tmsId}
+                    movieSelect={props.movieSelect}
+                    setMovieSelect={props.setMovieSelect}
+                  />
+                );
+              })}
+          </div>
+        )}
 
     </div>
   );
