@@ -6,6 +6,7 @@ import { getShowTimesRsults } from '../../actions/index.js'
 import Loading from '../Loading.js'
 import TheatresCard from './TheatresCard.js'
 import TimesCard from './TimesCard.js'
+import ProgressBar from '../ProgressBar.js';
 import { act } from 'react-dom/test-utils'
 
 
@@ -74,7 +75,10 @@ const Showtime = props => {
                     </div>
             }
             )}
-
+            <div className='space'></div>
+            <div className='progress-center'>
+                <ProgressBar/>
+            </div>
         </div>
     )
 }
