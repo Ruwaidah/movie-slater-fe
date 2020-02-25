@@ -9,6 +9,7 @@ import { connect } from "react-redux";
 import Loading from "./Loading.js";
 import ProgressBar from "./ProgressBar";
 import { withRouter } from "react-router-dom"; 
+import { movieNext } from "../actions/index.js";
 
 
 export const MovieDetails = props => {
@@ -27,6 +28,10 @@ export const MovieDetails = props => {
         console.log(err);
       });
   }, []);
+  function DatePage() {
+    props.movieNext(props.location.state.movieSelect);
+    props.history.push("/date");
+  }
   console.log(movie);
   function runtime(num) {
     let hours = Math.floor(num / 60);
@@ -138,7 +143,9 @@ export const MovieDetails = props => {
               starSpacing="1px"
               name="rating"
             />
-            
+            <button className="get-tickets-button" onClick={DatePage}>
+              Get Tickets
+            </button>
           </div>
         </div>
 
@@ -213,4 +220,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, { getMovieDetail })(MovieDetails));
+export default withRouter(connect(mapStateToProps, { getMovieDetail, movieNext })(MovieDetails));
