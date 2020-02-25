@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { withRouter } from 'react-router-dom'
 import MovieList from "./MovieList";
 import "./dashboard.scss";
-import UpComingMovies from "./UpComingMovies.js";
+import  UpComingMovies  from "./UpComingMovies.js";
 import { connect } from "react-redux";
 import { movieNext } from "../../actions/index.js";
 
-const Dashboard = props => {
+export const Dashboard = props => {
   const [movieSelect, setMovieSelect] = useState([]);
   //   document.getElementById("nav").classList.toggle("menubar");
   function DatePage() {
@@ -30,7 +30,7 @@ const Dashboard = props => {
 
       {props.NextButton ? (
         <div className="black-box">
-          <button className="next-button-disable" onClick={DatePage}>
+          <button data-testid="next-btn" className="next-button-disable" onClick={DatePage}>
             Next
           </button>
         </div>

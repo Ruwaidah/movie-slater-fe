@@ -22,11 +22,11 @@ import Tickets from "./components/Tickets";
 import Showtime from "./components/showTimes/Showtime.js";
 import Profile from './components/profile/Profile.js'
 
-
 function App(props) {
   const [showMenu, setShowMenu] = useState(true)
   const [oldPath, setOldPath] = useState("/")
   console.log()
+
   return (
     <div className="App">
       <Nav setShowMenu={setShowMenu} showMenu={showMenu} setOldPath={setOldPath} />

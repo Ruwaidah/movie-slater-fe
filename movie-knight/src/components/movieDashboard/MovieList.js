@@ -10,7 +10,7 @@ import FilterMenu from "./FilterMenu.js";
 import Loading from "../Loading.js";
 import { toggleNext, toggleNextOff } from "../../actions/index";
 
-function MovieList(props) {
+export function MovieList(props) {
   const [movies, setMovies] = useState([]);
   const [searchParam, setSearchParam] = useState("");
   const [zipCode, setZipCode] = useState(47712);
@@ -54,7 +54,7 @@ function MovieList(props) {
   return (
     <div className="movielist-component">
       <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
-
+      <p className='or-text'>or</p>
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
       <div className="filter-max">
         <FilterMenu setFilter={setFilter} filters={filters} />
@@ -67,7 +67,7 @@ function MovieList(props) {
       {props.fetchingData ? (
         <Loading />
       ) : (
-          <div className="movie-list" onClick={toggleMenu}>
+          <div className="movie-list" getByTestId="movielist" onClick={toggleMenu}>
             {movies
               .filter(movie => {
                 return (

@@ -4,7 +4,7 @@ import { getUpcomingMovies } from "../../actions/index.js";
 import Loading from "../Loading.js";
 import { withRouter } from "react-router-dom";
 
-function UpComingMovies(props) {
+export function UpComingMovies(props) {
   console.log(props.upcomingMovies);
   useEffect(() => {
     props.getUpcomingMovies();

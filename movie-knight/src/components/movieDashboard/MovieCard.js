@@ -63,7 +63,7 @@ function MovieCard(props) {
           </p>
         </div>
         <p
-          onClick={() => props.history.push(`/details/${path}`)}
+          // onClick={() => props.history.push(`/details/${path}`)}
           className={active ? "movie-title-enable" : "movie-title-disable"}
         >
           {props.movie.title.length > 20
