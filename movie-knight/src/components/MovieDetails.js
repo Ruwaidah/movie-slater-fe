@@ -199,6 +199,7 @@ export const MovieDetails = props => {
               </div>
             ))}
           </div>
+          <div className='space'></div>
         </div>
         <ProgressBar />
       </div>

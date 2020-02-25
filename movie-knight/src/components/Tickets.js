@@ -63,7 +63,9 @@ const Ticket = props => {
           )
         }
       </div>
-      <ProgressBar />
+      <div className='progress-center'>
+        <ProgressBar />
+      </div>
     </div>
   );
 };
