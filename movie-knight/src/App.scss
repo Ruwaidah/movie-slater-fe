@@ -58,7 +58,7 @@ body {
   border: none;
   color: #706e70;
   outline: none;
-  height: 40px;
+  height: 48px;
 }
 
 .dayPicker-com{ 
@@ -84,11 +84,11 @@ body {
   background-color: #262526;
 
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 3% 0;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
   border-radius: 5px;
-  height: 40px;
+  height: 48px;
 }
 
 .question {
@@ -112,7 +112,7 @@ body {
   flex-direction: column;
   margin-top: 8%;
 
-  .signUp-btn{
+  .signUp-btn {
     background-color: $disabled_action_button;
     width: 98%;
     color: $mid_text;
@@ -123,9 +123,7 @@ body {
     outline: none;
     font-size: 18px;
     margin-top: 10px;
-   
   }
-
 
   form div {
     display: flex;
@@ -165,7 +163,6 @@ body {
   }
 
   .member-p {
-    margin-top: 40px;
     text-align: start;
     p {
       position: absolute;
@@ -176,7 +173,6 @@ body {
       }
     }
   }
-
 
   .login-btn {
     position: absolute;
@@ -194,7 +190,8 @@ body {
     height: 45px;
     outline: none;
     font-size: 16px;
-    margin-top: 40px;
+    margin-left: 5px;
+    margin-top: 22px;
   }
 
   .forgot-psw {
@@ -311,6 +308,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 99;
 
   width: 300px;
   background-color: black;
@@ -334,10 +332,9 @@ body {
   font-size: 26px;
 }
 
-
 .noMenu {
   display: none;
-  h1{
+  h1 {
     display: none;
   }
 }
