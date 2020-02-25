@@ -4,6 +4,10 @@
   margin-top: 2%;
   padding-top: 70px;
 }
+.movielist-component {
+  width:90%;
+  margin: 0 auto
+}
 
 .movie-list {
   display: flex;
@@ -304,7 +308,7 @@
   position: fixed;
   width: 24px;
   height: 24px;
-  right: 36px;
+  right: 32px;
   top: 36px;
 }
 
@@ -332,7 +336,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100vh;
+
   top: 0px;
+
 }
 
 /* General sidebar styles */
@@ -341,6 +347,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   overflow: hidden !important;
+
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -394,6 +401,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .header-dash {
+  width:90%;
+  margin: 0 auto;
   font-size: 18px;
   margin-bottom: 10px;
 }
@@ -477,8 +486,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
     font-weight: bold;
   }
 }
-<<<<<<< HEAD
-=======
 
 .or-text{
   margin: 0 0 10px 0;
@@ -492,4 +499,4 @@ Note: Beware of modifying this element as it can break the animations - you shou
     width: 28%;
   }
 }
->>>>>>> b708fd5a118fa14863e481025b28bb1397152d92
+

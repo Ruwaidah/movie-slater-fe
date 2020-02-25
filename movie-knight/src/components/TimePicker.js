@@ -18,7 +18,7 @@ const TimePicker = props => {
 
 
   return (
-    <div>
+    <div className="timePicker-com">
       <div className="time-container">
         <h2 className="question">What time would you like to go?</h2>
 
