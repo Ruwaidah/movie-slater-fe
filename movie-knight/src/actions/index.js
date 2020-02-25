@@ -311,7 +311,6 @@ export const getShowTimesRsults = (data) => dispatch => {
   axiosWithAuth()
     .post(`/api/filtermovies`, data)
     .then(respone => {
-      console.log(respone.data.map(show => show.showtimes.map(theatre => theatre.id)))
       dispatch({ type: GET_SHOWTIMES_RESULTS_SUCCESS, payload: respone.data })
     }
     )

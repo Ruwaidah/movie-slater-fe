@@ -3,7 +3,7 @@ import axios from 'axios';
 const axiosWithAuth = () => {
     const token = localStorage.getItem('token');
     return axios.create({
-        baseURL: "http://localhost:5000",
+        baseURL: "https://movieknight01.herokuapp.com",
         headers: {
             authorization: token
         }
