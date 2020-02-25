@@ -19,7 +19,7 @@ const ProgressBar = props => {
     <div className="progress-bar">
       <img
         id="search"
-        className={props.location.pathname.slice(1,7) === 'details' ? 'icons brightness' : 'icons'}
+        className={props.location.pathname.slice(1,8) === 'details' ? 'icons brightness' : 'icons'}
         src={searchmovie}
         alt="searchmovie logo"
         onClick={() => props.history.push("/")}

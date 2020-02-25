@@ -50,11 +50,18 @@ const Ticket = props => {
           <button className={active ? 'no button' :'button no-off'  }  onClick={() => toggleClass() } >No</button>
           <button className={active ? 'button yes' : 'button yes-off' } onClick={() => toggleClass() }>Yes</button>
         </div>
-        {ticket <= 0 ? null : (
-          <button className="next button" onClick={seatPage}>
-            Next
+        {ticket <= 0 ? 
+        
+          <button className="next-off button" >
+              Next
           </button>
-        )}
+        : 
+          (
+            <button className="next button" onClick={seatPage}>
+              Next
+            </button>
+          )
+        }
       </div>
       <ProgressBar />
     </div>

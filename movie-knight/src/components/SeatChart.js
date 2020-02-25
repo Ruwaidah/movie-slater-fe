@@ -50,11 +50,21 @@ const Seatchart = props => {
             <img className="screen" src={screen} alt="movie theater screen" />
             <SeatsCard seats={seats} setSeatSelect={setSeatSelect} seatsSelect={seatsSelect} />
           </div>
-          <div className="black-box">
-            <button className="next-button seats-next" onClick={showtimePage}>
-              Next
-          </button>
-          </div>
+          {
+
+            seatsSelect.front.length <= 0 && seatsSelect.left.length <= 0 && seatsSelect.middle.length <= 0 && seatsSelect.right.length <= 0 && seatsSelect.end.length <= 0 ?
+              <div className="black-box">
+                <button className="next-button seats-next">
+                    Next
+                </button>
+              </div>
+            :
+              <div className="black-box">
+                <button className="next-button-active seats-next" onClick={showtimePage}>
+                    Next
+                </button>
+              </div>
+          }
         </div>
         <ProgressBar />
       </div >

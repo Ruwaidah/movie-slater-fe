@@ -46,12 +46,20 @@ const DataPicker = props => {
           })}
         </div>
       </div>
-
-      <div className="black-box">
-        <button className="next-button" onClick={timePage}>
-          Next
-        </button>
-      </div>
+      {
+          daySelect.length === 0 ?
+          <div className="black-box">
+            <button className="next-button">
+              Next
+            </button>
+          </div>
+          :
+          <div className="black-box">
+            <button className="next-button-active" onClick={timePage}>
+              Next
+            </button>
+          </div>
+        }
       <ProgressBar />
     </div>
   );
