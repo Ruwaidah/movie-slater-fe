@@ -33,6 +33,22 @@
 .next-button {
   background-color: $disabled_action_button;
   width: 90%;
+  color: $disabled_text;
+  margin: 0 auto;
+  border: none;
+  border-radius: 4px;
+  height: 45px;
+  outline: none;
+  font-size: 18px;
+  margin-top: 10px;
+  position: absolute;
+  bottom: 65px;
+  left: 5%;
+}
+
+.next-button-active{
+  background-color: $enabled_action_button;
+  width: 90%;
   color: $mid_text;
   margin: 0 auto;
   border: none;
@@ -42,33 +58,28 @@
   font-size: 18px;
   margin-top: 10px;
   position: absolute;
-  bottom: 75px;
+  bottom: 65px;
   left: 5%;
 }
-
-.screen {
-  // margin-bottom: 10px;
-}
-
 
 .middle-section {
  display: flex;
 
  .left {
-  width: 25%;
-  margin-top: 0
-}
+    width: 25%;
+    margin-top: 0
+  }
 
-.mid {
-  width: 50%;
-  margin-top: 0
-}
+  .mid {
+    width: 50%;
+    margin-top: 0
+  }
 
-.right {
-  width: 25%;
-  margin-top: 0
+  .right {
+    width: 25%;
+    margin-top: 0
 
-}
+  }
 
 }
 
@@ -79,9 +90,15 @@
 
 .seats-selected {
   .seat {
-    background: rgb(205, 190, 50);
+    background-color: #faad14 ;
   }
 }
+
+.seats-border{
+  border: 3px solid #4294f4;
+  border-radius: 5px;
+}
+
 
 .seats-com {
   width: 90%;

@@ -44,21 +44,21 @@ function SeatsCard(props) {
         }
     }
     return (<>
-        <div className={active.front ? "seat-chart front seats-selected" : "seat-chart front"} onClick={() => pickSeat("front", frontArea)}>
+        <div className={active.front ? "seat-chart front seats-selected seats-border" : "seat-chart front"} onClick={() => pickSeat("front", frontArea)}>
             {frontArea.map(seat => <span key={seat.id} className="seat front-seat"></span>)}
         </div>
         <div className="middle-section" >
-            <div className={active.left ? "seat-chart left seats-selected" : "seat-chart left"} onClick={() => pickSeat("left", leftArea)}>
+            <div className={active.left ? "seat-chart left seats-selected seats-border" : "seat-chart left"} onClick={() => pickSeat("left", leftArea)}>
                 {leftArea.map(seat => <span key={seat.id} className="seat left-seat"></span>)}
             </div>
-            <div className={active.middle ? "seat-chart mid seats-selected" : "seat-chart mid"} onClick={() => pickSeat("middle", midArea)}>
+            <div className={active.middle ? "seat-chart mid seats-selected seats-border" : "seat-chart mid"} onClick={() => pickSeat("middle", midArea)}>
                 {midArea.map(seat => <span key={seat.id} className="seat mid-seat"></span>)}
             </div>
-            <div className={active.right ? "seat-chart right seats-selected" : "seat-chart right"} onClick={() => pickSeat("right", rightArea)}>
+            <div className={active.right ? "seat-chart right seats-selected seats-border" : "seat-chart right"} onClick={() => pickSeat("right", rightArea)}>
                 {rightArea.map(seat => <span key={seat.id} className="seat right-seat"></span>)}
             </div>
         </div>
-        <div className={active.end ? "seat-chart end seats-selected" : "seat-chart end"} onClick={() => pickSeat("end", endArea)} >
+        <div className={active.end ? "seat-chart end seats-selected seats-border" : "seat-chart end"} onClick={() => pickSeat("end", endArea)} >
             {endArea.map(seat => <span key={seat.id} className="seat end-seat"></span>)}
         </div>
     </>)
