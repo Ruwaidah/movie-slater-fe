@@ -11,20 +11,13 @@
  You can find the deployed project at https://movieknight.dev/.
 
 ## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Addison Hill](https://github.com/addison-hill)                                        |                                       [Bradley Peterson](https://github.com/Boltsnut24)                                        |                                       [John Rhee](https://github.com/john-rhee)
-|                                       [Krunal Patel](https://github.com/Krunal1997patel)                                         |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | 
-|                      [<img src="https://avatars1.githubusercontent.com/u/53580800?s=400&v=4" width = "200" />](https://github.com/addison-hill)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ5LQNQ5T-748b164f3522-512" width = "200" />](https://github.com/Boltsnut24)                       |                      [<img src="https://avatars0.githubusercontent.com/u/52613830?s=400&v=4" width = "200" />](https://github.com/john-rhee)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UMNR6SSE9-a8420b436b44-512" width = "200" />](https://github.com/Krunal1997patel)                       |
+|                                       [Nicolas Janes](https://github.com/nijanes97)                                        |                                       [Ruwaidah Alfakhri](https://github.com/Ruwaidah)                                        |                                       [Monique Soto](https://github.com/MoniqueSoto)                                        |                                       [Harper Atlas](https://github.com/harperatlas)                                        |
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                      [<img src="https://avatars3.githubusercontent.com/u/50849836?s=400&v=4" width = "200" />](https://github.com/nijanes97)                       |                      [<img src="https://avatars1.githubusercontent.com/u/37042760?s=400&v=4" width = "200" />](https://github.com/Ruwaidah)                       |                      [<img src="https://avatars1.githubusercontent.com/u/51135965?s=400&v=4" width = "200" />](https://github.com/MoniqueSoto)                       |                      [<img src="https://ca.slack-edge.com/T4JUEB3ME-UFNFDCRHA-ab31d15bc125-512" width = "200" />](https://github.com/harperatlas)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | 
-
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 <br>
 <br>
-
-
 
 🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
 
