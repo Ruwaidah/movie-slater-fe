@@ -3,7 +3,7 @@ import "./App.scss";
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
 import Login from "./components/Login";
-import Signup from "./components/Signup";
+import {Signup} from "./components/Signup";
 import Dashboard from "./components/movieDashboard/Dashboard";
 import OwnerLogin from "./components/OwnerLogin";
 import OwnerSignup from "./components/OwnerSignup";

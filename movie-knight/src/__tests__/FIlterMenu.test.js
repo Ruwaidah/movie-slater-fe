@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import FilterMenu from "./FilterMenu.js";
+import FilterMenu from "../components/movieDashboard/FilterMenu.js";
 
 // test('FilterMenu renders correctly',() =>{
 //     expect(render(<FilterMenu/>)).toMatchSnapshot();

@@ -1,78 +1,48 @@
-import React from 'react';
-import { render } from '@testing-library/react';
+import React from "react";
+import { cleanup } from "@testing-library/react";
+import App from "../App";
+import { Login } from "../components/Login";
+import Signup from "../components/Signup";
+import OwnerLogin from "../components/OwnerLogin";
+import OwnerSignup from "../components/OwnerSignup";
+import { Nav } from "../components/Nav";
+import Dashboard from "../components/movieDashboard/Dashboard";
+import FilterMenu from "../components/movieDashboard/FilterMenu";
+import { MovieDetails } from "../components/MovieDetails";
+import Availability from "../components/Availability";
+import Checkout from "../components/Checkout";
+import Event from "../components/Event";
+import OwnerDashboard from "../components/OwnerDashboard";
+import MakeSeatingChart from "../components/MakeSeatingChart";
+import PrivateRoute from "../components/PrivateRoute";
+import { renderWithRedux } from "./storeFactory";
 
-import App from '../App';
-import Login from '../components/Login';
-import Signup from '../components/Signup';
-import OwnerLogin from '../components/OwnerLogin';
-import OwnerSignup from '../components/OwnerSignup';
-import ReactDOM from 'react-dom';
-import Nav from '../components/Nav';
-import Dashboard from '../components/movieDashboard/Dashboard.js';
-import MovieDetails from '../components/MovieDetails';
-import Availability from '../components/Availability';
-import Checkout from '../components/Checkout';
-import Event from '../components/Event';
-import OwnerDashboard from '../components/OwnerDashboard';
-import MakeSeatingChart from '../components/MakeSeatingChart';
-import PrivateRoute from '../components/PrivateRoute';
+afterEach(cleanup);
 
-// test('App is rendering', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<App />, div);
-//   ReactDOM.unmountComponentAtNode(div);
-// })
+test("Login is rendering", () => {
+  renderWithRedux(<Login />);
+});
 
-// test('Login is rendering', () =>{
-//   render(<Login/>);
-// })
+test("Signup is rendering", () => {
+  renderWithRedux(<Signup />);
+});
 
-// test('Signup is rendering', () =>{
-//   render(<Signup/>);
-// })
+test("FilterMenu is rendering", () => {
+  renderWithRedux(<FilterMenu />);
+});
 
-// test('OwnerLogin is rendering', () =>{
-//   render(<OwnerLogin/>);
-// })
+test("Checkout is rendering", () => {
+  renderWithRedux(<Checkout />);
+});
 
-// test('OwnerSignup is rendering', () =>{
-//   render(<OwnerSignup/>);
-// })
+test("Event is rendering", () => {
+  renderWithRedux(<Event />);
+});
 
-// test('Nav is rendering', () =>{
-//   render(<Nav/>);
-// })
+test("OwnerDashboard is rendering", () => {
+  renderWithRedux(<OwnerDashboard />);
+});
 
-// test('Dashboard is rendering', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<Dashboard />, div);
-//   ReactDOM.unmountComponentAtNode(div);
-// })
-
-// test('MovieDetails is rendering', () => {
-//   const div = document.createElement('div');
-//   ReactDOM.render(<MovieDetails />, div);
-//   ReactDOM.unmountComponentAtNode(div);
-// })
-
-test('Availability is rendering', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Availability />, div);
-  ReactDOM.unmountComponentAtNode(div);
-})
-
-test('Checkout is rendering', () => {
-  render(<Checkout />);
-})
-
-test('Event is rendering', () => {
-  render(<Event />);
-})
-
-test('OwnerDashboard is rendering', () => {
-  render(<OwnerDashboard />);
-})
-
-test('MakeSeatingChart is rendering', () => {
-  render(<MakeSeatingChart />);
-})
+test("MakeSeatingChart is rendering", () => {
+  renderWithRedux(<MakeSeatingChart />);
+});

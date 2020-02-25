@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 //Oauth//
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
-function Signup(props) {
+export function Signup(props) {
 
   const [signup, setsignup] = useState({
     username: "",
@@ -113,7 +113,7 @@ function Signup(props) {
           />
         </div>{" "}
 
-        <button type="submit" className="signUp-btn">
+        <button type="submit" className="signUp-btn" data-testid="signUp-button">
           Sign Up
         </button>
       </form>
