@@ -11,18 +11,10 @@ import Loading from "../Loading.js";
 import { toggleNext, toggleNextOff } from "../../actions/index";
 
 export function MovieList(props) {
-<<<<<<< HEAD
   const [movies, setMovies] = useState([]);
   const [searchParam, setSearchParam] = useState("");
   const [zipCode, setZipCode] = useState(47712);
-=======
 
-  const [movies, setMovies] = useState([])
-  const [searchParam, setSearchParam] = useState("")
-  const [zipCode, setZipCode] = useState(47712)
-  const [movieSelect, setMovieSelect] = useState([]);
-
->>>>>>> b708fd5a118fa14863e481025b28bb1397152d92
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
@@ -49,7 +41,7 @@ export function MovieList(props) {
 
   useEffect(() => {
     makeCall();
-    props.getMovie(zipCode);
+    // props.getMovie(zipCode);
   }, [zipCode]);
 
   // useEffect(() => {
@@ -70,12 +62,13 @@ export function MovieList(props) {
         {props.movieSelect.length == 3 ? (
           <p className="max-num">Max Number</p>
         ) : (
-          <p className="max-num"></p>
-        )}
+            <p className="max-num"></p>
+          )}
       </div>
       {props.fetchingData ? (
         <Loading />
       ) : (
+
         <div className="movie-list" getByTestId="movielist" onClick={toggleMenu}>
           {movies
             .filter(movie => {
@@ -134,6 +127,7 @@ export function MovieList(props) {
             })}
         </div>
       )}
+
     </div>
   );
 }

@@ -32,10 +32,15 @@ import {
   USER_BYID_LOADING,
   USER_BYID_SUCCESS,
   USER_BYID_FAILURE,
-  TIME_NEXT_BUTTON
+  TIME_NEXT_BUTTON,
+  GET_SHOWTIMES_RESULTS_LOADING,
+  GET_SHOWTIMES_RESULTS_SUCCESS,
+  GET_SHOWTIMES_RESULTS_FAILED,
+
 } from "../actions/index";
 
 const initialState = {
+  results: [],
   movieList: [],
   userData: {},
   fetchingData: false,
@@ -48,7 +53,8 @@ const initialState = {
   daySelects: [],
   ticketsNumber: 0,
   seatsSelects: [],
-  timeSelects: []
+  timeSelects: [],
+  ticket: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -297,6 +303,32 @@ const reducer = (state = initialState, action) => {
         ...state,
         timeSelects: action.payload
       }
+
+
+    //  ******************************************** Get Results
+    case GET_SHOWTIMES_RESULTS_LOADING:
+      return {
+        ...state,
+        fetchingData: true,
+        error: ""
+      }
+
+    case GET_SHOWTIMES_RESULTS_SUCCESS:
+      return {
+        ...state,
+        fetchingData: false,
+        error: "",
+        results: action.payload
+      }
+
+    case GET_SHOWTIMES_RESULTS_FAILED:
+      return {
+        ...state,
+        fetchingData: false,
+        error: action.payload
+      }
+
+
     default:
       return state;
   }

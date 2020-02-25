@@ -19,7 +19,7 @@ import DataPicker from "./components/DatePicker";
 import TimePicker from "./components/TimePicker";
 import SeatChart from "./components/SeatChart";
 import Tickets from "./components/Tickets";
-import Showtime from "./components/Showtime";
+import Showtime from "./components/showTimes/Showtime.js";
 import Profile from './components/profile/Profile.js'
 
 function App(props) {

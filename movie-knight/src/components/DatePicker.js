@@ -28,7 +28,7 @@ const DataPicker = props => {
   }
 
   return (
-    <div>
+    <div className="dayPicker-com">
       <div className="day-container">
         <h2 className="question">When would you like to go?</h2>
 
