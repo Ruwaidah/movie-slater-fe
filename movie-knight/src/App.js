@@ -44,6 +44,8 @@ function App(props) {
       <Route exact path="/tickets" component={Tickets} />
 
       <Route exact path="/showtime" component={Showtime} />
+
+      <Route exact path="*" component={Dashboard} />
       </Switch>
     </div>
   );
