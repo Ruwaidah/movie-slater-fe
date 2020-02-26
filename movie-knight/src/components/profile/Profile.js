@@ -11,7 +11,7 @@ import Loading from '../Loading.js'
 
 function Profile(props) {
     console.log(localStorage.getItem("googleId"))
-    console.log(props.userData)
+    console.log(props.userInfo)
     let image;
     let para;
     const [img, setImage] = useState();
@@ -77,7 +77,7 @@ function Profile(props) {
     else image = noImage
 
 
-    if (props.fetchingData || !props.userData) return <Loading />
+    if (props.fetchingData || !props.userInfo) return <Loading />
     return (
         <div className="profile-container" >
 
@@ -102,7 +102,7 @@ function Profile(props) {
                     <img alt="profileImage" src={image} onClick={() => changeImage()} />
                 </div>
                 <div className="name-setting">
-                    <h3>{props.userData.username ? props.userData.username : props.userData.name}</h3>
+                    <h3>{props.userInfo.username ? props.userInfo.username : props.userInfo.name}</h3>
                     <div className="setting">
                         <img alt="setting" src={setting} />
                         <p>Edit Setting</p>
@@ -110,7 +110,7 @@ function Profile(props) {
                 </div>
             </div>
             <div className="theatres">
-                {props.userData.theatres && props.userData.theatres.map(theatre => (
+                {props.userInfo.theatres && props.userInfo.theatres.map(theatre => (
                     <div>
                         <p>{theatre.theatre}</p>
                         <p>{theatre.street}</p>
@@ -133,7 +133,8 @@ const mapStateToProps = state => {
     return {
         movieList: state.movieList,
         fetchingData: state.fetchingData,
-        userData: state.userData
+        userData: state.userData,
+        userInfo: state.userInfo
     };
 };
 export default connect(mapStateToProps, { getUserById, updateUser, updateUserData })(Profile);
