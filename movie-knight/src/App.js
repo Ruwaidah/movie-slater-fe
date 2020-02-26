@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.scss";
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Switch } from "react-router-dom";
 import { connect } from 'react-redux'
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
@@ -22,6 +22,7 @@ function App(props) {
   return (
     <div className="App">
       <Nav setShowMenu={setShowMenu} showMenu={showMenu} setOldPath={setOldPath} />
+      <Switch>
       <Route path="/profile" render={(props) => <Profile {...props} setShowMenu={setShowMenu} />} />
 
       <Route exact path="/login" component={Login} />
@@ -44,6 +45,8 @@ function App(props) {
 
       <Route exact path="/showtime" component={Showtime} />
 
+      <Route exact path="*" component={Dashboard} />
+      </Switch>
     </div>
   );
 }
