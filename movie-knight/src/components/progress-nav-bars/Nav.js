@@ -40,7 +40,7 @@ export const Nav = props => {
       <Menu right width={"250px"} isOpen={isOpen} onStateChange={state => handleStateChange(state.isOpen)}>
         <NavLink
           exact
-          to="/#/"
+          to="/"
           id="home"
           className="menu-item"
           onClick={() => closeMenu()}
