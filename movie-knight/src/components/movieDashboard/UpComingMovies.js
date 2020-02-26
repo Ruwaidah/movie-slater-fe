@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getUpcomingMovies } from "../../actions/index.js";
 import Loading from "../Loading.js";
 import { withRouter } from "react-router-dom";
 
 export function UpComingMovies(props) {
-  const commingSoon = () =>
-    getUpcomingMovies();
 
-  commingSoon()
+
+
+
+  useEffect(() => {
+    props.getUpcomingMovies();
+  }, [])
 
 
   if (!props.movieList) return <Loading />;
