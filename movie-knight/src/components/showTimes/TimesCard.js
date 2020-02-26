@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './showtime.scss'
-import axio from 'axios'
-import Loading from '../Loading.js'
-
-
 
 const TimesCard = props => {
     const [isSelect, setIsSelect] = useState({
-        clicked: false,
-        time: ""
+        clicked: false
 
     })
 
+
+
     useEffect(() => {
-        setIsSelect(false)
+        setIsSelect({ clicked: false })
     }, [props.active])
 
     const picked = (data) => {
         props.setActive(!props.active)
         setTimeout(() => {
             setIsSelect({
-                [isSelect.time]: data,
                 clicked: !isSelect.clicked
             })
         }, [])
     }
+
 
     return (
         <>

@@ -10,7 +10,8 @@ import Loading from '../Loading.js'
 
 
 function Profile(props) {
-    console.log(localStorage.getItem("image"))
+    console.log(localStorage.getItem("googleId"))
+    console.log(props.userData)
     let image;
     let para;
     const [img, setImage] = useState();
@@ -84,10 +85,10 @@ function Profile(props) {
             <div className="profile-nav" >
                 <h3>Profile</h3>
                 <div>
-                    <img src={Close} onClick={() => exit()} />
+                    <img src={Close} alt="exit" onClick={() => exit()} />
                 </div>
             </div>
-            {viewImage ? <div className="showImage"><img src={preview ? preview : image} />
+            {viewImage ? <div className="showImage"><img alt="profileImage" src={preview ? preview : image} />
                 <form onSubmit={saveImage}>
                     <input type="file" onChange={onImageChange} />
                     <button type="submit">Save</button>
@@ -98,15 +99,28 @@ function Profile(props) {
             {/* Header */}
             <div className="header" >
                 <div className="profile-image">
-                    <img src={image} onClick={() => changeImage()} />
+                    <img alt="profileImage" src={image} onClick={() => changeImage()} />
                 </div>
                 <div className="name-setting">
                     <h3>{props.userData.username ? props.userData.username : props.userData.name}</h3>
                     <div className="setting">
-                        <img src={setting} />
+                        <img alt="setting" src={setting} />
                         <p>Edit Setting</p>
                     </div>
                 </div>
+            </div>
+            <div className="theatres">
+                {props.userData.theatres && props.userData.theatres.map(theatre => (
+                    <div>
+                        <p>{theatre.theatre}</p>
+                        <p>{theatre.street}</p>
+                        <p>{theatre.state}</p>
+
+                        <p>{theatre.city}</p>
+                        <p>{theatre.zip}</p>        </div>
+                )
+
+                )}
             </div>
 
         </div>

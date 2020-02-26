@@ -1,10 +1,5 @@
-import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import axiosWithGoogle from "../utils/axiosWithGoogle";
-
 import { createBrowserHistory } from "history";
-import Search from "antd/lib/input/Search";
-import TheatresCard from "../components/showTimes/TheatresCard";
 export const history = createBrowserHistory();
 
 export const USER_LOGING_IN = "USER_LOGING_IN";
@@ -12,13 +7,10 @@ export const USER_LOGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
 export const USER_LOGING_IN_FAILURE = "USER_LOGING_IN_FAILURE";
 
 export const login = loginData => dispatch => {
-  console.log(loginData)
   dispatch({ type: USER_LOGING_IN });
-  console.log(localStorage.getItem("token"))
   axiosWithAuth()
     .post("/api/auth/login", loginData)
     .then(response => {
-      console.log(response)
       localStorage.setItem("userId", response.data.user.id);
       localStorage.setItem("token", response.data.token);
       dispatch(
@@ -70,9 +62,11 @@ export const getUserById = () => dispatch => {
     path = `oauth/${localStorage.getItem("googleId")} `
   else if (localStorage.getItem("userId"))
     path = `auth/${localStorage.getItem("userId")} `
+  console.log(path)
   axiosWithAuth()
     .get(`/api/${path}`)
     .then(response => {
+      console.log(response.data)
       dispatch(
         { type: USER_BYID_SUCCESS, payload: response.data.user },
       )
@@ -156,45 +150,7 @@ export const signUpGoogle = signUpData => dispatch => {
     );
 };
 
-export const THEATER_USER_LOGING_IN = "THEATER_USER_LOGING_IN";
-export const THEATER_USER_LOGING_IN_SUCCESS = "THEATER_USER_LOGING_IN_SUCCESS";
-export const THEATER_USER_LOGING_IN_FAILURE = "THEATER_USER_LOGING_IN_FAILURE";
 
-export const theaterLogin = loginData => dispatch => {
-  dispatch({ type: THEATER_USER_LOGING_IN });
-
-  axiosWithAuth()
-    .post("/api/auth/owner/login", loginData)
-    .then(response =>
-      dispatch(
-        { type: THEATER_USER_LOGING_IN_SUCCESS, payload: response.data.user },
-        localStorage.setItem("token", response.data.token)
-      )
-    )
-    .catch(err =>
-      dispatch({ type: THEATER_USER_LOGING_IN_FAILURE, payload: err.response })
-    );
-};
-
-export const THEATER_USER_SIGNING = "THEATER_USER_SIGNING";
-export const THEATER_USER_SIGNING_SUCCESS = "THEATER_USER_SIGNING_SUCCESS";
-export const THEATER_USER_SIGNING_FAILURE = "THEATER_USER_SIGNING_FAILURE";
-
-export const TheaterSignUp = signUpData => dispatch => {
-  dispatch({ type: THEATER_USER_SIGNING });
-
-  axiosWithAuth()
-    .post("/api/auth/owner/register", signUpData)
-    .then(response =>
-      dispatch(
-        { type: THEATER_USER_SIGNING_SUCCESS, payload: response.data.user },
-        localStorage.setItem("token", response.data.token)
-      )
-    )
-    .catch(err =>
-      dispatch({ type: THEATER_USER_SIGNING_FAILURE, payload: err.response })
-    );
-};
 
 //GET MOVIES WIHTOUT LOGIN//
 export const GET_MOVIES_START = "GET_MOVIES_START";
@@ -311,7 +267,12 @@ export const getShowTimesRsults = (data) => dispatch => {
   axiosWithAuth()
     .post(`/api/filtermovies`, data)
     .then(respone => {
-      dispatch({ type: GET_SHOWTIMES_RESULTS_SUCCESS, payload: respone.data })
+      const theatres = respone.data.map(movies => movies.showtimes.map(theater => theater.id))
+      console.log(theatres)
+      axiosWithAuth().post("/api/theaters", { theatres: theatres }).then(data => {
+        dispatch({ type: GET_SHOWTIMES_RESULTS_SUCCESS, payload: [respone.data, data.data] })
+      })
+
     }
     )
     .catch(err =>
@@ -320,4 +281,22 @@ export const getShowTimesRsults = (data) => dispatch => {
 };
 
 
+
+// ******************************************* ADD FAVORITE THEATRES
+export const ADD_FAVORITE_THEATRES_SUCCESS = "ADD_FAVORITE_THEATRES_SUCCESS";
+
+export const getfavoriteTheatres = (data) => dispatch => {
+  console.log(data)
+  let path;
+  if (localStorage.getItem("googleId"))
+    path = `googleId=${localStorage.getItem("googleId")} `
+  else if (localStorage.getItem("userId"))
+    path = `userId=${localStorage.getItem("userId")} `
+  axiosWithAuth()
+    .post(`/api/theatres/favorite?${path}`, data)
+    .then(response => console.log(response.data)
+    )
+    .catch(err =>
+      console.log(err));
+};
 

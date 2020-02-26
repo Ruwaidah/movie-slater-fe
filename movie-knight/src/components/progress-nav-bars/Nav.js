@@ -4,13 +4,10 @@ import { connect } from "react-redux";
 import { stack as Menu } from "react-burger-menu";
 
 export const Nav = props => {
-  // import useDarkMode from "../hooks/useDarkMode";
   const [isOpen, setIsOpen] = useState(false);
-  // console.log(props.userData.username)
 
   const logOut = () => {
     localStorage.removeItem("token");
-    // toggleMenu();
     localStorage.removeItem("google_username");
     localStorage.clear()
     setIsOpen(false);
@@ -21,17 +18,7 @@ export const Nav = props => {
     props.history.push("/");
   };
 
-  var userName = () => {
-    if (props.userData.username) {
-      return `${props.userData.username}`;
-    } else if (props.userData.username && localStorage.google_username) {
-      return `${props.userData.username}`;
-    } else if (localStorage.google_username) {
-      return `${localStorage.google_username}`;
-    } else {
-      return "";
-    }
-  };
+
 
   const goProfile = () => {
     setIsOpen(false);

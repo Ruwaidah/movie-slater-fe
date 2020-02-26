@@ -107,6 +107,8 @@ body {
 // Login Component // SignUp Component
 .login-com,
 .signup-com {
+  width:90%;
+  margin:0 auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

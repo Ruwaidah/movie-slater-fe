@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./seatChart.scss";
 import { connect } from 'react-redux'
-import { seatsArea } from '../actions/index.js'
+import { seatsArea } from '../../actions/index.js'
 
 function SeatsCard(props) {
     const [active, setActive] = useState({
@@ -41,6 +41,8 @@ function SeatsCard(props) {
                 if (!active.end) props.setSeatSelect({ ...props.seatsSelect, "end": array })
                 else props.setSeatSelect({ ...props.seatsSelect, "end": [] })
                 return setActive({ ...active, end: !active.end })
+            default:
+                return
         }
     }
     return (<>

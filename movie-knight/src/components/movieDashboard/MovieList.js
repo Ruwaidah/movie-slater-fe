@@ -10,44 +10,31 @@ import FilterMenu from "./FilterMenu.js";
 import Loading from "../Loading.js";
 import { toggleNext, toggleNextOff } from "../../actions/index";
 
+
 export function MovieList(props) {
 
   const [movies, setMovies] = useState([])
   const [searchParam, setSearchParam] = useState("")
   const [zipCode, setZipCode] = useState(47712)
-  const [movieSelect, setMovieSelect] = useState([]);
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
     mature: ["G", "PG", "PG-13", "R"]
   });
-  //Checkbox toggle
 
-  // useEffect(() => {
-  //   if (props.movieSelect.length > 0) {
-  //     props.toggleNext();
-  //   } else if (props.movieSelect.length === 0) {
-  //     props.toggleNextOff();
-  //   }
-  // })
 
   function makeCall() {
     axios
-      .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipCode}`)
+      .get(`http://localhost:5000/api/movies?zip=${zipCode}`)
       .then(response => {
-        console.log(response);
         setMovies(response.data);
       });
   }
 
   useEffect(() => {
     makeCall();
-    // props.getMovie(zipCode);
   }, [zipCode]);
 
-  // useEffect(() => {
-  //   props.toggleNext(props.movieSelect);
-  // }, []);
 
   const toggleMenu = () => {
     document.getElementById("filter").classList.remove("toggle-menu2");
