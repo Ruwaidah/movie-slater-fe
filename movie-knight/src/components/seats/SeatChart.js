@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./seatChart.scss";
-import Loading from "./Loading";
-import screen from "./images/screen.svg";
-import ProgressBar from "./ProgressBar";
+import Loading from "../Loading";
+import screen from "../images/screen.svg";
+import ProgressBar from "../progress-nav-bars/ProgressBar.js";
 import { connect } from 'react-redux'
-import { Avatar } from "antd";
-import { seatsArea } from '../actions/index.js'
+import { seatsArea } from '../../actions/index.js'
 import SeatsCard from "./SeatsCard.js"
 
 
@@ -50,11 +49,21 @@ const Seatchart = props => {
             <img className="screen" src={screen} alt="movie theater screen" />
             <SeatsCard seats={seats} setSeatSelect={setSeatSelect} seatsSelect={seatsSelect} />
           </div>
-          <div className="black-box">
-            <button className="next-button seats-next" onClick={showtimePage}>
-              Next
-          </button>
-          </div>
+          {
+
+            seatsSelect.front.length <= 0 && seatsSelect.left.length <= 0 && seatsSelect.middle.length <= 0 && seatsSelect.right.length <= 0 && seatsSelect.end.length <= 0 ?
+              <div className="black-box">
+                <button className="next-button seats-next">
+                  Next
+                </button>
+              </div>
+              :
+              <div className="black-box">
+                <button className="next-button-active seats-next" onClick={showtimePage}>
+                  Next
+                </button>
+              </div>
+          }
         </div>
         <ProgressBar />
       </div >

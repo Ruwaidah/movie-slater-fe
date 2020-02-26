@@ -7,7 +7,7 @@ import FilterMenu from "../components/movieDashboard/FilterMenu.js";
 //    });
 
 test('FilterMenu displays', () => {
-    const wrapper = render(<FilterMenu/>);
+    const wrapper = render(<FilterMenu />);
     wrapper.getByText(/sort by/i)
     wrapper.getByText(/most recent/i)
     wrapper.getByText(/oldest/i)

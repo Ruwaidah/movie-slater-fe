@@ -49,12 +49,24 @@
         height: 75px; 
         display: flex;
         align-items: center;
+        flex-direction: column;
+        justify-content: center;
         .theatre-name{
             font-size: 20px;
             font-weight: normal;
             width:90%;
             margin: 0 auto;
             text-align: start;
+        }
+        div {
+            margin-top: 0;
+            display: flex;
+            width: 90%;
+            justify-content: space-between;
+            p {
+                margin:0;
+                font-size: 15px;
+            }
         }
     }
     .black-bg {
@@ -121,6 +133,18 @@
         color: $disabled_text;
         margin: 0;
     }
+
+    .progress-center{
+       display: flex;
+       justify-content: center;
+    }
+
+    .space{
+        margin: 0 0 0 0;
+    }
+
+
+
 }
 
 
@@ -133,6 +157,7 @@
 
 .bright-red{
    background: $enabled_action_button !important;
+   color: white !important;
 }
 
 .back-home{
@@ -156,6 +181,16 @@
 
 #tickets-btn {
     position: fixed;
-    bottom: 20px;
+    z-index: +1;
+    bottom: 16px;
     background: $enabled_action_button;
+}
+.lasttheater {
+    margin-bottom: 300px;
+
+    .whiteBo {
+        border-bottom: none;
+
+    }
+
 }

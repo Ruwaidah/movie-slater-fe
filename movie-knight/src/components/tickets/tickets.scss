@@ -88,8 +88,17 @@
 }
 
 .next{
-    background-color: #7e1616;
-    color: #e0c6c6;
+    background-color: #fd2d2d;
+    color: rgba(255, 255, 255, 0.87);
+    border: none;
+    outline: none;
+    margin-top: 10%;
+    padding: 8px 145px;
+}
+
+.next-off{
+    background-color: #7e1616;;
+    color: rgba(255, 255, 255, 0.6);
     border: none;
     outline: none;
     margin-top: 10%;
@@ -99,3 +108,8 @@
 .no-sub{
     margin-left: 100px;
 }
+
+.progress-center{
+    display: flex;
+    justify-content: center;
+ }

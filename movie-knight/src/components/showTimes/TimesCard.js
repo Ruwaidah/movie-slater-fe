@@ -1,23 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './showtime.scss'
-import axio from 'axios'
-import Loading from '../Loading.js'
-
-
 
 const TimesCard = props => {
-    console.log(props.num)
-    const [isSelect, setIsSelect] = useState(false)
+    const [isSelect, setIsSelect] = useState({
+        clicked: false
+
+    })
 
 
-    const picked = () => {
+
+    useEffect(() => {
+        setIsSelect({ clicked: false })
+    }, [props.active])
+
+    const picked = (data) => {
         props.setActive(!props.active)
-        setIsSelect(!isSelect)
+        setTimeout(() => {
+            setIsSelect({
+                clicked: !isSelect.clicked
+            })
+        }, [])
     }
 
+
     return (
-        <p value={props.time} className={props.ind > 0 ? isSelect ? `bright-red timeshow white-text` : `timeshow white-text` : isSelect ? `bright-red timeshow` : `timeshow`} onClick={picked}>{props.time}</p>
+        <>
+            <p className={props.ind > 0 ? isSelect.clicked ? `bright-red timeshow white-text` : `timeshow white-text` : isSelect.clicked ? `bright-red timeshow` : `timeshow`} onClick={() => picked(props.time + props.date)}>{props.time}</p>
+            {isSelect.clicked ? <button className="next-button" id="tickets-btn" onClick={() => props.history.push("/signup")}>Get tickets</button> : null}
+        </>
     )
 
 

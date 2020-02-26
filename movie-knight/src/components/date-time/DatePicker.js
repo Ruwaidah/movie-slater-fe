@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import DayCard from "./DayCard";
 import { connect } from "react-redux";
-import { dayNext } from "../actions/index.js";
-import ProgressBar from "./ProgressBar";
-import "../App.scss";
+import { dayNext } from "../../actions/index.js";
+import ProgressBar from "../progress-nav-bars/ProgressBar.js";
+import "../../App.scss";
 
 const DataPicker = props => {
   const [daySelect, setDaySelect] = useState([]);
-  var today = new Date();
-  var tomorrow = new Date(today.getTime());
 
 
   const days = [
@@ -46,12 +44,20 @@ const DataPicker = props => {
           })}
         </div>
       </div>
-
-      <div className="black-box">
-        <button className="next-button" onClick={timePage}>
-          Next
-        </button>
-      </div>
+      {
+        daySelect.length === 0 ?
+          <div className="black-box">
+            <button className="next-button">
+              Next
+            </button>
+          </div>
+          :
+          <div className="black-box">
+            <button className="next-button-active" onClick={timePage}>
+              Next
+            </button>
+          </div>
+      }
       <ProgressBar />
     </div>
   );
