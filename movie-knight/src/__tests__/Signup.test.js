@@ -2,13 +2,20 @@
 import React from "react";
 import { render, fireEvent, wait, cleanup } from "@testing-library/react";
 import axios from "axios";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // Redux
 import { renderWithRedux } from "./storeFactory";
 
 // Components
-import Signup from "../components/SignUp";
+import {Signup} from "../components/SignUp";
 import { signUp } from "../actions/index";
+
+// Redux
+import { Provider } from "react-redux";
+import { storeFactory } from "./storeFactory"
+
+import { store } from "../redux/store"
 
 afterEach(cleanup);
 
@@ -24,94 +31,77 @@ test("should render password input", () => {
   expect(emailInput).toBeTruthy();
 });
 
+describe("Login form tests", () => {
+	let mock;
+	beforeEach(() => {
+		mock = jest.spyOn(axios, 'post');
+	});
 
-//OLD2//
+	afterEach(() => {
+		mock.mockRestore();
+	});
 
-// import React from "react";
-// import { BrowserRouter as Router } from "react-router-dom";
+	const { getByPlaceholderText, getByText, getByTestId } = render(
+		<Provider store={store}>
+			<Router>
+				<Signup/>
+			</Router>
+		</Provider>
+	);
 
-// import { render, fireEvent, wait } from '@testing-library/react';
-// import axios from 'axios';
+	const fillForm = (username, email, password) => {
 
-// // Redux
-// import { Provider } from "react-redux";
-// import { storeFactory } from "./storeFactory"
+		fireEvent.change(getByPlaceholderText("Username"), {
+			target: {value: username},
+		})
+		fireEvent.change(getByPlaceholderText("email@example.com"), {
+			target: {value: email},
+		})
+		fireEvent.change(getByPlaceholderText("********"), {
+			target: {value: password},
+		})
+	}
 
-// // Components
-// import {Signup} from '../components/SignUp';
-// import { signUp } from "../actions/index";
+	const history = {
+		push: jest.fn(()=> "/")
+	}
 
-// describe("Login form tests", () => {
-// 	let mock;
-// 	beforeEach(() => {
-// 		mock = jest.spyOn(axios, 'post');
-// 	});
-
-// 	afterEach(() => {
-// 		mock.mockRestore();
-// 	});
-
-// 	const { getByPlaceholderText, getByText, getByTestId } = render(
-// 		<Provider store={store}>
-// 			<Router>
-// 				<Signup/>
-// 			</Router>
-// 		</Provider>
-// 	);
-
-// 	const fillForm = (username, email, password) => {
-
-// 		fireEvent.change(getByPlaceholderText("Username"), {
-// 			target: {value: username},
-// 		})
-// 		fireEvent.change(getByPlaceholderText("email@example.com"), {
-// 			target: {value: email},
-// 		})
-// 		fireEvent.change(getByPlaceholderText("********"), {
-// 			target: {value: password},
-// 		})
-// 	}
-
-// 	const history = {
-// 		push: jest.fn(()=> "/")
-// 	}
-
-// 	it("renders form correctly", () => {
+	it("renders form correctly", () => {
 	
-//     expect(getByPlaceholderText("Username")).toBeInTheDocument();
-//     expect(getByPlaceholderText("email@example.com")).toBeInTheDocument();
-// 	expect(getByPlaceholderText("********")).toBeInTheDocument();
-//     expect(getByText("Already have an account?")).toBeInTheDocument();
-//     expect(getByText("Save your information for a faster checkout")).toBeInTheDocument();
-//     expect(getByText("Log in here")).toBeInTheDocument();
-// 	expect(getByText("Sign Up").closest('button')).toBeInTheDocument();
-// 	})
+    expect(getByPlaceholderText("Username")).toBeInTheDocument();
+    expect(getByPlaceholderText("email@example.com")).toBeInTheDocument();
+	expect(getByPlaceholderText("********")).toBeInTheDocument();
+    expect(getByText("Already have an account?")).toBeInTheDocument();
+    expect(getByText("Save your information for a faster checkout")).toBeInTheDocument();
+    expect(getByText("Log in here")).toBeInTheDocument();
+	expect(getByText("Sign Up").closest('button')).toBeInTheDocument();
+	})
 
-// 	it("will call signup endpoint ", async () => {
-// 		render(
-// 			<Provider store={storeFactory}>
-// 				<Router>
-// 				  <Signup signUp={signUp} history={history}/>
-// 				</Router>
-// 			</Provider>
-// 		);
+	it("will call signup endpoint ", async () => {
+		render(
+			<Provider store={store}>
+				<Router>
+				  <Signup signUp={signUp} history={history}/>
+				</Router>
+			</Provider>
+		);
 
-// 		fillForm("TestUser", "test@email.com", "12345678")
+		fillForm("TestUser", "test@email.com", "12345678")
 
-// 		const user = {
-// 			username: getByPlaceholderText("Username").value,
-// 			email: getByPlaceholderText("email@example.com").value,
-// 			password: getByPlaceholderText("********").value,
-// 		}
+		const user = {
+			username: getByPlaceholderText("Username").value,
+			email: getByPlaceholderText("email@example.com").value,
+			password: getByPlaceholderText("********").value,
+		}
 
-// 		const result = { data: { user: user, 
-// 			// token: '12345' 
-// 		}}
+		const result = { data: { user: user, 
+			// token: '12345' 
+		}}
 
-// 		mock.mockResolvedValue(result);
-// 		fireEvent.submit(getByTestId("signUp-button"))
-// 		await wait(() => expect(mock).toHaveBeenCalledWith('/api/auth/register', user));
-// 	});
+		mock.mockResolvedValue(result);
+		fireEvent.submit(getByTestId("signUp-button"))
+		await wait(() => expect(mock).toHaveBeenCalledWith('/api/auth/register', user));
+	});
 
 
 	//OLD//
@@ -148,7 +138,7 @@ test("should render password input", () => {
 
 	// });
 
-// })
+})
 
 
 
