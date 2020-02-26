@@ -1,10 +1,12 @@
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { createBrowserHistory } from "history";
-export const history = createBrowserHistory();
+import axios from "axios";
 
+export const history = createBrowserHistory();
 export const USER_LOGING_IN = "USER_LOGING_IN";
 export const USER_LOGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
 export const USER_LOGING_IN_FAILURE = "USER_LOGING_IN_FAILURE";
+
 
 export const login = loginData => dispatch => {
   dispatch({ type: USER_LOGING_IN });
@@ -62,9 +64,9 @@ export const getUserById = () => dispatch => {
     path = `oauth/${localStorage.getItem("googleId")} `
   else if (localStorage.getItem("userId"))
     path = `auth/${localStorage.getItem("userId")} `
-  console.log(path)
-  axiosWithAuth()
-    .get(`/api/${path}`)
+  console.log(`http://localhost:5000/api/${path}`)
+  axios
+    .get(`http://localhost:5000/api/${path}`)
     .then(response => {
       console.log(response.data)
       dispatch(
