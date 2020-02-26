@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { login } from "../actions/index";
+import { login } from "../../actions/index";
 import { connect } from "react-redux";
-import { signUpGoogle } from "../actions/index";
-// import { withRouter } from "react-router-dom";
+import { signUpGoogle } from "../../actions/index";
 
 //Oauth//
 // import ReactDOM from 'react-dom';
@@ -14,7 +13,6 @@ export const Login = props => {
   const handleSubmit = event => {
     event.preventDefault();
     props.login(loginInfo);
-    // .then(() => props.history.push('/'))
     props.history.push("/");
     setLogininfo({ email: "", password: "" });
   };
@@ -32,10 +30,6 @@ export const Login = props => {
     props.history.push("/");
   };
 
-  const logoutGoogle = () => {
-    localStorage.removeItem("token");
-    props.history.push("/");
-  };
   //Oauth
 
   return (
@@ -88,17 +82,6 @@ export const Login = props => {
           Log In
         </button>
       </form>
-
-      {/* Oauth */}
-
-      {/* <div style={{ display: localStorage.token ? "block" : "none" }}>
-        <GoogleLogout
-          clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
-          buttonText="Logout"
-          onLogoutSuccess={logoutGoogle}
-        ></GoogleLogout>
-      </div> */}
-      {/* Oauth */}
     </div>
   );
 };

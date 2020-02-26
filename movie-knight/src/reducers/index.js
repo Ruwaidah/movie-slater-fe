@@ -8,12 +8,6 @@ import {
   USER_SIGNING,
   USER_SIGNING_SUCCESS,
   USER_SIGNING_FAILURE,
-  THEATER_USER_LOGING_IN,
-  THEATER_USER_LOGING_IN_SUCCESS,
-  THEATER_USER_LOGING_IN_FAILURE,
-  THEATER_USER_SIGNING,
-  THEATER_USER_SIGNING_SUCCESS,
-  THEATER_USER_SIGNING_FAILURE,
   GET_MOVIES_START,
   GET_MOVIES_SUCCESS,
   GET_MOVIES_FAILURE,
@@ -54,7 +48,8 @@ const initialState = {
   ticketsNumber: 0,
   seatsSelects: [],
   timeSelects: [],
-  ticket: false
+  ticket: false,
+  theatres: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -127,47 +122,6 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
 
-    //*************************THEATER SIGN-UP */
-    case THEATER_USER_SIGNING:
-      return {
-        ...state,
-        fetchingData: true
-      };
-
-    case THEATER_USER_SIGNING_SUCCESS:
-      return {
-        ...state,
-        fetchingData: false,
-        userData: action.payload
-      };
-
-    case THEATER_USER_SIGNING_FAILURE:
-      return {
-        ...state,
-        fetchingData: false,
-        error: action.payload
-      };
-
-    //*************************THEATER LOGIN */
-    case THEATER_USER_LOGING_IN:
-      return {
-        ...state,
-        fetchingData: true
-      };
-
-    case THEATER_USER_LOGING_IN_SUCCESS:
-      return {
-        ...state,
-        fetchingData: false,
-        userData: action.payload
-      };
-
-    case THEATER_USER_LOGING_IN_FAILURE:
-      return {
-        ...state,
-        fetchingData: false,
-        error: action.payload
-      };
 
     //*************************** GET MOVIES//
     case GET_MOVIES_START:
@@ -318,7 +272,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingData: false,
         error: "",
-        results: action.payload
+        results: action.payload[0],
+        theatres: action.payload[1]
       }
 
     case GET_SHOWTIMES_RESULTS_FAILED:
@@ -327,6 +282,7 @@ const reducer = (state = initialState, action) => {
         fetchingData: false,
         error: action.payload
       }
+
 
 
     default:

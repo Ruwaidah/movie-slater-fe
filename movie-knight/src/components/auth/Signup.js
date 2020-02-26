@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { signUp } from "../actions/index";
-import { signUpGoogle } from "../actions/index";
+import { signUp } from "../../actions/index";
+import { signUpGoogle } from "../../actions/index";
 import { withRouter } from "react-router-dom";
 
 //Oauth//
@@ -117,18 +117,18 @@ function Signup(props) {
           Sign Up
         </button>
       </form>
-        <div className="member-p">
+      <div className="member-p">
 
         <button onClick={() => props.history.push("/")} className="guest-button">
-        Continue as guest
+          Continue as guest
       </button>
-          <p>
-            Already have an account?
+        <p>
+          Already have an account?
             <span onClick={() => props.history.push("/login")}>
-              Log in here
+            Log in here
             </span>
-          </p>{" "}
-        </div>
+        </p>{" "}
+      </div>
       <div>
         {/* <button onClick={() => props.history.push("/")} className="guest-button">
           Continue as guest
@@ -138,7 +138,7 @@ function Signup(props) {
           Sign Up
         </button> */}
 
-      
+
 
       </div>
 
