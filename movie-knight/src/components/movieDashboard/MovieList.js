@@ -25,7 +25,7 @@ export function MovieList(props) {
 
   function makeCall() {
     axios
-      .get(`http://localhost:5000/api/movies?zip=${zipCode}`)
+      .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipCode}`)
       .then(response => {
         setMovies(response.data);
       });
