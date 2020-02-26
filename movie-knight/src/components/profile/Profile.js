@@ -4,9 +4,10 @@ import './profileStyle.scss'
 import Close from '../images/closeButton.png'
 import noImage from '../images/no-image.gif'
 import setting from '../images/setting.svg'
-import { getUserById, updateUser, updateUserData } from '../../actions/index.js'
+import { getUserById, updateUser, updateUserData, delfavoriteTheatres } from '../../actions/index.js'
 import { useEffect } from 'react'
 import Loading from '../Loading.js'
+import redheart from '../images/redheart.png'
 
 
 function Profile(props) {
@@ -76,6 +77,13 @@ function Profile(props) {
         image = localStorage.getItem("image");
     else image = noImage
 
+    // DELETE THEATRE
+    const delFromFavorite = (e, id) => {
+        console.log(props.userInfo.theatres.theatreId)
+        e.preventDefault()
+        props.delfavoriteTheatres(id)
+        props.getUserById()
+    }
 
     if (props.fetchingData || !props.userInfo) return <Loading />
     return (
@@ -110,14 +118,32 @@ function Profile(props) {
                 </div>
             </div>
             <div className="theatres">
+                <h3>FAVORITE THEATERS</h3>
                 {props.userInfo.theatres && props.userInfo.theatres.map(theatre => (
-                    <div>
-                        <p>{theatre.theatre}</p>
-                        <p>{theatre.street}</p>
-                        <p>{theatre.state}</p>
+                    // <div className = "fav">
+                    //     <p>{theatre.theatre}</p>
+                    //     <p>{theatre.street}</p>
+                    //     <p>{theatre.state}</p>
 
-                        <p>{theatre.city}</p>
-                        <p>{theatre.zip}</p>        </div>
+                    //     <p>{theatre.city}</p>
+                    //     <p>{theatre.zip}</p>
+
+                    // </div>
+                    <div className='theatre'>
+                        <div className="theateraddress">
+                            <h2 className='theatre-name'>{theatre.theatre}</h2>
+
+                            <p>{`${theatre.street}, ${theatre.city}, ${theatre.state}, ${theatre.zip}`}</p></div>
+                        <div>
+                            <img src={redheart} onClick={(e) => delFromFavorite(e, theatre.theatreId)} />
+
+
+                        </div>
+
+
+
+
+                    </div>
                 )
 
                 )}
@@ -137,5 +163,5 @@ const mapStateToProps = state => {
         userInfo: state.userInfo
     };
 };
-export default connect(mapStateToProps, { getUserById, updateUser, updateUserData })(Profile);
+export default connect(mapStateToProps, { delfavoriteTheatres, getUserById, updateUser, updateUserData })(Profile);
 

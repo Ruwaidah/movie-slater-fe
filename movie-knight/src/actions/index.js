@@ -64,19 +64,26 @@ export const getUserById = () => dispatch => {
     path = `oauth/${localStorage.getItem("googleId")} `
   else if (localStorage.getItem("userId"))
     path = `auth/${localStorage.getItem("userId")} `
-  console.log(`http://localhost:5000/api/${path}`)
-  axios
-    .get(`http://localhost:5000/api/${path}`)
-    .then(response => {
-      console.log(response.data)
-      dispatch(
-        { type: USER_BYID_SUCCESS, payload: response.data.user },
+
+  if (path) {
+    axiosWithAuth()
+      .get(`/api/${path}`)
+      .then(response => {
+        console.log(response.data)
+        dispatch(
+          { type: USER_BYID_SUCCESS, payload: response.data.user },
+        )
+      }
       )
-    }
-    )
-    .catch(err =>
-      dispatch({ type: USER_BYID_FAILURE, payload: err.response })
-    );
+      .catch(err =>
+        dispatch({ type: USER_BYID_FAILURE, payload: err.response })
+      );
+  }
+  else {
+    dispatch(
+      { type: USER_BYID_FAILURE, payload: "no user Id" })
+  }
+
 };
 
 
@@ -287,7 +294,8 @@ export const getShowTimesRsults = (data) => dispatch => {
 // ******************************************* ADD FAVORITE THEATRES
 export const ADD_FAVORITE_THEATRES_SUCCESS = "ADD_FAVORITE_THEATRES_SUCCESS";
 
-export const getfavoriteTheatres = (data) => dispatch => {
+export const addfavoriteTheatres = (data) => dispatch => {
+
   console.log(data)
   let path;
   if (localStorage.getItem("googleId"))
@@ -302,3 +310,21 @@ export const getfavoriteTheatres = (data) => dispatch => {
       console.log(err));
 };
 
+
+
+// ***************************************************** DELETE FAVORITE THEATRE
+export const delfavoriteTheatres = (id) => dispatch => {
+
+  console.log(id)
+  let path;
+  if (localStorage.getItem("googleId"))
+    path = localStorage.getItem("googleId")
+  else if (localStorage.getItem("userId"))
+    path = localStorage.getItem("userId")
+  axiosWithAuth()
+    .delete(`/api/theatres/favorite?userid=${path}&theaterid=${id}`)
+    .then(response => console.log(response.data)
+    )
+    .catch(err =>
+      console.log(err));
+};

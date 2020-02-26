@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import './showtime.scss'
-import { getShowTimesRsults } from '../../actions/index.js'
+import { getShowTimesRsults, getUserById } from '../../actions/index.js'
 import Loading from '../Loading.js'
 import TheatresCard from './TheatresCard.js'
 import TimesCard from './TimesCard.js'
@@ -14,8 +14,11 @@ const Showtime = props => {
     console.log(props.results)
     let movies = props.MovieSelects.map(movie => movie.tmsId)
     useEffect(() => {
+        props.getUserById();
         props.getShowTimesRsults({ movies: movies, days: props.daySelects, times: props.timeSelects, seats: props.seatsSelects, tickets: props.ticketsNumber })
     }, [])
+
+
 
     if (props.fetchingData) return <Loading />
     return (
@@ -67,9 +70,8 @@ const Showtime = props => {
             }
             )}
             <div className='space'></div>
-            <div className='progress-center'>
-                <ProgressBar />
-            </div>
+            <ProgressBar />
+
         </div>
     )
 }
@@ -104,4 +106,4 @@ const mapStateToProps = state => {
 };
 
 
-export default connect(mapStateToProps, { getShowTimesRsults })(Showtime);
+export default connect(mapStateToProps, { getShowTimesRsults, getUserById })(Showtime);
