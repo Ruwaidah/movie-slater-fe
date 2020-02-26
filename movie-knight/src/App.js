@@ -25,9 +25,9 @@ function App(props) {
       <Switch>
       <Route path="/profile" render={(props) => <Profile {...props} setShowMenu={setShowMenu} />} />
 
-      <Route exact path="/login" > <Login/> </Route>
+      <Route exact path="/login" component={Login} />
 
-      <Route exact path="/signup" > <Signup/> </Route>
+      <Route exact path="/signup" component={Signup} />
 
       <Route exact path="/" component={Dashboard} />
 
@@ -44,8 +44,6 @@ function App(props) {
       <Route exact path="/tickets" component={Tickets} />
 
       <Route exact path="/showtime" component={Showtime} />
-
-      <Route exact path="*" component={Dashboard}  /> 
       </Switch>
     </div>
   );
