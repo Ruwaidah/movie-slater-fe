@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { Login } from './Login';
+import { Login } from '../components/auth/Login';
 import * as rtl from '@testing-library/react';
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -11,17 +11,25 @@ configure({ adapter: new Adapter() });
 it('renders texts', () => {
 
   const wrapper = render(<Login/>);
-  wrapper.getByText('Log in to your Movie Knight account');
-  wrapper.getByText('Forgot password?');
-  wrapper.getByText('Click here');
+  const text1 = wrapper.getByText('Log in to your Movie Knight account');
+  const text2 =  wrapper.getByText('Forgot password?');
+  const text3 = wrapper.getByText('Click here');
+
+  expect(text1).toBeInTheDocument();
+  expect(text2).toBeInTheDocument();
+  expect(text3).toBeInTheDocument();
 
   });
 
 it('renders form', () => {
 
   const wrapper = render(<Login/>);
-  wrapper.getByPlaceholderText(/email/i);
-  wrapper.getByPlaceholderText('********');
+  const email = wrapper.getByPlaceholderText(/email/i);
+  const password = wrapper.getByPlaceholderText('********');
+
+  expect(email).toBeInTheDocument();
+  expect(password).toBeInTheDocument();
+  
 
   });
   
@@ -35,8 +43,11 @@ it('renders input', () => {
 test('renders form labels', () => {
 
   const wrapper = render(<Login/>);
-  wrapper.getByText('Email');
-  wrapper.getByText('Password');
+  const emailLabel = wrapper.getByText('Email');
+  const passwordLabel = wrapper.getByText('Password');
+
+  expect(emailLabel).toBeInTheDocument();
+  expect(passwordLabel).toBeInTheDocument();
 
 });
 

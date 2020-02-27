@@ -2,13 +2,8 @@ import React, { useState } from "react";
 import "./App.scss";
 import { Route, withRouter } from "react-router-dom";
 import { connect } from 'react-redux'
-<<<<<<< HEAD
-import Login from "./components/Login";
-import {Signup} from "./components/Signup";
-=======
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
->>>>>>> ff4192f8c3635cdeda1a03fb4638945b3f30e67b
 import Dashboard from "./components/movieDashboard/Dashboard";
 import Nav from "./components/progress-nav-bars/Nav";
 import MovieDetails from "./components/movieDetails/MovieDetails.js";

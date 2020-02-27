@@ -8,14 +8,25 @@ import FilterMenu from "../components/movieDashboard/FilterMenu.js";
 
 test('FilterMenu displays', () => {
     const wrapper = render(<FilterMenu />);
-    wrapper.getByText(/sort by/i)
-    wrapper.getByText(/most recent/i)
-    wrapper.getByText(/oldest/i)
-    wrapper.getByText(/a-z/i)
-    wrapper.getByText(/z-a/i)
-    wrapper.getByText('R')
-    wrapper.getByText(/pg-13/i)
-    wrapper.getByText('PG')
-    wrapper.getByText('G')
-    wrapper.getByText(/see results/i)
+    const text1 = wrapper.getByText(/sort by/i)
+    const text2 = wrapper.getByText(/most recent/i)
+    const text3 = wrapper.getByText(/oldest/i)
+    const text4 = wrapper.getByText(/a-z/i)
+    const text5 = wrapper.getByText(/z-a/i)
+    const text6 = wrapper.getByText('R')
+    const text7 = wrapper.getByText(/pg-13/i)
+    const text8 = wrapper.getByText('PG')
+    const text9 = wrapper.getByText('G')
+    const text10 = wrapper.getByText(/see results/i)
+
+    expect(text1).toBeInTheDocument();
+    expect(text2).toBeInTheDocument();
+    expect(text3).toBeInTheDocument();
+    expect(text4).toBeInTheDocument();
+    expect(text5).toBeInTheDocument();
+    expect(text6).toBeInTheDocument();
+    expect(text7).toBeInTheDocument();
+    expect(text8).toBeInTheDocument();
+    expect(text9).toBeInTheDocument();
+    expect(text10).toBeInTheDocument();
 });
