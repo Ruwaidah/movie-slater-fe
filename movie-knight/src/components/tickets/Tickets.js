@@ -19,7 +19,7 @@ const Ticket = props => {
   }
 
   return (
-    <div>
+    <div className="tickets-com">
       <div className="ticket">
         <h2 className="title">How many tickets do you need?</h2>
 
