@@ -9,7 +9,7 @@ export const Nav = props => {
   const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("google_username");
-    localStorage.clear()
+    localStorage.clear();
     setIsOpen(false);
     props.history.push("/");
   };
@@ -18,11 +18,9 @@ export const Nav = props => {
     props.history.push("/");
   };
 
-
-
   const goProfile = () => {
     setIsOpen(false);
-  }
+  };
 
   const handleStateChange = state => {
     setIsOpen(state);
@@ -37,7 +35,13 @@ export const Nav = props => {
       <h1 onClick={() => homeButton()} className="app-name">
         Movie<span className="app-name-knight">Knight</span>
       </h1>
-      <Menu right width={"250px"} isOpen={isOpen} onStateChange={state => handleStateChange(state.isOpen)}>
+      <Menu
+        right
+        width={"250px"}
+        isOpen={isOpen}
+        onStateChange={state => handleStateChange(state.isOpen)}
+        data-testid="menu"
+      >
         <NavLink
           exact
           to="/"
@@ -63,45 +67,45 @@ export const Nav = props => {
       </Menu>
     </div>
   ) : (
-      <>
-        <h1 onClick={() => homeButton()} className="app-name">
-          Movie<span className="app-name-knight">Knight</span>
-        </h1>
-        <Menu
-          right
-          width={"250px"}
-          isOpen={isOpen}
-          onStateChange={state => handleStateChange(state.isOpen)}
+    <>
+      <h1 onClick={() => homeButton()} className="app-name">
+        Movie<span className="app-name-knight">Knight</span>
+      </h1>
+      <Menu
+        right
+        width={"250px"}
+        isOpen={isOpen}
+        onStateChange={state => handleStateChange(state.isOpen)}
+      >
+        <NavLink
+          exact
+          to="/"
+          id="home"
+          className="menu-item"
+          onClick={() => closeMenu()}
         >
-          <NavLink
-            exact
-            to="/"
-            id="home"
-            className="menu-item"
-            onClick={() => closeMenu()}
-          >
-            Home
+          Home
         </NavLink>
-          <NavLink
-            to="/signup"
-            id="signup"
-            className="menu-item"
-            onClick={closeMenu}
-          >
-            Sign Up
+        <NavLink
+          to="/signup"
+          id="signup"
+          className="menu-item"
+          onClick={closeMenu}
+        >
+          Sign Up
         </NavLink>
-          <NavLink
-            to="/login"
-            id="login"
-            className="menu-item"
-            onClick={closeMenu}
-          >
-            Login
+        <NavLink
+          to="/login"
+          id="login"
+          className="menu-item"
+          onClick={closeMenu}
+        >
+          Login
         </NavLink>
-          <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
-        </Menu>
-      </>
-    );
+        <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
+      </Menu>
+    </>
+  );
 };
 
 const mapStateToProps = state => {
@@ -111,4 +115,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(withRouter(Nav)))
+export default withRouter(connect(mapStateToProps)(withRouter(Nav)));

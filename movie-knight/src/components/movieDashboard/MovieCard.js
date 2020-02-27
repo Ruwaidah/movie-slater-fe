@@ -27,7 +27,6 @@ function MovieCard(props) {
   useEffect(() => {
     if (active) props.setMovieSelect([...props.movieSelect, props.movie]);
     else {
-
       const filter = props.movieSelect.filter(movie1 => {
         return movie1.title !== props.movie.title;
       });
@@ -42,36 +41,35 @@ function MovieCard(props) {
     props.toggleNextOff();
   }
 
-  if (props.movie)
-    return (
-      <div className="movie-card">
-        <div
-          className={active ? "movie-img-enable red-box" : "movie-img-disable "}
-        >
-          <img
-            src={props.movie.image}
-            alt={props.movie.title}
-            onClick={
-              props.movieSelect.length == 3 ? unSelectMovie : toggleClass
-            }
-          />
-          <p
-            onClick={() => props.history.push(`/details/${path}`)}
-            className={active ? "movie-title-enable" : "movie-title-disable"}
-          >
-            {active ? "View Details" : null}
-          </p>
-        </div>
+  if (props.movie) console.log("movie", props.movie);
+  return (
+    <div className="movie-card" data-testid="movie-card">
+      <div
+        className={active ? "movie-img-enable red-box" : "movie-img-disable "}
+      >
+        <img
+          data-testid="img"
+          src={props.movie.image}
+          alt={props.movie.title}
+          onClick={props.movieSelect.length == 3 ? unSelectMovie : toggleClass}
+        />
         <p
-          // onClick={() => props.history.push(`/details/${path}`)}
+          onClick={() => props.history.push(`/details/${path}`)}
           className={active ? "movie-title-enable" : "movie-title-disable"}
         >
-          {props.movie.title.length > 20
-            ? props.movie.title.slice(0, 17) + "..."
-            : props.movie.title}
+          {active ? "View Details" : null}
         </p>
       </div>
-    );
+      <p
+        // onClick={() => props.history.push(`/details/${path}`)}
+        className={active ? "movie-title-enable" : "movie-title-disable"}
+      >
+        {props.movie.title.length > 20
+          ? props.movie.title.slice(0, 17) + "..."
+          : props.movie.title}
+      </p>
+    </div>
+  );
 }
 
 const mapStateToProps = state => {

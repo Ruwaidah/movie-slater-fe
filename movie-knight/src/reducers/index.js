@@ -49,7 +49,8 @@ const initialState = {
   seatsSelects: [],
   timeSelects: [],
   ticket: false,
-  theatres: []
+  theatres: [],
+  userInfo: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -241,7 +242,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingData: false,
         error: "",
-        userData: action.payload
+        userInfo: action.payload
       }
 
     case USER_BYID_FAILURE:
