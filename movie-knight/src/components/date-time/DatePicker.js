@@ -19,7 +19,7 @@ const DataPicker = props => {
     "Sunday"
   ];
 
-
+  
   function timePage() {
     props.dayNext(daySelect);
     props.history.push("/time");

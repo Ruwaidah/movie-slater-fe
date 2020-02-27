@@ -18,8 +18,6 @@ const Showtime = props => {
         props.getShowTimesRsults({ movies: movies, days: props.daySelects, times: props.timeSelects, seats: props.seatsSelects, tickets: props.ticketsNumber })
     }, [])
 
-
-
     if (props.fetchingData) return <Loading />
     return (
         <div className='showtime-card'>
@@ -48,7 +46,7 @@ const Showtime = props => {
                                             if (times.times.length == 0) return
                                             return <div className="day-time" key={times.date[0] + show.id + movieslist.id}>
                                                 <div className="day-div">
-                                                    <h4 className={ind > 0 ? 'white-text days-text' : 'days-text'}>{`${times.date[1]} ${times.date[0].split("-")[1]}/${times.date[0].split("-")[2]}`}</h4></div>
+                                                    <h4 className={ind > 0 ? 'white-text days-text' : 'days-text'}>{`${times.date[1]} ${ Number(times.date[0].split("-")[1].slice(0,1)) === 0 ? times.date[0].split("-")[1].slice(1,2) : times.date.split("-")[1].slice(0,2) }/${times.date[0].split("-")[2]}`}</h4></div>
                                                 <div className="times-div">
                                                     {times.times.map((time) => <TimesCard key={i + ind + show.id + movieslist.id + time} time={time} setActive={setActive} active={active}
                                                     />)}

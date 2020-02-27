@@ -71,9 +71,12 @@
                 margin:0
             }
             p {
-                margin:0;
+                margin: 3px 0 0 0;
                 font-size: 15px;
                 text-align: start;
+                font-weight: normal;
+                font-style: normal;
+                color: rgba(255,255,255,0.6);
             }
           
         }
@@ -140,10 +143,10 @@
     .days-text{
         text-align: left;
         font-size: 16px;
-        font-weight: lighter;
+        font-weight: normal;
         line-height: 24px;
-        color: $disabled_text;
-        margin: 0;
+        color: #FFFFFF;
+        margin: 6px 0 8px 0;
     }
 
     .progress-bar{
