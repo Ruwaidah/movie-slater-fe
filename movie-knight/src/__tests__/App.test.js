@@ -2,6 +2,7 @@ import React from "react";
 import { cleanup } from "@testing-library/react";
 import App from "../App";
 import { Login } from "../components/auth/Login";
+
 import Signup from "../components/auth/Signup";
 import FilterMenu from "../components/movieDashboard/FilterMenu";
 
@@ -19,4 +20,6 @@ test("Signup is rendering", () => {
 
 test("FilterMenu is rendering", () => {
   renderWithRedux(<FilterMenu />);
+
 });
+

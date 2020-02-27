@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { render } from '@testing-library/react';
 import * as rtl from '@testing-library/react';
-import Signup from './SignUp';
+import { Signup } from '../components/auth/SignUp';
 import Enzyme from "enzyme";
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -12,20 +12,26 @@ afterEach(rtl.cleanup);
 
 Enzyme.configure({adapter: new Adapter() });
 
-// test('FilterMenu renders correctly',() =>{
-//   expect(render(<Signup/>)).toMatchSnapshot();
-//  });
-
 test('all the texts displayed', () => {
     const wrapper = render(<Signup/>);
-    wrapper.getByPlaceholderText(/username/i);
-    wrapper.getByPlaceholderText(/email@example.com/i);
-    wrapper.getByText(/Already have an account?/i);
-    wrapper.getByText(/Sign Up/i);
-    wrapper.getByText(/Continue as guest/i);
-    wrapper.getByText('Save your information for a faster checkout');
-    wrapper.getByText('Already have an account?');
-    wrapper.getByText('Log in here');
+    const username = wrapper.getByPlaceholderText(/username/i);
+    const email = wrapper.getByPlaceholderText(/email@example.com/i);
+    const txt1 = wrapper.getByText(/Already have an account?/i);
+    const txt2 = wrapper.getByText(/Sign Up/i);
+    const txt3 = wrapper.getByText(/Continue as guest/i);
+    const txt4 = wrapper.getByText('Save your information for a faster checkout');
+    const txt5 = wrapper.getByText('Already have an account?');
+    const txt6 = wrapper.getByText('Log in here');
+
+    expect(username).toBeInTheDocument();
+    expect(email).toBeInTheDocument();
+    expect(txt1).toBeInTheDocument();
+    expect(txt2).toBeInTheDocument();
+    expect(txt3).toBeInTheDocument();
+    expect(txt4).toBeInTheDocument();
+    expect(txt5).toBeInTheDocument();
+    expect(txt6).toBeInTheDocument();
+
   });
 
 test('renders form labels', () => {
@@ -52,7 +58,7 @@ push: jest.fn(()=> "/")
 
 test ("signup button", async () => {
   const wrapper = render(<Signup signUp={signUp} history={history}/>);
-  const button = wrapper.getByTestId("signup-btn");
+  const button = wrapper.getByTestId("signUp-button");
   rtl.fireEvent.click(button);
   expect(button).toBeTruthy(); 
 })  
@@ -119,6 +125,3 @@ test('password form', () => {
 //   });
 
 // });
-
-
-  
