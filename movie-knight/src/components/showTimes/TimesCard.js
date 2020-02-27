@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import './showtime.scss'
 
 const TimesCard = props => {
@@ -45,4 +46,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(TimesCard);
+export default connect(mapStateToProps)(withRouter(TimesCard));
