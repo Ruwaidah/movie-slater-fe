@@ -67,7 +67,8 @@ export const Nav = props => {
       </Menu>
     </div>
   ) : (
-    <>
+    <div>
+      <div className='navbar-fixed'></div>
       <h1 onClick={() => homeButton()} className="app-name">
         Movie<span className="app-name-knight">Knight</span>
       </h1>
@@ -104,7 +105,7 @@ export const Nav = props => {
         </NavLink>
         <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
       </Menu>
-    </>
+    </div>
   );
 };
 

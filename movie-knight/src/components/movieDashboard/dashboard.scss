@@ -1,7 +1,6 @@
 @import "../../variables.scss";
 
 .dash-board {
-  margin-top: 2%;
   padding-top: 70px;
 }
 .movielist-component {
@@ -314,7 +313,7 @@
   width: 24px;
   height: 24px;
   right: 32px;
-  top: 36px;
+  top: 25px;
 }
 
 /* Individual item */
@@ -391,14 +390,24 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 // Styling of App name and header on dashboard
+
+.navbar-fixed{
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  padding-bottom: 65px;
+  position: fixed;
+  z-index: 31;
+}
+
 .app-name {
   font-family: "Lato";
   font-size: 16px;
   color: $pure_white;
-  position: absolute;
-  top: 25px;
+  top: 15px;
   left: 25px;
-  font-weight: black;
+  font-weight: bold;
+  position: fixed;
+  z-index: 31;
 }
 
 .app-name-knight {
