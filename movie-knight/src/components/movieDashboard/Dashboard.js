@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 import MovieList from "./MovieList";
 import "./dashboard.scss";
 import UpComingMovies from "./UpComingMovies.js";
@@ -14,7 +14,7 @@ export const Dashboard = props => {
   }
 
   return (
-    <div className="dash-board">
+    <div className="dash-board" data-testid="dash-board">
       <div className="titles">
         <h1 className="header-dash">Select the movies you'd like to see</h1>
       </div>
@@ -23,7 +23,11 @@ export const Dashboard = props => {
 
       {props.NextButton ? (
         <div className="black-box">
-          <button data-testid="next-btn" className="next-button-enable" onClick={DatePage}>
+          <button
+            data-testid="next-btn"
+            className="next-button-enable"
+            onClick={DatePage}
+          >
             Next
           </button>
         </div>

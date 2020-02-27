@@ -9,6 +9,7 @@ function SearchForm(props) {
     <div className="searchForm">
       <form>
         <input
+          data-testid="search"
           className="fontAwesome"
           placeholder="&#xf002;  Search Movies"
           onChange={handleChangeSearch}
