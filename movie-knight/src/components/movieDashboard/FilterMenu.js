@@ -221,7 +221,7 @@ function ZipSearch(props) {
               </label>
             </div>
           </div>
-          <button className="results-btn">See Results</button>
+          <button onClick={() => toggleMenu() } className="results-btn">See Results</button>
         </form>
       </div>
     </div>
