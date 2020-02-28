@@ -45,12 +45,12 @@ function ZipSearch(props) {
         <div className="linediv">
           Filter
           <div className="linecon">
-            <div className="line1 black"></div>
-            <div className="line1 white"></div>
-            <div className="line2 black"></div>
-            <div className="line2 white"></div>
-            <div className="line3 black"></div>
-            <div className="line3 white"></div>
+            <div className="line1 black" data-testid="line1 bl"></div>
+            <div className="line1 white" data-testid="line1 wh"></div>
+            <div className="line2 black" data-testid="line2 bl"></div>
+            <div className="line2 white" data-testid="line2 wh"></div>
+            <div className="line3 black" data-testid="line3 bl"></div>
+            <div className="line3 white" data-testid="line3 wh"></div>
           </div>
         </div>
       </div>
@@ -65,6 +65,7 @@ function ZipSearch(props) {
             <label>Sort By</label>
             <label className="label-text">
               <input
+                data-testid="recentform"
                 type="checkbox"
                 value="recent"
                 name="filter"
@@ -74,6 +75,7 @@ function ZipSearch(props) {
             </label>
             <label className="label-text">
               <input
+                data-testid="oldform"
                 type="checkbox"
                 value="old"
                 onChange={change}
@@ -83,6 +85,7 @@ function ZipSearch(props) {
             </label>
             <label className="label-text">
               <input
+                data-testid="azform"
                 type="checkbox"
                 value="az"
                 name="filter"
@@ -92,6 +95,7 @@ function ZipSearch(props) {
             </label>
             <label className="label-text">
               <input
+                data-testid="zaform"
                 type="checkbox"
                 value="za"
                 name="filter"
@@ -105,6 +109,7 @@ function ZipSearch(props) {
             Rating
             <label className="label-text">
               <input
+                data-testid="rform"
                 type="checkbox"
                 name="stars"
                 id="R"
@@ -116,6 +121,7 @@ function ZipSearch(props) {
             </label>
             <label className="label-text">
               <input
+                data-testid="13form"
                 type="checkbox"
                 name="stars"
                 value="PG-13"
@@ -126,6 +132,7 @@ function ZipSearch(props) {
             </label>
             <label className="label-text">
               <input
+                data-testid="pgform"
                 type="checkbox"
                 name="stars"
                 value="PG"
@@ -136,6 +143,7 @@ function ZipSearch(props) {
             </label>
             <label className="label-text">
               <input
+                data-testid="gform"
                 type="checkbox"
                 name="stars"
                 value="G"
@@ -151,6 +159,7 @@ function ZipSearch(props) {
             <div className="star-buttons">
               <label>
                 <input
+                  data-testid="1form"
                   type="checkbox"
                   name="stars"
                   value="1"
@@ -165,6 +174,7 @@ function ZipSearch(props) {
               </label>
               <label>
                 <input
+                  data-testid="2form"
                   type="checkbox"
                   name="stars"
                   value="2"
@@ -179,6 +189,7 @@ function ZipSearch(props) {
               </label>
               <label>
                 <input
+                  data-testid="3form"
                   type="checkbox"
                   name="stars"
                   value="3"
@@ -193,6 +204,7 @@ function ZipSearch(props) {
               </label>
               <label>
                 <input
+                  data-testid="4form"
                   type="checkbox"
                   name="stars"
                   value="4"
@@ -207,6 +219,7 @@ function ZipSearch(props) {
               </label>
               <label>
                 <input
+                  data-testid="5form"
                   type="checkbox"
                   name="stars"
                   value="5"
@@ -221,7 +234,7 @@ function ZipSearch(props) {
               </label>
             </div>
           </div>
-          <button onClick={() => toggleMenu() } className="results-btn">See Results</button>
+          <button onClick={() => toggleMenu() } className="results-btn" data-testid="filter-btn">See Results</button>
         </form>
       </div>
     </div>

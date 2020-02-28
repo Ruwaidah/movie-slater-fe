@@ -17,6 +17,7 @@ function ZipSearch(props) {
     <div className="zipsearch">
       <form onSubmit={handleSubmit}>
         <input
+          data-testid="zipcodesearch"
           className="fontAwesome"
           type="number"
           name="zipcode"

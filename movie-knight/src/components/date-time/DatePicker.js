@@ -5,7 +5,7 @@ import { dayNext } from "../../actions/index.js";
 import ProgressBar from "../progress-nav-bars/ProgressBar.js";
 import "../../App.scss";
 
-const DataPicker = props => {
+export const DataPicker = props => {
   const [daySelect, setDaySelect] = useState([]);
 
 
