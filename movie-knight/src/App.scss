@@ -95,6 +95,8 @@ body {
 
 .question {
   margin-top: 20px;
+  font-family: lato;
+  font-size: 23px;
 }
 
 @keyframes fadein {
@@ -109,12 +111,13 @@ body {
 // Login Component // SignUp Component
 .login-com,
 .signup-com {
+  padding-top: 5px;
   width:90%;
   margin:0 auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  margin-top: 8%;
+  // margin-top: 8%;
 
   .signUp-btn {
     background-color: $disabled_action_button;
