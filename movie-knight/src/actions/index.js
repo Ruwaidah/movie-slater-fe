@@ -272,12 +272,12 @@ export const GET_SHOWTIMES_RESULTS_SUCCESS = "GET_SHOWTIMES_RESULTS_SUCCESS";
 export const GET_SHOWTIMES_RESULTS_FAILED = "GET_SHOWTIMES_RESULTS_FAILED";
 
 export const getShowTimesRsults = (data) => dispatch => {
+  let theatres = []
   dispatch({ type: GET_SHOWTIMES_RESULTS_LOADING });
   axiosWithAuth()
     .post(`/api/filtermovies`, data)
     .then(respone => {
-      const theatres = respone.data.map(movies => movies.showtimes.map(theater => theater.id))
-      console.log(theatres)
+      respone.data.map(movies => movies.showtimes.map(theater => theatres.push(theater.id)))
       axiosWithAuth().post("/api/theaters", { theatres: theatres }).then(data => {
         dispatch({ type: GET_SHOWTIMES_RESULTS_SUCCESS, payload: [respone.data, data.data] })
       })
