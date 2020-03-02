@@ -19,7 +19,7 @@ test("renders google button", () => {
   wrapper.getByText("Login with Google");
 });
 
-test("calls onSubmit with the username and password when submitted", async () => {
+test("calls onSubmit with the username and password when submitted", () => {
   // Arrange
   const history = {
     push: jest.fn(() => "/")
@@ -50,9 +50,7 @@ test("calls onSubmit with the username and password when submitted", async () =>
   // Simulate.onSubmit(formNode);
 
   // Assert
-  await wait(() => {
-    expect(handleSubmit).toHaveBeenCalled();
-    expect(handleSubmit).toHaveBeenCalledWith(fakeUser);
-    expect(submitButtonNode.type).toBe("submit");
-  });
+  expect(handleSubmit).toHaveBeenCalled();
+  expect(handleSubmit).toHaveBeenCalledWith(fakeUser);
+  expect(submitButtonNode.type).toBe("submit");
 });

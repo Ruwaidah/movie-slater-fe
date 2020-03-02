@@ -25,7 +25,7 @@ export const Login = props => {
   const responseGoogle = response => {
     const { tokenId } = response;
     localStorage.setItem("token", tokenId);
-    localStorage.setItem("image", response.profileObj.imageUrl)
+    localStorage.setItem("image", response.profileObj.imageUrl);
     props.signUpGoogle();
     props.history.push("/");
   };
@@ -78,7 +78,11 @@ export const Login = props => {
             Forgot password? <span>Click here</span>
           </p>
         </div>
-        <button type="submit" className="next-button login-btn" data-testid="login-btn">
+        <button
+          type="submit"
+          className="next-button login-btn"
+          data-testid="login-btn"
+        >
           Log In
         </button>
       </form>

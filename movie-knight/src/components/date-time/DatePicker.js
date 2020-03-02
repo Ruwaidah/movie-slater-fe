@@ -8,7 +8,6 @@ import "../../App.scss";
 export const DataPicker = props => {
   const [daySelect, setDaySelect] = useState([]);
 
-
   const days = [
     "Monday",
     "Tuesday",
@@ -19,7 +18,6 @@ export const DataPicker = props => {
     "Sunday"
   ];
 
-  
   function timePage() {
     props.dayNext(daySelect);
     props.history.push("/time");
@@ -30,7 +28,7 @@ export const DataPicker = props => {
       <div className="day-container">
         <h2 className="question">When would you like to go?</h2>
 
-        <div className="days">
+        <div className="days" data-testid="days">
           {days.map((day, i) => {
             return (
               <DayCard
@@ -44,20 +42,17 @@ export const DataPicker = props => {
           })}
         </div>
       </div>
-      {
-        daySelect.length === 0 ?
-          <div className="black-box">
-            <button className="next-button">
-              Next
-            </button>
-          </div>
-          :
-          <div className="black-box">
-            <button className="next-button-active" onClick={timePage}>
-              Next
-            </button>
-          </div>
-      }
+      {daySelect.length === 0 ? (
+        <div className="black-box">
+          <button className="next-button">Next</button>
+        </div>
+      ) : (
+        <div className="black-box">
+          <button className="next-button-active" onClick={timePage}>
+            Next
+          </button>
+        </div>
+      )}
       <ProgressBar />
     </div>
   );

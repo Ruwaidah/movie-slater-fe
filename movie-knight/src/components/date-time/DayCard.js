@@ -28,7 +28,7 @@ const DayCard = props => {
     var yyyy = day.getFullYear();
     const dayName = days[day.getDay()];
     const dm = mm + "/" + dd;
-    const fulldate = `${yyyy}-${mm}-${dd}`
+    const fulldate = `${yyyy}-${mm}-${dd}`;
     return [dm, dayName, fulldate];
   }
 
@@ -44,6 +44,7 @@ const DayCard = props => {
 
   return (
     <button
+      data-testid="day-btn"
       className={active ? " day red-box" : "day"}
       onClick={() => toggleClass()}
     >
