@@ -9,9 +9,15 @@ import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import reducer from './reducers/index'
+import ReduxThunk from 'redux-thunk'
+import { store } from './createStore.js'
 
-const store = createStore(reducer, applyMiddleware(thunk, logger))
+// export const middlewares = [ReduxThunk]
 
+// export const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore)
+// const store = createStore(reducer, applyMiddleware(thunk, logger))
+
+// export const store = createStoreWithMiddleware(reducer)
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter>
@@ -20,4 +26,4 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('root'));
 
-serviceWorker.unregister();
+// serviceWorker.unregister();

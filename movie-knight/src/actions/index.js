@@ -8,9 +8,9 @@ export const USER_LOGING_IN_SUCCESS = "USER_LOGING_IN_SUCCESS";
 export const USER_LOGING_IN_FAILURE = "USER_LOGING_IN_FAILURE";
 
 
-export const login = loginData => dispatch => {
-  dispatch({ type: USER_LOGING_IN });
-  axiosWithAuth()
+export const login = loginData => async (dispatch) => {
+  // dispatch({ type: USER_LOGING_IN });
+  await axiosWithAuth()
     .post("/api/auth/login", loginData)
     .then(response => {
       localStorage.setItem("userId", response.data.user.id);
@@ -20,25 +20,23 @@ export const login = loginData => dispatch => {
       )
     }
     )
-    .catch(err => {
-      console.log(err)
-      dispatch({ type: USER_LOGING_IN_FAILURE, payload: err.response })
-    }
-    );
+  // .catch(err => {
+  //   console.log(err)
+  //   dispatch({ type: USER_LOGING_IN_FAILURE, payload: err.response })
+  // }
+  // );
 };
 
 export const USER_SIGNING = "USER_SIGNING";
 export const USER_SIGNING_SUCCESS = "USER_SIGNING_SUCCESS";
 export const USER_SIGNING_FAILURE = "USER_SIGNING_FAILURE";
 
-export const signUp = signUpData => dispatch => {
-  console.log(signUpData)
+export const signUp = signUpData => async (dispatch) => {
   dispatch({ type: USER_SIGNING });
 
-  axiosWithAuth()
+  await axiosWithAuth()
     .post("/api/auth/register ", signUpData)
     .then(response => {
-      console.log(response)
       localStorage.setItem("userId", response.data.user.id);
       dispatch(
         { type: USER_SIGNING_SUCCESS, payload: response.data.user },
@@ -57,7 +55,7 @@ export const USER_BYID_LOADING = "USER_BYID_LOADING";
 export const USER_BYID_SUCCESS = "USER_BYID_SUCCESS";
 export const USER_BYID_FAILURE = "USER_BYID_FAILURE";
 
-export const getUserById = () => dispatch => {
+export const getUserById = () => async (dispatch) => {
   let path;
   dispatch({ type: USER_BYID_LOADING });
   if (localStorage.getItem("googleId"))
@@ -66,10 +64,9 @@ export const getUserById = () => dispatch => {
     path = `auth/${localStorage.getItem("userId")} `
 
   if (path) {
-    axiosWithAuth()
+    await axiosWithAuth()
       .get(`/api/${path}`)
       .then(response => {
-        console.log(response.data)
         dispatch(
           { type: USER_BYID_SUCCESS, payload: response.data.user },
         )
@@ -90,7 +87,7 @@ export const getUserById = () => dispatch => {
 // *********************************************************** UPDATE USER IMAGE
 
 
-export const updateUser = image => dispatch => {
+export const updateUser = image => async (dispatch) => {
   let path
   if (localStorage.getItem("googleId"))
     path = `/?googleId=${localStorage.getItem("googleId")}`
@@ -100,10 +97,9 @@ export const updateUser = image => dispatch => {
 
   dispatch({ type: USER_BYID_LOADING });
 
-  axiosWithAuth()
+  await axiosWithAuth()
     .post(`/api/image${path}`, image)
     .then(response => {
-      console.log(response)
       dispatch({ type: USER_BYID_SUCCESS, payload: response.data })
     }
     )
@@ -114,7 +110,7 @@ export const updateUser = image => dispatch => {
 
 
 // ****************************************************** UPDATE USER DATA
-export const updateUserData = data => dispatch => {
+export const updateUserData = data => async (dispatch) => {
   let path
   if (localStorage.getItem("googleId"))
     path = `oauth/${localStorage.getItem("googleId")}`
@@ -124,7 +120,7 @@ export const updateUserData = data => dispatch => {
 
   dispatch({ type: USER_BYID_LOADING });
 
-  axiosWithAuth()
+  await axiosWithAuth()
     .put(`/api/${path}`, data)
     .then(response => {
       dispatch({ type: USER_BYID_SUCCESS, payload: response.data.user })
@@ -142,16 +138,16 @@ export const USER_SIGNING_GOOGLE = "USER_SIGNING_GOOGLE";
 export const USER_SIGNING_GOOGLE_SUCCESS = "USER_SIGNING_GOOGLE_SUCCESS";
 export const USER_SIGNING_GOOGLE_FAILURE = "USER_SIGNING_GOOGLE_FAILURE";
 
-export const signUpGoogle = signUpData => dispatch => {
+export const signUpGoogle = signUpData => async (dispatch) => {
   dispatch({ type: USER_SIGNING_GOOGLE, payload: signUpData });
   console.log("jhoihiphouh")
-  axiosWithAuth()
+  await axiosWithAuth()
     .post("/api/oauth/login", {
       token: localStorage.getItem("token")
     })
     .then(response => {
       localStorage.setItem("token", response.data.token);
-      dispatch({ type: USER_SIGNING_GOOGLE_SUCCESS, payload: response })
+      dispatch({ type: USER_SIGNING_GOOGLE_SUCCESS, payload: response.data })
     }
     )
     .catch(err =>
@@ -162,33 +158,33 @@ export const signUpGoogle = signUpData => dispatch => {
 
 
 //GET MOVIES WIHTOUT LOGIN//
-export const GET_MOVIES_START = "GET_MOVIES_START";
-export const GET_MOVIES_SUCCESS = "GET_MOVIES_SUCCESS";
-export const GET_MOVIES_FAILURE = "GET_MOVIES_FAILURE";
+// export const GET_MOVIES_START = "GET_MOVIES_START";
+// export const GET_MOVIES_SUCCESS = "GET_MOVIES_SUCCESS";
+// export const GET_MOVIES_FAILURE = "GET_MOVIES_FAILURE";
 
-export const getMovie = zipcode => dispatch => {
-  if (localStorage.getItem("zip") == null) zipcode = 47712;
-  dispatch({ type: GET_MOVIES_START });
+// export const getMovie = zipcode => dispatch => {
+//   if (localStorage.getItem("zip") == null) zipcode = 47712;
+//   dispatch({ type: GET_MOVIES_START });
 
-  axiosWithAuth()
-    .get(`/api/movies?zip=${zipcode}`)
-    .then(response => {
-      console.log(response);
-      dispatch({ type: GET_MOVIES_SUCCESS, payload: response.data });
-    })
-    .catch(err =>
-      dispatch({ type: GET_MOVIES_FAILURE, payload: err.response })
-    );
-};
+//   axiosWithAuth()
+//     .get(`/api/movies?zip=${zipcode}`)
+//     .then(response => {
+//       console.log(response);
+//       dispatch({ type: GET_MOVIES_SUCCESS, payload: response.data });
+//     })
+//     .catch(err =>
+//       dispatch({ type: GET_MOVIES_FAILURE, payload: err.response })
+//     );
+// };
 
 // GET MOVIE DETAIL
 export const GET_MOVIE_DETAIL_START = "GET_MOVIE_DETAIL_START";
 export const GET_MOVIE_DETAIL_SUCCESS = "GET_MOVIE_DETAIL_SUCCESS";
 export const GET_MOVIE_DETAIL_FAILURE = "GET_MOVIE_DETAIL_FAILURE";
 
-export const getMovieDetail = movieName => dispatch => {
+export const getMovieDetail = movieName => async dispatch => {
   dispatch({ type: GET_MOVIE_DETAIL_START });
-  axiosWithAuth()
+  await axiosWithAuth()
     .post(`/api/movies/moviedetails`, {
       title: `${movieName}`
     })
@@ -205,9 +201,9 @@ export const GET_MOVIES_UPCOMING_START = "GET_MOVIES_UPCOMING_START";
 export const GET_MOVIES_UPCOMING_SUCCESS = "GET_MOVIES_UPCOMING_SUCCESS";
 export const GET_MOVIES_UPCOMING_FAILURE = "GET_MOVIES_UPCOMING_FAILURE";
 
-export const getUpcomingMovies = () => dispatch => {
+export const getUpcomingMovies = () => async (dispatch) => {
   dispatch({ type: GET_MOVIES_UPCOMING_START });
-  axiosWithAuth()
+  await axiosWithAuth()
     .get(`/api/upcoming`)
     .then(respone =>
       dispatch({ type: GET_MOVIES_UPCOMING_SUCCESS, payload: respone.data })
@@ -271,11 +267,12 @@ export const GET_SHOWTIMES_RESULTS_LOADING = "GET_SHOWTIMES_RESULTS_LOADING";
 export const GET_SHOWTIMES_RESULTS_SUCCESS = "GET_SHOWTIMES_RESULTS_SUCCESS";
 export const GET_SHOWTIMES_RESULTS_FAILED = "GET_SHOWTIMES_RESULTS_FAILED";
 
-export const getShowTimesRsults = (data) => dispatch => {
+export const getShowTimesRsults = (data) => async dispatch => {
   let theatres = []
+  const zipcode = localStorage.getItem("zip") || "47712"
   dispatch({ type: GET_SHOWTIMES_RESULTS_LOADING });
-  axiosWithAuth()
-    .post(`/api/filtermovies`, data)
+  await axiosWithAuth()
+    .post(`/api/filtermovies?zip=${zipcode}`, data)
     .then(respone => {
       respone.data.map(movies => movies.showtimes.map(theater => theatres.push(theater.id)))
       axiosWithAuth().post("/api/theaters", { theatres: theatres }).then(data => {
