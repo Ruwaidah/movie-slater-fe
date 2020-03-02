@@ -8,9 +8,9 @@ import {
   USER_SIGNING,
   USER_SIGNING_SUCCESS,
   USER_SIGNING_FAILURE,
-  GET_MOVIES_START,
-  GET_MOVIES_SUCCESS,
-  GET_MOVIES_FAILURE,
+  // GET_MOVIES_START,
+  // GET_MOVIES_SUCCESS,
+  // GET_MOVIES_FAILURE,
   GET_MOVIE_DETAIL_START,
   GET_MOVIE_DETAIL_SUCCESS,
   GET_MOVIE_DETAIL_FAILURE,
@@ -60,7 +60,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingData: true,
-        googleData: action.payload
       };
 
     case USER_SIGNING_GOOGLE_SUCCESS:
@@ -68,8 +67,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingData: false,
-        googleData: action.payload,
-        userData: action.payload
+        // googleData: action.payload,
+        userData: action.payload.data.user
       };
     case USER_SIGNING_GOOGLE_FAILURE:
       return {
@@ -125,23 +124,23 @@ const reducer = (state = initialState, action) => {
 
 
     //*************************** GET MOVIES//
-    case GET_MOVIES_START:
-      return {
-        ...state,
-        fetchingData: true
-      };
-    case GET_MOVIES_SUCCESS:
-      return {
-        ...state,
-        fetchingData: false,
-        movieList: action.payload
-      };
-    case GET_MOVIES_FAILURE:
-      return {
-        ...state,
-        fetchingData: false,
-        error: action.payload
-      };
+    // case GET_MOVIES_START:
+    //   return {
+    //     ...state,
+    //     fetchingData: true
+    //   };
+    // case GET_MOVIES_SUCCESS:
+    //   return {
+    //     ...state,
+    //     fetchingData: false,
+    //     movieList: action.payload
+    //   };
+    // case GET_MOVIES_FAILURE:
+    //   return {
+    //     ...state,
+    //     fetchingData: false,
+    //     error: action.payload
+    //   };
 
     //********************** GET MOVIE DETAILS */
     case GET_MOVIE_DETAIL_START:

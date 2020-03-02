@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
 import "./dashboard.scss";
-import { getMovie } from "../../actions/index";
+// import { getMovie } from "../../actions/index";
 import { connect } from "react-redux";
 import ZipSearch from "./ZipSearch.js";
 import SearchForm from "./SearchForm.js";
@@ -42,7 +42,7 @@ export function MovieList(props) {
 
   return (
     <div className="movielist-component">
-      <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
+      <ZipSearch setZipCode={setZipCode} />
       <p className='or-text'>or</p>
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
       <div className="filter-max">
@@ -126,7 +126,6 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps, {
-  getMovie,
   toggleNext,
   toggleNextOff
 })(MovieList);
