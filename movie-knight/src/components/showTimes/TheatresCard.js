@@ -5,6 +5,7 @@ import { addfavoriteTheatres, delfavoriteTheatres, getUserById } from '../../act
 import whiteheart from '../images/whiteheart.png'
 import redheart from '../images/redheart.png'
 import { useEffect } from 'react'
+import { displayImage } from '../TheatersImages'
 
 
 
@@ -41,13 +42,24 @@ const TheatresCard = props => {
     }
 
 
-    console.log(userTheater)
+    console.log(props)
     return (
         <div className={props.ind > 0 ? "black-bg theatre" : 'theatre'}>
-            <div className="theateraddress">
-                <h2 className='theatre-name'>{props.show.theatre}</h2>
 
-                <p>{`${theatre[0].location.address.street}, ${theatre[0].location.address.city}, ${theatre[0].location.address.state}, ${theatre[0].location.address.postalCode}`}</p></div>
+            <div className='all-theater-info'>
+
+                <img src={displayImage(props.show.theatre)} className='theater-logo' alt={props.show.theatre} />
+                    
+
+                <div className="theateraddress">
+                    <h2 className='theatre-name'>{props.show.theatre}</h2>
+
+                    <p>{`${theatre[0].location.address.street}, ${theatre[0].location.address.city}, ${theatre[0].location.address.state}, ${theatre[0].location.address.postalCode}`}</p>
+
+                </div>
+                
+            </div>
+                
             {(localStorage.getItem("googleId") || localStorage.getItem("userId")) ?
                 <div className="hearticon">{isFavorite ? <img src={redheart} onClick={() => delFromFavorite()} /> :
                     <img src={whiteheart} onClick={() => addToFavorite()} />}
@@ -56,7 +68,7 @@ const TheatresCard = props => {
 
             }
 
-
+            
         </div>
     )
 
