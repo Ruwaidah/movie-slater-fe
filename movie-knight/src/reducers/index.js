@@ -8,15 +8,9 @@ import {
   USER_SIGNING,
   USER_SIGNING_SUCCESS,
   USER_SIGNING_FAILURE,
-  THEATER_USER_LOGING_IN,
-  THEATER_USER_LOGING_IN_SUCCESS,
-  THEATER_USER_LOGING_IN_FAILURE,
-  THEATER_USER_SIGNING,
-  THEATER_USER_SIGNING_SUCCESS,
-  THEATER_USER_SIGNING_FAILURE,
-  GET_MOVIES_START,
-  GET_MOVIES_SUCCESS,
-  GET_MOVIES_FAILURE,
+  // GET_MOVIES_START,
+  // GET_MOVIES_SUCCESS,
+  // GET_MOVIES_FAILURE,
   GET_MOVIE_DETAIL_START,
   GET_MOVIE_DETAIL_SUCCESS,
   GET_MOVIE_DETAIL_FAILURE,
@@ -32,10 +26,15 @@ import {
   USER_BYID_LOADING,
   USER_BYID_SUCCESS,
   USER_BYID_FAILURE,
-  TIME_NEXT_BUTTON
+  TIME_NEXT_BUTTON,
+  GET_SHOWTIMES_RESULTS_LOADING,
+  GET_SHOWTIMES_RESULTS_SUCCESS,
+  GET_SHOWTIMES_RESULTS_FAILED,
+
 } from "../actions/index";
 
 const initialState = {
+  results: [],
   movieList: [],
   userData: {},
   fetchingData: false,
@@ -48,7 +47,10 @@ const initialState = {
   daySelects: [],
   ticketsNumber: 0,
   seatsSelects: [],
-  timeSelects: []
+  timeSelects: [],
+  ticket: false,
+  theatres: [],
+  userInfo: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -58,7 +60,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingData: true,
-        googleData: action.payload
       };
 
     case USER_SIGNING_GOOGLE_SUCCESS:
@@ -66,8 +67,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingData: false,
-        googleData: action.payload,
-        userData: action.payload
+        // googleData: action.payload,
+        userData: action.payload.data.user
       };
     case USER_SIGNING_GOOGLE_FAILURE:
       return {
@@ -121,66 +122,25 @@ const reducer = (state = initialState, action) => {
         error: action.payload
       };
 
-    //*************************THEATER SIGN-UP */
-    case THEATER_USER_SIGNING:
-      return {
-        ...state,
-        fetchingData: true
-      };
-
-    case THEATER_USER_SIGNING_SUCCESS:
-      return {
-        ...state,
-        fetchingData: false,
-        userData: action.payload
-      };
-
-    case THEATER_USER_SIGNING_FAILURE:
-      return {
-        ...state,
-        fetchingData: false,
-        error: action.payload
-      };
-
-    //*************************THEATER LOGIN */
-    case THEATER_USER_LOGING_IN:
-      return {
-        ...state,
-        fetchingData: true
-      };
-
-    case THEATER_USER_LOGING_IN_SUCCESS:
-      return {
-        ...state,
-        fetchingData: false,
-        userData: action.payload
-      };
-
-    case THEATER_USER_LOGING_IN_FAILURE:
-      return {
-        ...state,
-        fetchingData: false,
-        error: action.payload
-      };
 
     //*************************** GET MOVIES//
-    case GET_MOVIES_START:
-      return {
-        ...state,
-        fetchingData: true
-      };
-    case GET_MOVIES_SUCCESS:
-      return {
-        ...state,
-        fetchingData: false,
-        movieList: action.payload
-      };
-    case GET_MOVIES_FAILURE:
-      return {
-        ...state,
-        fetchingData: false,
-        error: action.payload
-      };
+    // case GET_MOVIES_START:
+    //   return {
+    //     ...state,
+    //     fetchingData: true
+    //   };
+    // case GET_MOVIES_SUCCESS:
+    //   return {
+    //     ...state,
+    //     fetchingData: false,
+    //     movieList: action.payload
+    //   };
+    // case GET_MOVIES_FAILURE:
+    //   return {
+    //     ...state,
+    //     fetchingData: false,
+    //     error: action.payload
+    //   };
 
     //********************** GET MOVIE DETAILS */
     case GET_MOVIE_DETAIL_START:
@@ -281,7 +241,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchingData: false,
         error: "",
-        userData: action.payload
+        userInfo: action.payload
       }
 
     case USER_BYID_FAILURE:
@@ -297,6 +257,34 @@ const reducer = (state = initialState, action) => {
         ...state,
         timeSelects: action.payload
       }
+
+
+    //  ******************************************** Get Results
+    case GET_SHOWTIMES_RESULTS_LOADING:
+      return {
+        ...state,
+        fetchingData: true,
+        error: ""
+      }
+
+    case GET_SHOWTIMES_RESULTS_SUCCESS:
+      return {
+        ...state,
+        fetchingData: false,
+        error: "",
+        results: action.payload[0],
+        theatres: action.payload[1]
+      }
+
+    case GET_SHOWTIMES_RESULTS_FAILED:
+      return {
+        ...state,
+        fetchingData: false,
+        error: action.payload
+      }
+
+
+
     default:
       return state;
   }

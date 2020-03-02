@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function ZipSearch(props) {
   const [zip, setZip] = useState(localStorage.getItem("zip") || "");
@@ -17,6 +17,7 @@ function ZipSearch(props) {
     <div className="zipsearch">
       <form onSubmit={handleSubmit}>
         <input
+          data-testid="zipcodesearch"
           className="fontAwesome"
           type="number"
           name="zipcode"

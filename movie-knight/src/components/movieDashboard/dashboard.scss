@@ -1,8 +1,11 @@
 @import "../../variables.scss";
 
 .dash-board {
-  margin-top: 2%;
   padding-top: 70px;
+}
+.movielist-component {
+  width:90%;
+  margin: 0 auto
 }
 
 .movie-list {
@@ -52,7 +55,7 @@
 }
 
 .movie-img-enable {
-  box-shadow: -1px 1px 10px gray;
+  // box-shadow: -1px 1px 10px gray;
   border-radius: 5px;
   padding-top: 3px;
   display: flex;
@@ -87,7 +90,7 @@
 }
 
 .movie-img-disable {
-  box-shadow: -1px 1px 10px gray;
+  // box-shadow: -1px 1px 10px gray;
   height: 246px;
   // width: 50px;
   // height: 235px;
@@ -120,7 +123,7 @@
     outline: none;
     border: none;
     height: 20px;
-    width: 87%;
+    width: 97%;
     border-radius: 6px;
     padding: 6px;
     margin-bottom: 20px;
@@ -144,7 +147,7 @@
 // Zipcode Search Form
 .zipsearch {
   input {
-    width: 87%;
+    width: 97%;
     font-size: 16px;
     outline: none;
     border: none;
@@ -185,12 +188,12 @@
 }
 
 .next-button-enable {
-  background-color: $disabled_action_button;
+  background-color:  $enabled_action_button;
   position: fixed;
   bottom: 15px;
   right: 0%;
   width: 75%;
-  color: $disabled_text;
+  color: $mid-text;
   margin: 0 auto;
   border: none;
   border-radius: 7px;
@@ -203,8 +206,8 @@
 }
 
 .results-btn {
-  background-color: $disabled_action_button;
-  color: $disabled_text;
+  background-color: $enabled_action_button;
+  color: rgba(255, 255, 255, 0.87);
   margin: 5px 0px;
   border: none;
   border-radius: 7px;
@@ -222,7 +225,19 @@
 
 .menu-filter {
   position: absolute;
-  width: 50%;
+  width: 52%;
+  height: 66%;
+  margin-top: -160px;
+  padding: 214px 0px 50px 0px;
+  margin-left: -1px;
+
+  @media screen and (min-width: 800px) {
+    width: 20%;
+    height: 54%;
+    margin: 20px 0 0 0;
+    padding: 0;
+  }
+
   .movie-review,
   .movie-rating,
   .sorting {
@@ -297,8 +312,8 @@
   position: fixed;
   width: 24px;
   height: 24px;
-  right: 36px;
-  top: 36px;
+  right: 32px;
+  top: 25px;
 }
 
 /* Individual item */
@@ -325,7 +340,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100vh;
+
   top: 0px;
+
 }
 
 /* General sidebar styles */
@@ -334,6 +351,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
   overflow: hidden !important;
+
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -372,14 +390,24 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 // Styling of App name and header on dashboard
+
+.navbar-fixed{
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  padding-bottom: 65px;
+  position: fixed;
+  z-index: 31;
+}
+
 .app-name {
   font-family: "Lato";
   font-size: 16px;
   color: $pure_white;
-  position: absolute;
-  top: 25px;
+  top: 15px;
   left: 25px;
-  font-weight: black;
+  font-weight: bold;
+  position: fixed;
+  z-index: 31;
 }
 
 .app-name-knight {
@@ -387,8 +415,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .header-dash {
-  font-size: 18px;
+  width:90%;
+  margin: 0 auto;
+  font-size: 20px;
   margin-bottom: 10px;
+  font-family: lato;
 }
 
 .titles {
@@ -445,10 +476,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 // See Results Button //
 .results-btn {
-  background-color: $disabled_action_button;
-  color: $disabled_text;
+  background-color: $enabled_action_button;
+  color: rgba(255, 255, 255, 0.87);
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 40px;
   border: none;
   border-radius: 7px;
   height: 32px;
@@ -470,3 +501,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
     font-weight: bold;
   }
 }
+
+.or-text{
+  margin: 0 0 10px 0;
+  font-family: lato;
+
+  @media screen and (min-width: 800px) {
+    margin-left: 0;
+    font-size: 12px;
+  }
+
+  @media screen and (min-width: 800px) {
+    width: 28%;
+  }
+}
+

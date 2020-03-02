@@ -4,13 +4,15 @@ import './profileStyle.scss'
 import Close from '../images/closeButton.png'
 import noImage from '../images/no-image.gif'
 import setting from '../images/setting.svg'
-import { getUserById, updateUser, updateUserData } from '../../actions/index.js'
+import { getUserById, updateUser, updateUserData, delfavoriteTheatres } from '../../actions/index.js'
 import { useEffect } from 'react'
 import Loading from '../Loading.js'
+import redheart from '../images/redheart.png'
 
 
 function Profile(props) {
-    console.log(localStorage.getItem("image"))
+    console.log(localStorage.getItem("googleId"))
+    console.log(props.userInfo)
     let image;
     let para;
     const [img, setImage] = useState();
@@ -75,8 +77,15 @@ function Profile(props) {
         image = localStorage.getItem("image");
     else image = noImage
 
+    // DELETE THEATRE
+    const delFromFavorite = (e, id) => {
+        console.log(props.userInfo.theatres.theatreId)
+        e.preventDefault()
+        props.delfavoriteTheatres(id)
+        props.getUserById()
+    }
 
-    if (props.fetchingData || !props.userData) return <Loading />
+    if (props.fetchingData || !props.userInfo) return <Loading />
     return (
         <div className="profile-container" >
 
@@ -84,10 +93,10 @@ function Profile(props) {
             <div className="profile-nav" >
                 <h3>Profile</h3>
                 <div>
-                    <img src={Close} onClick={() => exit()} />
+                    <img src={Close} alt="exit" onClick={() => exit()} />
                 </div>
             </div>
-            {viewImage ? <div className="showImage"><img src={preview ? preview : image} />
+            {viewImage ? <div className="showImage"><img alt="profileImage" src={preview ? preview : image} />
                 <form onSubmit={saveImage}>
                     <input type="file" onChange={onImageChange} />
                     <button type="submit">Save</button>
@@ -98,15 +107,46 @@ function Profile(props) {
             {/* Header */}
             <div className="header" >
                 <div className="profile-image">
-                    <img src={image} onClick={() => changeImage()} />
+                    <img alt="profileImage" src={image} onClick={() => changeImage()} />
                 </div>
                 <div className="name-setting">
-                    <h3>{props.userData.username ? props.userData.username : props.userData.name}</h3>
+                    <h3>{props.userInfo.username ? props.userInfo.username : props.userInfo.name}</h3>
                     <div className="setting">
-                        <img src={setting} />
+                        <img alt="setting" src={setting} />
                         <p>Edit Setting</p>
                     </div>
                 </div>
+            </div>
+            <div className="theatres">
+                <h3>FAVORITE THEATERS</h3>
+                {props.userInfo.theatres && props.userInfo.theatres.map(theatre => (
+                    // <div className = "fav">
+                    //     <p>{theatre.theatre}</p>
+                    //     <p>{theatre.street}</p>
+                    //     <p>{theatre.state}</p>
+
+                    //     <p>{theatre.city}</p>
+                    //     <p>{theatre.zip}</p>
+
+                    // </div>
+                    <div className='theatre'>
+                        <div className="theateraddress">
+                            <h2 className='theatre-name'>{theatre.theatre}</h2>
+
+                            <p>{`${theatre.street}, ${theatre.city}, ${theatre.state}, ${theatre.zip}`}</p></div>
+                        <div>
+                            <img src={redheart} onClick={(e) => delFromFavorite(e, theatre.theatreId)} />
+
+
+                        </div>
+
+
+
+
+                    </div>
+                )
+
+                )}
             </div>
 
         </div>
@@ -119,8 +159,9 @@ const mapStateToProps = state => {
     return {
         movieList: state.movieList,
         fetchingData: state.fetchingData,
-        userData: state.userData
+        userData: state.userData,
+        userInfo: state.userInfo
     };
 };
-export default connect(mapStateToProps, { getUserById, updateUser, updateUserData })(Profile);
+export default connect(mapStateToProps, { delfavoriteTheatres, getUserById, updateUser, updateUserData })(Profile);
 

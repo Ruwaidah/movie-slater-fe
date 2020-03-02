@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getUpcomingMovies } from "../../actions/index.js";
 import Loading from "../Loading.js";
 import { withRouter } from "react-router-dom";
 
-function UpComingMovies(props) {
-  console.log(props.upcomingMovies);
+export function UpComingMovies(props) {
+
+
+
+
   useEffect(() => {
     props.getUpcomingMovies();
-  }, []);
+  }, [])
+
 
   if (!props.movieList) return <Loading />;
   return (
@@ -21,7 +25,7 @@ function UpComingMovies(props) {
               <div className="movie-img-disable ">
                 {
                   movie.poster_path === null ?
-                    <img
+                    <img alt='noimage'
                       className='no-movie-poster'
                       src={`https://res.cloudinary.com/donsjzduw/image/upload/v1580504817/hfjrl5wbkiugy4y0gmqu.jpg`}
                     />

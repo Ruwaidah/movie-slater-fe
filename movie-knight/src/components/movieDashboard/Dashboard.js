@@ -1,27 +1,20 @@
 import React, { useState } from "react";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
 import MovieList from "./MovieList";
 import "./dashboard.scss";
 import UpComingMovies from "./UpComingMovies.js";
 import { connect } from "react-redux";
 import { movieNext } from "../../actions/index.js";
 
-const Dashboard = props => {
+export const Dashboard = props => {
   const [movieSelect, setMovieSelect] = useState([]);
-  //   document.getElementById("nav").classList.toggle("menubar");
   function DatePage() {
     props.movieNext(movieSelect);
     props.history.push("/date");
   }
 
-  // const search = document.getElementById("search");
-  // search.classList.add("brightness");
-
-  console.log("movies", props.MovieSelects);
-  console.log("movies", movieSelect);
-
   return (
-    <div className="dash-board">
+    <div className="dash-board" data-testid="dash-board">
       <div className="titles">
         <h1 className="header-dash">Select the movies you'd like to see</h1>
       </div>
@@ -30,7 +23,11 @@ const Dashboard = props => {
 
       {props.NextButton ? (
         <div className="black-box">
-          <button className="next-button-disable" onClick={DatePage}>
+          <button
+            data-testid="next-btn"
+            className="next-button-enable"
+            onClick={DatePage}
+          >
             Next
           </button>
         </div>

@@ -27,7 +27,6 @@ function MovieCard(props) {
   useEffect(() => {
     if (active) props.setMovieSelect([...props.movieSelect, props.movie]);
     else {
-
       const filter = props.movieSelect.filter(movie1 => {
         return movie1.title !== props.movie.title;
       });
@@ -69,12 +68,19 @@ function MovieCard(props) {
           onClick={() => props.history.push(`/details/${path}`)}
           className={active ? "movie-title-enable" : "movie-title-disable"}
         >
-          {props.movie.title.length > 20
-            ? props.movie.title.slice(0, 17) + "..."
-            : props.movie.title}
+          {active ? "View Details" : null}
         </p>
       </div>
-    );
+      <p
+        // onClick={() => props.history.push(`/details/${path}`)}
+        className={active ? "movie-title-enable" : "movie-title-disable"}
+      >
+        {props.movie.title.length > 20
+          ? props.movie.title.slice(0, 17) + "..."
+          : props.movie.title}
+      </p>
+    </div>
+  );
 }
 
 const mapStateToProps = state => {

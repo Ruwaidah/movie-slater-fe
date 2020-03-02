@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
 import "./dashboard.scss";
-import { getMovie } from "../../actions/index";
+// import { getMovie } from "../../actions/index";
 import { connect } from "react-redux";
 import ZipSearch from "./ZipSearch.js";
 import SearchForm from "./SearchForm.js";
@@ -11,44 +11,26 @@ import Loading from "../Loading.js";
 import { toggleNext, toggleNextOff } from "../../actions/index";
 
 export function MovieList(props) {
-
-  const [movies, setMovies] = useState([])
-  const [searchParam, setSearchParam] = useState("")
-  const [zipCode, setZipCode] = useState(47712)
-  const [movieSelect, setMovieSelect] = useState([]);
-
+  const [movies, setMovies] = useState([]);
+  const [searchParam, setSearchParam] = useState("");
+  const [zipCode, setZipCode] = useState(47712);
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
     mature: ["G", "PG", "PG-13", "R"]
   });
-  //Checkbox toggle
-
-  // useEffect(() => {
-  //   if (props.movieSelect.length > 0) {
-  //     props.toggleNext();
-  //   } else if (props.movieSelect.length === 0) {
-  //     props.toggleNextOff();
-  //   }
-  // })
 
   function makeCall() {
     axios
       .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipCode}`)
       .then(response => {
-        console.log(response);
         setMovies(response.data);
       });
   }
 
   useEffect(() => {
     makeCall();
-    props.getMovie(zipCode);
   }, [zipCode]);
-
-  // useEffect(() => {
-  //   props.toggleNext(props.movieSelect);
-  // }, []);
 
   const toggleMenu = () => {
     document.getElementById("filter").classList.remove("toggle-menu2");
@@ -56,8 +38,8 @@ export function MovieList(props) {
 
   return (
     <div className="movielist-component">
-      <ZipSearch setZipCode={setZipCode} getMovie={props.getMovie} />
-
+      <ZipSearch setZipCode={setZipCode} />
+      <p className="or-text">or</p>
       <SearchForm searchParam={searchParam} setSearchParam={setSearchParam} />
       <div className="filter-max">
         <FilterMenu setFilter={setFilter} filters={filters} />
@@ -70,7 +52,11 @@ export function MovieList(props) {
       {props.fetchingData ? (
         <Loading />
       ) : (
-        <div className="movie-list" onClick={toggleMenu}>
+        <div
+          className="movie-list"
+          data-testid="movielist"
+          onClick={toggleMenu}
+        >
           {movies
             .filter(movie => {
               return (
@@ -138,7 +124,6 @@ const mapStateToProps = state => {
   };
 };
 export default connect(mapStateToProps, {
-  getMovie,
   toggleNext,
   toggleNextOff
 })(MovieList);
