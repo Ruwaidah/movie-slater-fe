@@ -58,11 +58,23 @@ body {
   border: none;
   color: #706e70;
   outline: none;
-  height: 40px;
+  height: 48px;
+}
+
+.dayPicker-com{ 
+  width: 90%;
+  margin:0 auto;
+  padding-top: 5px;
 }
 
 .day-container {
   margin-top: 20%;
+}
+
+.timePicker-com  {
+  width:90%;
+  margin: 0 auto;
+  padding-top: 5px;
 }
 
 .time-container {
@@ -71,18 +83,20 @@ body {
 
 .day.red-box {
   margin-top: 16px;
-  background-color: #262526;
+  background-color: #3d3d3d;
 
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   padding: 3% 0;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
   border-radius: 5px;
-  height: 40px;
+  height: 48px;
 }
 
 .question {
   margin-top: 20px;
+  font-family: lato;
+  font-size: 23px;
 }
 
 @keyframes fadein {
@@ -97,12 +111,15 @@ body {
 // Login Component // SignUp Component
 .login-com,
 .signup-com {
+  padding-top: 5px;
+  width:90%;
+  margin:0 auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  margin-top: 8%;
+  // margin-top: 8%;
 
-  .signUp-btn{
+  .signUp-btn {
     background-color: $disabled_action_button;
     width: 98%;
     color: $mid_text;
@@ -113,9 +130,7 @@ body {
     outline: none;
     font-size: 18px;
     margin-top: 10px;
-   
   }
-
 
   form div {
     display: flex;
@@ -155,7 +170,6 @@ body {
   }
 
   .member-p {
-    margin-top: 40px;
     text-align: start;
     p {
       position: absolute;
@@ -166,7 +180,6 @@ body {
       }
     }
   }
-
 
   .login-btn {
     position: absolute;
@@ -184,7 +197,8 @@ body {
     height: 45px;
     outline: none;
     font-size: 16px;
-    margin-top: 40px;
+    margin-left: 5px;
+    margin-top: 22px;
   }
 
   .forgot-psw {
@@ -246,6 +260,8 @@ body {
 
 .hamburger-menu {
   width: 20%;
+  position: absolute;
+  z-index: 30;
   margin-left: 8px;
 }
 
@@ -301,6 +317,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  z-index: 10;
 
   width: 300px;
   background-color: black;
@@ -324,10 +341,9 @@ body {
   font-size: 26px;
 }
 
-
 .noMenu {
   display: none;
-  h1{
+  h1 {
     display: none;
   }
 }

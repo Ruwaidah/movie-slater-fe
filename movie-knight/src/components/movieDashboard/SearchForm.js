@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function SearchForm(props) {
   const handleChangeSearch = event => {
@@ -9,6 +9,7 @@ function SearchForm(props) {
     <div className="searchForm">
       <form>
         <input
+          data-testid="search"
           className="fontAwesome"
           placeholder="&#xf002;  Search Movies"
           onChange={handleChangeSearch}
