@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .movieDetails-com {
   display: flex;
   flex-direction: column;
@@ -15,10 +17,10 @@
   .image-headers {
     margin-top: 20px;
     display: flex;
-
+    
     img {
       width: 34%;
-      height: 180px;
+      height: 100%;
       @media screen and (min-width: 700px) {
         width: 20%
       }
@@ -133,6 +135,20 @@
 
 .sweet-loading {
   margin-top: 190px;
+}
+
+.get-tickets-button {
+  background-color: $disabled_action_button;
+  bottom: 15px;
+  right: 0%;
+  max-width: 200px;
+  width: 65%;
+  color: $disabled_text;
+  border: none;
+  border-radius: 7px;
+  height: 25px;
+  left: 0%;
+  outline: none;
 }
 
 @media screen and (min-width: 800px) {
