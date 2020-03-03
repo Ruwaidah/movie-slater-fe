@@ -10,15 +10,17 @@ import ProgressBar from '../progress-nav-bars/ProgressBar'
 
 const Showtime = props => {
     const [active, setActive] = useState(false);
-    console.log(props.theatres)
     console.log(props.results)
+    console.log(props.timeSelects)
     let movies = props.MovieSelects.map(movie => movie.tmsId)
+    console.log(movies)
     useEffect(() => {
         props.getUserById();
         props.getShowTimesRsults({ movies: movies, days: props.daySelects, times: props.timeSelects, seats: props.seatsSelects, tickets: props.ticketsNumber })
     }, [])
 
     if (props.fetchingData) return <Loading />
+
     return (
         <div className='showtime-card'>
             <h3 className='text'>Your matches</h3>
@@ -35,6 +37,7 @@ const Showtime = props => {
                                 <h4 className='rated'>Rated {movie[0].ratings[0].code}</h4>
                             </div>
                         </div>
+                        {movieslist.showtimes.length === 0 ? <h4>no matches</h4> : null}
                         {movieslist.showtimes.map((show, ind) => {
                             return <div key={show.id + movieslist.id} className={index === props.results.length - 1 ? ind === movieslist.showtimes.length - 1 ? "lasttheater" : null : null}>
                                 {ind == 1 ? <p className="options">Other Options</p> : null}
@@ -46,7 +49,7 @@ const Showtime = props => {
                                             if (times.times.length == 0) return
                                             return <div className="day-time" key={times.date[0] + show.id + movieslist.id}>
                                                 <div className="day-div">
-                                                    <h4 className={ind > 0 ? 'white-text days-text' : 'days-text'}>{`${times.date[1]} ${ Number(times.date[0].split("-")[1].slice(0,1)) === 0 ? times.date[0].split("-")[1].slice(1,2) : times.date.split("-")[1].slice(0,2) }/${times.date[0].split("-")[2]}`}</h4></div>
+                                                    <h4 className={ind > 0 ? 'white-text days-text' : 'days-text'}>{`${times.date[1]} ${Number(times.date[0].split("-")[1].slice(0, 1)) === 0 ? times.date[0].split("-")[1].slice(1, 2) : times.date.split("-")[1].slice(0, 2)}/${times.date[0].split("-")[2]}`}</h4></div>
                                                 <div className="times-div">
                                                     {times.times.map((time) => <TimesCard key={i + ind + show.id + movieslist.id + time} time={time} setActive={setActive} active={active}
                                                     />)}
@@ -99,7 +102,8 @@ const mapStateToProps = state => {
         seatsSelects: state.seatsSelects,
         timeSelects: state.timeSelects,
         results: state.results,
-        theatres: state.theatres
+        theatres: state.theatres,
+        error: state.error
     };
 };
 

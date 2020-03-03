@@ -38,7 +38,7 @@ const initialState = {
   movieList: [],
   userData: {},
   fetchingData: false,
-  error: "",
+  error: null,
   googleData: {},
   NextButton: false,
   movieDetails: {},
@@ -54,6 +54,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(action.type)
   switch (action.type) {
     //GOOGLE SIGN UP/
     case USER_SIGNING_GOOGLE:
@@ -63,12 +64,13 @@ const reducer = (state = initialState, action) => {
       };
 
     case USER_SIGNING_GOOGLE_SUCCESS:
-      localStorage.setItem("googleId", action.payload.data.user.googleId);
+      console.log(action.payload.user.googleId)
+      localStorage.setItem("googleId", action.payload.user.googleId);
       return {
         ...state,
         fetchingData: false,
         // googleData: action.payload,
-        userData: action.payload.data.user
+        userData: action.payload.user
       };
     case USER_SIGNING_GOOGLE_FAILURE:
       return {

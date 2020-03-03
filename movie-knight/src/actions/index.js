@@ -140,19 +140,17 @@ export const USER_SIGNING_GOOGLE_FAILURE = "USER_SIGNING_GOOGLE_FAILURE";
 
 export const signUpGoogle = signUpData => async (dispatch) => {
   dispatch({ type: USER_SIGNING_GOOGLE, payload: signUpData });
-  console.log("jhoihiphouh")
   await axiosWithAuth()
     .post("/api/oauth/login", {
       token: localStorage.getItem("token")
     })
     .then(response => {
+      console.log(response.data)
       localStorage.setItem("token", response.data.token);
-      dispatch({ type: USER_SIGNING_GOOGLE_SUCCESS, payload: response.data })
+      return dispatch({ type: USER_SIGNING_GOOGLE_SUCCESS, payload: response.data })
     }
     )
-    .catch(err =>
-      dispatch({ type: USER_SIGNING_GOOGLE_FAILURE, payload: err.response })
-    );
+
 };
 
 
@@ -274,11 +272,19 @@ export const getShowTimesRsults = (data) => async dispatch => {
   await axiosWithAuth()
     .post(`/api/filtermovies?zip=${zipcode}`, data)
     .then(respone => {
+      console.log(respone.data)
       respone.data.map(movies => movies.showtimes.map(theater => theatres.push(theater.id)))
-      axiosWithAuth().post("/api/theaters", { theatres: theatres }).then(data => {
-        dispatch({ type: GET_SHOWTIMES_RESULTS_SUCCESS, payload: [respone.data, data.data] })
-      })
-
+      console.log(theatres)
+      theatres = theatres.filter(thea => thea.length > 0)
+      console.log(theatres)
+      if (theatres.length == 0) dispatch({ type: GET_SHOWTIMES_RESULTS_SUCCESS, payload: [respone.data, theatres] })
+      else {
+        axiosWithAuth().post("/api/theaters", { theatres: theatres }).then(data1 => {
+          dispatch({ type: GET_SHOWTIMES_RESULTS_SUCCESS, payload: [respone.data, data1.data] })
+        }).catch(err =>
+          dispatch({ type: GET_SHOWTIMES_RESULTS_FAILED, payload: err.respone })
+        );
+      }
     }
     )
     .catch(err =>
