@@ -13,7 +13,8 @@ import TimePicker from "./components/date-time/TimePicker";
 import SeatChart from "./components/seats/SeatChart";
 import Tickets from "./components/tickets/Tickets";
 import Showtime from "./components/showTimes/Showtime.js";
-import Profile from './components/profile/Profile.js'
+import Profile from './components/profile/Profile.js';
+import Team from './components/teams/Team';
 
 function App(props) {
   const [showMenu, setShowMenu] = useState(true)
@@ -44,6 +45,8 @@ function App(props) {
       <Route exact path="/tickets" component={Tickets} />
 
       <Route exact path="/showtime" component={Showtime} />
+
+      <Route exact path="/team" component={Team} />
 
       <Route exact path="*" component={Dashboard} />
       </Switch>
