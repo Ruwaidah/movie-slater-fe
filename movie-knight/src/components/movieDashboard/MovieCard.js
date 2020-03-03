@@ -41,25 +41,29 @@ function MovieCard(props) {
     props.toggleNextOff();
   }
 
-  if (props.movie) console.log("movie", props.movie);
-  return (
-    <div className="movie-card" data-testid="movie-card">
-      <div
-        className={active ? "movie-img-enable red-box" : "movie-img-disable "}
-      >
-        <img
-          data-testid="img"
-          src={props.movie.image}
-          alt={props.movie.title}
-          onClick={props.movieSelect.length == 3 ? unSelectMovie : toggleClass}
-        />
-        <p
-          onClick={() => props.history.push(`/details/${path}`)}
-          className={active ? "movie-title-enable" : "movie-title-disable"}
+  if (props.movie)
+    return (
+      <div className="movie-card">
+        <div
+          className={active ? "movie-img-enable red-box" : "movie-img-disable "}
         >
-          {active ? "View Details" : null}
-        </p>
-      </div>
+          <img
+            src={props.movie.image}
+            alt={props.movie.title}
+            onClick={
+              props.movieSelect.length == 3 ? unSelectMovie : toggleClass
+            }
+          />
+          <p
+            onClick={() => props.history.push({
+              pathname: `/details/${path}`,
+              state: {movieSelect: props.movieSelect}
+            })}
+            className={active ? "movie-title-enable" : "movie-title-disable"}
+          >
+            {active ? "View Details" : null}
+          </p>
+        </div>
       <p
         // onClick={() => props.history.push(`/details/${path}`)}
         className={active ? "movie-title-enable" : "movie-title-disable"}

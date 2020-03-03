@@ -7,7 +7,8 @@ import { getMovieDetail } from "../../actions/index.js";
 import { connect } from "react-redux";
 import Loading from "../Loading.js";
 import ProgressBar from "../progress-nav-bars/ProgressBar.js";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom"; 
+import { movieNext } from "../../actions/index.js";
 
 
 export const MovieDetails = props => {
@@ -26,6 +27,11 @@ export const MovieDetails = props => {
         console.log(err);
       });
   }, []);
+  function DatePage() {
+    props.movieNext(props.location.state.movieSelect);
+    props.history.push("/date");
+  }
+  console.log(movie);
   function runtime(num) {
     let hours = Math.floor(num / 60);
     let minutes = num % 60;
@@ -97,7 +103,7 @@ export const MovieDetails = props => {
             </p>
             {rating[1] ? (
               <p>
-                <span>{rating[1]}</span>
+                <span>Rated {rating[1]}</span>
               </p>
             ) : null}
             {/* 
@@ -106,7 +112,7 @@ export const MovieDetails = props => {
                 {movie.movie.vote_average}/10 <i className="fab fa-imdb"></i>
               </span>
             </p> */}
-            <p>
+            {/* <p>
               <span>
                 {reverseString(movie.moviedetail.release_date).replace(
                   /-/g,
@@ -122,7 +128,7 @@ export const MovieDetails = props => {
                   return <span key={genre.id}>{genre.name},</span>;
                 }
               })}
-            </p>
+            </p> */}
             <StarRatings
               rating={movie.movie.vote_average / 2}
               starRatedColor="red"
@@ -132,6 +138,9 @@ export const MovieDetails = props => {
               starSpacing="1px"
               name="rating"
             />
+            <button className="get-tickets-button" onClick={DatePage}>
+              Get Tickets
+            </button>
           </div>
         </div>
 
@@ -208,4 +217,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, { getMovieDetail })(MovieDetails));
+export default withRouter(connect(mapStateToProps, { getMovieDetail, movieNext })(MovieDetails));
