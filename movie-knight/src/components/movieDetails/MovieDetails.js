@@ -5,10 +5,10 @@ import axios from "axios";
 import "./movieDetails.scss";
 import { getMovieDetail } from "../../actions/index.js";
 import { connect } from "react-redux";
-import Loading from "./Loading.js";
-import ProgressBar from "./ProgressBar";
+import Loading from "../Loading.js";
+import ProgressBar from "../progress-nav-bars/ProgressBar.js";
 import { withRouter } from "react-router-dom"; 
-import { movieNext } from "../actions/index.js";
+import { movieNext } from "../../actions/index.js";
 
 
 export const MovieDetails = props => {

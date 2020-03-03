@@ -64,13 +64,6 @@ function MovieCard(props) {
             {active ? "View Details" : null}
           </p>
         </div>
-        <p
-          onClick={() => props.history.push(`/details/${path}`)}
-          className={active ? "movie-title-enable" : "movie-title-disable"}
-        >
-          {active ? "View Details" : null}
-        </p>
-      </div>
       <p
         // onClick={() => props.history.push(`/details/${path}`)}
         className={active ? "movie-title-enable" : "movie-title-disable"}
