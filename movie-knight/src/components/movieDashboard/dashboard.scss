@@ -389,6 +389,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 12px;
 }
 
+#team{
+  position: fixed;
+  bottom: 30px;
+  right: 10px;
+  font-size: 12px;
+  font-family: Lato;
+  font-weight: normal;
+  color: #ffffff;
+  font-style: normal;
+}
+
 // Styling of App name and header on dashboard
 
 .navbar-fixed{

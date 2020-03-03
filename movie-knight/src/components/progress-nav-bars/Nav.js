@@ -61,6 +61,14 @@ export const Nav = props => {
         >
           My Account
         </NavLink>
+        <NavLink
+          exact
+          to='/team'
+          id='team'
+          className='menu-item'
+        >
+          Meet our Team
+        </NavLink>
         <span onClick={() => logOut()} id="logout" className="menu-item">
           Logout
         </span>
@@ -103,6 +111,14 @@ export const Nav = props => {
           onClick={closeMenu}
         >
           Login
+        </NavLink>
+        <NavLink
+          exact
+          to='/team'
+          id='team'
+          className='menu-item'
+        >
+          Meet our Team
         </NavLink>
         <footer className="menu-footer">&copy; 2020 Movie Knight</footer>
       </Menu>
