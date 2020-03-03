@@ -15,7 +15,15 @@ const theaterImg = [
     },
     {
       theaterName: /showplace/i,
-      img: Showplace
+      img: `https://www.visitevansville.com/sites/default/files/styles/primary_image_alt/public/content/attraction/1450728101542601714326273058856050000630893n_1.jpg?itok=ksazJAH5`
+    },
+    {
+      theaterName: /Snowden Square/i,
+      img: Regal
+    },
+    {
+      theaterName: /cinemark/i,
+      img: 'https://www.pikpng.com/pngl/m/430-4307117_cinemark-movie-theater-logo-clipart.png'
     },
     {
       theaterName: '',
