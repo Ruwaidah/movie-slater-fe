@@ -23,6 +23,7 @@ function ZipSearch(props) {
           name="zipcode"
           placeholder="&#xf3c5;  Enter zip code to see movies near you"
           onChange={handleChange}
+          value={zip}
         />
       </form>
     </div>
