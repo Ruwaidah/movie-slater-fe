@@ -8,6 +8,7 @@ import { getUserById, updateUser, updateUserData, delfavoriteTheatres } from '..
 import { useEffect } from 'react'
 import Loading from '../Loading.js'
 import redheart from '../images/redheart.png'
+import { displayImage } from '../TheatersImages';
 
 
 function Profile(props) {
@@ -129,15 +130,20 @@ function Profile(props) {
                     //     <p>{theatre.zip}</p>
 
                     // </div>
-                    <div className='theatre'>
-                        <div className="theateraddress">
-                            <h2 className='theatre-name'>{theatre.theatre}</h2>
+                    <div key={theatre.id} className='theatre'>
 
-                            <p>{`${theatre.street}, ${theatre.city}, ${theatre.state}, ${theatre.zip}`}</p></div>
+                        <div className='profil-theater-info'>
+
+                            <img className='profile-theater-img' src={displayImage(theatre.theatre)} alt={theatre.theatre} />
+
+                            <div className="theateraddress">
+                                <h2 className='theatre-name'>{theatre.theatre}</h2>
+
+                                <p>{`${theatre.street}, ${theatre.city}, ${theatre.state}, ${theatre.zip}`}</p>
+                            </div>
+                        </div>
                         <div>
                             <img src={redheart} onClick={(e) => delFromFavorite(e, theatre.theatreId)} />
-
-
                         </div>
 
 
