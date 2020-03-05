@@ -152,7 +152,7 @@
         justify-content: space-between;
 
         .theatre-name{
-            font-size: 20px;
+            font-size: 18px;
             font-weight: normal;
             text-align: start;
             margin:0
@@ -161,10 +161,22 @@
             margin:0;
             font-size: 15px;
             text-align: start;
+            color: rgba($color: #ffffff, $alpha: 0.6);
         }
       
     }
     img {
         width:28px;
     }
+}
+
+img.profile-theater-img{
+    width: 50px;
+    height: 100%;
+    border-radius: 35px;
+    margin: 4px 7px 0 8px;
+}
+
+.profil-theater-info{
+    display: flex;
 }
