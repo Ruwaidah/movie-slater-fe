@@ -1,7 +1,6 @@
-import Amc from './images/theaterimg/amc.png'
+import Amc from './images/theaterimg/amc.jpg'
 import NoImage from './images/theaterimg/no-img.svg'
 import Regal from './images/theaterimg/regal.jpg'
-import Showplace from './images/theaterimg/showplace.jpg'
 
 
 const theaterImg = [

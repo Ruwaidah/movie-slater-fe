@@ -10,7 +10,12 @@
 
     .info{
         width: 40%;
+
+        @media screen and (min-width: 800px) {
+            width: 400px;
+        }
     }
+
 
     .text{
         text-align: left;
@@ -20,6 +25,10 @@
         font-size: 23px;
         color: #ffffff;
         margin-left: 25px;
+
+        @media screen and (min-width: 800px) {
+            text-align: center;
+        }
     }
 
     .name{
@@ -30,6 +39,10 @@
         color: #ffffff;
         text-align: left;
         margin: 9px 0 0 0;
+
+        @media screen and (min-width: 800px) {
+            text-align: center;
+        }
     }
     
     .role{
@@ -40,18 +53,32 @@
         color: rgba($color: #ffffff, $alpha: 0.87);
         text-align: left;
         margin: 3px 0 10px 0;
+
+        @media screen and (min-width: 800px) {
+            text-align: center;
+        }
     }
 
     .team-img{
         width: 155px;
         height: 155px;
         border-radius: 7px;
+
+        @media screen and (min-width: 800px) {
+            width: 308px;
+            height: 315px;
+        }
     }
 
     .team-icons{
         margin-bottom: 15px;
         display: flex;
         justify-content: start;
+
+        @media screen and (min-width: 800px) {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
         
         .team-link{
             color: #ffffff;
