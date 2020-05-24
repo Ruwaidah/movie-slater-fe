@@ -8,6 +8,7 @@ import { signUpGoogle } from "../../actions/index";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 export const Login = (props) => {
+  console.log(process.env.REACT_APP_CLIENT_ID);
   const [loginInfo, setLogininfo] = useState({ email: "", password: "" });
   const handleSubmit = (event) => {
     event.preventDefault();
