@@ -27,6 +27,7 @@ export function Signup(props) {
 
   //Oauth
   const responseGoogle = (response) => {
+    console.log(response);
     console.log("google response", response);
     console.log(response.profileObj.imageUrl);
     localStorage.setItem("image", response.profileObj.imageUrl);
