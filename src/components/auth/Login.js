@@ -7,22 +7,21 @@ import { signUpGoogle } from "../../actions/index";
 // import ReactDOM from 'react-dom';
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
-export const Login = props => {
+export const Login = (props) => {
   const [loginInfo, setLogininfo] = useState({ email: "", password: "" });
-
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     props.login(loginInfo);
     props.history.push("/");
     setLogininfo({ email: "", password: "" });
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setLogininfo({ ...loginInfo, [event.target.name]: event.target.value });
   };
 
   //Oauth
-  const responseGoogle = response => {
+  const responseGoogle = (response) => {
     const { tokenId } = response;
     localStorage.setItem("token", tokenId);
     localStorage.setItem("image", response.profileObj.imageUrl);
@@ -38,7 +37,7 @@ export const Login = props => {
       <div style={{ display: localStorage.token ? "none" : "block" }}>
         <GoogleLogin
           className="google-btn"
-          clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
+          clientId={process.env.REACT_APP_CLIENT_ID}
           buttonText="Login with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
@@ -90,9 +89,9 @@ export const Login = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    userData: state.userData
+    userData: state.userData,
   };
 };
 

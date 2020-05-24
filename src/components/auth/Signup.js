@@ -8,29 +8,28 @@ import { withRouter } from "react-router-dom";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 export function Signup(props) {
-
   const [signup, setsignup] = useState({
     username: "",
     password: "",
-    email: ""
+    email: "",
   });
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     props.signUp(signup);
     props.history.push("/");
     setsignup({ username: "", password: "", email: "" });
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setsignup({ ...signup, [event.target.name]: event.target.value });
   };
 
   //Oauth
-  const responseGoogle = response => {
+  const responseGoogle = (response) => {
     console.log("google response", response);
-    console.log(response.profileObj.imageUrl)
-    localStorage.setItem("image", response.profileObj.imageUrl)
+    console.log(response.profileObj.imageUrl);
+    localStorage.setItem("image", response.profileObj.imageUrl);
     const { tokenId } = response;
     localStorage.setItem("token", tokenId);
 
@@ -54,7 +53,7 @@ export function Signup(props) {
       >
         <GoogleLogin
           className="google-btn"
-          clientId="1058848707297-n2rl4b301ivq0gipo2pbenr80sa5mtp2.apps.googleusercontent.com"
+          clientId={process.env.REACT_APP_CLIENT_ID}
           buttonText="Login with Google"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
@@ -112,21 +111,24 @@ export function Signup(props) {
             onChange={handleChange}
           />
         </div>{" "}
-
-        <button type="submit" className="signUp-btn" data-testid="signUp-button">
+        <button
+          type="submit"
+          className="signUp-btn"
+          data-testid="signUp-button"
+        >
           Sign Up
         </button>
       </form>
       <div className="member-p">
-
-        <button onClick={() => props.history.push("/")} className="guest-button">
+        <button
+          onClick={() => props.history.push("/")}
+          className="guest-button"
+        >
           Continue as guest
-      </button>
+        </button>
         <p>
           Already have an account?
-            <span onClick={() => props.history.push("/login")}>
-            Log in here
-            </span>
+          <span onClick={() => props.history.push("/login")}>Log in here</span>
         </p>{" "}
       </div>
       <div>
@@ -137,13 +139,9 @@ export function Signup(props) {
         {/* <button type="submit" className="next-button" data-testid="signup-btn">
           Sign Up
         </button> */}
-
-
-
       </div>
-
     </div>
   );
-};
+}
 
 export default withRouter(connect(null, { signUp, signUpGoogle })(Signup));
