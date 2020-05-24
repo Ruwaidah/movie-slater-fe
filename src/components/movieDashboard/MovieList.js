@@ -17,13 +17,13 @@ export function MovieList(props) {
   const [filters, setFilter] = useState({
     filter: "",
     rating: ["1", "2", "3", "4", "5"],
-    mature: ["G", "PG", "PG-13", "R"]
+    mature: ["G", "PG", "PG-13", "R"],
   });
 
   function makeCall() {
     axios
-      .get(`https://movieknight01.herokuapp.com/api/movies?zip=${zipCode}`)
-      .then(response => {
+      .get(`https://moviesknight.herokuapp.com/api/movies?zip=${zipCode}`)
+      .then((response) => {
         setMovies(response.data);
       });
   }
@@ -58,7 +58,7 @@ export function MovieList(props) {
           onClick={toggleMenu}
         >
           {movies
-            .filter(movie => {
+            .filter((movie) => {
               return (
                 (movie.title.includes(searchParam) ||
                   movie.title.toLowerCase().includes(searchParam)) &&
@@ -73,7 +73,7 @@ export function MovieList(props) {
                 )
               );
             })
-            .sort(function(a, b) {
+            .sort(function (a, b) {
               if (filters.filter === "recent") {
                 var dateA = new Date(a.releaseDate),
                   dateB = new Date(b.releaseDate);
@@ -102,7 +102,7 @@ export function MovieList(props) {
                 return null;
               }
             })
-            .map(movie => {
+            .map((movie) => {
               return (
                 <MovieCard
                   movie={movie}
@@ -117,13 +117,13 @@ export function MovieList(props) {
     </div>
   );
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     movieList: state.movieList,
-    fetchingData: state.fetchingData
+    fetchingData: state.fetchingData,
   };
 };
 export default connect(mapStateToProps, {
   toggleNext,
-  toggleNextOff
+  toggleNextOff,
 })(MovieList);
