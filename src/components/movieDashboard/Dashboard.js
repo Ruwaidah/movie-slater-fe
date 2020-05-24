@@ -6,12 +6,14 @@ import UpComingMovies from "./UpComingMovies.js";
 import { connect } from "react-redux";
 import { movieNext } from "../../actions/index.js";
 
-export const Dashboard = props => {
+export const Dashboard = (props) => {
   const [movieSelect, setMovieSelect] = useState([]);
   function DatePage() {
     props.movieNext(movieSelect);
     props.history.push("/date");
   }
+
+  console.log(localStorage.getItem("token"));
 
   return (
     <div className="dash-board" data-testid="dash-board">
@@ -36,10 +38,10 @@ export const Dashboard = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     NextButton: state.NextButton,
-    MovieSelects: state.MovieSelects
+    MovieSelects: state.MovieSelects,
   };
 };
 

@@ -23,12 +23,14 @@ export const Login = (props) => {
 
   //Oauth
   const responseGoogle = (response) => {
+    console.log(response);
     const { tokenId } = response;
     localStorage.setItem("token", tokenId);
     localStorage.setItem("image", response.profileObj.imageUrl);
     props.signUpGoogle();
     props.history.push("/");
   };
+  console.log(localStorage.getItem("token"));
 
   //Oauth
 
