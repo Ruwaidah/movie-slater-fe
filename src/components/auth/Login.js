@@ -8,7 +8,9 @@ import { signUpGoogle } from "../../actions/index";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 
 export const Login = (props) => {
+  console.log(process.env);
   console.log(process.env.REACT_APP_CLIENT_ID);
+
   const [loginInfo, setLogininfo] = useState({ email: "", password: "" });
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,14 +25,12 @@ export const Login = (props) => {
 
   //Oauth
   const responseGoogle = (response) => {
-    console.log(response);
     const { tokenId } = response;
     localStorage.setItem("token", tokenId);
     localStorage.setItem("image", response.profileObj.imageUrl);
     props.signUpGoogle();
     props.history.push("/");
   };
-  console.log(localStorage.getItem("token"));
 
   //Oauth
 
