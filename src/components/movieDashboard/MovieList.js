@@ -61,7 +61,7 @@ export function MovieList(props) {
         >
           {covid19 ? (
             <b className="covid">
-              Sorry all Movie Theaters are temporary Closed because of COVID 19
+              Sorry all Movie Theaters are temporary Closed due to COVID 19
             </b>
           ) : (
             movies
